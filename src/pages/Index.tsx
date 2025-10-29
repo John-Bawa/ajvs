@@ -61,7 +61,7 @@ const Index = () => {
                 </Button>
               </Link>
               <Link to="/current-issue">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm">
+                <Button size="lg" variant="outline" className="bg-transparent border-2 border-white text-white hover:bg-white/10 backdrop-blur-sm">
                   Browse Current Issue
                 </Button>
               </Link>
@@ -214,7 +214,7 @@ const Index = () => {
               </Button>
             </Link>
             <Link to="/submit">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
                 Submit Manuscript
               </Button>
             </Link>
