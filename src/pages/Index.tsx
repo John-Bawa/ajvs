@@ -14,7 +14,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
         {/* Background Image Underlay */}
-        <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 opacity-50">
           <img 
             src={heroBackground} 
             alt="" 
@@ -23,7 +23,7 @@ const Index = () => {
         </div>
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1a4d5c]/80 via-[#2a5d6c]/70 to-[#1a4d5c]/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1a4d5c]/40 via-[#2a5d6c]/30 to-[#1a4d5c]/50"></div>
         
         {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-5">
