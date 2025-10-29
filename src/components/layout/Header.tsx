@@ -26,7 +26,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-banner/95 backdrop-blur-sm border-b border-banner-foreground/10">
+    <header className="sticky top-0 z-50 w-full bg-background/20 backdrop-blur-md border-b border-border/20 shadow-glass">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -151,12 +151,12 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="flex items-center gap-2">
             <Link to="/auth" className="hidden sm:block">
-              <Button variant="outline" size="sm" className="border-banner-foreground/20 text-banner-foreground hover:bg-banner-foreground/10">
+              <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
                 Sign In
               </Button>
             </Link>
             <Link to="/submit">
-              <Button size="sm" className="bg-primary hover:bg-primary-hover">
+              <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Submit Manuscript
               </Button>
             </Link>
