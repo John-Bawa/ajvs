@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle } from "lucide-react";
 import heroBackground from "@/assets/hero-background.webp";
+import { motion } from "framer-motion";
 
 const Index = () => {
   return (
@@ -81,61 +82,51 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="shadow-card transition-smooth hover:shadow-elegant border-border/50">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <BookOpen className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-xl">Open Access</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  All articles are freely accessible to readers worldwide, maximizing your research impact.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-card transition-smooth hover:shadow-elegant border-border/50">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Users className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-xl">Expert Review</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Rigorous peer review by leading veterinary scientists ensures quality and credibility.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-card transition-smooth hover:shadow-elegant border-border/50">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <FileText className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-xl">Fast Publication</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Streamlined editorial process ensures rapid publication of accepted manuscripts.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-card transition-smooth hover:shadow-elegant border-border/50">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <CardTitle className="text-xl">High Standards</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
-                  Committed to ethical publishing practices and research integrity.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            {[
+              {
+                icon: BookOpen,
+                title: "Open Access",
+                description: "All articles are freely accessible to readers worldwide, maximizing your research impact.",
+              },
+              {
+                icon: Users,
+                title: "Expert Review",
+                description: "Rigorous peer review by leading veterinary scientists ensures quality and credibility.",
+              },
+              {
+                icon: FileText,
+                title: "Fast Publication",
+                description: "Streamlined editorial process ensures rapid publication of accepted manuscripts.",
+              },
+              {
+                icon: Award,
+                title: "High Standards",
+                description: "Committed to ethical publishing practices and research integrity.",
+              },
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              >
+                <Card className="shadow-card transition-smooth hover:shadow-elegant border-border/50 h-full">
+                  <CardHeader>
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                      <feature.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <CardTitle className="text-xl">{feature.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {feature.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -173,8 +164,15 @@ const Index = () => {
                   title: "Publication",
                   description: "Upon acceptance, your article is published and assigned a DOI for citation.",
                 },
-              ].map((item) => (
-                <div key={item.step} className="flex gap-6 items-start group">
+              ].map((item, index) => (
+                <motion.div
+                  key={item.step}
+                  className="flex gap-6 items-start group"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                >
                   <div className="flex-shrink-0 w-12 h-12 rounded-full gradient-accent flex items-center justify-center text-white font-bold text-lg transition-smooth group-hover:scale-110">
                     {item.step}
                   </div>
@@ -183,7 +181,7 @@ const Index = () => {
                     <p className="text-muted-foreground">{item.description}</p>
                   </div>
                   <CheckCircle className="w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-smooth mt-3" />
-                </div>
+                </motion.div>
               ))}
             </div>
 
