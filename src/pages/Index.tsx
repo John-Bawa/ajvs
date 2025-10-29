@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/layout/Header";
+import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle } from "lucide-react";
 import heroBackground from "@/assets/hero-background.webp";
@@ -10,6 +11,7 @@ import { motion } from "framer-motion";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <TopBar />
       <Header />
       
       {/* Hero Section */}

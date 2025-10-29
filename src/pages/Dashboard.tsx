@@ -5,6 +5,7 @@ import { User, Session } from "@supabase/supabase-js";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/layout/Header";
+import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { FileText, PlusCircle, Users, BookOpen, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -87,6 +88,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <TopBar />
       <Header />
 
       <main className="flex-1 py-12">
