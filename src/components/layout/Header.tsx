@@ -16,13 +16,38 @@ import {
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
-    { label: "About", href: "/about" },
-    { label: "Submit", href: "/submit" },
-    { label: "Current Issue", href: "/current-issue" },
-    { label: "Archives", href: "/archives" },
-    { label: "Contact", href: "/contact" },
-    { label: "News", href: "/news" },
+  const mobileNavSections = [
+    {
+      title: "About",
+      links: [
+        { label: "Overview of AJVS", href: "/about" },
+        { label: "Editorial Board", href: "/editorial-board" },
+        { label: "Author Guidelines", href: "/for-authors" },
+        { label: "Publication Ethics", href: "/policies" },
+      ],
+    },
+    {
+      title: "Manuscripts",
+      links: [
+        { label: "Submit Manuscript", href: "/submit" },
+        { label: "Track Submission", href: "/manuscripts" },
+        { label: "Reviewer Login", href: "/reviewer-dashboard" },
+      ],
+    },
+    {
+      title: "Publications",
+      links: [
+        { label: "Current Issue", href: "/current-issue" },
+        { label: "Archives", href: "/archives" },
+      ],
+    },
+    {
+      title: "Contact",
+      links: [
+        { label: "Contact Information", href: "/contact" },
+        { label: "News & Announcements", href: "/news" },
+      ],
+    },
   ];
 
   return (
@@ -168,25 +193,36 @@ const Header = () => {
                   <Menu className="w-5 h-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-                <nav className="flex flex-col gap-4 mt-8">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-lg font-medium hover:text-primary transition-smooth"
-                    >
-                      {link.label}
-                    </Link>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px] overflow-y-auto">
+                <nav className="flex flex-col gap-6 mt-8">
+                  {mobileNavSections.map((section) => (
+                    <div key={section.title} className="space-y-3">
+                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+                        {section.title}
+                      </h3>
+                      <div className="flex flex-col gap-2 pl-2">
+                        {section.links.map((link) => (
+                          <Link
+                            key={link.href}
+                            to={link.href}
+                            onClick={() => setIsOpen(false)}
+                            className="text-base hover:text-primary transition-smooth py-1"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   ))}
-                  <Link
-                    to="/auth"
-                    onClick={() => setIsOpen(false)}
-                    className="text-lg font-medium hover:text-primary transition-smooth"
-                  >
-                    Sign In
-                  </Link>
+                  <div className="pt-4 border-t border-border">
+                    <Link
+                      to="/auth"
+                      onClick={() => setIsOpen(false)}
+                      className="text-base font-medium hover:text-primary transition-smooth block py-1"
+                    >
+                      Sign In
+                    </Link>
+                  </div>
                 </nav>
               </SheetContent>
             </Sheet>
