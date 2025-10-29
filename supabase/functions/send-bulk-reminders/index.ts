@@ -36,9 +36,12 @@ serve(async (req) => {
 
     console.log(`Sending bulk reminders to ${reviews?.length || 0} reviewers`);
 
-    // In production, send emails to all reviewers
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    
+    // Send emails to all reviewers using Resend
+    const emailPromises = [];
+    
     for (const review of reviews || []) {
-      // Fetch manuscript and reviewer details separately
       const { data: manuscript } = await supabase
         .from("manuscripts")
         .select("title")
@@ -51,36 +54,70 @@ serve(async (req) => {
         .eq("id", review.reviewer_id)
         .single();
 
-      const emailContent = `
-        <h2>Review Reminder</h2>
-        <p>Dear ${reviewer?.full_name},</p>
-        <p>This is a friendly reminder that your review for the following manuscript is pending:</p>
-        <p><strong>${manuscript?.title}</strong></p>
-        <p>Please log in to your dashboard to complete the review at your earliest convenience.</p>
-        <p>Best regards,<br>Editorial Team<br>African Journal of Veterinary Sciences</p>
+      if (!reviewer?.email) continue;
+
+      const emailHtml = `
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <style>
+              body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+              .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+              .header { background: #f59e0b; color: white; padding: 20px; text-align: center; }
+              .content { padding: 20px; background: #f9fafb; }
+              .footer { padding: 20px; text-align: center; font-size: 12px; color: #6b7280; }
+              .button { display: inline-block; padding: 12px 24px; background: #f59e0b; color: white; text-decoration: none; border-radius: 6px; margin: 20px 0; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h2>⏰ Review Reminder</h2>
+              </div>
+              <div class="content">
+                <p>Dear ${reviewer.full_name},</p>
+                
+                <p>This is a friendly reminder that your review for the following manuscript is pending:</p>
+                
+                <p><strong>${manuscript?.title}</strong></p>
+                
+                <p>Please log in to your dashboard to complete the review at your earliest convenience.</p>
+                
+                <a href="${Deno.env.get("VITE_SUPABASE_URL")}/reviewer-dashboard" class="button">Complete Review</a>
+                
+                <p>Best regards,<br>
+                <strong>Editorial Team</strong><br>
+                African Journal of Veterinary Sciences</p>
+              </div>
+              <div class="footer">
+                <p>This is an automated reminder.</p>
+              </div>
+            </div>
+          </body>
+        </html>
       `;
 
-      console.log(`Would send email to: ${reviewer?.email}`);
-      
-      // Example with Resend (uncomment when RESEND_API_KEY is configured):
-      /*
-      const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-      
-      await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${RESEND_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          from: "AJVS Editorial <editorial@ajvs.org>",
-          to: [reviewer?.email],
-          subject: `Reminder: Review Pending`,
-          html: emailContent,
-        }),
-      });
-      */
+      emailPromises.push(
+        fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${RESEND_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "AJVS Editorial <editorial@ajvs.org>",
+            to: [reviewer.email],
+            subject: `Reminder: Review Pending`,
+            html: emailHtml,
+          }),
+        })
+      );
     }
+    
+    const results = await Promise.allSettled(emailPromises);
+    const successful = results.filter(r => r.status === 'fulfilled').length;
+    
+    console.log(`Sent ${successful} reminder emails`);
 
     return new Response(
       JSON.stringify({ 

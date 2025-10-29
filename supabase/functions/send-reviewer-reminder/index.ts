@@ -1,5 +1,4 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -22,23 +21,52 @@ serve(async (req) => {
 
     console.log(`Sending reminder for review ${reviewId} to ${reviewerEmail}`);
     
-    // In production, integrate with email service
-    // Example email content:
-    const emailContent = `
-      <h2>Review Reminder</h2>
-      <p>Dear Reviewer,</p>
-      <p>This is a friendly reminder that your review for the following manuscript is pending:</p>
-      <p><strong>${manuscriptTitle}</strong></p>
-      <p>Please log in to your dashboard to complete the review at your earliest convenience.</p>
-      <p>If you need an extension or have any questions, please contact the editorial office.</p>
-      <p>Best regards,<br>Editorial Team<br>African Journal of Veterinary Sciences</p>
-    `;
-
-    // Example with Resend (uncomment when RESEND_API_KEY is configured):
-    /*
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     
-    await fetch("https://api.resend.com/emails", {
+    const emailHtml = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #f59e0b; color: white; padding: 20px; text-align: center; }
+            .content { padding: 20px; background: #f9fafb; }
+            .footer { padding: 20px; text-align: center; font-size: 12px; color: #6b7280; }
+            .button { display: inline-block; padding: 12px 24px; background: #f59e0b; color: white; text-decoration: none; border-radius: 6px; margin: 20px 0; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h2>⏰ Review Reminder</h2>
+            </div>
+            <div class="content">
+              <p>Dear Reviewer,</p>
+              
+              <p>This is a friendly reminder that your review for the following manuscript is pending:</p>
+              
+              <p><strong>${manuscriptTitle}</strong></p>
+              
+              <p>Please log in to your dashboard to complete the review at your earliest convenience.</p>
+              
+              <a href="${Deno.env.get("VITE_SUPABASE_URL")}/reviewer-dashboard" class="button">Complete Review</a>
+              
+              <p>If you need an extension or have any questions, please contact the editorial office.</p>
+              
+              <p>Best regards,<br>
+              <strong>Editorial Team</strong><br>
+              African Journal of Veterinary Sciences</p>
+            </div>
+            <div class="footer">
+              <p>This is an automated reminder.</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+
+    const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${RESEND_API_KEY}`,
@@ -48,10 +76,17 @@ serve(async (req) => {
         from: "AJVS Editorial <editorial@ajvs.org>",
         to: [reviewerEmail],
         subject: `Reminder: Review Pending for "${manuscriptTitle}"`,
-        html: emailContent,
+        html: emailHtml,
       }),
     });
-    */
+
+    if (!response.ok) {
+      const error = await response.text();
+      throw new Error(error);
+    }
+
+    const data = await response.json();
+    console.log("Reminder sent successfully:", data);
 
     return new Response(
       JSON.stringify({ 
