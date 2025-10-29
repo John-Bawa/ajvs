@@ -195,10 +195,10 @@ const Header = () => {
           </NavigationMenu>
 
           {/* CTA Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ml-auto">
             {user ? (
               <>
-                <Link to="/dashboard" className="hidden sm:block">
+                <Link to="/dashboard" className="hidden sm:inline-flex">
                   <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
                     <User className="w-4 h-4 mr-2" />
                     Dashboard
@@ -208,20 +208,20 @@ const Header = () => {
                   variant="ghost" 
                   size="sm" 
                   onClick={handleSignOut}
-                  className="hidden sm:block text-foreground/70 hover:text-foreground"
+                  className="hidden sm:inline-flex text-foreground/70 hover:text-foreground"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
                   Logout
                 </Button>
               </>
             ) : (
-              <Link to="/auth" className="hidden sm:block">
+              <Link to="/auth" className="hidden sm:inline-flex">
                 <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
                   Sign In
                 </Button>
               </Link>
             )}
-            <Link to="/submit">
+            <Link to="/submit" className="hidden sm:inline-flex">
               <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                 Submit Manuscript
               </Button>
