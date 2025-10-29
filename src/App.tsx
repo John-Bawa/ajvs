@@ -9,6 +9,13 @@ import Dashboard from "./pages/Dashboard";
 import SubmitManuscript from "./pages/SubmitManuscript";
 import Manuscripts from "./pages/Manuscripts";
 import CurrentIssue from "./pages/CurrentIssue";
+import About from "./pages/About";
+import EditorialBoard from "./pages/EditorialBoard";
+import AuthorGuidelines from "./pages/AuthorGuidelines";
+import Archives from "./pages/Archives";
+import Contact from "./pages/Contact";
+import Policies from "./pages/Policies";
+import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +33,13 @@ const App = () => (
           <Route path="/submit" element={<SubmitManuscript />} />
           <Route path="/manuscripts" element={<Manuscripts />} />
           <Route path="/current-issue" element={<CurrentIssue />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/editorial-board" element={<EditorialBoard />} />
+          <Route path="/for-authors" element={<AuthorGuidelines />} />
+          <Route path="/archives" element={<Archives />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/policies" element={<Policies />} />
+          <Route path="/news" element={<News />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

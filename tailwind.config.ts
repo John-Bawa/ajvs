@@ -15,7 +15,10 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        serif: ['Merriweather', 'Georgia', 'serif'],
+      },
+      backdropBlur: {
+        xs: '2px',
       },
       colors: {
         border: "hsl(var(--border))",

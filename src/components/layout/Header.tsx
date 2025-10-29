@@ -14,6 +14,9 @@ const Header = () => {
     { label: "About", href: "/about" },
     { label: "For Authors", href: "/for-authors" },
     { label: "Editorial Board", href: "/editorial-board" },
+    { label: "Policies", href: "/policies" },
+    { label: "News", href: "/news" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
