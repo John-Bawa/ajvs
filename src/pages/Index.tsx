@@ -59,7 +59,7 @@ const Index = () => {
             >
               <div className="bg-amber-600/20 backdrop-blur-sm border border-amber-500/30 rounded-full px-6 py-2">
                 <span className="text-amber-400 text-sm font-medium">
-                  ISSN: 2756-1234 (Print) | 2756-5678 (Online)
+                  e-ISSN: 3043-4246
                 </span>
               </div>
             </motion.div>
