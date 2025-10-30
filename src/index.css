@@ -12,15 +12,15 @@ All colors MUST be HSL.
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
 
-    /* Brand colors - AJVS University of Jos palette */
-    --primary: 197 100% 47%; /* #00B0F0 - Cyan blue accent */
+    /* Brand colors - AJVS official palette */
+    --primary: 196 100% 47%; /* #00AEEF - Sky Blue accent */
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 197 100% 42%;
-    --primary-light: 197 100% 85%;
+    --primary-hover: 196 100% 42%;
+    --primary-light: 196 100% 85%;
     
-    --banner: 243 95% 28%; /* #140488 - Deep royal blue */
+    --banner: 209 52% 24%; /* #1D3A5C - Deep Navy Blue */
     --banner-foreground: 0 0% 100%;
-    --banner-light: 243 95% 90%;
+    --banner-light: 209 52% 90%;
     
     /* Glassmorphism colors */
     --glass-bg: 0 0% 100%;
@@ -40,7 +40,7 @@ All colors MUST be HSL.
     --muted: 210 20% 96%;
     --muted-foreground: 0 0% 50%;
 
-    --accent: 197 100% 47%;
+    --accent: 196 100% 47%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -48,23 +48,23 @@ All colors MUST be HSL.
 
     --border: 214 20% 90%;
     --input: 214 20% 95%;
-    --ring: 197 100% 47%;
+    --ring: 196 100% 47%;
 
     --radius: 0.75rem;
 
     /* Gradients - subtle and elegant */
-    --gradient-hero: linear-gradient(135deg, hsl(243 95% 28% / 0.05), hsl(197 100% 47% / 0.05));
-    --gradient-accent: linear-gradient(135deg, hsl(197 100% 47% / 0.1), hsl(243 95% 28% / 0.1));
+    --gradient-hero: linear-gradient(135deg, hsl(209 52% 24% / 0.05), hsl(196 100% 47% / 0.05));
+    --gradient-accent: linear-gradient(135deg, hsl(196 100% 47% / 0.1), hsl(209 52% 24% / 0.1));
     --gradient-glass: linear-gradient(135deg, hsl(0 0% 100% / 0.8), hsl(0 0% 100% / 0.4));
-    --gradient-royal: linear-gradient(135deg, hsl(243 95% 28%), hsl(243 95% 20%));
-    --gradient-cyan: linear-gradient(135deg, hsl(197 100% 47%), hsl(197 100% 35%));
+    --gradient-royal: linear-gradient(135deg, hsl(209 52% 24%), hsl(209 52% 18%));
+    --gradient-cyan: linear-gradient(135deg, hsl(196 100% 47%), hsl(196 100% 35%));
     
     /* Shadows - premium depth */
     --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.08);
     --shadow-glass-hover: 0 12px 48px 0 hsl(0 0% 0% / 0.12);
-    --shadow-lg: 0 10px 40px -10px hsl(197 100% 47% / 0.2);
+    --shadow-lg: 0 10px 40px -10px hsl(196 100% 47% / 0.2);
     --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.06);
-    --shadow-elegant: 0 20px 60px -15px hsl(243 95% 28% / 0.15);
+    --shadow-elegant: 0 20px 60px -15px hsl(209 52% 24% / 0.15);
     
     /* Transitions */
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -72,42 +72,42 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 243 95% 8%;
+    --background: 209 52% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 243 95% 12%;
+    --card: 209 52% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 243 95% 12%;
+    --popover: 209 52% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 197 100% 47%;
+    --primary: 196 100% 47%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 243 50% 18%;
+    --secondary: 209 50% 18%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 243 50% 18%;
+    --muted: 209 50% 18%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 197 100% 47%;
+    --accent: 196 100% 47%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 243 50% 20%;
-    --input: 243 50% 20%;
-    --ring: 197 100% 47%;
+    --border: 209 50% 20%;
+    --input: 209 50% 20%;
+    --ring: 196 100% 47%;
     
-    --glass-bg: 243 95% 12%;
-    --glass-border: 243 50% 20%;
+    --glass-bg: 209 52% 12%;
+    --glass-border: 209 50% 20%;
     
     --shadow-glass: 0 8px 32px 0 hsl(0 0% 0% / 0.4);
     --shadow-glass-hover: 0 12px 48px 0 hsl(0 0% 0% / 0.5);
-    --shadow-lg: 0 10px 40px -10px hsl(197 100% 47% / 0.3);
+    --shadow-lg: 0 10px 40px -10px hsl(196 100% 47% / 0.3);
     --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
-    --shadow-elegant: 0 20px 60px -15px hsl(243 95% 28% / 0.3);
+    --shadow-elegant: 0 20px 60px -15px hsl(209 52% 24% / 0.3);
   }
 }
 
