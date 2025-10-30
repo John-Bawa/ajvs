@@ -16,12 +16,21 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
-        {/* Background Image Underlay */}
+        {/* Background Image Underlay with Ken Burns Effect */}
         <motion.div 
           className="absolute inset-0 opacity-50"
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          initial={{ scale: 1.15, x: -20, y: -20 }}
+          animate={{ 
+            scale: [1.15, 1.25, 1.15],
+            x: [-20, 20, -20],
+            y: [-20, 10, -20]
+          }}
+          transition={{ 
+            duration: 20, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            times: [0, 0.5, 1]
+          }}
         >
           <img 
             src={heroBackground} 
@@ -30,7 +39,7 @@ const Index = () => {
           />
         </motion.div>
         
-        {/* Animated Gradient Overlay */}
+        {/* Animated Gradient Overlay with Breathing Effect */}
         <motion.div 
           className="absolute inset-0 bg-gradient-to-br from-[#1a4d5c]/40 via-[#2a5d6c]/30 to-[#1a4d5c]/50"
           animate={{ 
@@ -43,9 +52,46 @@ const Index = () => {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         ></motion.div>
         
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-5">
+        {/* Animated pattern overlay with subtle drift */}
+        <motion.div 
+          className="absolute inset-0 opacity-5"
+          animate={{ 
+            backgroundPosition: ['0% 0%', '100% 100%']
+          }}
+          transition={{ 
+            duration: 30, 
+            repeat: Infinity, 
+            ease: "linear",
+            repeatType: "reverse"
+          }}
+        >
           <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+        </motion.div>
+        
+        {/* Floating particles effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/10 rounded-full"
+              style={{
+                left: `${15 + i * 15}%`,
+                top: `${20 + (i % 3) * 30}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                x: [0, Math.sin(i) * 20, 0],
+                opacity: [0.1, 0.3, 0.1],
+                scale: [1, 1.5, 1]
+              }}
+              transition={{
+                duration: 4 + i,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5
+              }}
+            />
+          ))}
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
