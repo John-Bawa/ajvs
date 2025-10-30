@@ -1,4 +1,39 @@
-# Welcome to your Lovable project
+# African Journal of Veterinary Sciences (AJVS)
+
+## About This Project
+
+AJVS is a modern, open-access academic journal platform built with React, featuring integration with Open Journal Systems (OJS) for manuscript management.
+
+### System Architecture
+
+- **Public Portal** (This React App): Public-facing website for browsing articles, journal information, and archives
+- **OJS Backend** (External): Handles manuscript submission, peer review, and editorial workflows
+- **Integration**: Simple redirects/external links between systems
+
+### Key Features
+
+- 📚 Article browsing and archives
+- 🎨 Responsive, modern design
+- 🔐 Role-based access (Admin, Editor, Reviewer, Author)
+- 💳 Payment processing (Paystack)
+- 📧 Email notifications
+- 🔗 OJS integration for submissions
+
+## OJS Integration Setup
+
+This site is configured to work with an external OJS installation for manuscript workflows.
+
+**Quick Start:**
+1. Install OJS on a PHP-enabled server
+2. Add your OJS URL to `.env`:
+   ```
+   VITE_OJS_URL=https://your-ojs-installation.org
+   ```
+3. Test the "Submit Manuscript" flow
+
+**Documentation:**
+- 📖 [Quick Setup Guide](README_OJS_SETUP.md)
+- 📚 [Comprehensive Integration Guide](OJS_INTEGRATION_GUIDE.md)
 
 ## Project info
 
