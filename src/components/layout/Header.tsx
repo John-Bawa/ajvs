@@ -88,7 +88,7 @@ const Header = () => {
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[500px] p-6 bg-background">
+                  <div className="w-[500px] p-6 bg-background/95 backdrop-blur-md z-50">
                     <div className="grid grid-cols-2 gap-6">
                       <div className="space-y-1">
                         <Link to="/about" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
@@ -116,11 +116,11 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm text-white/90 hover:text-white bg-primary/70 hover:bg-primary/80 backdrop-blur-md">
                   Manuscripts
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background">
+                  <div className="w-[400px] p-6 bg-background/95 backdrop-blur-md z-50">
                     <div className="space-y-1">
                       <Link to="/submit" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
                         <div className="flex items-center justify-between mb-1">
@@ -147,7 +147,7 @@ const Header = () => {
                   Publications
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background">
+                  <div className="w-[400px] p-6 bg-background/95 backdrop-blur-md z-50">
                     <div className="space-y-1">
                       <Link to="/current-issue" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Current Issue</div>
@@ -167,7 +167,7 @@ const Header = () => {
                   Contact
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background">
+                  <div className="w-[400px] p-6 bg-background/95 backdrop-blur-md z-50">
                     <div className="space-y-1">
                       <Link to="/contact" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Contact Information</div>
