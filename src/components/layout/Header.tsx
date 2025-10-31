@@ -122,7 +122,7 @@ const Header = () => {
                 <NavigationMenuContent>
                   <div className="w-[400px] p-6 bg-background/95 backdrop-blur-md z-50">
                     <div className="space-y-1">
-                      <Link to="/submit" className="group block p-3 rounded-lg hover:bg-accent transition-smooth">
+                      <Link to="/submit" className="group block p-3 rounded-lg bg-primary/10 hover:bg-primary/20 backdrop-blur-sm border border-primary/20 transition-smooth">
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-medium text-foreground group-hover:text-primary">Submit Manuscript</span>
                           <Badge variant="secondary" className="bg-primary/10 text-primary">New</Badge>
