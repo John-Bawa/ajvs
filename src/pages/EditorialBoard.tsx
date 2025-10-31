@@ -13,14 +13,6 @@ const EditorialBoard = () => {
     phone: "+256770700846",
   };
 
-  const coEditorInChief = {
-    name: "Co-Editor Name",
-    title: "Co-Editor-in-Chief",
-    affiliation: "Institution and Department",
-    email: "email@example.com",
-    phone: "+000 0000000000",
-  };
-
   const deputyEditorInChief = {
     name: "Dr. Ameji, Negedu Onogu",
     title: "Deputy Editor-in-Chief",
@@ -381,60 +373,21 @@ const EditorialBoard = () => {
             </motion.div>
           </motion.div>
 
-          {/* Co-Editor & Deputy Editor */}
+          {/* Deputy Editor-in-Chief */}
           <motion.div
-            variants={containerVariants}
+            variants={itemVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-8 mb-16"
+            className="mb-16"
           >
-            {/* Co-Editor-in-Chief */}
-            <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-serif font-bold mb-6 text-center">Co-Editor-in-Chief</h3>
-              <motion.div
-                variants={cardHoverVariants}
-                initial="initial"
-                whileHover="hover"
-              >
-                <Card className="glass-hover h-full border border-banner/30">
-                  <CardContent className="p-8">
-                    <div className="flex flex-col items-center text-center">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: -5 }}
-                        className="w-24 h-24 rounded-full gradient-cyan mb-4 flex items-center justify-center shadow-lg"
-                      >
-                        <User className="w-14 h-14 text-white" strokeWidth={1.5} />
-                      </motion.div>
-                      <h4 className="text-xl font-serif font-bold mb-2">{coEditorInChief.name}</h4>
-                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{coEditorInChief.affiliation}</p>
-                      <div className="space-y-2 w-full">
-                        <motion.a
-                          whileHover={{ x: 3 }}
-                          href={`mailto:${coEditorInChief.email}`}
-                          className="flex items-center justify-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
-                        >
-                          <Mail className="w-4 h-4" />
-                          <span>{coEditorInChief.email}</span>
-                        </motion.a>
-                        <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
-                          <Phone className="w-4 h-4" />
-                          {coEditorInChief.phone}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-
-            {/* Deputy Editor-in-Chief */}
             <motion.div variants={itemVariants}>
               <h3 className="text-xl font-serif font-bold mb-6 text-center">Deputy Editor-in-Chief</h3>
               <motion.div
                 variants={cardHoverVariants}
                 initial="initial"
                 whileHover="hover"
+                className="max-w-2xl mx-auto"
               >
                 <Card className="glass-hover h-full border border-primary/30">
                   <CardContent className="p-8">
