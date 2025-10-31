@@ -116,7 +116,7 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground hover:text-foreground bg-primary/20 hover:bg-primary/30 backdrop-blur-md border border-primary/30">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm text-white/90 hover:text-white bg-primary/70 hover:bg-primary/80 backdrop-blur-md">
                   Manuscripts
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
