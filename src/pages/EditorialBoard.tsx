@@ -373,21 +373,21 @@ const EditorialBoard = () => {
             </motion.div>
           </motion.div>
 
-          {/* Deputy Editor-in-Chief */}
+          {/* Deputy Editor-in-Chief & Managing Editor */}
           <motion.div
-            variants={itemVariants}
+            variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mb-16"
+            className="grid md:grid-cols-2 gap-8 mb-16"
           >
+            {/* Deputy Editor-in-Chief */}
             <motion.div variants={itemVariants}>
               <h3 className="text-xl font-serif font-bold mb-6 text-center">Deputy Editor-in-Chief</h3>
               <motion.div
                 variants={cardHoverVariants}
                 initial="initial"
                 whileHover="hover"
-                className="max-w-2xl mx-auto"
               >
                 <Card className="glass-hover h-full border border-primary/30">
                   <CardContent className="p-8">
@@ -430,64 +430,55 @@ const EditorialBoard = () => {
                 </Card>
               </motion.div>
             </motion.div>
-          </motion.div>
 
-          {/* Managing Editor */}
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h3 className="text-2xl font-serif font-bold mb-8 text-center">Managing Editor</h3>
-            <motion.div
-              variants={cardHoverVariants}
-              initial="initial"
-              whileHover="hover"
-              className="max-w-3xl mx-auto"
-            >
-              <Card className="glass-hover border border-banner/30">
-                <CardContent className="p-10">
-                  <div className="flex flex-col md:flex-row items-center gap-8">
-                    <motion.div
-                      whileHover={{ scale: 1.1, rotate: -5 }}
-                      className="w-28 h-28 rounded-full gradient-cyan flex items-center justify-center shadow-xl"
-                    >
-                      <User className="w-16 h-16 text-white" strokeWidth={1.5} />
-                    </motion.div>
-                    <div className="flex-1 text-center md:text-left">
-                      <h4 className="text-2xl font-serif font-bold mb-1">{managingEditor.name}</h4>
-                      <p className="text-primary font-semibold mb-2">{managingEditor.position}</p>
-                      <p className="text-sm text-muted-foreground mb-6">{managingEditor.affiliation}</p>
-                      <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+            {/* Managing Editor */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-xl font-serif font-bold mb-6 text-center">Managing Editor</h3>
+              <motion.div
+                variants={cardHoverVariants}
+                initial="initial"
+                whileHover="hover"
+              >
+                <Card className="glass-hover h-full border border-banner/30">
+                  <CardContent className="p-8">
+                    <div className="flex flex-col items-center text-center">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: -5 }}
+                        className="w-24 h-24 rounded-full gradient-cyan mb-4 flex items-center justify-center shadow-lg"
+                      >
+                        <User className="w-14 h-14 text-white" strokeWidth={1.5} />
+                      </motion.div>
+                      <h4 className="text-xl font-serif font-bold mb-1">{managingEditor.name}</h4>
+                      <p className="text-primary font-semibold text-sm mb-2">{managingEditor.position}</p>
+                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{managingEditor.affiliation}</p>
+                      <div className="space-y-2 w-full">
                         <motion.a
                           whileHover={{ x: 3 }}
                           href={`mailto:${managingEditor.email}`}
-                          className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80"
+                          className="flex items-center justify-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
                         >
                           <Mail className="w-4 h-4" />
-                          {managingEditor.email}
+                          <span>{managingEditor.email}</span>
                         </motion.a>
-                        <span className="text-sm text-muted-foreground flex items-center gap-2">
+                        <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
                           <Phone className="w-4 h-4" />
                           {managingEditor.phone}
-                        </span>
+                        </p>
                         <motion.a
                           whileHover={{ scale: 1.05 }}
                           href={`https://orcid.org/${managingEditor.orcid}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary"
+                          className="inline-flex items-center justify-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors mt-2"
                         >
                           <ExternalLink className="w-3 h-3" />
-                          ORCID
+                          ORCID: {managingEditor.orcid}
                         </motion.a>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
           </motion.div>
 
