@@ -33,9 +33,55 @@ Deno.serve(async (req) => {
 
     const { manuscriptId, amount, currency = 'NGN' } = await req.json();
 
+    // Validate required fields
     if (!manuscriptId || !amount) {
       return new Response(
         JSON.stringify({ error: 'Missing required fields: manuscriptId, amount' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Validate amount
+    const numericAmount = parseFloat(amount);
+    if (isNaN(numericAmount) || numericAmount <= 0) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid amount: must be a positive number' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Define expected processing fee (adjust this based on your journal's policy)
+    const EXPECTED_FEE_NGN = 50000; // 50,000 NGN as per typical processing fee
+    const EXPECTED_FEE_USD = 100; // $100 USD equivalent
+    const TOLERANCE = 0.01; // Allow 1% tolerance for currency conversion variations
+
+    // Validate amount is within expected range
+    let isValidAmount = false;
+    if (currency === 'NGN') {
+      isValidAmount = Math.abs(numericAmount - EXPECTED_FEE_NGN) / EXPECTED_FEE_NGN <= TOLERANCE;
+    } else if (currency === 'USD') {
+      isValidAmount = Math.abs(numericAmount - EXPECTED_FEE_USD) / EXPECTED_FEE_USD <= TOLERANCE;
+    }
+
+    if (!isValidAmount) {
+      console.warn(`Invalid payment amount attempted: ${numericAmount} ${currency} by user ${user.id}`);
+      return new Response(
+        JSON.stringify({ 
+          error: 'Invalid payment amount for manuscript processing fee',
+          expected: currency === 'NGN' ? EXPECTED_FEE_NGN : EXPECTED_FEE_USD,
+          currency
+        }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Validate currency
+    const ALLOWED_CURRENCIES = ['NGN', 'USD', 'GHS', 'ZAR', 'KES'];
+    if (!ALLOWED_CURRENCIES.includes(currency)) {
+      return new Response(
+        JSON.stringify({ 
+          error: `Invalid currency. Allowed currencies: ${ALLOWED_CURRENCIES.join(', ')}` 
+        }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
