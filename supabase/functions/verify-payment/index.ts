@@ -11,10 +11,33 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Verify authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: 'Missing authorization header' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+      {
+        global: {
+          headers: { Authorization: authHeader }
+        }
+      }
     );
+
+    // Verify user is authenticated
+    const { data: { user }, error: authError } = await supabaseClient.auth.getUser();
+    if (authError || !user) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
 
     const { reference } = await req.json();
 
@@ -70,25 +93,49 @@ Deno.serve(async (req) => {
 
     // If payment successful, update manuscript status
     if (transaction.status === 'success') {
-      const { data: payment } = await supabaseClient
+      const { data: payment, error: paymentError } = await supabaseClient
         .from('payments')
-        .select('manuscript_id')
+        .select('manuscript_id, user_id')
         .eq('paystack_reference', reference)
         .single();
 
-      if (payment) {
-        await supabaseClient
-          .from('manuscripts')
-          .update({
-            status: 'submitted',
-            submission_date: new Date().toISOString(),
-          })
-          .eq('id', payment.manuscript_id)
-          .eq('status', 'draft');
+      if (paymentError || !payment) {
+        console.error('Payment not found:', paymentError);
+        return new Response(
+          JSON.stringify({ error: 'Payment record not found' }),
+          { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
 
+      // Verify the payment belongs to the authenticated user
+      if (payment.user_id !== user.id) {
+        console.error('Payment ownership mismatch:', {
+          payment_user_id: payment.user_id,
+          authenticated_user_id: user.id
+        });
+        return new Response(
+          JSON.stringify({ error: 'Unauthorized: Payment does not belong to user' }),
+          { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      // Update manuscript status (only if still in draft)
+      const { error: manuscriptError } = await supabaseClient
+        .from('manuscripts')
+        .update({
+          status: 'submitted',
+          submission_date: new Date().toISOString(),
+        })
+        .eq('id', payment.manuscript_id)
+        .eq('status', 'draft');
+
+      if (manuscriptError) {
+        console.error('Error updating manuscript:', manuscriptError);
+      } else {
         console.log('Payment verified and manuscript submitted:', {
           reference,
           manuscript_id: payment.manuscript_id,
+          user_id: user.id
         });
       }
     }

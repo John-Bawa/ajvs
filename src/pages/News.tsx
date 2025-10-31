@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, Megaphone } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { formatDistanceToNow } from "date-fns";
+import DOMPurify from "dompurify";
 
 const News = () => {
   const [announcements, setAnnouncements] = useState<any[]>([]);
@@ -109,7 +110,7 @@ const News = () => {
 
                       <div 
                         className="prose prose-sm max-w-none text-muted-foreground"
-                        dangerouslySetInnerHTML={{ __html: announcement.content }}
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(announcement.content) }}
                       />
                     </div>
                   </CardContent>
