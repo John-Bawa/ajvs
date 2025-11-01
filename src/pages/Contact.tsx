@@ -181,14 +181,14 @@ export default function Contact() {
           <Card className="mt-8">
             <CardContent className="p-0">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.755847392969!2d32.61858407496893!3d0.34947379965717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbb0e4e7e6e6d%3A0x1e7e6e6e6e6e6e6e!2sKyambogo%20University!5e0!3m2!1sen!2sug!4v1234567890123!5m2!1sen!2sug"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.3931755361778!2d8.890037084363026!3d9.949504705618413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x105373fd274d9641%3A0x216a87069c3ea3f7!2sFaculty%20Of%20Veterinary%20Medicine%20University%20Of%20Jos!5e0!3m2!1sen!2sng!4v1762039915219!5m2!1sen!2sng"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Kyambogo University Location"
+                title="Faculty of Veterinary Medicine University of Jos Location"
                 className="rounded-lg"
               />
             </CardContent>
