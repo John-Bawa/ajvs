@@ -21,6 +21,7 @@ import Archives from "./pages/Archives";
 import Contact from "./pages/Contact";
 import Policies from "./pages/Policies";
 import News from "./pages/News";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import ReviewerDashboard from "./pages/ReviewerDashboard";
 import EditorDashboard from "./pages/EditorDashboard";
@@ -42,6 +43,7 @@ const AnimatedRoutes = () => {
       <Route path="/editorial-board" element={<AnimatedRoute><EditorialBoard /></AnimatedRoute>} />
       <Route path="/contact" element={<AnimatedRoute><Contact /></AnimatedRoute>} />
       <Route path="/news" element={<AnimatedRoute><News /></AnimatedRoute>} />
+      <Route path="/faq" element={<AnimatedRoute><FAQ /></AnimatedRoute>} />
       <Route path="/auth" element={<AnimatedRoute><Auth /></AnimatedRoute>} />
       
       {/* Protected Routes */}

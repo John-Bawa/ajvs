@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronRight, Home, Info, FileText, BookOpen, Mail, User, Send } from "lucide-react";
+import { Menu, X, ChevronRight, Home, Info, FileText, BookOpen, Mail, User, Send, HelpCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
@@ -62,6 +62,7 @@ const Header = () => {
       links: [
         { label: "Contact Information", href: "/contact", icon: Mail },
         { label: "News & Announcements", href: "/news", icon: Info },
+        { label: "FAQ", href: "/faq", icon: HelpCircle },
       ],
     },
   ];
@@ -181,6 +182,10 @@ const Header = () => {
                       <Link to="/news" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">News & Announcements</div>
                         <p className="text-sm text-muted-foreground">Stay updated with latest news</p>
+                      </Link>
+                      <Link to="/faq" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">FAQ</div>
+                        <p className="text-sm text-muted-foreground">Frequently asked questions</p>
                       </Link>
                     </div>
                   </div>
