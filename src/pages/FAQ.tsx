@@ -22,70 +22,70 @@ const faqs = [
   {
     id: "1",
     icon: BookOpen,
-    question: "🧾 What is AJVS?",
+    question: "What is AJVS?",
     answer:
       "The African Journal of Veterinary Sciences (AJVS) is a peer-reviewed, international, and open-access journal published by the Faculty of Veterinary Medicine, University of Jos, Nigeria.\n\nAJVS publishes original research articles, reviews, short communications, and case reports covering all aspects of veterinary, biomedical, and animal sciences.\n\n🔗 Visit: https://ajvs-unijos.org",
   },
   {
     id: "2",
     icon: BookOpen,
-    question: "🌍 What is the scope of the journal?",
+    question: "What is the scope of the journal?",
     answer:
       "AJVS welcomes manuscripts in areas including:\n\n• Veterinary anatomy, physiology, and biochemistry\n• Animal breeding and genetics\n• Pathology, microbiology, and parasitology\n• Pharmacology and toxicology\n• Public health, preventive medicine, and epidemiology\n• Wildlife health and conservation\n• Livestock production, health, and management",
   },
   {
     id: "3",
     icon: Upload,
-    question: "📥 How can I submit my manuscript?",
+    question: "How can I submit my manuscript?",
     answer:
       "Manuscripts should be submitted via the online submission portal on the journal website:\n👉 https://ajvs-unijos.org/submissions\n\nor by email to ajvsc@unijos.edu.ng\n\nEnsure you include:\n• A cover letter addressed to the Editor-in-Chief\n• Declaration and copyright transfer form (available on the site)\n• Main manuscript file (Microsoft Word)\n• Figures and tables properly labeled and captioned",
   },
   {
     id: "4",
     icon: FileText,
-    question: "✍🏽 What types of manuscripts are accepted?",
+    question: "What types of manuscripts are accepted?",
     answer:
       "AJVS accepts:\n\n• Original Research Articles\n• Review Articles\n• Case Reports\n• Short Communications\n• Letters to the Editor",
   },
   {
     id: "5",
     icon: Calendar,
-    question: "🧾 How often is the journal published?",
+    question: "How often is the journal published?",
     answer:
       'AJVS publishes two issues per year — June and December.\n\nAccepted papers are posted online as "Articles in Press" ahead of the next issue.',
   },
   {
     id: "6",
     icon: Users,
-    question: "💡 How does the peer-review process work?",
+    question: "How does the peer-review process work?",
     answer:
       "All manuscripts undergo double-blind peer review by at least two qualified reviewers.\n\nThe process typically takes 3–6 weeks.\n\nFinal decisions are based on scientific quality, originality, and reviewer recommendations.",
   },
   {
     id: "7",
     icon: Scale,
-    question: "📜 What ethical standards are required?",
+    question: "What ethical standards are required?",
     answer:
       "AJVS follows COPE (Committee on Publication Ethics) guidelines.\n\nAuthors must:\n• Obtain ethical clearance for animal or human studies\n• Avoid plagiarism, duplicate publication, and data falsification\n• Clearly state any conflicts of interest\n• Provide proof of ethical approval number in the Methods section",
   },
   {
     id: "8",
     icon: DollarSign,
-    question: "💰 Are there publication or processing fees?",
+    question: "Are there publication or processing fees?",
     answer:
       "Yes.\n\n• Processing fee: ₦5,000 (or USD $30) — before peer review\n• Page charge: ₦7,000 (or USD $35) per page upon acceptance\n\n💳 Payment details:\nAccess Bank Plc\nAccount Name: African Journal of Veterinary Sciences\nAccount Number: 1931486112",
   },
   {
     id: "9",
     icon: Shield,
-    question: "📚 What is the open access policy?",
+    question: "What is the open access policy?",
     answer:
       "All AJVS articles are published under the Creative Commons Attribution License (CC BY), allowing free use, distribution, and citation with proper acknowledgment.\n\n🔗 https://ajvs-unijos.org/open-access-policy",
   },
   {
     id: "10",
     icon: Users,
-    question: "🧑🏽‍🏫 Who are the editors and reviewers?",
+    question: "Who are the editors and reviewers?",
     answer:
       "The Editorial Board is led by Prof. Dzikwi Emmena Asabe (Editor-in-Chief), with editors and reviewers from Nigeria, Uganda, Somalia, Côte d'Ivoire, the United States, and the United Kingdom.\n\n📋 View the full editorial board: https://ajvs-unijos.org/editorial-board",
   },
