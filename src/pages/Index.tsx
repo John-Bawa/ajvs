@@ -225,25 +225,26 @@ const Index = () => {
                 Recent articles from our current issue
               </p>
             </div>
-            <Link to="/current-issue">
+            <a 
+              href="https://journal.africanjournalvetsci.org/index.php/ajvs/issue/current" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
               <Button variant="outline" size="lg" className="min-h-[48px]">
-                View All Articles
+                View Current Issue of AJVS
               </Button>
-            </Link>
+            </a>
           </div>
 
-          {/* Empty State */}
-          <Card className="shadow-card border-dashed">
-            <CardContent className="flex flex-col items-center justify-center py-16 sm:py-24 text-center">
-              <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
-                <ArticleIcon className="w-8 h-8 text-muted-foreground" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-semibold mb-2">No Publications Yet</h3>
-              <p className="text-sm sm:text-base text-muted-foreground max-w-md">
-                Published articles will appear here once they are available.
-              </p>
-            </CardContent>
-          </Card>
+          {/* OJS Current Issue Widget */}
+          <div className="mb-8">
+            <iframe 
+              src="https://journal.africanjournalvetsci.org/index.php/ajvs/issue/current"
+              style={{ border: 'none', width: '100%', minHeight: '600px', maxWidth: '100%' }}
+              title="Current Issue - African Journal of Veterinary Sciences"
+              className="rounded-lg shadow-card bg-background"
+            />
+          </div>
         </div>
       </section>
 

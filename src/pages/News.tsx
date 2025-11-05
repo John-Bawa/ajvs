@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Megaphone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, Megaphone, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { formatDistanceToNow } from "date-fns";
 import DOMPurify from "dompurify";
+import { getOJSLink } from "@/config/ojs";
 
 const News = () => {
   const [announcements, setAnnouncements] = useState<any[]>([]);
@@ -66,15 +68,43 @@ const News = () => {
       <Header />
       
       <main className="flex-1 py-16">
-        <div className="container mx-auto px-4 max-w-4xl">
+        <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               News & Announcements
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
               Stay updated with the latest news from AJVS
             </p>
+            <a 
+              href={getOJSLink('ANNOUNCEMENTS')} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="gap-2">
+                View All Announcements on OJS
+                <ExternalLink className="w-4 h-4" />
+              </Button>
+            </a>
           </div>
+
+          {/* OJS Announcements Widget */}
+          <Card className="shadow-card border-border/50 mb-12">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-2xl">
+                <Megaphone className="w-6 h-6 text-primary" />
+                Latest Official Announcements
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <iframe 
+                src={getOJSLink('ANNOUNCEMENTS')}
+                style={{ border: 'none', width: '100%', minHeight: '600px', maxWidth: '100%' }}
+                title="AJVS Official Announcements"
+                className="rounded-md bg-background"
+              />
+            </CardContent>
+          </Card>
 
           {announcements.length === 0 ? (
             <Card className="glass p-12 text-center">

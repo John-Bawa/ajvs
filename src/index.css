@@ -237,4 +237,10 @@ All colors MUST be HSL.
     transform: translateY(-4px);
     box-shadow: var(--shadow-elegant);
   }
+  
+  /* Responsive iframe styling for OJS widgets */
+  iframe {
+    max-width: 100%;
+    height: auto;
+  }
 }
