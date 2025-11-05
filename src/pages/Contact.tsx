@@ -168,11 +168,14 @@ export default function Contact() {
                         amejio@unijos.edu.ng
                       </a>
                     </div>
-                  </div>
+                    <div>
                       <p className="font-semibold">Managing Director</p>
                       <p className="text-muted-foreground">Dr. Idris Ayodeji Azeez</p>
                       <a href="mailto:azeezi@unijos.edu.ng" className="text-primary hover:underline">
                         azeezi@unijos.edu.ng
+                      </a>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
