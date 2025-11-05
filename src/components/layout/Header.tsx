@@ -90,36 +90,36 @@ const Header = () => {
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
               <NavigationMenuItem>
-                <Link to="/" className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
+              <Link to="/" className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
                   Home
                 </Link>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[500px] p-6 bg-background">
-                    <div className="grid grid-cols-2 gap-6">
+                  <div className="w-[500px] p-6 bg-background border border-border/50 shadow-lg">
+                    <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1">
                         <Link to="/about" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Overview of AJVS</div>
-                          <p className="text-sm text-muted-foreground">Learn about our mission and vision</p>
+                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">About AJVS</div>
+                          <p className="text-sm text-muted-foreground">Our mission and vision</p>
                         </Link>
                         <Link to="/editorial-board" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
                           <div className="font-medium text-foreground mb-1 group-hover:text-primary">Editorial Board</div>
-                          <p className="text-sm text-muted-foreground">Meet our distinguished editors</p>
+                          <p className="text-sm text-muted-foreground">Distinguished editors</p>
                         </Link>
                       </div>
                       <div className="space-y-1">
-                        <Link to="/for-authors" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Guidelines</div>
-                          <p className="text-sm text-muted-foreground">Submission requirements and tips</p>
-                        </Link>
                         <Link to="/policies" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Publication Ethics</div>
-                          <p className="text-sm text-muted-foreground">Our ethical standards</p>
+                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Policies & Ethics</div>
+                          <p className="text-sm text-muted-foreground">Publication standards</p>
+                        </Link>
+                        <Link to="/faq" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">FAQ</div>
+                          <p className="text-sm text-muted-foreground">Common questions</p>
                         </Link>
                       </div>
                     </div>
@@ -128,11 +128,11 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   Publications
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background">
+                  <div className="w-[400px] p-6 bg-background border border-border/50 shadow-lg">
                     <div className="space-y-1">
                       <Link to="/current-issue" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Current Issue</div>
@@ -152,49 +152,39 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
+                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   For Authors
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background">
-                    <div className="space-y-1">
-                      <Link to="/submit" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="font-medium text-foreground group-hover:text-primary">Submit Manuscript</span>
-                          <Badge variant="secondary" className="bg-primary/10 text-primary">New</Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground">Start your submission process</p>
-                      </Link>
-                       <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">My Manuscripts</div>
-                         <p className="text-sm text-muted-foreground">Track your manuscript status</p>
-                       </Link>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <Link to="/reviews" className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
-                  For Reviewers
-                </Link>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  More
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-[300px] p-6 bg-background">
-                    <div className="space-y-1">
-                      <Link to="/contact" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Contact</div>
-                        <p className="text-sm text-muted-foreground">Get in touch with us</p>
-                      </Link>
-                      <Link to="/faq" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">FAQ</div>
-                        <p className="text-sm text-muted-foreground">Frequently asked questions</p>
-                      </Link>
+                  <div className="w-[500px] p-6 bg-background border border-border/50 shadow-lg">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1">
+                        <Link to="/submit" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-medium text-foreground group-hover:text-primary">Submit Manuscript</span>
+                            <Badge variant="secondary" className="bg-primary/10 text-primary">New</Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground">Start your submission</p>
+                        </Link>
+                        <Link to="/for-authors" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Guidelines</div>
+                          <p className="text-sm text-muted-foreground">Submission requirements</p>
+                        </Link>
+                        <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">My Manuscripts</div>
+                          <p className="text-sm text-muted-foreground">Track submissions</p>
+                        </Link>
+                      </div>
+                      <div className="space-y-1">
+                        <Link to="/reviews" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">For Reviewers</div>
+                          <p className="text-sm text-muted-foreground">Review assignments</p>
+                        </Link>
+                        <Link to="/contact" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Contact</div>
+                          <p className="text-sm text-muted-foreground">Get in touch</p>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </NavigationMenuContent>
