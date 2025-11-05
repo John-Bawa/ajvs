@@ -155,10 +155,10 @@ export default function Contact() {
                   <h2 className="text-xl font-semibold mb-4">Editorial Team</h2>
                   <div className="space-y-4 text-sm">
                     <div>
-                      <p className="font-semibold">Managing Editor</p>
-                      <p className="text-muted-foreground">Dr. Idris Ayodeji Azeez</p>
-                      <a href="mailto:azeezi@unijos.edu.ng" className="text-primary hover:underline">
-                        azeezi@unijos.edu.ng
+                      <p className="font-semibold">Editor-in-Chief</p>
+                      <p className="text-muted-foreground">Dr. Musinguzi Siomn Peter</p>
+                      <a href="mailto:spmusinguzi@kyu.ac.ug" className="text-primary hover:underline">
+                        spmusinguzi@kyu.ac.ug
                       </a>
                     </div>
                     <div>
@@ -169,6 +169,10 @@ export default function Contact() {
                       </a>
                     </div>
                   </div>
+                      <p className="font-semibold">Managing Director</p>
+                      <p className="text-muted-foreground">Dr. Idris Ayodeji Azeez</p>
+                      <a href="mailto:azeezi@unijos.edu.ng" className="text-primary hover:underline">
+                        azeezi@unijos.edu.ng
                 </CardContent>
               </Card>
             </div>
