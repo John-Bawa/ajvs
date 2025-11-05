@@ -8,6 +8,8 @@ import { Search, Calendar, BookOpen, Download } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 
+import TopBar from "@/components/layout/TopBar";
+
 const Archives = () => {
   const [issues, setIssues] = useState<any[]>([]);
   const [articles, setArticles] = useState<any[]>([]);
@@ -92,6 +94,7 @@ const Archives = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-hero">
+      <TopBar />
       <Header />
       
       <main className="flex-1 py-16">

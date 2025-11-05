@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Header from "@/components/layout/Header";
+import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { OJSRedirectNotice } from "@/components/ojs/OJSRedirectNotice";
 import { getOJSLink } from "@/config/ojs";
@@ -16,6 +17,7 @@ export default function ReviewerDashboard() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <TopBar />
       <Header />
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">

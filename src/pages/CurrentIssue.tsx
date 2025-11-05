@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header from "@/components/layout/Header";
+import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { BookOpen, Calendar, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -65,6 +66,7 @@ const CurrentIssue = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <TopBar />
       <Header />
 
       <main className="flex-1 py-12">

@@ -40,28 +40,28 @@ const Header = () => {
       ],
     },
     {
-      title: "Manuscripts",
-      icon: FileText,
-      links: [
-        { label: "Submit Manuscript", href: "/submit", icon: Send, badge: "New" },
-        { label: "Track Submission", href: "/manuscripts", icon: FileText },
-        { label: "Reviewer Login", href: "/reviews", icon: User },
-      ],
-    },
-    {
       title: "Publications",
       icon: BookOpen,
       links: [
         { label: "Current Issue", href: "/current-issue", icon: BookOpen },
         { label: "Archives", href: "/archives", icon: FileText },
+        { label: "Announcements", href: "/news", icon: Info },
       ],
     },
     {
-      title: "Contact",
+      title: "Submissions",
+      icon: FileText,
+      links: [
+        { label: "Submit Manuscript", href: "/submit", icon: Send, badge: "New" },
+        { label: "Author Dashboard", href: "/manuscripts", icon: FileText },
+        { label: "Reviewer Dashboard", href: "/reviews", icon: User },
+      ],
+    },
+    {
+      title: "Contact & Help",
       icon: Mail,
       links: [
-        { label: "Contact Information", href: "/contact", icon: Mail },
-        { label: "News & Announcements", href: "/news", icon: Info },
+        { label: "Contact Us", href: "/contact", icon: Mail },
         { label: "FAQ", href: "/faq", icon: HelpCircle },
       ],
     },
@@ -89,6 +89,12 @@ const Header = () => {
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link to="/" className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
+                  Home
+                </Link>
+              </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
                   About
@@ -122,8 +128,26 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
+                <Link to="/current-issue" className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
+                  Current Issue
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link to="/archives" className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
+                  Archive
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link to="/news" className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
+                  Announcements
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
                 <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  Manuscripts
+                  Submissions
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="w-[400px] p-6 bg-background">
@@ -136,12 +160,12 @@ const Header = () => {
                         <p className="text-sm text-muted-foreground">Start your submission process</p>
                       </Link>
                        <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Track Submission</div>
-                         <p className="text-sm text-muted-foreground">Check your manuscript status</p>
+                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Dashboard</div>
+                         <p className="text-sm text-muted-foreground">Track your manuscript status</p>
                        </Link>
                        <Link to="/reviews" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Reviewer Login</div>
-                         <p className="text-sm text-muted-foreground">Access peer review dashboard</p>
+                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Reviewer Dashboard</div>
+                         <p className="text-sm text-muted-foreground">Access peer review assignments</p>
                        </Link>
                     </div>
                   </div>
@@ -149,47 +173,9 @@ const Header = () => {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  Publications
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background">
-                    <div className="space-y-1">
-                      <Link to="/current-issue" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Current Issue</div>
-                        <p className="text-sm text-muted-foreground">Latest published articles</p>
-                      </Link>
-                      <Link to="/archives" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Archives</div>
-                        <p className="text-sm text-muted-foreground">Browse past publications</p>
-                      </Link>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
+                <Link to="/contact" className="px-4 py-2 text-sm text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
                   Contact
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background">
-                    <div className="space-y-1">
-                      <Link to="/contact" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Contact Information</div>
-                        <p className="text-sm text-muted-foreground">Get in touch with our team</p>
-                      </Link>
-                      <Link to="/news" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">News & Announcements</div>
-                        <p className="text-sm text-muted-foreground">Stay updated with latest news</p>
-                      </Link>
-                      <Link to="/faq" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">FAQ</div>
-                        <p className="text-sm text-muted-foreground">Frequently asked questions</p>
-                      </Link>
-                    </div>
-                  </div>
-                </NavigationMenuContent>
+                </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
@@ -198,15 +184,15 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             {!user && (
-              <Link to="/auth" className="hidden sm:inline-flex">
+              <Link to="/auth" className="hidden md:inline-flex">
                 <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
-                  Sign In
+                  Login / Register
                 </Button>
               </Link>
             )}
-            <Link to="/submit" className="hidden sm:inline-flex">
+            <Link to="/submit" className="hidden md:inline-flex">
               <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-                Submit Manuscript
+                Submit
               </Button>
             </Link>
 

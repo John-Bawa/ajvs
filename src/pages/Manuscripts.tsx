@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Header from "@/components/layout/Header";
+import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { OJSRedirectNotice } from "@/components/ojs/OJSRedirectNotice";
 import { getOJSLink } from "@/config/ojs";
@@ -16,6 +17,7 @@ const Manuscripts = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <TopBar />
       <Header />
 
       <main className="flex-1 py-12">
