@@ -60,8 +60,12 @@ serve(async (req) => {
     );
 
     if (roleError || !hasRole) {
+      console.error("Permission denied for sending reminder:", { user_id: user.id, roleError });
       return new Response(
-        JSON.stringify({ error: "Insufficient permissions. Admin, editor, or secretary role required." }),
+        JSON.stringify({ 
+          error: "You do not have permission to send reminders.",
+          code: "PERMISSION_DENIED"
+        }),
         {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
           status: 403,
@@ -134,7 +138,8 @@ serve(async (req) => {
 
     if (!response.ok) {
       const error = await response.text();
-      throw new Error(error);
+      console.error("Email service error:", error);
+      throw new Error("Email service unavailable");
     }
 
     const data = await response.json();
@@ -153,7 +158,10 @@ serve(async (req) => {
   } catch (error: any) {
     console.error("Error sending reminder:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: "Failed to send reminder. Please try again or contact support.",
+        code: "REMINDER_SEND_FAILED"
+      }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,

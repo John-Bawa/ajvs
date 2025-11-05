@@ -66,7 +66,10 @@ Deno.serve(async (req) => {
     if (!paystackResponse.ok || !paystackData.status) {
       console.error('Paystack verification error:', paystackData);
       return new Response(
-        JSON.stringify({ error: 'Payment verification failed', details: paystackData }),
+        JSON.stringify({ 
+          error: 'Payment verification failed. Please contact support if the issue persists.',
+          code: 'PAYMENT_VERIFICATION_FAILED'
+        }),
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -102,7 +105,10 @@ Deno.serve(async (req) => {
       if (paymentError || !payment) {
         console.error('Payment not found:', paymentError);
         return new Response(
-          JSON.stringify({ error: 'Payment record not found' }),
+          JSON.stringify({ 
+            error: 'Payment record not found. Please contact support.',
+            code: 'PAYMENT_NOT_FOUND'
+          }),
           { status: 404, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
@@ -114,7 +120,10 @@ Deno.serve(async (req) => {
           authenticated_user_id: user.id
         });
         return new Response(
-          JSON.stringify({ error: 'Unauthorized: Payment does not belong to user' }),
+          JSON.stringify({ 
+            error: 'You do not have permission to access this payment.',
+            code: 'PAYMENT_UNAUTHORIZED'
+          }),
           { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }

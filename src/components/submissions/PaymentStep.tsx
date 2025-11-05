@@ -89,6 +89,30 @@ export function PaymentStep({ manuscriptId, amount = 30000, currency = "NGN", on
       return;
     }
 
+    // 1. File size validation (5MB max)
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+    if (receiptFile.size > MAX_FILE_SIZE) {
+      toast.error("File size must be less than 5MB");
+      return;
+    }
+
+    // 2. File type validation (check MIME type, not extension)
+    const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'];
+    if (!ALLOWED_TYPES.includes(receiptFile.type)) {
+      toast.error("Only JPEG, PNG, and PDF files are allowed");
+      return;
+    }
+
+    // 3. Amount validation against expected fees
+    const EXPECTED_FEE_NGN = 50000;
+    const EXPECTED_FEE_USD = 100;
+    const expectedAmount = currency === 'NGN' ? EXPECTED_FEE_NGN : EXPECTED_FEE_USD;
+    
+    if (Math.abs(amount - expectedAmount) > 1) {
+      toast.error(`Invalid amount. Expected ${currency} ${expectedAmount.toLocaleString()}`);
+      return;
+    }
+
     setLoading(true);
     setUploading(true);
 
@@ -96,8 +120,8 @@ export function PaymentStep({ manuscriptId, amount = 30000, currency = "NGN", on
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("User not authenticated");
 
-      // Upload receipt to storage
-      const fileExt = receiptFile.name.split('.').pop();
+      // 4. Sanitize filename (remove special characters)
+      const fileExt = receiptFile.name.split('.').pop()?.replace(/[^a-zA-Z0-9]/g, '') || 'pdf';
       const fileName = `${user.id}/${manuscriptId}-${Date.now()}.${fileExt}`;
       
       const { error: uploadError } = await supabase.storage

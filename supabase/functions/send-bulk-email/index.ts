@@ -60,8 +60,12 @@ serve(async (req) => {
     );
 
     if (roleError || !hasRole) {
+      console.error("Permission denied for bulk email:", { user_id: user.id, roleError });
       return new Response(
-        JSON.stringify({ error: "Insufficient permissions. Admin, editor, or secretary role required." }),
+        JSON.stringify({ 
+          error: "You do not have permission to send bulk emails.",
+          code: "PERMISSION_DENIED"
+        }),
         {
           headers: { ...corsHeaders, "Content-Type": "application/json" },
           status: 403,
@@ -237,7 +241,10 @@ serve(async (req) => {
   } catch (error: any) {
     console.error("Error sending bulk email:", error);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: "Failed to send bulk email. Please try again or contact support.",
+        code: "EMAIL_SEND_FAILED"
+      }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 500,
