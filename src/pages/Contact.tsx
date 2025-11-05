@@ -28,10 +28,10 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate input with zod schema
     const validationResult = contactSchema.safeParse(formData);
-    
+
     if (!validationResult.success) {
       const firstError = validationResult.error.errors[0];
       toast.error(firstError.message);
@@ -41,7 +41,7 @@ export default function Contact() {
     setSubmitting(true);
     try {
       // Simulate email send (will be replaced with actual edge function call)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       toast.success("Message sent successfully! We'll get back to you soon.");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
@@ -54,7 +54,7 @@ export default function Contact() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1 py-12">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -123,8 +123,8 @@ export default function Contact() {
                       <Mail className="w-6 h-6 text-primary" />
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
-                        <a href="mailto:AJVSc@unijos.edu.ng" className="text-muted-foreground hover:text-primary">
-                          AJVSc@unijos.edu.ng
+                        <a href="mailto:ajvsc@unijos.edu.ng" className="text-muted-foreground hover:text-primary">
+                          ajvsc@unijos.edu.ng
                         </a>
                       </div>
                     </div>
@@ -133,21 +133,17 @@ export default function Contact() {
                       <div>
                         <h3 className="font-semibold mb-1">Address</h3>
                         <div className="text-muted-foreground">
-                          <p>The Editor-in-Chief</p>
-                          <p>African Journal of Veterinary Sciences</p>
-                          <p>Department of Agriculture and Animal Production</p>
-                          <p>Kyambogo University</p>
-                          <p>Kampala</p>
-                          <p>Uganda</p>
+                          <p>Faculty of Veterinary Medicine, University of Jos </p>
+                          <p>PMB 2084, Jos</p>
+                          <p>Plateau State</p>
                         </div>
                       </div>
                     </div>
                     <div className="flex gap-4">
                       <Phone className="w-6 h-6 text-primary" />
                       <div>
-                        <h3 className="font-semibold mb-1">Editor-in-Chief</h3>
-                        <p className="text-muted-foreground">Dr Musinguzi Simon Peter</p>
-                        <p className="text-muted-foreground">+256770700846</p>
+                        <h3 className="font-semibold mb-1">Editorial Office</h3>
+                        <p className="text-muted-foreground">+234 8035907570</p>
                       </div>
                     </div>
                   </div>
