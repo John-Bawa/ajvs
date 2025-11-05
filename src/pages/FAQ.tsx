@@ -17,6 +17,9 @@ import {
   Quote,
   Mail,
 } from "lucide-react";
+import Header from "@/components/layout/Header";
+import TopBar from "@/components/layout/TopBar";
+import Footer from "@/components/layout/Footer";
 
 const faqs = [
   {
@@ -93,7 +96,10 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-background/95 to-muted/20">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-muted/20">
+      <TopBar />
+      <Header />
+      
       {/* Hero Section */}
       <section className="relative py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
@@ -197,6 +203,8 @@ const FAQ = () => {
           </motion.div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 };
