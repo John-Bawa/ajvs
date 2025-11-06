@@ -314,18 +314,13 @@ const Index = () => {
             Join our community of researchers and contribute to the advancement of veterinary sciences.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
-            <a href={getOJSLink('LOGIN')} className="w-full sm:w-auto">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 min-h-[48px]">
-                Login
-              </Button>
-            </a>
-            <a href={getOJSLink('REGISTER')} className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white text-foreground hover:bg-primary/10 min-h-[48px]">
-                Register
-              </Button>
-            </a>
-            <Link to="/submit" className="w-full sm:w-auto">
+            <Link to="/auth" className="w-full sm:w-auto">
               <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 min-h-[48px]">
+                Login / Register
+              </Button>
+            </Link>
+            <Link to="/submit" className="w-full sm:w-auto">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-primary text-foreground hover:bg-primary/10 min-h-[48px]">
                 Submit Manuscript
               </Button>
             </Link>

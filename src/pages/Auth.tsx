@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
@@ -10,14 +8,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Info } from "lucide-react";
 
 const Auth = () => {
-  useEffect(() => {
-    // Auto-redirect to OJS login after 3 seconds
-    const timer = setTimeout(() => {
-      window.location.href = getOJSLink('LOGIN');
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -62,12 +52,6 @@ const Auth = () => {
                   actionLabel="Register Now"
                   actionUrl={getOJSLink('REGISTER')}
                 />
-              </div>
-
-              <div className="pt-4 border-t">
-                <p className="text-sm text-muted-foreground text-center">
-                  You will be automatically redirected to the OJS platform in 3 seconds...
-                </p>
               </div>
             </CardContent>
           </Card>

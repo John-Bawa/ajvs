@@ -202,16 +202,16 @@ const Header = () => {
             <ThemeToggle />
             {!user && (
               <>
-                <a href={getOJSLink('LOGIN')} className="hidden md:inline-flex">
+                <Link to="/auth" className="hidden md:inline-flex">
                   <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
                     Login
                   </Button>
-                </a>
-                <a href={getOJSLink('REGISTER')} className="hidden md:inline-flex">
+                </Link>
+                <Link to="/auth" className="hidden md:inline-flex">
                   <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
                     Register
                   </Button>
-                </a>
+                </Link>
               </>
             )}
 
@@ -338,9 +338,10 @@ const Header = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.3 }}
                     >
-                      <a
-                        href={getOJSLink('LOGIN')}
+                      <Link
+                        to="/auth"
                         className="block"
+                        onClick={() => setIsOpen(false)}
                       >
                         <Button 
                           variant="outline" 
@@ -350,10 +351,11 @@ const Header = () => {
                           <User className="w-4 h-4 mr-2" />
                           Login
                         </Button>
-                      </a>
-                      <a
-                        href={getOJSLink('REGISTER')}
+                      </Link>
+                      <Link
+                        to="/auth"
                         className="block"
+                        onClick={() => setIsOpen(false)}
                       >
                         <Button 
                           variant="default" 
@@ -363,7 +365,7 @@ const Header = () => {
                           <User className="w-4 h-4 mr-2" />
                           Register
                         </Button>
-                      </a>
+                      </Link>
                     </motion.div>
                   )}
                 </motion.nav>
