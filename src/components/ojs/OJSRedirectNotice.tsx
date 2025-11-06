@@ -16,7 +16,7 @@ export const OJSRedirectNotice = ({
   actionUrl,
 }: OJSRedirectNoticeProps) => {
   const handleRedirect = () => {
-    window.open(actionUrl, '_blank', 'noopener,noreferrer');
+    window.location.href = actionUrl;
   };
 
   return (
@@ -49,7 +49,7 @@ export const OJSRedirectNotice = ({
           </Button>
           
           <p className="text-sm text-muted-foreground">
-            This will open our submission system in a new window
+            You'll be redirected to our submission system
           </p>
         </div>
       </div>

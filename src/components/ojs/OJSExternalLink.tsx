@@ -15,7 +15,7 @@ export const OJSExternalLink = ({
   ...props 
 }: OJSExternalLinkProps) => {
   const handleClick = () => {
-    window.open(href, '_blank', 'noopener,noreferrer');
+    window.location.href = href;
   };
 
   return (
