@@ -9,6 +9,7 @@ import { AnimatedRoute } from "@/components/animations/AnimatedRoute";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { ThemeProvider } from "@/components/theme-provider";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
@@ -64,18 +65,20 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <BrowserRouter>
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <AnimatedRoutes />
-            <ScrollToTop />
-          </TooltipProvider>
-        </AuthProvider>
-      </QueryClientProvider>
-    </HelmetProvider>
+    <ThemeProvider defaultTheme="light" storageKey="ajvs-theme">
+      <HelmetProvider>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <AnimatedRoutes />
+              <ScrollToTop />
+            </TooltipProvider>
+          </AuthProvider>
+        </QueryClientProvider>
+      </HelmetProvider>
+    </ThemeProvider>
   </BrowserRouter>
 );
 
