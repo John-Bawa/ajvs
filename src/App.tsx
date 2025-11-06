@@ -3,7 +3,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { AnimatePresence } from "framer-motion";
 import { AnimatedRoute } from "@/components/animations/AnimatedRoute";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -69,10 +68,8 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <HelmetProvider>
-            <AnimatedRoutes />
-            <ScrollToTop />
-          </HelmetProvider>
+          <AnimatedRoutes />
+          <ScrollToTop />
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
