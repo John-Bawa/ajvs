@@ -201,11 +201,18 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             {!user && (
-              <Link to="/auth" className="hidden md:inline-flex">
-                <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
-                  Login / Register
-                </Button>
-              </Link>
+              <>
+                <a href={getOJSLink('LOGIN')} className="hidden md:inline-flex">
+                  <Button variant="outline" size="sm" className="border-primary/30 text-primary hover:bg-primary/10">
+                    Login
+                  </Button>
+                </a>
+                <a href={getOJSLink('REGISTER')} className="hidden md:inline-flex">
+                  <Button variant="default" size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                    Register
+                  </Button>
+                </a>
+              </>
             )}
 
             {/* Mobile Menu */}
@@ -325,15 +332,14 @@ const Header = () => {
 
                   {/* Footer Actions */}
                   {!user && (
-                    <motion.div 
-                      className="p-6 border-t border-border/50 bg-gradient-accent"
+                    <motion.div
+                      className="p-6 border-t border-border/50 bg-gradient-accent space-y-3"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.3 }}
                     >
-                      <Link
-                        to="/auth"
-                        onClick={() => setIsOpen(false)}
+                      <a
+                        href={getOJSLink('LOGIN')}
                         className="block"
                       >
                         <Button 
@@ -342,9 +348,22 @@ const Header = () => {
                           size="lg"
                         >
                           <User className="w-4 h-4 mr-2" />
-                          Sign In / Register
+                          Login
                         </Button>
-                      </Link>
+                      </a>
+                      <a
+                        href={getOJSLink('REGISTER')}
+                        className="block"
+                      >
+                        <Button 
+                          variant="default" 
+                          className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                          size="lg"
+                        >
+                          <User className="w-4 h-4 mr-2" />
+                          Register
+                        </Button>
+                      </a>
                     </motion.div>
                   )}
                 </motion.nav>
