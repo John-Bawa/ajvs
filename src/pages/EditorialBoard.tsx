@@ -8,6 +8,7 @@ import idrisPhoto from "@/assets/idris.jpg";
 import tankoPhoto from "@/assets/tanko.jpg";
 import karayePhoto from "@/assets/karaye.jpg";
 import calebPhoto from "@/assets/caleb.jpg";
+import gosomjiPhoto from "@/assets/gosomji.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -102,6 +103,8 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Anatomy, University of Jos, Nigeria",
       email: "gosomjii@unijos.edu.ng",
       phone: "+2348136070134",
+      orcid: "0000-0002-8727-3217",
+      photo: gosomjiPhoto,
     },
     {
       name: "Dr Oshadu David Omagbe",
