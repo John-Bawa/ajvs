@@ -7,6 +7,7 @@ import amejiPhoto from "@/assets/ameji.jpg";
 import idrisPhoto from "@/assets/idris.jpg";
 import tankoPhoto from "@/assets/tanko.jpg";
 import karayePhoto from "@/assets/karaye.jpg";
+import calebPhoto from "@/assets/caleb.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -178,6 +179,8 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Medicine, Ahmadu Bello University, Zaria, Nigeria",
       email: "calebkudi@hotmail.com",
       phone: "+2348065978003",
+      orcid: "0000-0001-8229-9795",
+      photo: calebPhoto,
     },
     {
       name: "Prof. Robert W. Wills, DVM, PhD",
@@ -617,9 +620,21 @@ const EditorialBoard = () => {
                       <div className="flex flex-col items-center text-center">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className="w-14 h-14 rounded-full gradient-cyan flex items-center justify-center mb-3 shadow-lg"
+                          className={`w-14 h-14 rounded-full mb-3 shadow-lg ${
+                            advisor.photo 
+                              ? 'overflow-hidden' 
+                              : 'gradient-cyan flex items-center justify-center'
+                          }`}
                         >
-                          <User className="w-8 h-8 text-white" strokeWidth={1.5} />
+                          {advisor.photo ? (
+                            <img 
+                              src={advisor.photo} 
+                              alt={advisor.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <User className="w-8 h-8 text-white" strokeWidth={1.5} />
+                          )}
                         </motion.div>
                         <h3 className="font-serif font-bold text-sm mb-1.5">{advisor.name}</h3>
                         <p className="text-xs text-muted-foreground mb-3 line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
@@ -637,6 +652,18 @@ const EditorialBoard = () => {
                               <Phone className="w-3 h-3" />
                               {advisor.phone}
                             </p>
+                          )}
+                          {advisor.orcid && (
+                            <motion.a
+                              whileHover={{ scale: 1.05 }}
+                              href={`https://orcid.org/${advisor.orcid}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+                            >
+                              <ExternalLink className="w-3 h-3" />
+                              ORCID: {advisor.orcid}
+                            </motion.a>
                           )}
                         </div>
                       </div>
