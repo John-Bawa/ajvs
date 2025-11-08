@@ -10,6 +10,7 @@ import karayePhoto from "@/assets/karaye.jpg";
 import calebPhoto from "@/assets/caleb.jpg";
 import gosomjiPhoto from "@/assets/gosomji.jpg";
 import oshaduPhoto from "@/assets/oshadu.jpg";
+import asinamaiPhoto from "@/assets/asinamai.png";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -88,6 +89,8 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Microbiology, University of Jos, Nigeria",
       email: "bitrusaa@unijos.edu.ng",
       phone: "+2348065680664",
+      orcid: "0000-0002-8649-4798",
+      photo: asinamaiPhoto,
     },
     {
       name: "Dr Polycarp Tanko",
