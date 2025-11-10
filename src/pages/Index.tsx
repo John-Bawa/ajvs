@@ -6,6 +6,7 @@ import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
 import heroBackground from "@/assets/hero-background.webp";
+import ajvscLogo from "@/assets/ajvsc-logo.svg";
 import { motion } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { getOJSLink } from "@/config/ojs";
@@ -98,6 +99,28 @@ const Index = () => {
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center sm:text-left">
+            {/* Logo */}
+            <motion.div 
+              className="mb-6 sm:mb-8 flex justify-center sm:justify-start"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              <motion.img 
+                src={ajvscLogo} 
+                alt="African Journal of Veterinary Sciences Logo" 
+                className="h-24 sm:h-32 md:h-40 w-auto drop-shadow-2xl"
+                animate={{ 
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+
             {/* ISSN Badge */}
             <motion.div 
               className="mb-6 sm:mb-8 inline-block"
