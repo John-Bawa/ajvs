@@ -169,9 +169,9 @@ const Footer = () => {
         </div>
 
         {/* Location Map */}
-        <div className="my-12">
-          <h3 className="font-semibold mb-4 text-banner-foreground text-center">Our Location</h3>
-          <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden border border-banner-foreground/10 shadow-lg">
+        <div className="my-10">
+          <h3 className="font-semibold mb-6 text-banner-foreground text-lg">Our Location</h3>
+          <div className="w-full h-80 md:h-96 lg:h-[450px] rounded-xl overflow-hidden border border-banner-foreground/20 shadow-elegant transition-smooth hover:shadow-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.8476753287567!2d8.8864!3d9.9287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10537b3b3b3b3b3b%3A0x3b3b3b3b3b3b3b3b!2sFaculty%20of%20Veterinary%20Medicine%2C%20University%20of%20Jos!5e0!3m2!1sen!2sng!4v1234567890123!5m2!1sen!2sng"
               width="100%"
