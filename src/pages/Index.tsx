@@ -5,7 +5,6 @@ import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, FileText as ArticleIcon } from "lucide-react";
-import heroBackground from "@/assets/hero-background.webp";
 import ajvscLogo from "@/assets/ajvsc-logo.svg";
 import { motion } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
@@ -19,41 +18,22 @@ const Index = () => {
       
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
-        {/* Background Image Underlay with Ken Burns Effect */}
-        <motion.div 
-          className="absolute inset-0 opacity-50"
-          initial={{ scale: 1.15, x: -20, y: -20 }}
-          animate={{ 
-            scale: [1.15, 1.25, 1.15],
-            x: [-20, 20, -20],
-            y: [-20, 10, -20]
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity, 
-            ease: "easeInOut",
-            times: [0, 0.5, 1]
-          }}
-        >
-          <img 
-            src={heroBackground} 
-            alt="" 
+        {/* Background Video */}
+        <div className="absolute inset-0">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
             className="w-full h-full object-cover"
-          />
-        </motion.div>
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
+        </div>
         
-        {/* Animated Gradient Overlay with Breathing Effect */}
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-br from-[#1a4d5c]/40 via-[#2a5d6c]/30 to-[#1a4d5c]/50"
-          animate={{ 
-            background: [
-              "linear-gradient(to bottom right, rgba(26,77,92,0.4), rgba(42,93,108,0.3), rgba(26,77,92,0.5))",
-              "linear-gradient(to bottom right, rgba(26,77,92,0.5), rgba(42,93,108,0.4), rgba(26,77,92,0.4))",
-              "linear-gradient(to bottom right, rgba(26,77,92,0.4), rgba(42,93,108,0.3), rgba(26,77,92,0.5))"
-            ]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        ></motion.div>
+        {/* Dark Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+        
         
         {/* Animated pattern overlay with subtle drift */}
         <motion.div 
