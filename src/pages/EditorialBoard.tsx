@@ -14,6 +14,7 @@ import asinamaiPhoto from "@/assets/asinamai.png";
 import akinsolaPhoto from "@/assets/akinsola.jpg";
 import omoniwaPhoto from "@/assets/omoniwa.jpg";
 import clementPhoto from "@/assets/clement.jpg";
+import fasinaPhoto from "@/assets/fasina.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -161,6 +162,8 @@ const EditorialBoard = () => {
       affiliation: "Food and Agriculture Organisation (ECTAD-FAO), Nairobi, Kenya",
       email: "daydupe2003@yahoo.co.uk",
       phone: "+255686132852",
+      orcid: "0000-0003-3088-8752",
+      photo: fasinaPhoto,
     },
     {
       name: "Prof. Olapade, James O.",
