@@ -173,14 +173,14 @@ const Footer = () => {
           <h3 className="font-semibold mb-6 text-banner-foreground text-lg">Our Location</h3>
           <div className="w-full h-64 md:h-72 lg:h-80 rounded-xl overflow-hidden border border-banner-foreground/20 shadow-elegant transition-smooth hover:shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6678.608769487612!2d8.884744451126936!3d9.948528583625993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x105373fd274d9641%3A0x216a87069c3ea3f7!2sFaculty%20Of%20Veterinary%20Medicine%20University%20Of%20Jos!5e1!3m2!1sen!2sng!4v1762763755880!5m2!1sen!2sng"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.0497454129504!2d8.872928477617135!3d9.92981529017208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10537327fb09d5ff%3A0xd788f6c53feffde2!2sVeterinary%20Teaching%20Hospital%2C%20University%20of%20Jos%2C%20Jos%20-%20Nigeria!5e0!3m2!1sen!2sng!4v1764430062571!5m2!1sen!2sng"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Faculty of Veterinary Medicine, University of Jos Location"
+              title="Veterinary Teaching Hospital, University of Jos Location"
             />
           </div>
         </div>
