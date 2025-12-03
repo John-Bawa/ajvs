@@ -6,8 +6,8 @@ import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { 
   FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, 
-  Globe, BarChart3, Clock, Target, Microscope, Heart, 
-  GraduationCap, Send, Search, Bell, Building2, ExternalLink 
+  Target, Microscope, Heart, GraduationCap, Send, Search, 
+  Building2, ExternalLink 
 } from "lucide-react";
 import ajvscLogo from "@/assets/ajvsc-logo.png";
 import heroBuilding from "@/assets/hero-building.jpg";
@@ -20,18 +20,8 @@ const Index = () => {
   const { scrollY } = useScroll();
   const imageY = useTransform(scrollY, [0, 500], [0, 150]);
 
-  const stats = [
-    { icon: FileText, value: "150+", label: "Published Articles" },
-    { icon: Globe, value: "25+", label: "Countries" },
-    { icon: Users, value: "200+", label: "Authors" },
-    { icon: Clock, value: "4-6", label: "Weeks Review Time" },
-  ];
-
   const indexingBodies = [
     { name: "Google Scholar", url: "https://scholar.google.com" },
-    { name: "African Journals Online (AJOL)", url: "https://www.ajol.info" },
-    { name: "Directory of Open Access Journals (DOAJ)", url: "https://doaj.org" },
-    { name: "Crossref", url: "https://www.crossref.org" },
     { name: "ORCID", url: "https://orcid.org" },
   ];
 
@@ -203,29 +193,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Journal Statistics */}
-      <section className="py-8 sm:py-12 bg-primary/5 border-y border-border/50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-3">
-                  <stat.icon className="w-6 h-6 text-primary" />
-                </div>
-                <div className="text-2xl sm:text-3xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Aims & Scope Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-background">
