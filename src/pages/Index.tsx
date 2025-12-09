@@ -44,7 +44,7 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-20 md:py-32 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#1a4d5c] via-[#2a5d6c] to-[#1a4d5c] py-12 md:py-20 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.img 
