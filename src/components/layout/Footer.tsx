@@ -1,8 +1,30 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, Mail, MapPin, Phone, FileText, Globe } from "lucide-react";
+import { BookOpen, Mail, MapPin, Phone, FileText, Globe, Send } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 import ajvsLogo from "@/assets/ajvsc-logo.png";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) {
+      toast.error("Please enter your email address");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    // Simulate subscription - in production, this would call an API
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    toast.success("Thank you for subscribing! You'll receive updates about new issues and announcements.");
+    setEmail("");
+    setIsSubmitting(false);
+  };
+
   return (
     <footer className="bg-banner text-banner-foreground mt-auto border-t border-banner-foreground/10">
       <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -165,6 +187,45 @@ const Footer = () => {
                 </div>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Newsletter Subscription */}
+        <div className="my-10 p-6 sm:p-8 bg-banner-foreground/5 rounded-xl border border-banner-foreground/10">
+          <div className="max-w-2xl mx-auto text-center">
+            <h3 className="font-serif text-xl sm:text-2xl font-semibold mb-3 text-banner-foreground">
+              Stay Updated
+            </h3>
+            <p className="text-banner-foreground/70 text-sm mb-6">
+              Subscribe to receive notifications about new issues, calls for papers, and journal announcements.
+            </p>
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <Input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 bg-background border-banner-foreground/20 text-foreground placeholder:text-muted-foreground"
+                disabled={isSubmitting}
+              />
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="gap-2"
+              >
+                {isSubmitting ? (
+                  "Subscribing..."
+                ) : (
+                  <>
+                    Subscribe
+                    <Send className="w-4 h-4" />
+                  </>
+                )}
+              </Button>
+            </form>
+            <p className="text-banner-foreground/50 text-xs mt-4">
+              We respect your privacy. Unsubscribe at any time.
+            </p>
           </div>
         </div>
 
