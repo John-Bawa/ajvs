@@ -184,7 +184,7 @@ export default function Contact() {
           <Card className="mt-8">
             <CardContent className="p-0">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2504.3931755361778!2d8.890037084363026!3d9.949504705618413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x105373fd274d9641%3A0x216a87069c3ea3f7!2sFaculty%20Of%20Veterinary%20Medicine%20University%20Of%20Jos!5e0!3m2!1sen!2sng!4v1762039915219!5m2!1sen!2sng"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.814388722756!2d8.887155875120945!3d9.949396073903253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x105373fd274d9641%3A0x216a87069c3ea3f7!2sFaculty%20Of%20Veterinary%20Medicine%20University%20Of%20Jos!5e0!3m2!1sen!2sng!4v1765294493918!5m2!1sen!2sng"
                 width="100%"
                 height="450"
                 style={{ border: 0 }}
