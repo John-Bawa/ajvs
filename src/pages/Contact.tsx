@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -25,6 +25,28 @@ export default function Contact() {
     message: "",
   });
   const [submitting, setSubmitting] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [subscribing, setSubscribing] = useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) {
+      toast.error("Please enter your email address");
+      return;
+    }
+    
+    const emailValidation = z.string().email().safeParse(newsletterEmail);
+    if (!emailValidation.success) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    
+    setSubscribing(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    toast.success("Thank you for subscribing! You'll receive updates about new issues and announcements.");
+    setNewsletterEmail("");
+    setSubscribing(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -180,6 +202,47 @@ export default function Contact() {
               </Card>
             </div>
           </div>
+
+          {/* Newsletter Subscription */}
+          <Card className="mt-8 bg-primary/5 border-primary/20">
+            <CardContent className="p-6 sm:p-8">
+              <div className="max-w-2xl mx-auto text-center">
+                <h2 className="font-serif text-xl sm:text-2xl font-semibold mb-3">
+                  Stay Updated
+                </h2>
+                <p className="text-muted-foreground text-sm mb-6">
+                  Subscribe to receive notifications about new issues, calls for papers, and journal announcements.
+                </p>
+                <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className="flex-1"
+                    disabled={subscribing}
+                  />
+                  <Button 
+                    type="submit" 
+                    disabled={subscribing}
+                    className="gap-2"
+                  >
+                    {subscribing ? (
+                      "Subscribing..."
+                    ) : (
+                      <>
+                        Subscribe
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+                <p className="text-muted-foreground/70 text-xs mt-4">
+                  We respect your privacy. Unsubscribe at any time.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
 
           <Card className="mt-8">
             <CardContent className="p-0">
