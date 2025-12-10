@@ -10,6 +10,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { ScrollRestoration } from "@/components/ui/scroll-restoration";
+import { PageTransitionLoader } from "@/components/ui/page-transition-loader";
 import { ThemeProvider } from "@/components/theme-provider";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
@@ -74,6 +75,7 @@ const App = () => (
               <Toaster />
               <Sonner />
               <ScrollRestoration />
+              <PageTransitionLoader />
               <AnimatedRoutes />
               <ScrollToTop />
             </TooltipProvider>
