@@ -15,6 +15,7 @@ import akinsolaPhoto from "@/assets/akinsola.jpg";
 import omoniwaPhoto from "@/assets/omoniwa.jpg";
 import clementPhoto from "@/assets/clement.jpg";
 import fasinaPhoto from "@/assets/fasina.jpg";
+import bamaiyiPhoto from "@/assets/bamaiyi.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -156,6 +157,7 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Pathology and Microbiology, University of Jos, Nigeria",
       email: "bamaiyip@unijos.edu.ng",
       phone: "+ 2349035794545",
+      photo: bamaiyiPhoto,
     },
     {
       name: "Prof. Fasina, Folorunsho O.",
