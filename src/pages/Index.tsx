@@ -9,7 +9,7 @@ import {
   Target, Microscope, Heart, GraduationCap, Send, Search, 
   Building2, ExternalLink 
 } from "lucide-react";
-import ajvscLogo from "@/assets/ajvsc-logo-new.png";
+import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
 import heroBuilding from "@/assets/hero-building.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { BookOpen, Mail, MapPin, Phone, FileText, Globe } from "lucide-react";
-import ajvsLogo from "@/assets/ajvsc-logo-new.png";
+import ajvsLogo from "@/assets/ajvs-logo-enhanced.png";
 
 const Footer = () => {
   return (
