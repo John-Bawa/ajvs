@@ -9,64 +9,69 @@ Academic Journal Design System - Classic & Scholarly
 
 @layer base {
   :root {
-    /* Base colors - Warm cream/ivory academic paper background */
-    --background: 45 30% 98%;
-    --foreground: 220 25% 15%;
+    /* Base colors - Clean white background for readability */
+    --background: 0 0% 100%;
+    --foreground: 210 50% 19%;
 
-    /* Primary - Deep scholarly navy/indigo */
-    --primary: 220 60% 25%;
-    --primary-foreground: 45 30% 98%;
-    --primary-hover: 220 60% 20%;
-    --primary-light: 220 40% 90%;
+    /* Primary - Deep Navy Blue (#183048) */
+    --primary: 210 50% 19%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 210 50% 14%;
+    --primary-light: 210 30% 92%;
     
-    /* Banner - Rich burgundy/maroon academic accent */
-    --banner: 350 45% 30%;
-    --banner-foreground: 45 30% 98%;
-    --banner-light: 350 30% 92%;
+    /* Banner - Deep Navy for navigation/footer */
+    --banner: 210 50% 19%;
+    --banner-foreground: 0 0% 100%;
+    --banner-light: 210 30% 94%;
+    
+    /* Accent - Vibrant Cyan/Teal (#4BD4E3) */
+    --accent: 186 72% 59%;
+    --accent-foreground: 210 50% 19%;
+    
+    /* Highlight - Metallic Gold (#D4AF37) */
+    --highlight: 46 67% 52%;
+    --highlight-foreground: 210 50% 19%;
     
     /* Glassmorphism colors */
-    --glass-bg: 45 30% 98%;
-    --glass-border: 220 20% 85%;
-    --glass-shadow: 220 30% 10%;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 210 20% 88%;
+    --glass-shadow: 210 30% 10%;
     
     /* Semantic colors */
-    --card: 45 25% 99%;
-    --card-foreground: 220 25% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 50% 19%;
 
-    --popover: 45 25% 99%;
-    --popover-foreground: 220 25% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 50% 19%;
 
-    --secondary: 45 15% 95%;
-    --secondary-foreground: 220 25% 15%;
+    --secondary: 210 15% 96%;
+    --secondary-foreground: 210 50% 19%;
 
-    --muted: 45 10% 93%;
-    --muted-foreground: 220 15% 45%;
-
-    --accent: 350 45% 30%;
-    --accent-foreground: 45 30% 98%;
+    --muted: 210 10% 94%;
+    --muted-foreground: 210 20% 45%;
 
     --destructive: 0 65% 50%;
-    --destructive-foreground: 45 30% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 88%;
-    --input: 220 15% 94%;
-    --ring: 220 60% 25%;
+    --border: 210 20% 88%;
+    --input: 210 15% 95%;
+    --ring: 186 72% 59%;
 
-    --radius: 0.375rem;
+    --radius: 0.5rem;
 
-    /* Gradients - Subtle and elegant academic */
-    --gradient-hero: linear-gradient(180deg, hsl(220 60% 25% / 0.03), hsl(350 45% 30% / 0.02));
-    --gradient-accent: linear-gradient(135deg, hsl(220 60% 25% / 0.08), hsl(350 45% 30% / 0.05));
-    --gradient-glass: linear-gradient(180deg, hsl(45 25% 99% / 0.95), hsl(45 25% 99% / 0.85));
-    --gradient-royal: linear-gradient(180deg, hsl(220 60% 25%), hsl(220 60% 18%));
-    --gradient-burgundy: linear-gradient(180deg, hsl(350 45% 30%), hsl(350 45% 22%));
+    /* Gradients - Clean and professional */
+    --gradient-hero: linear-gradient(180deg, hsl(210 50% 19% / 0.02), hsl(186 72% 59% / 0.03));
+    --gradient-accent: linear-gradient(135deg, hsl(186 72% 59%), hsl(186 72% 50%));
+    --gradient-glass: linear-gradient(180deg, hsl(0 0% 100% / 0.95), hsl(0 0% 100% / 0.85));
+    --gradient-navy: linear-gradient(180deg, hsl(210 50% 19%), hsl(210 50% 14%));
+    --gradient-gold: linear-gradient(135deg, hsl(46 67% 52%), hsl(46 67% 45%));
     
-    /* Shadows - Refined and subtle */
-    --shadow-glass: 0 1px 3px 0 hsl(220 30% 10% / 0.04);
-    --shadow-glass-hover: 0 4px 12px 0 hsl(220 30% 10% / 0.08);
-    --shadow-lg: 0 4px 16px -4px hsl(220 60% 25% / 0.12);
-    --shadow-card: 0 1px 4px 0 hsl(220 30% 10% / 0.04);
-    --shadow-elegant: 0 8px 24px -8px hsl(220 60% 25% / 0.1);
+    /* Shadows - Clean and subtle */
+    --shadow-glass: 0 1px 3px 0 hsl(210 30% 10% / 0.04);
+    --shadow-glass-hover: 0 4px 12px 0 hsl(210 30% 10% / 0.08);
+    --shadow-lg: 0 4px 16px -4px hsl(210 50% 19% / 0.12);
+    --shadow-card: 0 1px 4px 0 hsl(210 30% 10% / 0.04);
+    --shadow-elegant: 0 8px 24px -8px hsl(210 50% 19% / 0.1);
     
     /* Transitions */
     --transition: all 0.2s ease-in-out;
@@ -74,42 +79,48 @@ Academic Journal Design System - Classic & Scholarly
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 45 20% 95%;
+    --background: 210 40% 8%;
+    --foreground: 0 0% 95%;
 
-    --card: 220 25% 11%;
-    --card-foreground: 45 20% 95%;
+    --card: 210 40% 11%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 220 25% 11%;
-    --popover-foreground: 45 20% 95%;
+    --popover: 210 40% 11%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 220 50% 55%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 186 72% 55%;
+    --primary-foreground: 210 40% 8%;
 
-    --secondary: 220 25% 15%;
-    --secondary-foreground: 45 20% 95%;
+    --secondary: 210 30% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 220 25% 18%;
-    --muted-foreground: 220 15% 65%;
+    --muted: 210 30% 18%;
+    --muted-foreground: 210 15% 65%;
 
-    --accent: 350 40% 55%;
-    --accent-foreground: 220 25% 8%;
+    --accent: 186 72% 55%;
+    --accent-foreground: 210 40% 8%;
+    
+    --highlight: 46 67% 55%;
+    --highlight-foreground: 210 40% 8%;
 
     --destructive: 0 62% 50%;
-    --destructive-foreground: 45 20% 95%;
+    --destructive-foreground: 0 0% 95%;
 
-    --border: 220 25% 20%;
-    --input: 220 25% 18%;
-    --ring: 220 50% 55%;
+    --border: 210 30% 20%;
+    --input: 210 30% 18%;
+    --ring: 186 72% 55%;
     
-    --glass-bg: 220 25% 11%;
-    --glass-border: 220 25% 22%;
+    --banner: 210 40% 11%;
+    --banner-foreground: 0 0% 95%;
+    
+    --glass-bg: 210 40% 11%;
+    --glass-border: 210 30% 22%;
     
     --shadow-glass: 0 1px 3px 0 hsl(0 0% 0% / 0.3);
     --shadow-glass-hover: 0 4px 12px 0 hsl(0 0% 0% / 0.4);
-    --shadow-lg: 0 4px 16px -4px hsl(220 50% 55% / 0.25);
+    --shadow-lg: 0 4px 16px -4px hsl(186 72% 55% / 0.25);
     --shadow-card: 0 1px 4px 0 hsl(0 0% 0% / 0.3);
-    --shadow-elegant: 0 8px 24px -8px hsl(220 50% 55% / 0.2);
+    --shadow-elegant: 0 8px 24px -8px hsl(186 72% 55% / 0.2);
   }
 }
 
