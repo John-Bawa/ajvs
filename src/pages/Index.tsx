@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
+import { StickyScrollHeader } from "@/components/layout/StickyScrollHeader";
 import { OrnamentalDivider } from "@/components/ui/ornamental-divider";
 import { 
   FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, 
@@ -12,7 +13,8 @@ import {
 } from "lucide-react";
 import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
 import heroBuilding from "@/assets/hero-building.jpg";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useState } from "react";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
 import { getOJSLink } from "@/config/ojs";
@@ -20,6 +22,12 @@ import { getOJSLink } from "@/config/ojs";
 const Index = () => {
   const { scrollY } = useScroll();
   const imageY = useTransform(scrollY, [0, 500], [0, 150]);
+  const [showStickyHeader, setShowStickyHeader] = useState(false);
+
+  // Show sticky header after scrolling past hero section (~500px)
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setShowStickyHeader(latest > 500);
+  });
 
   const indexingBodies = [
     { name: "Google Scholar", url: "https://scholar.google.com" },
@@ -43,6 +51,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col">
       <TopBar />
       <Header />
+      <StickyScrollHeader isVisible={showStickyHeader} />
       
       {/* Hero Section */}
       <section className="relative bg-primary py-16 md:py-24 overflow-hidden">
