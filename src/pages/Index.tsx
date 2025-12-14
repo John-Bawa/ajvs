@@ -43,6 +43,64 @@ const Index = () => {
       <TopBar />
       <Header />
       
+      {/* Academic Masthead Banner */}
+      <section className="bg-background border-b-4 border-double border-primary/30">
+        <div className="container mx-auto px-4 sm:px-6">
+          {/* Top decorative line */}
+          <div className="flex items-center justify-center py-3 border-b border-primary/20">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <span className="px-4 text-xs tracking-[0.3em] uppercase text-muted-foreground font-medium">
+              Established 2024
+            </span>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          </div>
+          
+          {/* Main masthead content */}
+          <div className="py-6 sm:py-8 text-center">
+            <div className="flex flex-col items-center">
+              {/* Publisher info */}
+              <p className="text-xs sm:text-sm tracking-[0.2em] uppercase text-muted-foreground mb-3">
+                Published by the Faculty of Veterinary Medicine
+              </p>
+              
+              {/* Journal Title */}
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-primary tracking-wide mb-2">
+                African Journal of Veterinary Sciences
+              </h1>
+              
+              {/* Decorative separator */}
+              <div className="flex items-center gap-3 my-4">
+                <div className="w-16 sm:w-24 h-px bg-primary/40" />
+                <div className="w-2 h-2 rotate-45 bg-primary/60" />
+                <div className="w-16 sm:w-24 h-px bg-primary/40" />
+              </div>
+              
+              {/* Journal details */}
+              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
+                <span className="font-medium">e-ISSN: 3043-4246</span>
+                <span className="hidden sm:inline text-primary/40">|</span>
+                <span>Open Access</span>
+                <span className="hidden sm:inline text-primary/40">|</span>
+                <span>Peer-Reviewed</span>
+                <span className="hidden sm:inline text-primary/40">|</span>
+                <span>University of Jos, Nigeria</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Bottom decorative border */}
+          <div className="flex items-center justify-center pb-3 border-t border-primary/20">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+            <div className="px-4 flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
+              <div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
+              <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          </div>
+        </div>
+      </section>
+      
       {/* Hero Section */}
       <section className="relative bg-primary py-16 md:py-24 overflow-hidden">
         {/* Background Image */}
