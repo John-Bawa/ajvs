@@ -21,8 +21,8 @@ const Policies = () => {
           {/* Publication Ethics */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                <Shield className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Publication Ethics</h2>
@@ -108,8 +108,8 @@ const Policies = () => {
           {/* Plagiarism Policy */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-cyan flex items-center justify-center flex-shrink-0">
-                <FileCheck className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
+                <FileCheck className="w-6 h-6 text-accent dark:text-accent" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Plagiarism and Originality</h2>
@@ -171,8 +171,8 @@ const Policies = () => {
           {/* Authorship Policy */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                <Users className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <Users className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Authorship and Contributions</h2>
@@ -213,8 +213,8 @@ const Policies = () => {
           {/* Data Availability */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-cyan flex items-center justify-center flex-shrink-0">
-                <Database className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
+                <Database className="w-6 h-6 text-accent dark:text-accent" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Data Availability and Sharing</h2>
@@ -248,8 +248,8 @@ const Policies = () => {
           {/* Conflict of Interest */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                <AlertTriangle className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <AlertTriangle className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Conflict of Interest</h2>

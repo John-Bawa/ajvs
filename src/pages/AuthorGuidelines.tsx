@@ -24,8 +24,8 @@ const AuthorGuidelines = () => {
           {/* About the Journal */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                <BookOpen className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <BookOpen className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">About the Journal</h2>
@@ -58,8 +58,8 @@ const AuthorGuidelines = () => {
           {/* Publication Schedule */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl gradient-cyan flex items-center justify-center flex-shrink-0">
-                <Clock className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
+                <Clock className="w-6 h-6 text-accent" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Publication Schedule</h2>
@@ -84,8 +84,8 @@ const AuthorGuidelines = () => {
           {/* Ethical Guidelines */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                <Shield className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Ethical Guidelines for Authors, Reviewers and Editors</h2>
@@ -177,8 +177,8 @@ const AuthorGuidelines = () => {
           {/* Manuscript Preparation and Submission */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg gradient-cyan flex items-center justify-center">
-                <CheckCircle className="w-5 h-5 text-white" />
+              <div className="w-8 h-8 rounded-lg bg-accent/20 dark:bg-accent/30 flex items-center justify-center">
+                <CheckCircle className="w-5 h-5 text-accent" />
               </div>
               Manuscript Preparation and Submission
             </h2>
@@ -315,8 +315,8 @@ const AuthorGuidelines = () => {
           {/* Peer Review Process */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                <Users className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <Users className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Peer-Review Process</h2>
@@ -333,8 +333,8 @@ const AuthorGuidelines = () => {
           {/* Handling and Page Charges */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 rounded-xl gradient-cyan flex items-center justify-center flex-shrink-0">
-                <DollarSign className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
+                <DollarSign className="w-6 h-6 text-accent" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Handling and Page Charges</h2>
@@ -425,8 +425,8 @@ const AuthorGuidelines = () => {
           {/* Correspondence */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                <Mail className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                <Mail className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h2 className="text-2xl font-serif font-bold mb-4">Correspondence</h2>

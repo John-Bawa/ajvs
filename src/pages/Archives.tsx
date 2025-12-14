@@ -176,8 +176,8 @@ const Archives = () => {
                 <div key={issue.id} className="glass rounded-2xl p-8 hover-lift">
                   <div className="flex items-center justify-between mb-6 pb-6 border-b border-border/50">
                     <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 rounded-xl gradient-royal flex items-center justify-center">
-                        <BookOpen className="w-8 h-8 text-white" />
+                      <div className="w-16 h-16 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center">
+                        <BookOpen className="w-8 h-8 text-primary" />
                       </div>
                       <div>
                         <h2 className="text-2xl font-serif font-bold">

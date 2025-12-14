@@ -485,7 +485,7 @@ const EditorialBoard = () => {
                           className={`w-14 h-14 rounded-full mb-3 shadow-lg ${
                             editor.photo 
                               ? 'overflow-hidden' 
-                              : 'bg-gradient-to-br from-primary to-banner flex items-center justify-center'
+                              : 'bg-primary/20 dark:bg-primary/30 flex items-center justify-center'
                           }`}
                         >
                           {editor.photo ? (
@@ -495,7 +495,7 @@ const EditorialBoard = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <User className="w-8 h-8 text-white" strokeWidth={1.5} />
+                            <User className="w-8 h-8 text-primary" strokeWidth={1.5} />
                           )}
                         </motion.div>
                         <h3 className="font-serif font-bold text-base mb-1">{editor.name}</h3>
@@ -570,7 +570,7 @@ const EditorialBoard = () => {
                           className={`w-14 h-14 rounded-full mb-3 shadow-lg ${
                             advisor.photo 
                               ? 'overflow-hidden' 
-                              : 'gradient-cyan flex items-center justify-center'
+                              : 'bg-accent/20 dark:bg-accent/30 flex items-center justify-center'
                           }`}
                         >
                           {advisor.photo ? (
@@ -580,7 +580,7 @@ const EditorialBoard = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <User className="w-8 h-8 text-white" strokeWidth={1.5} />
+                            <User className="w-8 h-8 text-accent" strokeWidth={1.5} />
                           )}
                         </motion.div>
                         <h3 className="font-serif font-bold text-sm mb-1.5">{advisor.name}</h3>
@@ -634,9 +634,9 @@ const EditorialBoard = () => {
                 <motion.div
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-16 h-16 mx-auto mb-6 rounded-2xl gradient-royal flex items-center justify-center"
+                  className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center"
                 >
-                  <Award className="w-8 h-8 text-white" />
+                  <Award className="w-8 h-8 text-primary" />
                 </motion.div>
                 <h2 className="text-3xl font-serif font-bold mb-4">Join Our Reviewer Panel</h2>
                 <p className="text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -647,7 +647,7 @@ const EditorialBoard = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="mailto:AJVSc@unijos.edu.ng"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-banner text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all duration-300"
                 >
                   <Mail className="w-5 h-5" />
                   Contact Editorial Office

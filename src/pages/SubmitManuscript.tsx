@@ -25,8 +25,8 @@ const SubmitManuscript = () => {
           {/* Quick Info Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="glass rounded-xl p-6 hover-lift">
-              <div className="w-12 h-12 rounded-lg gradient-royal flex items-center justify-center mb-4">
-                <DollarSign className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-lg bg-primary/20 dark:bg-primary/30 flex items-center justify-center mb-4">
+                <DollarSign className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-semibold mb-2">Processing Fee</h3>
               <p className="text-2xl font-bold text-primary mb-1">₦5,000 / $30</p>
@@ -34,8 +34,8 @@ const SubmitManuscript = () => {
             </div>
 
             <div className="glass rounded-xl p-6 hover-lift">
-              <div className="w-12 h-12 rounded-lg gradient-cyan flex items-center justify-center mb-4">
-                <FileText className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-lg bg-accent/20 dark:bg-accent/30 flex items-center justify-center mb-4">
+                <FileText className="w-6 h-6 text-accent" />
               </div>
               <h3 className="font-semibold mb-2">Page Charge</h3>
               <p className="text-2xl font-bold text-primary mb-1">₦7,000 / $35</p>
@@ -43,8 +43,8 @@ const SubmitManuscript = () => {
             </div>
 
             <div className="glass rounded-xl p-6 hover-lift">
-              <div className="w-12 h-12 rounded-lg gradient-royal flex items-center justify-center mb-4">
-                <Clock className="w-6 h-6 text-white" />
+              <div className="w-12 h-12 rounded-lg bg-primary/20 dark:bg-primary/30 flex items-center justify-center mb-4">
+                <Clock className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-semibold mb-2">Review Time</h3>
               <p className="text-2xl font-bold text-primary mb-1">3 Weeks</p>

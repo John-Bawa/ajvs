@@ -364,8 +364,8 @@ const Index = () => {
                   <Card className="h-full border-border/50 hover:border-primary/50 hover:shadow-lg transition-smooth group cursor-pointer">
                     <CardHeader>
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center group-hover:scale-110 transition-smooth">
-                          <item.icon className="w-7 h-7 text-white" />
+                        <div className="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center group-hover:scale-110 transition-smooth">
+                          <item.icon className="w-7 h-7 text-primary" />
                         </div>
                         <div>
                           <CardTitle className="text-xl group-hover:text-primary transition-smooth">{item.title}</CardTitle>
@@ -429,7 +429,7 @@ const Index = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full gradient-accent flex items-center justify-center text-white font-bold text-base sm:text-lg transition-smooth group-hover:scale-110">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-bold text-base sm:text-lg transition-smooth group-hover:scale-110">
                     {item.step}
                   </div>
                   <div className="flex-1 pt-1 sm:pt-2">
@@ -495,7 +495,7 @@ const Index = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
             <Link to="/auth" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-primary text-white hover:bg-primary/90 min-h-[48px]">
+              <Button size="lg" className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 min-h-[48px]">
                 Login / Register
               </Button>
             </Link>

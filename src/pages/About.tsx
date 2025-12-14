@@ -23,8 +23,8 @@ const About = () => {
             {/* Mission Card */}
             <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                  <Target className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                  <Target className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h2 className="text-2xl font-serif font-bold mb-4">Our Mission</h2>
@@ -42,8 +42,8 @@ const About = () => {
             {/* Scope Card */}
             <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl gradient-cyan flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
+                  <BookOpen className="w-6 h-6 text-accent" />
                 </div>
                 <div>
                   <h2 className="text-2xl font-serif font-bold mb-4">Scope of the Journal</h2>
@@ -112,8 +112,8 @@ const About = () => {
             {/* Editorial Policy Card */}
             <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl gradient-royal flex items-center justify-center flex-shrink-0">
-                  <Globe className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
+                  <Globe className="w-6 h-6 text-primary" />
                 </div>
                 <div>
                   <h2 className="text-2xl font-serif font-bold mb-4">Editorial Policy</h2>
@@ -160,8 +160,8 @@ const About = () => {
             {/* Indexing Goals Card */}
             <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-xl gradient-cyan flex items-center justify-center flex-shrink-0">
-                  <Award className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
+                  <Award className="w-6 h-6 text-accent" />
                 </div>
                 <div>
                   <h2 className="text-2xl font-serif font-bold mb-4">Indexing and Visibility</h2>
@@ -196,7 +196,7 @@ const About = () => {
             <div className="glass rounded-2xl p-8 md:p-12 text-center">
               <h2 className="text-2xl font-serif font-bold mb-4">Published By</h2>
               <p className="text-lg text-muted-foreground mb-2">Faculty of Veterinary Medicine</p>
-              <p className="text-xl font-semibold text-banner">University of Jos, Nigeria</p>
+              <p className="text-xl font-semibold text-primary">University of Jos, Nigeria</p>
               <p className="text-sm text-muted-foreground mt-4">
                 Established in 1975, the Faculty of Veterinary Medicine, University of Jos, is one of Nigeria's leading
                 institutions for veterinary education and research.

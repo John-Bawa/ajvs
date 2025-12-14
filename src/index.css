@@ -65,12 +65,14 @@ Academic Journal Design System - Classic & Scholarly
     --gradient-glass: linear-gradient(180deg, hsl(0 0% 100% / 0.95), hsl(0 0% 100% / 0.85));
     --gradient-navy: linear-gradient(180deg, hsl(210 50% 19%), hsl(210 50% 14%));
     --gradient-gold: linear-gradient(135deg, hsl(46 67% 52%), hsl(46 67% 45%));
+    --gradient-royal: linear-gradient(135deg, hsl(210 50% 25%), hsl(210 50% 19%));
+    --gradient-cyan: linear-gradient(135deg, hsl(186 72% 59%), hsl(186 72% 45%));
     
     /* Shadows - Clean and subtle */
     --shadow-glass: 0 1px 3px 0 hsl(210 30% 10% / 0.04);
     --shadow-glass-hover: 0 4px 12px 0 hsl(210 30% 10% / 0.08);
     --shadow-lg: 0 4px 16px -4px hsl(210 50% 19% / 0.12);
-    --shadow-card: 0 1px 4px 0 hsl(210 30% 10% / 0.04);
+    --shadow-card: 0 1px 4px 0 hsl(0 0% 0% / 0.04);
     --shadow-elegant: 0 8px 24px -8px hsl(210 50% 19% / 0.1);
     
     /* Transitions */
@@ -79,48 +81,71 @@ Academic Journal Design System - Classic & Scholarly
   }
 
   .dark {
+    /* Base - Deep dark blue background */
     --background: 210 40% 8%;
-    --foreground: 0 0% 95%;
+    --foreground: 210 15% 92%;
 
-    --card: 210 40% 11%;
-    --card-foreground: 0 0% 95%;
+    /* Cards and surfaces - slightly elevated */
+    --card: 210 35% 12%;
+    --card-foreground: 210 15% 92%;
 
-    --popover: 210 40% 11%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 210 35% 14%;
+    --popover-foreground: 210 15% 92%;
 
+    /* Primary - Bright cyan for dark mode */
     --primary: 186 72% 55%;
     --primary-foreground: 210 40% 8%;
+    --primary-hover: 186 72% 60%;
+    --primary-light: 210 30% 18%;
 
-    --secondary: 210 30% 15%;
-    --secondary-foreground: 0 0% 95%;
+    /* Secondary surfaces */
+    --secondary: 210 30% 16%;
+    --secondary-foreground: 210 15% 90%;
 
-    --muted: 210 30% 18%;
+    /* Muted elements */
+    --muted: 210 25% 20%;
     --muted-foreground: 210 15% 65%;
 
+    /* Accent - Cyan remains vibrant */
     --accent: 186 72% 55%;
     --accent-foreground: 210 40% 8%;
     
-    --highlight: 46 67% 55%;
+    /* Highlight - Gold slightly brighter */
+    --highlight: 46 70% 58%;
     --highlight-foreground: 210 40% 8%;
 
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 0 0% 95%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 210 30% 20%;
+    /* Borders and inputs */
+    --border: 210 25% 22%;
     --input: 210 30% 18%;
     --ring: 186 72% 55%;
     
-    --banner: 210 40% 11%;
-    --banner-foreground: 0 0% 95%;
+    /* Banner - Darker elevated surface */
+    --banner: 210 35% 12%;
+    --banner-foreground: 210 15% 92%;
+    --banner-light: 210 30% 18%;
     
-    --glass-bg: 210 40% 11%;
-    --glass-border: 210 30% 22%;
+    /* Glass effect for dark mode */
+    --glass-bg: 210 35% 12%;
+    --glass-border: 210 25% 25%;
     
-    --shadow-glass: 0 1px 3px 0 hsl(0 0% 0% / 0.3);
-    --shadow-glass-hover: 0 4px 12px 0 hsl(0 0% 0% / 0.4);
-    --shadow-lg: 0 4px 16px -4px hsl(186 72% 55% / 0.25);
+    /* Gradients for dark mode */
+    --gradient-hero: linear-gradient(180deg, hsl(210 40% 8%), hsl(210 35% 10%));
+    --gradient-accent: linear-gradient(135deg, hsl(186 72% 55%), hsl(186 72% 45%));
+    --gradient-glass: linear-gradient(180deg, hsl(210 35% 14% / 0.95), hsl(210 35% 12% / 0.85));
+    --gradient-navy: linear-gradient(180deg, hsl(210 35% 14%), hsl(210 35% 10%));
+    --gradient-gold: linear-gradient(135deg, hsl(46 70% 58%), hsl(46 70% 50%));
+    --gradient-royal: linear-gradient(135deg, hsl(186 72% 55%), hsl(186 72% 45%));
+    --gradient-cyan: linear-gradient(135deg, hsl(186 72% 50%), hsl(186 72% 40%));
+    
+    /* Shadows for dark mode - subtle glows */
+    --shadow-glass: 0 1px 3px 0 hsl(0 0% 0% / 0.4);
+    --shadow-glass-hover: 0 4px 12px 0 hsl(0 0% 0% / 0.5);
+    --shadow-lg: 0 4px 16px -4px hsl(186 72% 55% / 0.2);
     --shadow-card: 0 1px 4px 0 hsl(0 0% 0% / 0.3);
-    --shadow-elegant: 0 8px 24px -8px hsl(186 72% 55% / 0.2);
+    --shadow-elegant: 0 8px 24px -8px hsl(186 72% 55% / 0.15);
   }
 }
 
