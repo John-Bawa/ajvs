@@ -6,6 +6,17 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// HTML escape function to prevent XSS attacks
+function escapeHtml(text: string): string {
+  if (!text) return '';
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 interface BulkReminderRequest {
   reviewIds: string[];
 }
@@ -128,11 +139,11 @@ serve(async (req) => {
                 <h2>⏰ Review Reminder</h2>
               </div>
               <div class="content">
-                <p>Dear ${reviewer.full_name},</p>
+                <p>Dear ${escapeHtml(reviewer.full_name)},</p>
                 
                 <p>This is a friendly reminder that your review for the following manuscript is pending:</p>
                 
-                <p><strong>${manuscript?.title}</strong></p>
+                <p><strong>${escapeHtml(manuscript?.title || '')}</strong></p>
                 
                 <p>Please log in to your dashboard to complete the review at your earliest convenience.</p>
                 

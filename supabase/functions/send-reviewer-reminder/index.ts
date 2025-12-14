@@ -6,6 +6,17 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// HTML escape function to prevent XSS attacks
+function escapeHtml(text: string): string {
+  if (!text) return '';
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 interface ReminderRequest {
   reviewId: string;
   reviewerEmail: string;
@@ -102,7 +113,7 @@ serve(async (req) => {
               
               <p>This is a friendly reminder that your review for the following manuscript is pending:</p>
               
-              <p><strong>${manuscriptTitle}</strong></p>
+              <p><strong>${escapeHtml(manuscriptTitle)}</strong></p>
               
               <p>Please log in to your dashboard to complete the review at your earliest convenience.</p>
               
