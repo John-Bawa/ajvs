@@ -89,8 +89,8 @@ const Index = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 rounded px-4 py-1.5">
-                <span className="text-primary-foreground/90 text-xs sm:text-sm font-medium tracking-wide">
+              <div className="bg-white/10 dark:bg-white/10 backdrop-blur-sm border border-white/20 dark:border-white/20 rounded px-4 py-1.5">
+                <span className="text-white dark:text-white text-xs sm:text-sm font-medium tracking-wide">
                   e-ISSN: 3043-4246
                 </span>
               </div>
@@ -98,7 +98,7 @@ const Index = () => {
 
             {/* Main Title */}
             <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-foreground mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white dark:text-white mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -108,7 +108,7 @@ const Index = () => {
             
             {/* Subtitle */}
             <motion.p 
-              className="text-base sm:text-lg text-primary-foreground/85 mb-10 leading-relaxed max-w-2xl mx-auto font-body"
+              className="text-base sm:text-lg text-white/90 dark:text-white/90 mb-10 leading-relaxed max-w-2xl mx-auto font-body"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -132,7 +132,7 @@ const Index = () => {
                 </Button>
               </Link>
               <Link to="/current-issue" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 min-h-[48px]">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-white/30 dark:border-white/30 text-white dark:text-white hover:bg-white/10 dark:hover:bg-white/10 min-h-[48px]">
                   Browse Current Issue
                 </Button>
               </Link>
