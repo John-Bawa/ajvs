@@ -57,8 +57,12 @@ const Index = () => {
           />
         </div>
         
+        {/* Dark mode gradient overlay */}
+        <div className="absolute inset-0 hidden dark:block bg-gradient-to-br from-[hsl(200,40%,8%)] via-transparent to-[hsl(220,30%,15%)] opacity-80"></div>
+        <div className="absolute inset-0 hidden dark:block bg-gradient-to-t from-[hsl(200,35%,6%)] via-transparent to-transparent opacity-60"></div>
+        
         {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 opacity-5 dark:opacity-[0.03]">
           <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(90deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 80px)', backgroundSize: '80px 100%' }}></div>
         </div>
         
