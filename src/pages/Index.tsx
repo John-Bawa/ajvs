@@ -46,7 +46,7 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative bg-primary py-16 md:py-24 overflow-hidden">
+      <section className="relative bg-primary dark:bg-[hsl(200,30%,12%)] py-16 md:py-24 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.img 
