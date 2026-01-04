@@ -6,7 +6,7 @@ import { ExternalLink, AlertCircle } from "lucide-react";
 import { fetchCurrentIssue, OJSArticle, OJSIssue } from "@/services/ojsApi";
 import { OJSArticleCard } from "./OJSArticleCard";
 import { getOJSLink } from "@/config/ojs";
-
+import { formatNigerianDate, formatVolumeIssue } from "@/lib/nigerianFormat";
 export const OJSCurrentIssueSection = () => {
   const [issue, setIssue] = useState<OJSIssue | null>(null);
   const [articles, setArticles] = useState<OJSArticle[]>([]);
@@ -58,15 +58,11 @@ export const OJSCurrentIssueSection = () => {
           <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
             <div>
               <h3 className="text-2xl font-serif font-bold mb-2">
-                {issue.title || `Volume ${issue.volume}, Number ${issue.number} (${issue.year})`}
+                {issue.title || formatVolumeIssue(issue.volume, issue.number, issue.year)}
               </h3>
               {issue.datePublished && (
                 <p className="text-muted-foreground">
-                  Published: {new Date(issue.datePublished).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
+                  Published: {formatNigerianDate(issue.datePublished, { style: 'medium' })}
                 </p>
               )}
             </div>
