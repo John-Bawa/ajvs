@@ -6,6 +6,7 @@ import { fetchAnnouncements, OJSAnnouncement } from "@/services/ojsApi";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Badge } from "@/components/ui/badge";
 import DOMPurify from "dompurify";
+import { formatNigerianDate } from "@/lib/nigerianFormat";
 
 export const OJSAnnouncementsWidget = () => {
   const [announcements, setAnnouncements] = useState<OJSAnnouncement[]>([]);
@@ -50,11 +51,7 @@ export const OJSAnnouncementsWidget = () => {
                 />
                 <Badge variant="secondary" className="text-xs">
                   <Calendar className="w-3 h-3 mr-1" />
-                  {new Date(announcement.datePosted).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                  })}
+                  {formatNigerianDate(announcement.datePosted, { style: 'short' })}
                 </Badge>
               </div>
             ))}
