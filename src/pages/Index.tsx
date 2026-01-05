@@ -17,6 +17,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
 import { getOJSLink } from "@/config/ojs";
+import { ResourceCardsSection } from "@/components/home/ResourceCardsSection";
+import { NewsCarousel } from "@/components/home/NewsCarousel";
+import { NewsletterSignup } from "@/components/home/NewsletterSignup";
+import { PreviousIssuesSection } from "@/components/home/PreviousIssuesSection";
 
 const Index = () => {
   const { scrollY } = useScroll();
@@ -168,7 +172,8 @@ const Index = () => {
         </div>
       </section>
 
-
+      {/* Resource Cards Section - Publishing Tips, Peer Review, etc. */}
+      <ResourceCardsSection />
 
       {/* Aims & Scope Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-background">
@@ -305,15 +310,22 @@ const Index = () => {
               <OJSCurrentIssueSection />
             </div>
 
-            {/* Announcements Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24">
+            {/* Announcements & Newsletter Sidebar */}
+            <div className="lg:col-span-1 space-y-8">
+              <div className="sticky top-24 space-y-8">
                 <OJSAnnouncementsWidget />
+                <NewsletterSignup />
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* News Carousel Section */}
+      <NewsCarousel />
+
+      {/* Previous Issues Section */}
+      <PreviousIssuesSection />
 
       {/* Indexing & Abstracting */}
       <section className="py-12 sm:py-16 bg-muted/50">
