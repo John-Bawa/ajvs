@@ -4,6 +4,7 @@ import { SEOHead } from "./SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-react";
 import { motion } from "framer-motion";
+import africanCattle from "@/assets/african-cattle.jpg";
 import amejiPhoto from "@/assets/ameji.jpg";
 import idrisPhoto from "@/assets/idris.jpg";
 import tankoPhoto from "@/assets/tanko.jpg";
@@ -251,23 +252,34 @@ const EditorialBoard = () => {
       />
       <Header />
 
-      <main className="flex-1 py-16 md:py-20">
-        <div className="container mx-auto px-4 max-w-6xl">
-          {/* Hero Section - Academic Style */}
+      <main className="flex-1">
+        {/* Hero Section with Background Image */}
+        <section className="relative h-[35vh] min-h-[280px] flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0">
+            <img
+              src={africanCattle}
+              alt="African cattle - livestock farming"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/80 via-primary/70 to-background"></div>
+          </div>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            className="relative z-10 text-center px-4"
           >
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-foreground">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4 text-white drop-shadow-lg">
               Editorial Board
             </h1>
-            <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-body">
+            <div className="w-24 h-1 bg-white/60 mx-auto mb-4"></div>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto font-light">
               Distinguished scholars guiding excellence in veterinary sciences
             </p>
           </motion.div>
+        </section>
+
+        <div className="container mx-auto px-4 max-w-6xl py-16 md:py-20">
 
           {/* Section A: Contact Information */}
           <motion.div
