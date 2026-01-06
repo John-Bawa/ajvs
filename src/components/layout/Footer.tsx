@@ -168,23 +168,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Location Map */}
-        <div className="my-10">
-          <h3 className="font-semibold mb-6 text-banner-foreground text-lg">Our Location</h3>
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-xl overflow-hidden border border-banner-foreground/20 shadow-elegant transition-smooth hover:shadow-lg">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.814388722756!2d8.887155875120945!3d9.949396073903253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x105373fd274d9641%3A0x216a87069c3ea3f7!2sFaculty%20Of%20Veterinary%20Medicine%20University%20Of%20Jos!5e0!3m2!1sen!2sng!4v1765294493918!5m2!1sen!2sng"
-              width="100%"
-              height="100%"
-              style={{ border: 0, display: 'block' }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Veterinary Teaching Hospital, University of Jos Location"
-              className="w-full h-full"
-            />
-          </div>
-        </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-banner-foreground/10">
