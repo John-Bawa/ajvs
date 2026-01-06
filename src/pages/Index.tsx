@@ -13,6 +13,9 @@ import {
 } from "lucide-react";
 import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
 import heroBuilding from "@/assets/hero-building.jpg";
+import academicLibraryImg from "@/assets/academic-library.jpg";
+import researchMicroscopeImg from "@/assets/research-microscope.jpg";
+import dataAnalysisImg from "@/assets/data-analysis.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
@@ -175,53 +178,87 @@ const Index = () => {
       {/* Resource Cards Section - Publishing Tips, Peer Review, etc. */}
       <ResourceCardsSection />
 
-      {/* Aims & Scope Section */}
+      {/* Aims & Scope Section with Research Imagery */}
       <section className="py-12 sm:py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10 sm:mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Academic Research Sidebar Image */}
+            <motion.div 
+              className="hidden lg:block lg:col-span-3"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Aims & Scope</h2>
-              <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
-                The African Journal of Veterinary Sciences (AJVS) publishes original research, reviews, and case reports 
-                spanning all areas of veterinary and biomedical sciences with relevance to Africa and beyond.
-              </p>
+              <div className="sticky top-24 space-y-4">
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <img 
+                    src={academicLibraryImg} 
+                    alt="Academic research library" 
+                    className="w-full h-48 object-cover"
+                  />
+                </div>
+                <div className="rounded-lg overflow-hidden shadow-lg">
+                  <img 
+                    src={researchMicroscopeImg} 
+                    alt="Research laboratory microscope" 
+                    className="w-full h-32 object-cover"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground text-center italic">
+                  Advancing veterinary research excellence
+                </p>
+              </div>
             </motion.div>
-          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {scopeAreas.map((area, index) => (
-              <motion.div
-                key={area.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <Card className="h-full border-border/50 hover:border-primary/30 transition-smooth hover:shadow-lg group">
-                  <CardHeader className="pb-2">
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-smooth">
-                      <area.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-lg">{area.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-sm">{area.description}</CardDescription>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+            {/* Main Content */}
+            <div className="lg:col-span-9">
+              <div className="text-center lg:text-left mb-10 sm:mb-12">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Aims & Scope</h2>
+                  <p className="text-base sm:text-lg text-muted-foreground max-w-3xl px-4 lg:px-0">
+                    The African Journal of Veterinary Sciences (AJVS) publishes original research, reviews, and case reports 
+                    spanning all areas of veterinary and biomedical sciences with relevance to Africa and beyond.
+                  </p>
+                </motion.div>
+              </div>
 
-          <div className="mt-8 text-center">
-            <Link to="/about">
-              <Button variant="link" className="text-primary">
-                Learn more about our scope <ArrowRight className="ml-1 w-4 h-4" />
-              </Button>
-            </Link>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                {scopeAreas.map((area, index) => (
+                  <motion.div
+                    key={area.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <Card className="h-full border-border/50 hover:border-primary/30 transition-smooth hover:shadow-lg group">
+                      <CardHeader className="pb-2">
+                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-smooth">
+                          <area.icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <CardTitle className="text-lg">{area.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <CardDescription className="text-sm">{area.description}</CardDescription>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-8 text-center lg:text-left">
+                <Link to="/about">
+                  <Button variant="link" className="text-primary">
+                    Learn more about our scope <ArrowRight className="ml-1 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -412,67 +449,94 @@ const Index = () => {
       </section>
 
 
-      {/* Submission Process */}
+      {/* Submission Process with Research Imagery */}
       <section className="py-12 sm:py-16 md:py-24 bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-8 sm:mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Simple Submission Process</h2>
-              <p className="text-base sm:text-lg text-muted-foreground px-4">
-                Get your research published in four easy steps
-              </p>
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Main Content */}
+            <div className="lg:col-span-8">
+              <div className="text-center lg:text-left mb-8 sm:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Simple Submission Process</h2>
+                <p className="text-base sm:text-lg text-muted-foreground px-4 lg:px-0">
+                  Get your research published in four easy steps
+                </p>
+              </div>
+
+              <div className="space-y-4 sm:space-y-6">
+                {[
+                  {
+                    step: "1",
+                    title: "Register & Create Profile",
+                    description: "Create your author account and link your ORCID for proper attribution.",
+                  },
+                  {
+                    step: "2",
+                    title: "Submit Manuscript",
+                    description: "Upload your manuscript, figures, and supplementary materials through our streamlined portal.",
+                  },
+                  {
+                    step: "3",
+                    title: "Peer Review",
+                    description: "Expert reviewers evaluate your work and provide constructive feedback.",
+                  },
+                  {
+                    step: "4",
+                    title: "Publication",
+                    description: "Upon acceptance, your article is published and assigned a DOI for citation.",
+                  },
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.step}
+                    className="flex gap-4 sm:gap-6 items-start group bg-card/50 p-4 sm:p-5 rounded-lg hover:bg-card transition-smooth"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-bold text-base sm:text-lg transition-smooth group-hover:scale-110">
+                      {item.step}
+                    </div>
+                    <div className="flex-1 pt-1 sm:pt-2">
+                      <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{item.title}</h3>
+                      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                    <CheckCircle className="hidden sm:block w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-smooth mt-3 flex-shrink-0" />
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-8 sm:mt-12 text-center lg:text-left">
+                <Link to="/for-authors" className="w-full sm:w-auto inline-block">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[48px]">
+                    View Author Guidelines
+                  </Button>
+                </Link>
+              </div>
             </div>
 
-            <div className="space-y-4 sm:space-y-6">
-              {[
-                {
-                  step: "1",
-                  title: "Register & Create Profile",
-                  description: "Create your author account and link your ORCID for proper attribution.",
-                },
-                {
-                  step: "2",
-                  title: "Submit Manuscript",
-                  description: "Upload your manuscript, figures, and supplementary materials through our streamlined portal.",
-                },
-                {
-                  step: "3",
-                  title: "Peer Review",
-                  description: "Expert reviewers evaluate your work and provide constructive feedback.",
-                },
-                {
-                  step: "4",
-                  title: "Publication",
-                  description: "Upon acceptance, your article is published and assigned a DOI for citation.",
-                },
-              ].map((item, index) => (
-                <motion.div
-                  key={item.step}
-                  className="flex gap-4 sm:gap-6 items-start group bg-card/50 p-4 sm:p-5 rounded-lg hover:bg-card transition-smooth"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-bold text-base sm:text-lg transition-smooth group-hover:scale-110">
-                    {item.step}
-                  </div>
-                  <div className="flex-1 pt-1 sm:pt-2">
-                    <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{item.title}</h3>
-                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{item.description}</p>
-                  </div>
-                  <CheckCircle className="hidden sm:block w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-smooth mt-3 flex-shrink-0" />
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-8 sm:mt-12 text-center">
-              <Link to="/for-authors" className="w-full sm:w-auto inline-block">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[48px]">
-                  View Author Guidelines
-                </Button>
-              </Link>
-            </div>
+            {/* Scholarly Workspace Sidebar Image */}
+            <motion.div 
+              className="hidden lg:block lg:col-span-4"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="sticky top-24 space-y-4">
+                <div className="rounded-lg overflow-hidden shadow-lg border border-border/30">
+                  <img 
+                    src={dataAnalysisImg} 
+                    alt="Research data analysis workspace" 
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+                <div className="bg-card/80 rounded-lg p-4 border border-border/30">
+                  <p className="text-sm text-muted-foreground italic text-center">
+                    "From submission to publication — supporting researchers at every step of their journey."
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -4,6 +4,7 @@ import publishingTipsImg from "@/assets/publishing-tips.jpg";
 import peerReviewImg from "@/assets/peer-review.jpg";
 import veterinaryLabImg from "@/assets/veterinary-lab.jpg";
 import archivesImg from "@/assets/archives.jpg";
+import manuscriptWritingImg from "@/assets/manuscript-writing.jpg";
 
 const resources = [
   {

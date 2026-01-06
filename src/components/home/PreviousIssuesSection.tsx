@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, User, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import researchLabImg from "@/assets/research-lab.jpg";
 import veterinaryMedicineImg from "@/assets/veterinary-medicine.jpg";
+import dataAnalysisImg from "@/assets/data-analysis.jpg";
 
 const issueYears = [2025, 2024];
 
@@ -52,9 +53,13 @@ export function PreviousIssuesSection() {
         <div className="border-t border-border mb-8" />
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Years List */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Years List with Academic Icon */}
           <div className="space-y-3">
+            <div className="flex items-center gap-2 mb-4 text-muted-foreground">
+              <BookOpen className="h-4 w-4" />
+              <span className="text-sm font-medium">Browse by Year</span>
+            </div>
             {issueYears.map((year, index) => (
               <motion.div
                 key={year}
@@ -73,6 +78,23 @@ export function PreviousIssuesSection() {
                 </Link>
               </motion.div>
             ))}
+            
+            {/* Small Research Image */}
+            <motion.div 
+              className="mt-6 hidden md:block"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="rounded-lg overflow-hidden">
+                <img 
+                  src={dataAnalysisImg} 
+                  alt="Research data visualization" 
+                  className="w-full h-24 object-cover opacity-80"
+                />
+              </div>
+            </motion.div>
           </div>
 
           {/* Featured Articles */}
