@@ -329,86 +329,71 @@ const EditorialBoard = () => {
             </h2>
           </motion.div>
 
-          {/* Editor-in-Chief */}
+          {/* Editor-in-Chief & Co-Editor in-Chief */}
           <motion.div
-            variants={itemVariants}
+            variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mb-14"
+            className="grid md:grid-cols-2 gap-6 mb-14"
           >
-            <h3 className="text-xl font-serif font-semibold mb-6 text-center text-muted-foreground uppercase tracking-wide">Editor-in-Chief</h3>
-            <div className="max-w-3xl mx-auto">
-              <Card className="border border-border bg-card hover:shadow-elegant transition-shadow">
-                <CardContent className="p-8">
-                  <div className="flex flex-col md:flex-row items-center gap-6">
-                    <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <User className="w-12 h-12 text-primary" strokeWidth={1.5} />
+            {/* Editor-in-Chief */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Editor-in-Chief</h3>
+              <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4 flex-shrink-0">
+                      <User className="w-10 h-10 text-primary" strokeWidth={1.5} />
                     </div>
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-serif font-bold mb-1">{editorInChief.name}</h3>
-                      <p className="text-accent font-medium mb-2">{editorInChief.title}</p>
-                      <p className="text-sm text-muted-foreground mb-4 font-body">{editorInChief.affiliation}</p>
-                      <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start text-sm">
-                        <a
-                          href={`mailto:${editorInChief.email}`}
-                          className="inline-flex items-center gap-2 text-primary hover:underline"
-                        >
-                          <Mail className="w-4 h-4" />
-                          <span>{editorInChief.email}</span>
-                        </a>
-                        <span className="hidden sm:block text-border">|</span>
-                        <span className="inline-flex items-center gap-2 text-muted-foreground">
-                          <Phone className="w-4 h-4" />
-                          {editorInChief.phone}
-                        </span>
-                      </div>
+                    <h4 className="text-lg font-serif font-bold mb-1">{editorInChief.name}</h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{editorInChief.affiliation}</p>
+                    <div className="space-y-1.5 text-sm">
+                      <a
+                        href={`mailto:${editorInChief.email}`}
+                        className="flex items-center justify-center gap-2 text-primary hover:underline"
+                      >
+                        <Mail className="w-4 h-4" />
+                        <span>{editorInChief.email}</span>
+                      </a>
+                      <p className="text-muted-foreground flex items-center justify-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        {editorInChief.phone}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Co-Editor in-Chief */}
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="mb-14"
-          >
-            <h3 className="text-xl font-serif font-semibold mb-6 text-center text-muted-foreground uppercase tracking-wide">Co-Editor in-Chief</h3>
-            <div className="max-w-3xl mx-auto">
-              <Card className="border border-border bg-card hover:shadow-elegant transition-shadow">
-                <CardContent className="p-8">
-                  <div className="flex flex-col md:flex-row items-center gap-6">
-                    <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <User className="w-12 h-12 text-primary" strokeWidth={1.5} />
+            {/* Co-Editor in-Chief */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Co-Editor in-Chief</h3>
+              <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4 flex-shrink-0">
+                      <User className="w-10 h-10 text-primary" strokeWidth={1.5} />
                     </div>
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl font-serif font-bold mb-1">{coEditorInChief.name}</h3>
-                      <p className="text-accent font-medium mb-2">{coEditorInChief.title}</p>
-                      <p className="text-sm text-muted-foreground mb-4 font-body">{coEditorInChief.affiliation}</p>
-                      <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start text-sm">
-                        <a
-                          href={`mailto:${coEditorInChief.email}`}
-                          className="inline-flex items-center gap-2 text-primary hover:underline"
-                        >
-                          <Mail className="w-4 h-4" />
-                          <span>{coEditorInChief.email}</span>
-                        </a>
-                        <span className="hidden sm:block text-border">|</span>
-                        <span className="inline-flex items-center gap-2 text-muted-foreground">
-                          <Phone className="w-4 h-4" />
-                          {coEditorInChief.phone}
-                        </span>
-                      </div>
+                    <h4 className="text-lg font-serif font-bold mb-1">{coEditorInChief.name}</h4>
+                    <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{coEditorInChief.affiliation}</p>
+                    <div className="space-y-1.5 text-sm">
+                      <a
+                        href={`mailto:${coEditorInChief.email}`}
+                        className="flex items-center justify-center gap-2 text-primary hover:underline"
+                      >
+                        <Mail className="w-4 h-4" />
+                        <span>{coEditorInChief.email}</span>
+                      </a>
+                      <p className="text-muted-foreground flex items-center justify-center gap-2">
+                        <Phone className="w-4 h-4" />
+                        {coEditorInChief.phone}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Deputy Editor-in-Chief & Managing Editor */}
@@ -425,7 +410,7 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border">
+                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
                       <img 
                         src={amejiPhoto} 
                         alt={deputyEditorInChief.name}
@@ -433,7 +418,7 @@ const EditorialBoard = () => {
                       />
                     </div>
                     <h4 className="text-lg font-serif font-bold mb-1">{deputyEditorInChief.name}</h4>
-                    <p className="text-sm text-muted-foreground mb-4 font-body">{deputyEditorInChief.affiliation}</p>
+                    <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{deputyEditorInChief.affiliation}</p>
                     <div className="space-y-1.5 text-sm">
                       <a
                         href={`mailto:${deputyEditorInChief.email}`}
@@ -467,7 +452,7 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border">
+                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
                       <img 
                         src={idrisPhoto} 
                         alt={managingEditor.name}
@@ -475,7 +460,7 @@ const EditorialBoard = () => {
                       />
                     </div>
                     <h4 className="text-lg font-serif font-bold mb-1">{managingEditor.name}</h4>
-                    <p className="text-sm text-muted-foreground mb-4 font-body">{managingEditor.affiliation}</p>
+                    <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{managingEditor.affiliation}</p>
                     <div className="space-y-1.5 text-sm">
                       <a
                         href={`mailto:${managingEditor.email}`}
@@ -531,12 +516,12 @@ const EditorialBoard = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <Card className="glass-hover h-full border border-primary/20 hover:border-primary/40 transition-all duration-300">
-                    <CardContent className="p-4">
-                      <div className="flex flex-col items-center text-center">
+                    <CardContent className="p-5">
+                      <div className="flex flex-col items-center text-center h-full">
                         <motion.div
                           whileHover={{ rotate: editor.photo ? 0 : 360, scale: 1.1 }}
                           transition={{ duration: 0.5 }}
-                          className={`w-14 h-14 rounded-full mb-3 shadow-lg ${
+                          className={`w-16 h-16 rounded-full mb-3 shadow-lg flex-shrink-0 ${
                             editor.photo 
                               ? 'overflow-hidden' 
                               : 'bg-primary/20 dark:bg-primary/30 flex items-center justify-center'
@@ -552,8 +537,8 @@ const EditorialBoard = () => {
                             <User className="w-8 h-8 text-primary" strokeWidth={1.5} />
                           )}
                         </motion.div>
-                        <h3 className="font-serif font-bold text-base mb-1">{editor.name}</h3>
-                        <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{editor.affiliation}</p>
+                        <h3 className="font-serif font-bold text-base mb-1 min-h-[2.5rem] flex items-center">{editor.name}</h3>
+                        <p className="text-xs text-muted-foreground mb-3 min-h-[2.5rem] line-clamp-2">{editor.affiliation}</p>
                         <div className="space-y-2 w-full">
                           <motion.a
                             whileHover={{ x: 3 }}
@@ -617,11 +602,11 @@ const EditorialBoard = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <Card className="glass-hover h-full border border-banner/20 hover:border-banner/40 transition-all duration-300">
-                    <CardContent className="p-4">
-                      <div className="flex flex-col items-center text-center">
+                    <CardContent className="p-5">
+                      <div className="flex flex-col items-center text-center h-full">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className={`w-14 h-14 rounded-full mb-3 shadow-lg ${
+                          className={`w-16 h-16 rounded-full mb-3 shadow-lg flex-shrink-0 ${
                             advisor.photo 
                               ? 'overflow-hidden' 
                               : 'bg-accent/20 dark:bg-accent/30 flex items-center justify-center'
@@ -637,8 +622,8 @@ const EditorialBoard = () => {
                             <User className="w-8 h-8 text-accent" strokeWidth={1.5} />
                           )}
                         </motion.div>
-                        <h3 className="font-serif font-bold text-sm mb-1.5">{advisor.name}</h3>
-                        <p className="text-xs text-muted-foreground mb-3 line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
+                        <h3 className="font-serif font-bold text-sm mb-1.5 min-h-[2.5rem] flex items-center">{advisor.name}</h3>
+                        <p className="text-xs text-muted-foreground mb-3 min-h-[3rem] line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
                         <div className="space-y-2 w-full">
                           <motion.a
                             whileHover={{ x: 3 }}
