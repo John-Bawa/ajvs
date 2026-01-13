@@ -27,6 +27,14 @@ const EditorialBoard = () => {
     phone: "+256770700846",
   };
 
+  const coEditorInChief = {
+    name: "Prof. Adeyeye, Adewale A.",
+    title: "Co-Editor in-Chief",
+    affiliation: "Usmanu Danfodio University Sokoto, Sokoto, Nigeria",
+    email: "ayo4wale@hotmail.com",
+    phone: "+2348032859940",
+  };
+
   const deputyEditorInChief = {
     name: "Dr. Ameji, Negedu Onogu",
     title: "Deputy Editor-in-Chief",
@@ -179,12 +187,6 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Laboratory Diagnostics, Faculty of Veterinary Medicine, Universiti Putra Malaysia",
       email: "latiffah@upm.edu.my",
       phone: "+ 603-9769 3472",
-    },
-    {
-      name: "Prof. Adeyeye, Adewale A.",
-      affiliation: "Usmanu Danfodio University Sokoto, Sokoto, Nigeria",
-      email: "ayo4wale@hotmail.com",
-      phone: "+2348032859940",
     },
     {
       name: "Prof. Kudi, Caleb A.",
@@ -359,6 +361,47 @@ const EditorialBoard = () => {
                         <span className="inline-flex items-center gap-2 text-muted-foreground">
                           <Phone className="w-4 h-4" />
                           {editorInChief.phone}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+
+          {/* Co-Editor in-Chief */}
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mb-14"
+          >
+            <h3 className="text-xl font-serif font-semibold mb-6 text-center text-muted-foreground uppercase tracking-wide">Co-Editor in-Chief</h3>
+            <div className="max-w-3xl mx-auto">
+              <Card className="border border-border bg-card hover:shadow-elegant transition-shadow">
+                <CardContent className="p-8">
+                  <div className="flex flex-col md:flex-row items-center gap-6">
+                    <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <User className="w-12 h-12 text-primary" strokeWidth={1.5} />
+                    </div>
+                    <div className="flex-1 text-center md:text-left">
+                      <h3 className="text-2xl font-serif font-bold mb-1">{coEditorInChief.name}</h3>
+                      <p className="text-accent font-medium mb-2">{coEditorInChief.title}</p>
+                      <p className="text-sm text-muted-foreground mb-4 font-body">{coEditorInChief.affiliation}</p>
+                      <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start text-sm">
+                        <a
+                          href={`mailto:${coEditorInChief.email}`}
+                          className="inline-flex items-center gap-2 text-primary hover:underline"
+                        >
+                          <Mail className="w-4 h-4" />
+                          <span>{coEditorInChief.email}</span>
+                        </a>
+                        <span className="hidden sm:block text-border">|</span>
+                        <span className="inline-flex items-center gap-2 text-muted-foreground">
+                          <Phone className="w-4 h-4" />
+                          {coEditorInChief.phone}
                         </span>
                       </div>
                     </div>
