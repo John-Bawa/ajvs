@@ -1,3 +1,4 @@
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -30,6 +31,25 @@ const Index = () => {
   const imageY = useTransform(scrollYProgress, [0, 0.3], [0, 50]);
   const imageScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.05]);
   const imageRotate = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  
+  // Mouse follow effect state
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    setMousePosition({ x, y });
+  };
+
+  const handleMouseEnter = () => setIsHovering(true);
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setMousePosition({ x: 0, y: 0 });
+  };
 
   const indexingBodies = [
     { name: "Google Scholar", url: "https://scholar.google.com" },
@@ -203,7 +223,7 @@ const Index = () => {
               </motion.div>
             </div>
 
-            {/* Right Side - Modern Image Card with Parallax */}
+            {/* Right Side - Modern Image Card with Parallax & Mouse Follow */}
             <motion.div 
               className="order-1 lg:order-2"
               initial={{ opacity: 0, x: 40 }}
@@ -211,11 +231,34 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <motion.div 
-                className="relative"
-                style={{ y: imageY, rotate: imageRotate }}
+                ref={cardRef}
+                className="relative cursor-pointer"
+                style={{ 
+                  y: imageY, 
+                  rotateX: isHovering ? mousePosition.y * -8 : 0,
+                  rotateY: isHovering ? mousePosition.x * 8 : 0,
+                  transformStyle: "preserve-3d",
+                  perspective: 1000,
+                }}
+                animate={{
+                  rotateZ: isHovering ? 0 : imageRotate.get(),
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                onMouseMove={handleMouseMove}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 {/* Main Image Container */}
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-card border border-border/50">
+                <motion.div 
+                  className="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-card border border-border/50"
+                  style={{ transformStyle: "preserve-3d" }}
+                  animate={{
+                    boxShadow: isHovering 
+                      ? `${mousePosition.x * -20}px ${mousePosition.y * 20}px 40px rgba(0,0,0,0.15)` 
+                      : "0 25px 50px -12px rgba(0,0,0,0.25)"
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                >
                   <motion.img 
                     src={heroBuilding}
                     alt="Faculty of Veterinary Medicine Building"
@@ -223,8 +266,23 @@ const Index = () => {
                     style={{ scale: imageScale }}
                   />
                   
+                  {/* Shine effect on hover */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent pointer-events-none"
+                    style={{
+                      opacity: isHovering ? 0.5 : 0,
+                      transform: `translateX(${mousePosition.x * 50}%) translateY(${mousePosition.y * 50}%)`,
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                  
                   {/* Overlay Info Card */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-card/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border/50">
+                  <motion.div 
+                    className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-card/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border/50"
+                    style={{ 
+                      transform: isHovering ? "translateZ(30px)" : "translateZ(0px)",
+                    }}
+                  >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                         <Building2 className="w-5 h-5 text-primary" />
@@ -234,8 +292,8 @@ const Index = () => {
                         <p className="text-xs text-muted-foreground">University of Jos, Nigeria</p>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
 
                 {/* Decorative Floating Elements */}
                 <motion.div 
