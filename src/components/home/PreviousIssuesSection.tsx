@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, User, BookOpen } from "lucide-react";
+import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import researchLabImg from "@/assets/research-lab.jpg";
 import veterinaryMedicineImg from "@/assets/veterinary-medicine.jpg";
@@ -11,14 +11,12 @@ const issueYears = [2025, 2024];
 const recentArticles = [
   {
     id: 1,
-    author: "Adamu S. Karaye",
     title: "Antimicrobial Resistance Patterns in Livestock",
     image: researchLabImg,
     link: "/archives",
   },
   {
     id: 2,
-    author: "Fatima B. Ibrahim",
     title: "Zoonotic Disease Surveillance Methods",
     image: veterinaryMedicineImg,
     link: "/archives",
@@ -118,13 +116,7 @@ export function PreviousIssuesSection() {
                 </div>
 
                 {/* Content */}
-                <div className="flex-1">
-                  {/* Author */}
-                  <div className="flex items-center gap-1.5 text-muted-foreground text-sm mb-1">
-                    <User className="h-3.5 w-3.5" />
-                    <span>{article.author}</span>
-                  </div>
-
+                <div className="flex-1 flex items-center">
                   {/* Title */}
                   <h4 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
                     {article.title}
