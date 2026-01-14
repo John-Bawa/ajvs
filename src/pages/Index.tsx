@@ -65,9 +65,46 @@ const Index = () => {
       
       {/* Hero Section - Modern Side-by-Side Layout */}
       <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-[hsl(200,30%,10%)] dark:via-[hsl(210,25%,12%)] dark:to-[hsl(200,30%,8%)] py-16 md:py-20 lg:py-24 overflow-hidden">
-        {/* Subtle gradient orbs for modern feel */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-accent/10 to-transparent rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+        {/* Floating gradient orbs for modern feel */}
+        <motion.div 
+          className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
+          animate={{ 
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-accent/10 to-transparent rounded-full blur-3xl translate-x-1/3 translate-y-1/3"
+          animate={{ 
+            x: [0, -25, 0],
+            y: [0, 25, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{ 
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-gradient-to-bl from-primary/5 to-accent/5 rounded-full blur-3xl"
+          animate={{ 
+            x: [0, 40, 0],
+            y: [0, -30, 0],
+            opacity: [0.5, 0.8, 0.5],
+          }}
+          transition={{ 
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -200,9 +237,32 @@ const Index = () => {
                   </div>
                 </div>
 
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl"></div>
-                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+                {/* Decorative Floating Elements */}
+                <motion.div 
+                  className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div 
+                  className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl"
+                  animate={{ 
+                    scale: [1, 1.15, 1],
+                    opacity: [0.5, 0.9, 0.5],
+                  }}
+                  transition={{ 
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
                 
                 {/* Floating Badge */}
                 <motion.div 
