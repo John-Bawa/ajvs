@@ -26,8 +26,10 @@ import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { PreviousIssuesSection } from "@/components/home/PreviousIssuesSection";
 
 const Index = () => {
-  const { scrollY } = useScroll();
-  const imageY = useTransform(scrollY, [0, 500], [0, 150]);
+  const { scrollYProgress } = useScroll();
+  const imageY = useTransform(scrollYProgress, [0, 0.3], [0, 50]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.05]);
+  const imageRotate = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
 
   const indexingBodies = [
     { name: "Google Scholar", url: "https://scholar.google.com" },
@@ -164,20 +166,24 @@ const Index = () => {
               </motion.div>
             </div>
 
-            {/* Right Side - Modern Image Card */}
+            {/* Right Side - Modern Image Card with Parallax */}
             <motion.div 
               className="order-1 lg:order-2"
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="relative">
+              <motion.div 
+                className="relative"
+                style={{ y: imageY, rotate: imageRotate }}
+              >
                 {/* Main Image Container */}
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-card border border-border/50">
-                  <img 
+                  <motion.img 
                     src={heroBuilding}
                     alt="Faculty of Veterinary Medicine Building"
                     className="w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] object-cover"
+                    style={{ scale: imageScale }}
                   />
                   
                   {/* Overlay Info Card */}
@@ -207,7 +213,7 @@ const Index = () => {
                 >
                   Est. 2024
                 </motion.div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
