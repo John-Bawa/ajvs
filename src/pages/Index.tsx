@@ -61,97 +61,153 @@ const Index = () => {
       <TopBar />
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative bg-primary dark:bg-[hsl(200,30%,12%)] py-16 md:py-24 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.img 
-            src={heroBuilding}
-            alt="Faculty of Veterinary Medicine Building"
-            className="w-full h-full object-cover opacity-20"
-            style={{ y: imageY }}
-          />
-        </div>
-        
-        {/* Dark mode gradient overlay */}
-        <div className="absolute inset-0 hidden dark:block bg-gradient-to-br from-[hsl(200,40%,8%)] via-transparent to-[hsl(220,30%,15%)] opacity-80"></div>
-        <div className="absolute inset-0 hidden dark:block bg-gradient-to-t from-[hsl(200,35%,6%)] via-transparent to-transparent opacity-60"></div>
-        
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-5 dark:opacity-[0.03]">
-          <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(90deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 80px)', backgroundSize: '80px 100%' }}></div>
-        </div>
+      {/* Hero Section - Modern Side-by-Side Layout */}
+      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-[hsl(200,30%,10%)] dark:via-[hsl(210,25%,12%)] dark:to-[hsl(200,30%,8%)] py-16 md:py-20 lg:py-24 overflow-hidden">
+        {/* Subtle gradient orbs for modern feel */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-accent/10 to-transparent rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
         
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Logo */}
-            <motion.div 
-              className="mb-8"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <img 
-                src={ajvscLogo} 
-                alt="African Journal of Veterinary Sciences Logo" 
-                className="h-24 sm:h-32 md:h-36 w-auto mx-auto drop-shadow-lg"
-              />
-            </motion.div>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left Side - Text Content */}
+            <div className="order-2 lg:order-1 text-center lg:text-left">
+              {/* Logo */}
+              <motion.div 
+                className="mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <img 
+                  src={ajvscLogo} 
+                  alt="African Journal of Veterinary Sciences Logo" 
+                  className="h-16 sm:h-20 md:h-24 w-auto mx-auto lg:mx-0 drop-shadow-md"
+                />
+              </motion.div>
 
-            {/* ISSN Badge */}
+              {/* ISSN Badge */}
+              <motion.div 
+                className="mb-5 inline-block"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="bg-primary/10 dark:bg-white/10 backdrop-blur-sm border border-primary/20 dark:border-white/20 rounded-full px-4 py-1.5">
+                  <span className="text-primary dark:text-white text-xs sm:text-sm font-medium tracking-wide">
+                    e-ISSN: 3043-4246
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* Main Title */}
+              <motion.h1 
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold text-foreground mb-5 leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                African Journal of{' '}
+                <span className="text-primary">Veterinary Sciences</span>
+              </motion.h1>
+              
+              {/* Subtitle */}
+              <motion.p 
+                className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 font-body"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                A peer-reviewed, open access journal publishing original research in veterinary medicine, 
+                animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, 
+                University of Jos, Nigeria.
+              </motion.p>
+              
+              {/* CTA Buttons */}
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <Link to="/submit" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg min-h-[48px] rounded-full px-8">
+                    Submit Manuscript
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link to="/current-issue" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-primary/30 text-primary hover:bg-primary/10 min-h-[48px] rounded-full px-8">
+                    Browse Current Issue
+                  </Button>
+                </Link>
+              </motion.div>
+
+              {/* Quick Stats */}
+              <motion.div 
+                className="mt-10 flex flex-wrap gap-6 justify-center lg:justify-start"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent" />
+                  <span className="text-sm text-muted-foreground">Open Access</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent" />
+                  <span className="text-sm text-muted-foreground">Peer-Reviewed</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-accent" />
+                  <span className="text-sm text-muted-foreground">Fast Publication</span>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Side - Modern Image Card */}
             <motion.div 
-              className="mb-6 inline-block"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              className="order-1 lg:order-2"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <div className="bg-white/10 dark:bg-white/10 backdrop-blur-sm border border-white/20 dark:border-white/20 rounded px-4 py-1.5">
-                <span className="text-white dark:text-white text-xs sm:text-sm font-medium tracking-wide">
-                  e-ISSN: 3043-4246
-                </span>
+              <div className="relative">
+                {/* Main Image Container */}
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-card border border-border/50">
+                  <img 
+                    src={heroBuilding}
+                    alt="Faculty of Veterinary Medicine Building"
+                    className="w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] object-cover"
+                  />
+                  
+                  {/* Overlay Info Card */}
+                  <div className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-card/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border/50">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Building2 className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground text-sm">Faculty of Veterinary Medicine</h3>
+                        <p className="text-xs text-muted-foreground">University of Jos, Nigeria</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl"></div>
+                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+                
+                {/* Floating Badge */}
+                <motion.div 
+                  className="absolute -top-3 -right-3 bg-accent text-accent-foreground px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.8, type: "spring" }}
+                >
+                  Est. 2024
+                </motion.div>
               </div>
-            </motion.div>
-
-            {/* Main Title */}
-            <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white dark:text-white mb-6 leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              African Journal of <br className="hidden sm:block" />Veterinary Sciences
-            </motion.h1>
-            
-            {/* Subtitle */}
-            <motion.p 
-              className="text-base sm:text-lg text-white/90 dark:text-white/90 mb-10 leading-relaxed max-w-2xl mx-auto font-body"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              A peer-reviewed, open access journal publishing original research in veterinary medicine, 
-              animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, 
-              University of Jos, Nigeria.
-            </motion.p>
-            
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <Link to="/submit" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-lg min-h-[48px]">
-                  Submit Manuscript
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <Link to="/current-issue" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-2 border-white/30 dark:border-white/30 text-white dark:text-white hover:bg-white/10 dark:hover:bg-white/10 min-h-[48px]">
-                  Browse Current Issue
-                </Button>
-              </Link>
             </motion.div>
           </div>
         </div>
