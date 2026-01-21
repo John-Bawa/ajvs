@@ -352,8 +352,8 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4 flex-shrink-0">
-                      <User className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-primary/10 flex items-center justify-center mb-4 flex-shrink-0">
+                      <User className="w-12 h-12 md:w-14 md:h-14 text-primary" strokeWidth={1.5} />
                     </div>
                     <h4 className="text-lg font-serif font-bold mb-1">{editorInChief.name}</h4>
                     <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{editorInChief.affiliation}</p>
@@ -381,7 +381,7 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
+                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
                       <img 
                         src={coEditorInChief.photo} 
                         alt={coEditorInChief.name}
@@ -423,7 +423,7 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
+                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
                       <img 
                         src={amejiPhoto} 
                         alt={deputyEditorInChief.name}
@@ -465,7 +465,7 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
+                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
                       <img 
                         src={idrisPhoto} 
                         alt={managingEditor.name}
@@ -534,7 +534,7 @@ const EditorialBoard = () => {
                         <motion.div
                           whileHover={{ rotate: editor.photo ? 0 : 360, scale: 1.1 }}
                           transition={{ duration: 0.5 }}
-                          className={`w-16 h-16 rounded-full mb-3 shadow-lg flex-shrink-0 ${
+                          className={`w-20 h-20 md:w-24 md:h-24 rounded-full mb-3 shadow-lg flex-shrink-0 ${
                             editor.photo 
                               ? 'overflow-hidden' 
                               : 'bg-primary/20 dark:bg-primary/30 flex items-center justify-center'
@@ -547,7 +547,7 @@ const EditorialBoard = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <User className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                            <User className="w-10 h-10 md:w-12 md:h-12 text-primary" strokeWidth={1.5} />
                           )}
                         </motion.div>
                         <h3 className="font-serif font-bold text-base mb-1 min-h-[2.5rem] flex items-center">{editor.name}</h3>
@@ -619,7 +619,7 @@ const EditorialBoard = () => {
                       <div className="flex flex-col items-center text-center h-full">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className={`w-16 h-16 rounded-full mb-3 shadow-lg flex-shrink-0 ${
+                          className={`w-20 h-20 md:w-24 md:h-24 rounded-full mb-3 shadow-lg flex-shrink-0 ${
                             advisor.photo 
                               ? 'overflow-hidden' 
                               : 'bg-accent/20 dark:bg-accent/30 flex items-center justify-center'
@@ -632,7 +632,7 @@ const EditorialBoard = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <User className="w-8 h-8 text-accent" strokeWidth={1.5} />
+                            <User className="w-10 h-10 md:w-12 md:h-12 text-accent" strokeWidth={1.5} />
                           )}
                         </motion.div>
                         <h3 className="font-serif font-bold text-sm mb-1.5 min-h-[2.5rem] flex items-center">{advisor.name}</h3>
