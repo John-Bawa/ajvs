@@ -145,7 +145,7 @@ const EditorialBoard = () => {
     {
       name: "Dr. Meseko Clement A.",
       affiliation: "National Veterinary Research Institute, Vom, Plateau State, Nigeria",
-      email: "cameseko@yahoo.com",
+      email: "Clement.meseko@nvri.gov.ng",
       phone: "+2348039183988",
       orcid: "0000-0001-7003-7528",
       photo: clementPhoto,
