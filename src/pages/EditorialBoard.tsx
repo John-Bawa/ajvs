@@ -17,6 +17,7 @@ import omoniwaPhoto from "@/assets/omoniwa.jpg";
 import clementPhoto from "@/assets/clement.jpg";
 import fasinaPhoto from "@/assets/fasina.jpg";
 import bamaiyiPhoto from "@/assets/bamaiyi.jpg";
+import adeyeyePhoto from "@/assets/adeyeye.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -33,6 +34,7 @@ const EditorialBoard = () => {
     affiliation: "Usmanu Danfodio University Sokoto, Sokoto, Nigeria",
     email: "ayo4wale@hotmail.com",
     phone: "+2348032859940",
+    photo: adeyeyePhoto,
   };
 
   const deputyEditorInChief = {
@@ -372,8 +374,12 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-4 flex-shrink-0">
-                      <User className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                    <div className="w-20 h-20 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
+                      <img 
+                        src={coEditorInChief.photo} 
+                        alt={coEditorInChief.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <h4 className="text-lg font-serif font-bold mb-1">{coEditorInChief.name}</h4>
                     <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{coEditorInChief.affiliation}</p>
