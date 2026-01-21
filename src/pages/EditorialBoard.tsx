@@ -18,6 +18,7 @@ import clementPhoto from "@/assets/clement.jpg";
 import fasinaPhoto from "@/assets/fasina.jpg";
 import bamaiyiPhoto from "@/assets/bamaiyi.jpg";
 import adeyeyePhoto from "@/assets/adeyeye.jpg";
+import lukaPamPhoto from "@/assets/luka-pam.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -148,6 +149,12 @@ const EditorialBoard = () => {
       phone: "+2348039183988",
       orcid: "0000-0001-7003-7528",
       photo: clementPhoto,
+    },
+    {
+      name: "Dr Luka Pam",
+      email: "pamluka08@gmail.com",
+      orcid: "0000-0002-6170-4242",
+      photo: lukaPamPhoto,
     },
   ];
 
