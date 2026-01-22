@@ -23,6 +23,11 @@ interface BreadcrumbItem {
   url: string;
 }
 
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface SEOHeadProps {
   title: string;
   description: string;
@@ -32,6 +37,7 @@ interface SEOHeadProps {
   keywords?: string[];
   articleMeta?: ArticleMeta;
   breadcrumbs?: BreadcrumbItem[];
+  faqItems?: FAQItem[];
   noIndex?: boolean;
 }
 
@@ -44,6 +50,7 @@ export const SEOHead = ({
   keywords = [],
   articleMeta,
   breadcrumbs,
+  faqItems,
   noIndex = false
 }: SEOHeadProps) => {
   const fullTitle = `${title} | African Journal of Veterinary Sciences`;
@@ -155,6 +162,20 @@ export const SEOHead = ({
     }))
   } : null;
 
+  // FAQ Page structured data
+  const faqSchema = faqItems && faqItems.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
   // Website search action
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -166,6 +187,25 @@ export const SEOHead = ({
       "target": `${baseUrl}/archives?search={search_term_string}`,
       "query-input": "required name=search_term_string"
     }
+  };
+
+  // Site navigation structured data
+  const siteNavigationSchema = {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    "name": "Main Navigation",
+    "url": baseUrl,
+    "hasPart": [
+      { "@type": "WebPage", "name": "Home", "url": baseUrl },
+      { "@type": "WebPage", "name": "About", "url": `${baseUrl}/about` },
+      { "@type": "WebPage", "name": "Editorial Board", "url": `${baseUrl}/editorial-board` },
+      { "@type": "WebPage", "name": "Author Guidelines", "url": `${baseUrl}/author-guidelines` },
+      { "@type": "WebPage", "name": "Archives", "url": `${baseUrl}/archives` },
+      { "@type": "WebPage", "name": "Current Issue", "url": `${baseUrl}/current-issue` },
+      { "@type": "WebPage", "name": "Submit Manuscript", "url": `${baseUrl}/submit` },
+      { "@type": "WebPage", "name": "FAQ", "url": `${baseUrl}/faq` },
+      { "@type": "WebPage", "name": "Contact", "url": `${baseUrl}/contact` }
+    ]
   };
 
   return (
@@ -301,6 +341,14 @@ export const SEOHead = ({
           {JSON.stringify(breadcrumbSchema)}
         </script>
       )}
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      )}
+      <script type="application/ld+json">
+        {JSON.stringify(siteNavigationSchema)}
+      </script>
     </Helmet>
   );
 };
