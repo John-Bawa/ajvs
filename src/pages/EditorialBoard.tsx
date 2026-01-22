@@ -152,6 +152,7 @@ const EditorialBoard = () => {
     },
     {
       name: "Dr Luka Pam",
+      affiliation: "Viral Research Unit, National Veterinary Research Institute (NVRI), Vom, Plateau State, Nigeria",
       email: "pamluka08@gmail.com",
       orcid: "0000-0002-6170-4242",
       photo: lukaPamPhoto,
