@@ -96,19 +96,11 @@ const faqs = [
 ];
 
 const FAQ = () => {
-  // Generate FAQ structured data
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer.replace(/\n/g, ' ').replace(/[•🔗👉📋💳]/g, '')
-      }
-    }))
-  };
+  // Format FAQ items for structured data
+  const faqItemsForSchema = faqs.map(faq => ({
+    question: faq.question,
+    answer: faq.answer.replace(/\n/g, ' ').replace(/[•🔗👉📋💳]/g, '').trim()
+  }));
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-background via-background/95 to-muted/20">
@@ -121,8 +113,8 @@ const FAQ = () => {
           { name: "Home", url: "https://africanjournalvetsci.org" },
           { name: "FAQ", url: "https://africanjournalvetsci.org/faq" }
         ]}
+        faqItems={faqItemsForSchema}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <TopBar />
       <Header />
       
