@@ -139,7 +139,7 @@ const EditorialBoard = () => {
     {
       name: "Dr Chidiebere Uchendu",
       affiliation: "Department of Veterinary Pharmarcology and Toxicology, University of Jos, Nigeria",
-      email: "ucheduc@unijos.edu.ng",
+      email: "uchenduc@unijos.edu.ng",
       phone: "+2348063234452",
     },
     {
