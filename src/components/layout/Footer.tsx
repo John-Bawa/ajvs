@@ -135,6 +135,12 @@ const Footer = () => {
                 <div className="flex flex-col gap-1">
                   <span className="text-banner-foreground/90 font-medium">Editorial Office</span>
                   <a
+                    href="mailto:editor@africanjournalvetsci.org"
+                    className="text-banner-foreground/70 hover:text-primary transition-smooth"
+                  >
+                    editor@africanjournalvetsci.org
+                  </a>
+                  <a
                     href="mailto:ajvsc@unijos.edu.ng"
                     className="text-banner-foreground/70 hover:text-primary transition-smooth"
                   >
