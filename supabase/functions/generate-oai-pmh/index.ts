@@ -162,7 +162,7 @@ function generateIdentify() {
     <repositoryName>African Journal of Veterinary Sciences</repositoryName>
     <baseURL>https://ajvs.org/oai</baseURL>
     <protocolVersion>2.0</protocolVersion>
-    <adminEmail>editor@ajvsunijos.edu.ng</adminEmail>
+    <adminEmail>editor@africanjournalvetsci.org</adminEmail>
     <earliestDatestamp>2020-01-01T00:00:00Z</earliestDatestamp>
     <deletedRecord>no</deletedRecord>
     <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>

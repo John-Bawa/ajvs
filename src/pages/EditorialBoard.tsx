@@ -309,13 +309,22 @@ const EditorialBoard = () => {
                       </div>
                       <div className="space-y-3">
                         <a
-                          href="mailto:AJVSc@unijos.edu.ng"
+                          href="mailto:editor@africanjournalvetsci.org"
                           className="flex items-center gap-3 text-primary hover:text-primary/80 transition-colors"
                         >
                           <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                             <Mail className="w-5 h-5" />
                           </div>
-                          <span className="font-medium">AJVSc@unijos.edu.ng</span>
+                          <span className="font-medium">editor@africanjournalvetsci.org</span>
+                        </a>
+                        <a
+                          href="mailto:ajvsc@unijos.edu.ng"
+                          className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors mt-2"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
+                            <Mail className="w-5 h-5" />
+                          </div>
+                          <span className="font-medium">ajvsc@unijos.edu.ng</span>
                         </a>
                       </div>
                     </div>
@@ -699,7 +708,7 @@ const EditorialBoard = () => {
                 <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  href="mailto:AJVSc@unijos.edu.ng"
+                  href="mailto:editor@africanjournalvetsci.org"
                   className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all duration-300"
                 >
                   <Mail className="w-5 h-5" />

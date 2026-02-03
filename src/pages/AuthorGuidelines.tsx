@@ -450,7 +450,8 @@ const AuthorGuidelines = () => {
                   <p>Faculty of Veterinary Medicine</p>
                   <p>University of Jos</p>
                   <p>Plateau State</p>
-                  <p className="text-primary font-semibold mt-2">E-mail: ajvsc@unijos.edu.ng</p>
+                  <p className="text-primary font-semibold mt-2">E-mail: editor@africanjournalvetsci.org</p>
+                  <p className="text-primary font-semibold">Alt: ajvsc@unijos.edu.ng</p>
                   <p className="text-sm mt-1">Phone: +234 8035907570</p>
                 </div>
               </div>

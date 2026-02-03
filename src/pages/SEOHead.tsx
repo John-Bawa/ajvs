@@ -94,7 +94,7 @@ export const SEOHead = ({
         "addressRegion": "Plateau State",
         "addressCountry": "Nigeria"
       },
-      "email": "ajvsc@unijos.edu.ng"
+      "email": "editor@africanjournalvetsci.org"
     },
     "inLanguage": "en",
     "isAccessibleForFree": true,

@@ -156,7 +156,10 @@ export default function Contact() {
                       <Mail className="w-6 h-6 text-primary" />
                       <div>
                         <h3 className="font-semibold mb-1">Email</h3>
-                        <a href="mailto:ajvsc@unijos.edu.ng" className="text-muted-foreground hover:text-primary">
+                        <a href="mailto:editor@africanjournalvetsci.org" className="text-muted-foreground hover:text-primary block">
+                          editor@africanjournalvetsci.org
+                        </a>
+                        <a href="mailto:ajvsc@unijos.edu.ng" className="text-muted-foreground hover:text-primary block">
                           ajvsc@unijos.edu.ng
                         </a>
                       </div>

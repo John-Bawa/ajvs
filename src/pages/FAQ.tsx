@@ -42,7 +42,7 @@ const faqs = [
     icon: Upload,
     question: "How can I submit my manuscript?",
     answer:
-      "Manuscripts should be submitted via the online submission portal on the journal website:\n👉 https://ajvs-unijos.org/submissions\n\nor by email to ajvsc@unijos.edu.ng\n\nEnsure you include:\n• A cover letter addressed to the Editor-in-Chief\n• Declaration and copyright transfer form (available on the site)\n• Main manuscript file (Microsoft Word)\n• Figures and tables properly labeled and captioned",
+      "Manuscripts should be submitted via the online submission portal on the journal website:\n👉 https://ajvs-unijos.org/submissions\n\nor by email to editor@africanjournalvetsci.org (or ajvsc@unijos.edu.ng)\n\nEnsure you include:\n• A cover letter addressed to the Editor-in-Chief\n• Declaration and copyright transfer form (available on the site)\n• Main manuscript file (Microsoft Word)\n• Figures and tables properly labeled and captioned",
   },
   {
     id: "4",
@@ -205,7 +205,7 @@ const FAQ = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href="mailto:ajvsc@unijos.edu.ng"
+                href="mailto:editor@africanjournalvetsci.org"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
               >
                 <Mail className="w-4 h-4" />

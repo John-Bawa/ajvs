@@ -263,11 +263,19 @@ const About = () => {
                   <p>University of Jos</p>
                   <p>PMB 2084, Jos</p>
                   <p>Plateau State</p>
-                  <div className="flex items-center gap-2 mt-4 text-primary">
-                    <Globe className="w-4 h-4" />
-                    <a href="mailto:ajvsc@unijos.edu.ng" className="hover:underline">
-                      ajvsc@unijos.edu.ng
-                    </a>
+                  <div className="flex flex-col gap-1 mt-4 text-primary">
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-4 h-4" />
+                      <a href="mailto:editor@africanjournalvetsci.org" className="hover:underline">
+                        editor@africanjournalvetsci.org
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Globe className="w-4 h-4" />
+                      <a href="mailto:ajvsc@unijos.edu.ng" className="hover:underline">
+                        ajvsc@unijos.edu.ng
+                      </a>
+                    </div>
                   </div>
                   <p className="text-sm">Phone: +2348035907570</p>
                 </div>
