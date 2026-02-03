@@ -166,6 +166,11 @@ Academic Journal Design System - Classic & Scholarly
   
   p {
     @apply leading-relaxed;
+    line-height: 1.9;
+    letter-spacing: 0.015em;
+  }
+  
+  li {
     line-height: 1.8;
     letter-spacing: 0.01em;
   }
