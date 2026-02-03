@@ -160,17 +160,18 @@ Academic Journal Design System - Classic & Scholarly
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold tracking-tight text-foreground;
-    letter-spacing: -0.015em;
+    @apply font-serif font-bold text-foreground;
+    letter-spacing: -0.01em;
   }
   
   p {
     @apply leading-relaxed;
-    line-height: 1.7;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
   }
   
-  /* Import scholarly fonts - Playfair Display for headings, Source Serif for body elegance */
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap');
+  /* Import fonts - Lora for elegant headings, Open Sans for highly legible body text */
+  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 }
 
 @layer utilities {
