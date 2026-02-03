@@ -288,7 +288,7 @@ const Index = () => {
                         <Building2 className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground text-sm">Faculty of Veterinary Medicine</h3>
+                        <h3 className="font-sans font-semibold text-foreground text-sm tracking-normal">Faculty of Veterinary Medicine</h3>
                         <p className="text-xs text-muted-foreground">University of Jos, Nigeria</p>
                       </div>
                     </div>
@@ -735,7 +735,7 @@ const Index = () => {
                 <Building2 className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
               </div>
               <div className="text-center md:text-left">
-                <h3 className="text-xl sm:text-2xl font-serif font-bold mb-2">Faculty of Veterinary Medicine</h3>
+                <h3 className="text-xl sm:text-2xl font-sans font-semibold mb-2 tracking-normal">Faculty of Veterinary Medicine</h3>
                 <p className="text-muted-foreground mb-3">
                   University of Jos, P.M.B. 2084, Jos, Plateau State, Nigeria
                 </p>

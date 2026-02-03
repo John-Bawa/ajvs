@@ -160,8 +160,8 @@ Academic Journal Design System - Classic & Scholarly
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold text-foreground;
-    letter-spacing: -0.01em;
+    @apply font-sans font-semibold text-foreground;
+    letter-spacing: 0.01em;
   }
   
   p {
