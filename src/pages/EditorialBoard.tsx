@@ -19,6 +19,7 @@ import fasinaPhoto from "@/assets/fasina.jpg";
 import bamaiyiPhoto from "@/assets/bamaiyi.jpg";
 import adeyeyePhoto from "@/assets/adeyeye.jpg";
 import lukaPamPhoto from "@/assets/luka-pam.jpg";
+import gywaDemePhoto from "@/assets/gywa-deme.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -62,6 +63,7 @@ const EditorialBoard = () => {
       affiliation: "Department of Biology, Case West Reserve University, USA",
       email: "gxg277@case.edu",
       phone: "+12163014385",
+      photo: gywaDemePhoto,
     },
     {
       name: "Dr. Akinsola Oludayo M.",
