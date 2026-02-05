@@ -20,6 +20,7 @@ import bamaiyiPhoto from "@/assets/bamaiyi.jpg";
 import adeyeyePhoto from "@/assets/adeyeye.jpg";
 import lukaPamPhoto from "@/assets/luka-pam.jpg";
 import gywaDemePhoto from "@/assets/gywa-deme.jpg";
+import latiffahHassanPhoto from "@/assets/latiffah-hassan.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -199,6 +200,7 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Laboratory Diagnostics, Faculty of Veterinary Medicine, Universiti Putra Malaysia",
       email: "latiffah@upm.edu.my",
       phone: "+ 603-9769 3472",
+      photo: latiffahHassanPhoto,
     },
     {
       name: "Prof. Kudi, Caleb A.",
