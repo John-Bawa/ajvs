@@ -21,6 +21,7 @@ import adeyeyePhoto from "@/assets/adeyeye.jpg";
 import lukaPamPhoto from "@/assets/luka-pam.jpg";
 import gywaDemePhoto from "@/assets/gywa-deme.jpg";
 import latiffahHassanPhoto from "@/assets/latiffah-hassan.jpg";
+import georgeGurunyenPhoto from "@/assets/george-gurumyen.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -159,6 +160,14 @@ const EditorialBoard = () => {
       email: "pamluka08@gmail.com",
       orcid: "0000-0002-6170-4242",
       photo: lukaPamPhoto,
+    },
+    {
+      name: "Dr George Yilzem Gurumyen (DVM, MVSc, FVCSN)",
+      affiliation: "Department of Veterinary Pathology, University of Jos, Nigeria",
+      email: "yilzemg@gmail.com",
+      phone: "+2348030639783",
+      orcid: "0000-0001-6389-8573",
+      photo: georgeGurunyenPhoto,
     },
   ];
 
