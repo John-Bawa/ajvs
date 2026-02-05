@@ -13,6 +13,7 @@ import {
   Building2, ExternalLink 
 } from "lucide-react";
 import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
+import animatedLogo from "@/assets/animated-logo.mp4";
 import heroBuilding from "@/assets/hero-building.jpg";
 import academicLibraryImg from "@/assets/academic-library.jpg";
 import researchMicroscopeImg from "@/assets/research-microscope.jpg";
@@ -137,11 +138,20 @@ const Index = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <img 
-                  src={ajvscLogo} 
-                  alt="African Journal of Veterinary Sciences Logo" 
-                  className="h-16 sm:h-20 md:h-24 w-auto mx-auto lg:mx-0 drop-shadow-md"
-                />
+                <video 
+                  src={animatedLogo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-20 sm:h-24 md:h-28 w-auto mx-auto lg:mx-0 drop-shadow-md"
+                >
+                  <img 
+                    src={ajvscLogo} 
+                    alt="African Journal of Veterinary Sciences Logo" 
+                    className="h-16 sm:h-20 md:h-24 w-auto mx-auto lg:mx-0 drop-shadow-md"
+                  />
+                </video>
               </motion.div>
 
               {/* ISSN Badge */}
