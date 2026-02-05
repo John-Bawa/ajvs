@@ -197,9 +197,8 @@ const EditorialBoard = () => {
     },
     {
       name: "Prof. Dr. Latiffah Hassan, DVM, PhD",
-      affiliation: "Department of Veterinary Laboratory Diagnostics, Faculty of Veterinary Medicine, Universiti Putra Malaysia",
-      email: "latiffah@upm.edu.my",
-      phone: "+ 603-9769 3472",
+      affiliation: "Department of Public Health, College of Health Sciences, University of Missouri, USA",
+      email: "latiffahhassan@health.missouri.edu",
       photo: latiffahHassanPhoto,
     },
     {
