@@ -162,7 +162,7 @@ const EditorialBoard = () => {
       photo: lukaPamPhoto,
     },
     {
-      name: "Dr George Yilzem Gurumyen (DVM, MVSc, FVCSN)",
+      name: "Dr George Yilzem Gurumyen",
       affiliation: "Department of Veterinary Pathology, University of Jos, Nigeria",
       email: "yilzemg@gmail.com",
       phone: "+2348030639783",
