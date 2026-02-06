@@ -299,7 +299,7 @@ const EditorialBoard = () => {
             </h1>
             <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-body">
-              Distinguished scholars guiding excellence in veterinary sciences
+              Distinguished scholars guiding excellence in biomedical, environmental and veterinary sciences
             </p>
           </motion.div>
 
