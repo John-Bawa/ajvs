@@ -25,6 +25,7 @@ import georgeGurunyenPhoto from "@/assets/george-gurumyen.jpg";
 import emikpePhoto from "@/assets/emikpe.jpg";
 import lombinPhoto from "@/assets/lombin.jpg";
 import musinguziPhoto from "@/assets/musinguzi.jpg";
+import ababaPhoto from "@/assets/ababa.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -172,6 +173,14 @@ const EditorialBoard = () => {
       phone: "+2348030639783",
       orcid: "0000-0001-6389-8573",
       photo: georgeGurunyenPhoto,
+    },
+    {
+      name: "Dr James Andrew Ababa",
+      affiliation: "Department of Veterinary Surgery & Radiology, University of Jos, Nigeria",
+      email: "Jamesan@unijos.edu.ng",
+      phone: "+2347039762476",
+      orcid: "0000-0003-1227-0684",
+      photo: ababaPhoto,
     },
   ];
 
