@@ -23,6 +23,7 @@ import gywaDemePhoto from "@/assets/gywa-deme.jpg";
 import latiffahHassanPhoto from "@/assets/latiffah-hassan.jpg";
 import georgeGurunyenPhoto from "@/assets/george-gurumyen.jpg";
 import emikpePhoto from "@/assets/emikpe.jpg";
+import lombinPhoto from "@/assets/lombin.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -178,6 +179,7 @@ const EditorialBoard = () => {
       affiliation: "Veterinary Teaching Hospital, University of Jos, Nigeria",
       email: "lombinl@unijos.edu.ng",
       phone: "+2348037150272",
+      photo: lombinPhoto,
     },
     {
       name: "Prof. George W. Nasinyama",
