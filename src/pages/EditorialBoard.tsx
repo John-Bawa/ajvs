@@ -22,6 +22,7 @@ import lukaPamPhoto from "@/assets/luka-pam.jpg";
 import gywaDemePhoto from "@/assets/gywa-deme.jpg";
 import latiffahHassanPhoto from "@/assets/latiffah-hassan.jpg";
 import georgeGurunyenPhoto from "@/assets/george-gurumyen.jpg";
+import emikpePhoto from "@/assets/emikpe.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -228,6 +229,13 @@ const EditorialBoard = () => {
       affiliation: "School of Veterinary Medicine and Science, Room B28 Veterinary Academic Building, University of Nottingham, Sutton Bonington Campus, Loughborough, Leicestershire, LE12 5RD UK",
       email: "Sudhakar.Bhandare@nottingham.ac.uk",
       phone: "0115 95 16397",
+    },
+    {
+      name: "Prof. Emikpe Benjamin O.",
+      affiliation: "Kwame Nkrumah University of Science and Technology, Kumasi, Ghana",
+      email: "benemikpegwac@gmail.com",
+      phone: "+233549410841",
+      photo: emikpePhoto,
     },
   ];
 
