@@ -24,6 +24,7 @@ import latiffahHassanPhoto from "@/assets/latiffah-hassan.jpg";
 import georgeGurunyenPhoto from "@/assets/george-gurumyen.jpg";
 import emikpePhoto from "@/assets/emikpe.jpg";
 import lombinPhoto from "@/assets/lombin.jpg";
+import musinguziPhoto from "@/assets/musinguzi.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -32,6 +33,7 @@ const EditorialBoard = () => {
     affiliation: "Department of Agriculture and Animal Production, Kyambogo University, Kampala, Uganda",
     email: "spmusinguzi@kyu.ac.ug",
     phone: "+256770700846",
+    photo: musinguziPhoto,
   };
 
   const coEditorInChief = {
@@ -384,8 +386,12 @@ const EditorialBoard = () => {
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-primary/10 flex items-center justify-center mb-4 flex-shrink-0">
-                      <User className="w-12 h-12 md:w-14 md:h-14 text-primary" strokeWidth={1.5} />
+                    <div className="w-24 h-24 md:w-28 md:h-28 rounded-full mb-4 overflow-hidden border-2 border-border flex-shrink-0">
+                      <img 
+                        src={editorInChief.photo} 
+                        alt={editorInChief.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <h4 className="text-lg font-serif font-bold mb-1">{editorInChief.name}</h4>
                     <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{editorInChief.affiliation}</p>
