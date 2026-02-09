@@ -34,6 +34,7 @@ const EditorialBoard = () => {
     affiliation: "Department of Agriculture and Animal Production, Kyambogo University, Kampala, Uganda",
     email: "spmusinguzi@kyu.ac.ug",
     phone: "+256770700846",
+    orcid: "0000-0003-0050-1043",
     photo: musinguziPhoto,
   };
 
@@ -416,6 +417,17 @@ const EditorialBoard = () => {
                         <Phone className="w-4 h-4" />
                         {editorInChief.phone}
                       </p>
+                      {editorInChief.orcid && (
+                        <a
+                          href={`https://orcid.org/${editorInChief.orcid}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2 text-accent hover:text-accent/80 transition-colors"
+                        >
+                          <Award className="w-4 h-4" />
+                          <span>ORCID: {editorInChief.orcid}</span>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </CardContent>
