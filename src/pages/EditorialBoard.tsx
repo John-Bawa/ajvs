@@ -26,6 +26,7 @@ import emikpePhoto from "@/assets/emikpe.jpg";
 import lombinPhoto from "@/assets/lombin.jpg";
 import musinguziPhoto from "@/assets/musinguzi.jpg";
 import ababaPhoto from "@/assets/ababa.jpg";
+import olufemiPhoto from "@/assets/olufemi.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -182,6 +183,14 @@ const EditorialBoard = () => {
       phone: "+2347039762476",
       orcid: "0000-0003-1227-0684",
       photo: ababaPhoto,
+    },
+    {
+      name: "Dr Olufemi Olaolu Tosin",
+      affiliation: "Department of Veterinary Public Health and Preventive Medicine, University of Jos, Nigeria",
+      email: "olufemit@unijos.edu.ng",
+      phone: "+2348035589149",
+      orcid: "0000-0001-5312-8591",
+      photo: olufemiPhoto,
     },
   ];
 
