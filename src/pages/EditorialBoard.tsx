@@ -27,6 +27,7 @@ import lombinPhoto from "@/assets/lombin.jpg";
 import musinguziPhoto from "@/assets/musinguzi.jpg";
 import ababaPhoto from "@/assets/ababa.jpg";
 import olufemiPhoto from "@/assets/olufemi.jpg";
+import tizhePhoto from "@/assets/tizhe.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -191,6 +192,13 @@ const EditorialBoard = () => {
       phone: "+2348035589149",
       orcid: "0000-0001-5312-8591",
       photo: olufemiPhoto,
+    },
+    {
+      name: "Dr Tizhe Vandi Emmanuel",
+      affiliation: "Department of Veterinary Pathology, University of Jos, Nigeria",
+      email: "tizhee@unijos.edu.ng",
+      phone: "+2348059180798",
+      photo: tizhePhoto,
     },
   ];
 
