@@ -28,6 +28,7 @@ import musinguziPhoto from "@/assets/musinguzi.jpg";
 import ababaPhoto from "@/assets/ababa.jpg";
 import olufemiPhoto from "@/assets/olufemi.jpg";
 import tizhePhoto from "@/assets/tizhe.jpg";
+import omirindePhoto from "@/assets/omirinde.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -199,6 +200,14 @@ const EditorialBoard = () => {
       email: "tizhee@unijos.edu.ng",
       phone: "+2348059180798",
       photo: tizhePhoto,
+    },
+    {
+      name: "Dr Omirinde Jamiu O.",
+      affiliation: "Department of Veterinary Anatomy, University of Jos, Nigeria",
+      email: "omirindej@unijos.edu.ng",
+      phone: "+2348069735125",
+      orcid: "0000-0002-2952-9376",
+      photo: omirindePhoto,
     },
   ];
 
