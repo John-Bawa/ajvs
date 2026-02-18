@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
@@ -10,7 +11,7 @@ import { SEOHead } from "./SEOHead";
 import { 
   FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, 
   Target, Microscope, Heart, GraduationCap, Send, Search, 
-  Building2, ExternalLink 
+  Building2, ExternalLink, X
 } from "lucide-react";
 import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
 import animatedLogo from "@/assets/animated-logo.mp4";
@@ -28,6 +29,7 @@ import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { PreviousIssuesSection } from "@/components/home/PreviousIssuesSection";
 
 const Index = () => {
+  const [showCallForPapers, setShowCallForPapers] = useState(false);
   const { scrollYProgress } = useScroll();
   const imageY = useTransform(scrollYProgress, [0, 0.3], [0, 50]);
   const imageScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.05]);
@@ -50,6 +52,19 @@ const Index = () => {
   const handleMouseLeave = () => {
     setIsHovering(false);
     setMousePosition({ x: 0, y: 0 });
+  };
+
+  useEffect(() => {
+    const dismissed = sessionStorage.getItem("cfp-dismissed");
+    if (!dismissed) {
+      const timer = setTimeout(() => setShowCallForPapers(true), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const dismissPopup = () => {
+    setShowCallForPapers(false);
+    sessionStorage.setItem("cfp-dismissed", "true");
   };
 
   const indexingBodies = [
@@ -83,6 +98,29 @@ const Index = () => {
       />
       <TopBar />
       <Header />
+
+      {/* Call for Papers Popup */}
+      <Dialog open={showCallForPapers} onOpenChange={(open) => { if (!open) dismissPopup(); }}>
+        <DialogContent className="sm:max-w-md p-0 overflow-hidden border-none bg-transparent shadow-2xl">
+          <Link to="/call-for-papers" onClick={dismissPopup} className="block">
+            <img 
+              src="/call-for-papers-flyer.jpg" 
+              alt="AJVS Call for Papers" 
+              className="w-full h-auto rounded-lg cursor-pointer hover:opacity-95 transition-opacity"
+            />
+          </Link>
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-3 px-4">
+            <Link to="/call-for-papers" onClick={dismissPopup}>
+              <Button size="sm" className="bg-primary text-primary-foreground font-semibold shadow-lg">
+                Learn More
+              </Button>
+            </Link>
+            <Button size="sm" variant="secondary" onClick={dismissPopup} className="shadow-lg">
+              Dismiss
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
       
       {/* Hero Section - Modern Side-by-Side Layout */}
       <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-[hsl(200,30%,10%)] dark:via-[hsl(210,25%,12%)] dark:to-[hsl(200,30%,8%)] py-16 md:py-20 lg:py-24 overflow-hidden">
