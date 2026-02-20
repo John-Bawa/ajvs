@@ -403,6 +403,105 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Call for Papers CTA Banner */}
+      <section className="relative overflow-hidden bg-primary py-12 sm:py-16">
+        {/* Diagonal pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.07]" style={{
+          backgroundImage: `repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 20px,
+            hsl(var(--primary-foreground)) 20px,
+            hsl(var(--primary-foreground)) 21px
+          )`
+        }} />
+        {/* Glowing orbs */}
+        <motion.div
+          className="absolute -left-24 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-highlight/20 blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute -right-24 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-accent/20 blur-3xl"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8 max-w-6xl mx-auto">
+            {/* Left: Text Content */}
+            <motion.div
+              className="text-center lg:text-left flex-1"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 bg-highlight/20 border border-highlight/30 rounded-full px-4 py-1.5 mb-4">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-highlight opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-highlight"></span>
+                </span>
+                <span className="text-xs font-semibold text-highlight-foreground tracking-widest uppercase">Now Open</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-primary-foreground mb-3 leading-tight">
+                Call for Papers
+              </h2>
+              <p className="text-primary-foreground/70 text-base sm:text-lg max-w-xl leading-relaxed mb-2">
+                Inaugural Issue — Volume 1, Issue 1 (2026)
+              </p>
+              <p className="text-primary-foreground/60 text-sm sm:text-base max-w-xl leading-relaxed">
+                Submit your original research, reviews, case reports & short communications in 
+                veterinary, biomedical, and environmental sciences.
+              </p>
+
+              {/* Highlights row */}
+              <div className="flex flex-wrap gap-x-6 gap-y-2 mt-5 justify-center lg:justify-start">
+                {["Open Access", "Peer-Reviewed", "DOI Assigned", "e-ISSN: 3027-0731"].map(item => (
+                  <div key={item} className="flex items-center gap-1.5 text-primary-foreground/80 text-sm">
+                    <CheckCircle className="w-3.5 h-3.5 text-highlight flex-shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Divider */}
+            <div className="hidden lg:block w-px h-28 bg-primary-foreground/15 flex-shrink-0" />
+
+            {/* Right: CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+            >
+              <Link to="/call-for-papers">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto lg:w-52 bg-highlight hover:bg-highlight/90 text-highlight-foreground font-bold text-base shadow-xl shadow-black/30 min-h-[52px] rounded-full px-8 group"
+                >
+                  <FileText className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                  View Full Details
+                </Button>
+              </Link>
+              <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto lg:w-52 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 font-semibold min-h-[52px] rounded-full px-8"
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Submit Now
+                </Button>
+              </a>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Resource Cards Section - Publishing Tips, Peer Review, etc. */}
       <ResourceCardsSection />
 
