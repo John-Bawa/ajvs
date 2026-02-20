@@ -1,9 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import {
-  FileText, Download, Share2, BookOpen, CheckCircle,
-  ExternalLink, Mail, Globe, Microscope, FlaskConical,
-  Stethoscope, Leaf, Copy, ArrowRight, Send
+  FileText, Share2, BookOpen, CheckCircle, ExternalLink,
+  Mail, Globe, Microscope, FlaskConical, Stethoscope, Leaf,
+  Copy, ArrowRight, Send, Users, Award, Link2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +18,37 @@ const SITE_URL = "https://ajvs-domain.lovable.app";
 const PAGE_URL = `${SITE_URL}/call-for-papers`;
 const OG_IMAGE = `${SITE_URL}/og-call-for-papers.jpg`;
 const FLYER_URL = `/call-for-papers-flyer.jpg`;
+
+const shareChannels = [
+  {
+    key: "whatsapp",
+    label: "WhatsApp",
+    description: "Share directly to chats & groups",
+    color: "bg-[hsl(142,70%,45%)]",
+    textColor: "text-white",
+  },
+  {
+    key: "linkedin",
+    label: "LinkedIn",
+    description: "Reach academic & professional networks",
+    color: "bg-[hsl(210,90%,40%)]",
+    textColor: "text-white",
+  },
+  {
+    key: "twitter",
+    label: "X / Twitter",
+    description: "Post to the research community",
+    color: "bg-[hsl(0,0%,10%)]",
+    textColor: "text-white",
+  },
+  {
+    key: "facebook",
+    label: "Facebook",
+    description: "Share with colleagues & groups",
+    color: "bg-[hsl(220,80%,50%)]",
+    textColor: "text-white",
+  },
+];
 
 const articleTypes = [
   { label: "Original Research Articles", icon: Microscope },
@@ -38,42 +69,68 @@ const subjectAreas = [
   { label: "One Health & Zoonotic Diseases", icon: Globe },
 ];
 
+const guidelines = [
+  {
+    title: "Originality",
+    body: "Manuscripts must present original work not previously published or currently under review elsewhere.",
+  },
+  {
+    title: "File Format",
+    body: "Submissions must be prepared and uploaded in Microsoft Word (.doc / .docx) format.",
+  },
+  {
+    title: "Style & Referencing",
+    body: "Formatting, citation style, and referencing must strictly follow the AJVS Author Guidelines published on the journal website.",
+  },
+  {
+    title: "Ethical Clearance",
+    body: "Animal or human ethics committee approval must be obtained and documented where applicable.",
+  },
+  {
+    title: "Peer Review",
+    body: "All submissions undergo a rigorous double-blind peer review process by two or more qualified reviewers.",
+  },
+  {
+    title: "Plagiarism",
+    body: "All manuscripts are screened for plagiarism prior to review. A similarity index above acceptable thresholds will result in rejection.",
+  },
+  {
+    title: "Authorship",
+    body: "All listed authors must have made substantive intellectual contributions to the work. Ghost or gift authorship is not permitted.",
+  },
+  {
+    title: "Conflict of Interest",
+    body: "Authors must declare any financial or non-financial competing interests that could influence the research.",
+  },
+];
+
 const benefits = [
   {
     icon: Globe,
-    title: "Open Access Publication",
-    description: "All accepted articles are freely accessible to readers worldwide without subscription barriers, maximising the reach and impact of your research.",
+    title: "Open Access",
+    description: "All published articles are freely accessible to readers worldwide — no subscription required.",
   },
   {
-    icon: CheckCircle,
-    title: "Rigorous Double-Blind Peer Review",
-    description: "Every submission undergoes a thorough double-blind review process conducted by field experts to ensure scientific rigour and credibility.",
+    icon: Users,
+    title: "Double-Blind Peer Review",
+    description: "Rigorous review by field experts ensures the scientific quality and credibility of every published work.",
   },
   {
     icon: FileText,
     title: "DOI Assignment",
-    description: "Each published article receives a unique Digital Object Identifier (DOI), ensuring permanent, citable links for long-term discoverability.",
+    description: "Every article receives a Digital Object Identifier for permanent, globally citable referencing.",
   },
   {
-    icon: Microscope,
-    title: "Indexed for Global Visibility",
-    description: "Articles are indexed on Google Scholar and ORCID, ensuring discoverability by researchers, institutions, and databases worldwide.",
+    icon: Award,
+    title: "Indexed & Discoverable",
+    description: "Articles are indexed on Google Scholar and ORCID for maximum academic visibility.",
   },
-];
-
-const guidelines = [
-  "Manuscripts must be original and not under consideration elsewhere.",
-  "Submissions must be prepared in MS Word format.",
-  "Formatting and referencing must follow AJVS Author Guidelines.",
-  "Ethical clearance must be provided where applicable.",
-  "All manuscripts undergo double-blind peer review.",
-  "Plagiarism screening is conducted for all submissions.",
 ];
 
 const CallForPapers = () => {
   const { toast } = useToast();
 
-  const shareText = `📢 CALL FOR PAPERS!\n\nThe African Journal of Veterinary Sciences (AJVS) is now accepting manuscript submissions.\n\n✅ Open Access | Peer Reviewed\n✅ e-ISSN: 3027-0731\n✅ Rapid peer review process\n\nSubmit your research today!\n🔗 ${PAGE_URL}`;
+  const shareText = `CALL FOR PAPERS — African Journal of Veterinary Sciences (AJVS)\n\nAJVS is now accepting manuscript submissions for its Inaugural Issue (Volume 1, Issue 1, 2026).\n\nOpen Access | Peer-Reviewed | e-ISSN: 3027-0731\n\nWe welcome original research, reviews, case reports, and short communications in veterinary and biomedical sciences.\n\nSubmit your work: ${PAGE_URL}`;
 
   const handleShare = async (platform: string) => {
     const encodedText = encodeURIComponent(shareText);
@@ -81,32 +138,30 @@ const CallForPapers = () => {
 
     const urls: Record<string, string> = {
       whatsapp: `https://wa.me/?text=${encodedText}`,
-      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent("📢 Call for Papers - African Journal of Veterinary Sciences (AJVS) is now accepting submissions! Open Access | Peer Reviewed")}&url=${encodedUrl}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent("Call for Papers — African Journal of Veterinary Sciences (AJVS) is now accepting submissions for its Inaugural Issue. Open Access | Peer Reviewed")}&url=${encodedUrl}`,
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      copy: "",
     };
-
-    if (platform === "copy") {
-      try {
-        await navigator.clipboard.writeText(shareText);
-        toast({ title: "Copied!", description: "Announcement text copied to clipboard." });
-      } catch {
-        toast({ title: "Error", description: "Failed to copy text.", variant: "destructive" });
-      }
-      return;
-    }
 
     window.open(urls[platform], "_blank", "noopener,noreferrer");
   };
 
-  const handleDownloadFlyer = () => {
-    const link = document.createElement("a");
-    link.href = FLYER_URL;
-    link.download = "AJVS-Call-For-Papers-2026.jpg";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleCopyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(PAGE_URL);
+      toast({ title: "Link copied!", description: "The page link has been copied to your clipboard." });
+    } catch {
+      toast({ title: "Error", description: "Failed to copy link.", variant: "destructive" });
+    }
+  };
+
+  const handleCopyText = async () => {
+    try {
+      await navigator.clipboard.writeText(shareText);
+      toast({ title: "Announcement copied!", description: "Ready to paste into any chat or post." });
+    } catch {
+      toast({ title: "Error", description: "Failed to copy text.", variant: "destructive" });
+    }
   };
 
   return (
@@ -132,168 +187,195 @@ const CallForPapers = () => {
 
       <main className="min-h-screen bg-background">
 
-        {/* ── Hero Banner ──────────────────────────────────────────── */}
+        {/* ── Hero ─────────────────────────────────────────────────── */}
         <section className="relative bg-primary overflow-hidden">
-          {/* Subtle grid overlay */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-highlight" />
           <div
-            className="absolute inset-0 opacity-[0.04]"
+            className="absolute inset-0 opacity-[0.035]"
             style={{
               backgroundImage: `linear-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px),
                                 linear-gradient(90deg, hsl(var(--primary-foreground)) 1px, transparent 1px)`,
-              backgroundSize: "40px 40px",
+              backgroundSize: "48px 48px",
             }}
           />
-          {/* Gold accent line at top */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-highlight" />
 
           <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-24 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <img
-                  src={ajvsLogo}
-                  alt="AJVS Logo"
-                  className="w-16 h-16 mx-auto mb-6 drop-shadow-lg"
-                />
+            <div className="max-w-5xl mx-auto">
+              <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
 
-                <div className="inline-flex items-center gap-2 border border-highlight/40 bg-highlight/10 rounded-full px-4 py-1.5 mb-6">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-highlight opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-highlight"></span>
-                  </span>
-                  <span className="text-xs font-semibold text-highlight tracking-widest uppercase">Now Accepting Submissions</span>
-                </div>
+                {/* Text — 3 cols */}
+                <motion.div
+                  className="lg:col-span-3 text-center lg:text-left"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.55 }}
+                >
+                  <img src={ajvsLogo} alt="AJVS Logo" className="w-14 h-14 mb-6 mx-auto lg:mx-0 drop-shadow-lg" />
 
-                <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-primary-foreground mb-4 leading-tight">
-                  Call for Papers
-                </h1>
-                <p className="text-xl text-primary-foreground/75 font-serif mb-1">
-                  African Journal of Veterinary Sciences
-                </p>
-                <p className="text-primary-foreground/50 text-sm tracking-wide mb-8">
-                  Volume 1, Issue 1 (2026) &nbsp;&bull;&nbsp; e-ISSN: 3027-0731 &nbsp;&bull;&nbsp; Open Access &nbsp;&bull;&nbsp; Peer Reviewed
-                </p>
+                  <div className="inline-flex items-center gap-2 border border-highlight/40 bg-highlight/10 rounded-full px-4 py-1.5 mb-5">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-highlight opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-highlight" />
+                    </span>
+                    <span className="text-xs font-semibold text-highlight tracking-widest uppercase">
+                      Now Accepting Submissions
+                    </span>
+                  </div>
 
-                <p className="text-primary-foreground/80 text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                  The African Journal of Veterinary Sciences invites researchers, academics, clinicians,
-                  and industry professionals to submit high-quality manuscripts for publication in its
-                  Inaugural Issue.
-                </p>
+                  <h1 className="text-4xl sm:text-5xl font-serif font-bold text-primary-foreground leading-tight mb-3">
+                    Call for Papers
+                  </h1>
+                  <p className="text-lg text-primary-foreground/70 font-serif mb-1">
+                    African Journal of Veterinary Sciences
+                  </p>
+                  <p className="text-primary-foreground/45 text-xs tracking-wide mb-7">
+                    Volume 1, Issue 1 (2026) &bull; e-ISSN: 3027-0731 &bull; Open Access &bull; Peer Reviewed
+                  </p>
 
-                <div className="flex flex-wrap justify-center gap-4">
+                  <p className="text-primary-foreground/75 text-sm sm:text-base leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                    The African Journal of Veterinary Sciences (AJVS) invites researchers, academics,
+                    clinicians, and industry professionals to submit high-quality manuscripts in veterinary,
+                    biomedical, and environmental sciences.
+                  </p>
+
                   <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="bg-highlight hover:bg-highlight/90 text-highlight-foreground font-bold px-8 shadow-lg rounded-full min-h-[52px]">
+                    <Button size="lg" className="bg-highlight hover:bg-highlight/90 text-highlight-foreground font-bold px-8 rounded-full min-h-[50px] shadow-lg">
                       <Send className="w-4 h-4 mr-2" />
                       Submit Your Manuscript
                     </Button>
                   </a>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    onClick={handleDownloadFlyer}
-                    className="border-primary-foreground/25 text-primary-foreground hover:bg-primary-foreground/10 rounded-full min-h-[52px] px-8"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Flyer
-                  </Button>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+                </motion.div>
 
-        {/* ── Share Bar ────────────────────────────────────────────── */}
-        <section className="border-b border-border bg-secondary/40">
-          <div className="container mx-auto px-4 sm:px-6 py-4">
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <span className="text-sm font-semibold text-foreground flex items-center gap-2 mr-2">
-                <Share2 className="w-3.5 h-3.5 text-muted-foreground" />
-                Share this announcement:
-              </span>
-              {[
-                { label: "WhatsApp", key: "whatsapp" },
-                { label: "X / Twitter", key: "twitter" },
-                { label: "Facebook", key: "facebook" },
-                { label: "LinkedIn", key: "linkedin" },
-              ].map(p => (
-                <Button key={p.key} size="sm" variant="outline" onClick={() => handleShare(p.key)} className="text-xs">
-                  {p.label}
-                </Button>
-              ))}
-              <Button size="sm" variant="secondary" onClick={() => handleShare("copy")} className="text-xs gap-1.5">
-                <Copy className="w-3 h-3" /> Copy Text
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Main Content ─────────────────────────────────────────── */}
-        <section className="py-16 sm:py-20">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="max-w-6xl mx-auto">
-
-              {/* Two-column: Flyer + Submission Details */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-20">
-
-                {/* Flyer Image */}
+                {/* Flyer — 2 cols: shown as a styled preview card */}
                 <motion.div
-                  initial={{ opacity: 0, x: -24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.55 }}
-                  className="sticky top-24"
+                  className="lg:col-span-2 flex justify-center lg:justify-end"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.15 }}
                 >
-                  <div className="rounded-xl overflow-hidden shadow-2xl border border-border/60 ring-1 ring-primary/10">
-                    <img
-                      src={FLYER_URL}
-                      alt="AJVS Call for Papers 2026 Flyer"
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                  <div className="mt-4 flex gap-3">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleDownloadFlyer}
-                      className="flex-1 rounded-full text-xs"
-                    >
-                      <Download className="w-3.5 h-3.5 mr-1.5" />
-                      Download Flyer
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleShare("whatsapp")}
-                      className="flex-1 rounded-full text-xs"
-                    >
-                      <Share2 className="w-3.5 h-3.5 mr-1.5" />
-                      Share on WhatsApp
-                    </Button>
+                  <div className="relative w-full max-w-xs">
+                    {/* Decorative frame */}
+                    <div className="absolute -inset-2 rounded-2xl border border-highlight/25 opacity-60" />
+                    <div className="absolute -inset-4 rounded-3xl border border-primary-foreground/10 opacity-40" />
+                    <div className="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                      <img
+                        src={FLYER_URL}
+                        alt="AJVS Call for Papers 2026 — Official Announcement"
+                        className="w-full h-auto block"
+                      />
+                    </div>
+                    {/* Caption tag */}
+                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-highlight text-highlight-foreground text-xs font-semibold px-4 py-1 rounded-full shadow-md">
+                      Inaugural Issue · 2026
+                    </div>
                   </div>
                 </motion.div>
 
-                {/* Details Panel */}
-                <motion.div
-                  initial={{ opacity: 0, x: 24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.55 }}
-                  className="space-y-10"
-                >
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Share This Announcement ───────────────────────────────── */}
+        <section className="py-12 bg-secondary/40 border-y border-border">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center gap-2 mb-2">
+                  <Share2 className="w-4 h-4 text-primary" />
+                  <h2 className="text-lg font-serif font-bold text-foreground">Share This Announcement</h2>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                  Help spread the word — share with colleagues, research groups, and professional networks.
+                </p>
+              </div>
+
+              {/* Platform Cards */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+                {shareChannels.map(ch => (
+                  <button
+                    key={ch.key}
+                    onClick={() => handleShare(ch.key)}
+                    className={`${ch.color} ${ch.textColor} rounded-xl p-4 text-left hover:opacity-90 active:scale-95 transition-all shadow-sm`}
+                  >
+                    <p className="font-semibold text-sm mb-0.5">{ch.label}</p>
+                    <p className="text-[11px] opacity-75 leading-snug">{ch.description}</p>
+                  </button>
+                ))}
+              </div>
+
+              {/* Copy options */}
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button variant="outline" size="sm" onClick={handleCopyLink} className="gap-2 rounded-full">
+                  <Link2 className="w-3.5 h-3.5" />
+                  Copy Page Link
+                </Button>
+                <Button variant="outline" size="sm" onClick={handleCopyText} className="gap-2 rounded-full">
+                  <Copy className="w-3.5 h-3.5" />
+                  Copy Announcement Text
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── Body Content ─────────────────────────────────────────── */}
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="max-w-5xl mx-auto space-y-20">
+
+              {/* About the Journal */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-7 w-1 bg-highlight rounded-full" />
+                  <h2 className="text-2xl font-serif font-bold text-foreground">About the Journal</h2>
+                </div>
+                <div className="prose prose-sm max-w-none text-muted-foreground leading-relaxed space-y-4">
+                  <p>
+                    The <strong className="text-foreground">African Journal of Veterinary Sciences (AJVS)</strong> is
+                    an open-access, peer-reviewed journal committed to advancing research and knowledge in
+                    veterinary, biomedical, and environmental sciences. Published by the Faculty of Veterinary
+                    Medicine, University of Jos, Nigeria, AJVS provides a credible platform for the dissemination
+                    of original research that contributes to animal health, public health, food security, and
+                    sustainable development.
+                  </p>
+                  <p>
+                    AJVS is now receiving submissions for its <strong className="text-foreground">Inaugural Issue
+                    (Volume 1, Issue 1, 2026)</strong>. All accepted manuscripts will attract a processing fee of
+                    ₦5,000 (USD $30) payable before peer review commences, and a page charge of ₦7,000
+                    (USD $35) per page upon acceptance. Payments should be made to Access Bank Plc, Account
+                    Name: African Journal of Veterinary Sciences, <strong className="text-foreground">Account
+                    Number: 1931486112</strong>.
+                  </p>
+                </div>
+              </motion.div>
+
+              <Separator />
+
+              {/* Manuscript Types & Subject Areas — side by side */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                   {/* Manuscript Types */}
                   <div>
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="h-6 w-1 bg-highlight rounded-full" />
-                      <h2 className="text-xl font-serif font-bold text-foreground">Manuscript Types</h2>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-7 w-1 bg-primary rounded-full" />
+                      <h2 className="text-2xl font-serif font-bold text-foreground">Manuscript Types</h2>
                     </div>
-                    <p className="text-muted-foreground text-sm mb-4">We welcome the following categories of submissions:</p>
+                    <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                      We welcome the following categories of submission for consideration:
+                    </p>
                     <ul className="space-y-3">
                       {articleTypes.map(({ label, icon: Icon }) => (
-                        <li key={label} className="flex items-center gap-3 group">
-                          <div className="w-8 h-8 rounded-lg bg-primary/8 border border-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/12 transition-colors">
+                        <li key={label} className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-lg bg-primary/8 border border-primary/12 flex items-center justify-center flex-shrink-0">
                             <Icon className="w-4 h-4 text-primary" />
                           </div>
                           <span className="text-foreground text-sm font-medium">{label}</span>
@@ -302,19 +384,19 @@ const CallForPapers = () => {
                     </ul>
                   </div>
 
-                  <Separator />
-
                   {/* Subject Areas */}
                   <div>
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="h-6 w-1 bg-accent rounded-full" />
-                      <h2 className="text-xl font-serif font-bold text-foreground">Subject Areas</h2>
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="h-7 w-1 bg-accent rounded-full" />
+                      <h2 className="text-2xl font-serif font-bold text-foreground">Subject Areas</h2>
                     </div>
-                    <p className="text-muted-foreground text-sm mb-4">Manuscripts covering the following areas are encouraged:</p>
+                    <p className="text-muted-foreground text-sm mb-5 leading-relaxed">
+                      Manuscripts addressing the following thematic areas are particularly encouraged:
+                    </p>
                     <ul className="space-y-3">
                       {subjectAreas.map(({ label, icon: Icon }) => (
-                        <li key={label} className="flex items-center gap-3 group">
-                          <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/15 transition-colors">
+                        <li key={label} className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/15 flex items-center justify-center flex-shrink-0">
                             <Icon className="w-4 h-4 text-accent-foreground" />
                           </div>
                           <span className="text-foreground text-sm font-medium">{label}</span>
@@ -322,131 +404,123 @@ const CallForPapers = () => {
                       ))}
                     </ul>
                   </div>
+                </div>
+              </motion.div>
 
-                  <Separator />
+              <Separator />
 
-                  {/* Submission Guidelines */}
-                  <div>
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="h-6 w-1 bg-primary rounded-full" />
-                      <h2 className="text-xl font-serif font-bold text-foreground">Guidelines for Contributors</h2>
-                    </div>
-                    <p className="text-muted-foreground text-sm mb-4">Authors should adhere to the following:</p>
-                    <ul className="space-y-2.5">
-                      {guidelines.map(g => (
-                        <li key={g} className="flex items-start gap-3">
-                          <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span className="text-foreground text-sm leading-relaxed">{g}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-5 p-4 bg-muted/60 rounded-lg border border-border/50 text-sm text-muted-foreground leading-relaxed">
-                      AJVS operates as an Open Access journal. <strong className="text-foreground">Article Processing Charges (APC)</strong> of ₦5,000 (USD $30) apply upon acceptance, plus a page charge of ₦7,000 (USD $35) per page.
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Why Publish — Full-width feature grid */}
+              {/* Guidelines for Contributors */}
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.55 }}
-                className="mb-20"
               >
-                <div className="text-center mb-10">
-                  <Badge variant="outline" className="mb-3 border-primary/30 text-primary text-xs tracking-wide">
-                    Publication Benefits
-                  </Badge>
-                  <h2 className="text-2xl sm:text-3xl font-serif font-bold text-foreground">Why Publish with AJVS?</h2>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-7 w-1 bg-highlight rounded-full" />
+                  <h2 className="text-2xl font-serif font-bold text-foreground">Guidelines for Contributors</h2>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {benefits.map(({ icon: Icon, title, description }, i) => (
-                    <motion.div
-                      key={title}
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: i * 0.08 }}
-                      className="flex gap-5 p-6 rounded-xl border border-border/60 bg-secondary/30 hover:border-primary/20 hover:bg-secondary/50 transition-all"
-                    >
-                      <div className="w-11 h-11 rounded-lg bg-primary/10 border border-primary/15 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-5 h-5 text-primary" />
-                      </div>
+                <p className="text-muted-foreground text-sm mb-8 leading-relaxed max-w-2xl">
+                  Authors are required to adhere to the following standards before and during the
+                  submission process. Non-compliance may result in desk rejection without peer review.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {guidelines.map(({ title, body }) => (
+                    <div key={title} className="flex gap-4 p-5 rounded-xl border border-border/60 bg-secondary/25 hover:border-primary/20 transition-colors">
+                      <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-foreground mb-1.5 text-sm">{title}</h3>
-                        <p className="text-muted-foreground text-xs leading-relaxed">{description}</p>
+                        <p className="font-semibold text-foreground text-sm mb-1">{title}</p>
+                        <p className="text-muted-foreground text-xs leading-relaxed">{body}</p>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </motion.div>
 
-              {/* Contact & How to Submit */}
+              <Separator />
+
+              {/* Why Publish */}
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.55 }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-7 w-1 bg-primary rounded-full" />
+                  <h2 className="text-2xl font-serif font-bold text-foreground">Why Publish with AJVS?</h2>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                  {benefits.map(({ icon: Icon, title, description }) => (
+                    <div key={title} className="p-5 rounded-xl border border-border/50 bg-secondary/20 text-center">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/15 flex items-center justify-center mx-auto mb-3">
+                        <Icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="font-semibold text-foreground text-sm mb-2">{title}</h3>
+                      <p className="text-muted-foreground text-xs leading-relaxed">{description}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <Separator />
+
+              {/* How to Submit + Contact */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 className="grid grid-cols-1 md:grid-cols-2 gap-8"
               >
                 {/* How to Submit */}
-                <div className="p-8 rounded-xl bg-primary text-primary-foreground">
-                  <h2 className="text-xl font-serif font-bold mb-3">How to Submit</h2>
-                  <p className="text-primary-foreground/70 text-sm leading-relaxed mb-6">
-                    All manuscripts must be submitted through our online portal. 
-                    Please read the Author Guidelines carefully before submitting.
+                <div className="rounded-xl bg-primary p-8">
+                  <h2 className="text-xl font-serif font-bold text-primary-foreground mb-2">How to Submit</h2>
+                  <p className="text-primary-foreground/65 text-sm leading-relaxed mb-6">
+                    All manuscripts must be submitted through our online editorial management system.
+                    Please read the Author Guidelines carefully before preparing your submission.
                   </p>
-                  <div className="flex flex-col gap-3">
-                    <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer">
+                  <div className="space-y-3">
+                    <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer" className="block">
                       <Button size="sm" className="w-full bg-highlight hover:bg-highlight/90 text-highlight-foreground font-semibold rounded-full">
                         <ExternalLink className="w-3.5 h-3.5 mr-2" />
-                        Submit Online
+                        Submit via Online Portal
                       </Button>
                     </a>
-                    <a href="/for-authors">
+                    <a href="/for-authors" className="block">
                       <Button size="sm" variant="outline" className="w-full border-primary-foreground/25 text-primary-foreground hover:bg-primary-foreground/10 rounded-full">
                         <BookOpen className="w-3.5 h-3.5 mr-2" />
                         Author Guidelines
-                        <ArrowRight className="w-3 h-3 ml-auto" />
+                        <ArrowRight className="w-3.5 h-3.5 ml-auto" />
                       </Button>
                     </a>
                   </div>
                 </div>
 
-                {/* Contact Information */}
-                <div className="p-8 rounded-xl border border-border bg-secondary/30">
-                  <h2 className="text-xl font-serif font-bold text-foreground mb-3">Contact & Enquiries</h2>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-5">
-                    For questions regarding submissions, author guidelines, or publication fees, 
-                    please reach out to our editorial team.
+                {/* Contact */}
+                <div className="rounded-xl border border-border bg-secondary/20 p-8">
+                  <h2 className="text-xl font-serif font-bold text-foreground mb-2">Contact the Editorial Office</h2>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    For submission enquiries, author guidelines clarification, or fee payment confirmation,
+                    contact our editorial team directly.
                   </p>
-                  <div className="space-y-3 text-sm">
-                    <div className="flex items-start gap-3">
-                      <Mail className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-muted-foreground text-xs mb-0.5">Editorial Email</p>
-                        <a href="mailto:editor@africanjournalvetsci.org" className="text-primary hover:underline font-medium text-sm">
-                          editor@africanjournalvetsci.org
-                        </a>
+                  <div className="space-y-4">
+                    {[
+                      { label: "Editorial", value: "editor@africanjournalvetsci.org", href: "mailto:editor@africanjournalvetsci.org" },
+                      { label: "Institutional", value: "ajvsc@unijos.edu.ng", href: "mailto:ajvsc@unijos.edu.ng" },
+                    ].map(item => (
+                      <div key={item.label} className="flex items-start gap-3">
+                        <Mail className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <div>
+                          <p className="text-muted-foreground text-xs mb-0.5">{item.label}</p>
+                          <a href={item.href} className="text-primary hover:underline text-sm font-medium">
+                            {item.value}
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <Mail className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p className="text-muted-foreground text-xs mb-0.5">Institutional Email</p>
-                        <a href="mailto:ajvsc@unijos.edu.ng" className="text-primary hover:underline font-medium text-sm">
-                          ajvsc@unijos.edu.ng
-                        </a>
-                      </div>
-                    </div>
+                    ))}
                     <div className="flex items-start gap-3">
                       <Globe className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-muted-foreground text-xs mb-0.5">Website</p>
-                        <a href="https://www.africanjournalvetsci.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium text-sm">
+                        <a href="https://www.africanjournalvetsci.org" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-medium">
                           www.africanjournalvetsci.org
                         </a>
                       </div>
