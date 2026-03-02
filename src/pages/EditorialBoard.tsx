@@ -30,6 +30,7 @@ import olufemiPhoto from "@/assets/olufemi.jpg";
 import tizhePhoto from "@/assets/tizhe.jpg";
 import omirindePhoto from "@/assets/omirinde.jpg";
 import bhandarePhoto from "@/assets/bhandare.jpg";
+import willsPhoto from "@/assets/wills.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -264,6 +265,7 @@ const EditorialBoard = () => {
       name: "Prof. Robert W. Wills, DVM, PhD",
       affiliation: "Department of Comparative Biomedical Sciences, College of Veterinary Medicine, Mississippi State University",
       email: "Wills@cvm.msstate.edu",
+      photo: willsPhoto,
     },
     {
       name: "Assoc. Prof. Sudhakar Bhandare",
