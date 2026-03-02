@@ -279,7 +279,7 @@ const EditorialBoard = () => {
       photo: bhandarePhoto,
     },
     {
-      name: "Prof. Emikpe Benjamin O.",
+      name: "Prof. Emikpe Benjamin O., DVM, MVSc, PhD, FCVSN & FAAS",
       affiliation: "Kwame Nkrumah University of Science and Technology, Kumasi, Ghana",
       email: "benemikpegwac@gmail.com",
       phone: "+233549410841",
