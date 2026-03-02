@@ -32,6 +32,7 @@ import omirindePhoto from "@/assets/omirinde.jpg";
 import bhandarePhoto from "@/assets/bhandare.jpg";
 import willsPhoto from "@/assets/wills.jpg";
 import nasinyamaPhoto from "@/assets/nasinyama.jpg";
+import uchenduPhoto from "@/assets/uchendu.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -157,6 +158,7 @@ const EditorialBoard = () => {
       affiliation: "Department of Veterinary Pharmarcology and Toxicology, University of Jos, Nigeria",
       email: "uchenduc@unijos.edu.ng",
       phone: "+2348063234452",
+      photo: uchenduPhoto,
     },
     {
       name: "Dr. Meseko Clement A.",
