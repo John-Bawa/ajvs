@@ -31,6 +31,7 @@ import tizhePhoto from "@/assets/tizhe.jpg";
 import omirindePhoto from "@/assets/omirinde.jpg";
 import bhandarePhoto from "@/assets/bhandare.jpg";
 import willsPhoto from "@/assets/wills.jpg";
+import nasinyamaPhoto from "@/assets/nasinyama.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -225,6 +226,7 @@ const EditorialBoard = () => {
       name: "Prof. George W. Nasinyama",
       affiliation: "Makerere University, College of Veterinary Medicine, Animal Resources and Biosecurity, Kampala, Uganda",
       email: "gwnasinyama@gmail.com",
+      photo: nasinyamaPhoto,
     },
     {
       name: "Prof. Bamaiyi, Pwaveno Huladeino",
