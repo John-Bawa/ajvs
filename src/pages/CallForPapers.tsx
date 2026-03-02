@@ -238,7 +238,7 @@ const CallForPapers = () => {
                     biomedical, and environmental sciences.
                   </p>
 
-                  <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer">
+                  <a href={getOJSLink('SUBMISSION_GUIDELINES')} target="_blank" rel="noopener noreferrer">
                     <Button size="lg" className="bg-highlight hover:bg-highlight/90 text-highlight-foreground font-bold px-8 rounded-full min-h-[50px] shadow-lg">
                       <Send className="w-4 h-4 mr-2" />
                       Submit Your Manuscript
@@ -478,7 +478,7 @@ const CallForPapers = () => {
                     Please read the Author Guidelines carefully before preparing your submission.
                   </p>
                   <div className="space-y-3">
-                    <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer" className="block">
+                    <a href={getOJSLink('SUBMISSION_GUIDELINES')} target="_blank" rel="noopener noreferrer" className="block">
                       <Button size="sm" className="w-full bg-highlight hover:bg-highlight/90 text-highlight-foreground font-semibold rounded-full">
                         <ExternalLink className="w-3.5 h-3.5 mr-2" />
                         Submit via Online Portal
