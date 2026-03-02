@@ -29,6 +29,7 @@ import ababaPhoto from "@/assets/ababa.jpg";
 import olufemiPhoto from "@/assets/olufemi.jpg";
 import tizhePhoto from "@/assets/tizhe.jpg";
 import omirindePhoto from "@/assets/omirinde.jpg";
+import bhandarePhoto from "@/assets/bhandare.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -265,10 +266,11 @@ const EditorialBoard = () => {
       email: "Wills@cvm.msstate.edu",
     },
     {
-      name: "Prof. Sudhakar Bhandare BVSc; MVSc; MSc; PhD",
-      affiliation: "School of Veterinary Medicine and Science, Room B28 Veterinary Academic Building, University of Nottingham, Sutton Bonington Campus, Loughborough, Leicestershire, LE12 5RD UK",
+      name: "Assoc. Prof. Sudhakar Bhandare",
+      affiliation: "School of Veterinary Medicine and Science, University of Nottingham, Sutton Bonington Campus, Loughborough, Leicestershire, UK",
       email: "Sudhakar.Bhandare@nottingham.ac.uk",
       phone: "0115 95 16397",
+      photo: bhandarePhoto,
     },
     {
       name: "Prof. Emikpe Benjamin O.",
