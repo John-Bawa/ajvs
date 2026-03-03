@@ -14,7 +14,7 @@ import ajvsLogo from "@/assets/ajvs-logo-enhanced.png";
 import { getOJSLink } from "@/config/ojs";
 import { useToast } from "@/hooks/use-toast";
 
-const SITE_URL = "https://ajvs-domain.lovable.app";
+const SITE_URL = "https://africanjournalvetsci.org";
 const PAGE_URL = `${SITE_URL}/call-for-papers`;
 const OG_IMAGE = `${SITE_URL}/og-call-for-papers.jpg`;
 const FLYER_URL = `/call-for-papers-flyer.jpg`;
