@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import {
   FileText, Share2, BookOpen, CheckCircle, ExternalLink,
   Mail, Globe, Microscope, FlaskConical, Stethoscope, Leaf,
-  Copy, ArrowRight, Send, Users, Award, Link2
+  Copy, ArrowRight, Send, Users, Award, Link2, CreditCard
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -347,10 +347,20 @@ const CallForPapers = () => {
                     AJVS is now receiving submissions for its <strong className="text-foreground">Inaugural Issue
                     (Volume 1, Issue 1, 2026)</strong>. All accepted manuscripts will attract a processing fee of
                     ₦5,000 (USD $30) payable before peer review commences, and a page charge of ₦7,000
-                    (USD $35) per page upon acceptance. Payments should be made to Access Bank Plc, Account
-                    Name: African Journal of Veterinary Sciences, <strong className="text-foreground">Account
-                    Number: 1931486112</strong>.
+                    (USD $35) per page upon acceptance.
                   </p>
+
+                  <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <CreditCard className="w-5 h-5 text-primary" />
+                      <h3 className="font-serif font-bold text-foreground text-lg">Payment Details</h3>
+                    </div>
+                    <div className="space-y-1 text-sm">
+                      <p><span className="text-muted-foreground">Bank:</span> <strong className="text-foreground">Access Bank Plc</strong></p>
+                      <p><span className="text-muted-foreground">Account Name:</span> <strong className="text-foreground">African Journal of Veterinary Sciences</strong></p>
+                      <p><span className="text-muted-foreground">Account Number:</span> <strong className="text-foreground text-primary">1931486112</strong></p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
 
