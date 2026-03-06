@@ -200,7 +200,7 @@ const Footer = () => {
             <p className="text-xs text-banner-foreground/40">
               Platform Design, Development &amp; Data Systems:{" "}
               <Link to="/system-credits" className="text-banner-foreground/60 hover:text-primary transition-smooth underline underline-offset-2">
-                John Dauda Bawa
+                Data-craft Analytic Solutions Inc.
               </Link>
             </p>
           </div>
