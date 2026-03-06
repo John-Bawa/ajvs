@@ -191,7 +191,18 @@ const Footer = () => {
               <Link to="/contact" className="text-banner-foreground/60 hover:text-primary transition-smooth">
                 Accessibility
               </Link>
+              <Link to="/system-credits" className="text-banner-foreground/60 hover:text-primary transition-smooth">
+                System Credits
+              </Link>
             </div>
+          </div>
+          <div className="mt-4 text-center">
+            <p className="text-xs text-banner-foreground/40">
+              Platform Design, Development &amp; Data Systems:{" "}
+              <Link to="/system-credits" className="text-banner-foreground/60 hover:text-primary transition-smooth underline underline-offset-2">
+                John Dauda Bawa
+              </Link>
+            </p>
           </div>
         </div>
       </div>
