@@ -28,6 +28,7 @@ import News from "./pages/News";
 import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 import CallForPapers from "./pages/CallForPapers";
+import SystemCredits from "./pages/SystemCredits";
 import ReviewerDashboard from "./pages/ReviewerDashboard";
 import EditorDashboard from "./pages/EditorDashboard";
 
@@ -50,6 +51,7 @@ const AnimatedRoutes = () => {
       <Route path="/news" element={<AnimatedRoute><News /></AnimatedRoute>} />
       <Route path="/faq" element={<AnimatedRoute><FAQ /></AnimatedRoute>} />
       <Route path="/call-for-papers" element={<AnimatedRoute><CallForPapers /></AnimatedRoute>} />
+      <Route path="/system-credits" element={<AnimatedRoute><SystemCredits /></AnimatedRoute>} />
       <Route path="/auth" element={<AnimatedRoute><Auth /></AnimatedRoute>} />
       
       {/* Protected Routes */}
