@@ -12,7 +12,7 @@ const recentArticles = [
   {
     id: 1,
     title: "Antimicrobial Resistance Patterns in Livestock",
-    image: researchLabImg,
+    image: illustrationLab,
     link: "/archives",
   },
   {
