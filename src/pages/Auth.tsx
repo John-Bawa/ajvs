@@ -37,7 +37,9 @@ const Auth = () => {
         });
         if (error) throw error;
         toast.success("Signed in successfully");
-        navigate("/dashboard");
+        const redirect = sessionStorage.getItem("redirectAfterLogin") || "/dashboard";
+        sessionStorage.removeItem("redirectAfterLogin");
+        navigate(redirect);
       } else {
         const { error } = await supabase.auth.signUp({
           email: formData.email,

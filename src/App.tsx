@@ -17,9 +17,6 @@ import Index from "./pages/Index";
 
 // Lazy load all non-homepage routes
 const Auth = lazy(() => import("./pages/Auth"));
-const Dashboard = lazy(() => import("./pages/Dashboard"));
-const SubmitManuscript = lazy(() => import("./pages/SubmitManuscript"));
-const Manuscripts = lazy(() => import("./pages/Manuscripts"));
 const CurrentIssue = lazy(() => import("./pages/CurrentIssue"));
 const About = lazy(() => import("./pages/About"));
 const EditorialBoard = lazy(() => import("./pages/EditorialBoard"));
@@ -32,7 +29,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CallForPapers = lazy(() => import("./pages/CallForPapers"));
 const SystemCredits = lazy(() => import("./pages/SystemCredits"));
-const ReviewerDashboard = lazy(() => import("./pages/ReviewerDashboard"));
+
 const EditorDashboard = lazy(() => import("./pages/EditorDashboard"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
@@ -70,13 +67,8 @@ const AnimatedRoutes = () => {
       <Route path="/auth" element={<LazyRoute><Auth /></LazyRoute>} />
       
       {/* Protected Routes */}
-      <Route path="/submit" element={<ProtectedRoute><LazyRoute><SubmitManuscript /></LazyRoute></ProtectedRoute>} />
-      <Route path="/manuscripts" element={<ProtectedRoute><LazyRoute><Manuscripts /></LazyRoute></ProtectedRoute>} />
-      <Route path="/dashboard" element={<ProtectedRoute><LazyRoute><Dashboard /></LazyRoute></ProtectedRoute>} />
-      <Route path="/reviews" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
-      <Route path="/reviewer-dashboard" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/editorial" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
-      <Route path="/editor-dashboard" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/admin/blog" element={<ProtectedRoute><LazyRoute><AdminBlog /></LazyRoute></ProtectedRoute>} />
       <Route path="/admin/blog/editor" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
       <Route path="/admin/blog/editor/:id" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
