@@ -1,179 +1,318 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/layout/Header";
-import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
-import { useNavigate, Link } from "react-router-dom";
-import { FileText, PlusCircle, LogOut, Newspaper } from "lucide-react";
-import { toast } from "sonner";
-import { useAuth } from "@/contexts/AuthContext";
-import { useUserRoles } from "@/hooks/useUserRoles";
-import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { useNavigate } from "react-router-dom";
+import { FileText, Users, DollarSign, BookOpen, BarChart3 } from "lucide-react";
+import { AnalyticsCharts } from "@/components/admin/AnalyticsCharts";
+import { ReviewerReminders } from "@/components/admin/ReviewerReminders";
+import { PaymentReceipts } from "@/components/admin/PaymentReceipts";
+import { BulkEmailDialog } from "@/components/admin/BulkEmailDialog";
 
 export default function EditorDashboard() {
   const navigate = useNavigate();
-  const { user, loading: authLoading } = useAuth();
-  const { isAdmin, loading: rolesLoading } = useUserRoles(user);
-  const [stats, setStats] = useState({ totalPosts: 0, publishedPosts: 0, draftPosts: 0 });
-  const [recentPosts, setRecentPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<any>(null);
+  const [stats, setStats] = useState({
+    totalManuscripts: 0,
+    pendingReview: 0,
+    underReview: 0,
+    accepted: 0,
+    totalPayments: 0,
+    pendingPayments: 0,
+  });
+  const [manuscripts, setManuscripts] = useState<any[]>([]);
+  const [payments, setPayments] = useState<any[]>([]);
+  const [analyticsData, setAnalyticsData] = useState({
+    submissionsByMonth: [] as Array<{ month: string; count: number }>,
+    statusDistribution: [] as Array<{ name: string; value: number }>,
+    reviewDurations: [] as Array<{ manuscript: string; days: number }>,
+    acceptanceRate: 0,
+  });
 
   useEffect(() => {
-    if (!authLoading && !user) {
+    checkAuthAndFetch();
+  }, []);
+
+  const checkAuthAndFetch = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
       navigate("/auth");
+      return;
     }
-  }, [user, authLoading, navigate]);
 
-  useEffect(() => {
-    if (!rolesLoading && user && !isAdmin) {
-      toast.error("You don't have access to the admin dashboard");
-      navigate("/");
+    setUser(session.user);
+
+    // Check if user has editor role
+    const { data: roles } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id);
+
+    const userRoles = roles?.map(r => r.role) || [];
+    const isEditor = userRoles.some(r => ['super_admin', 'editor', 'secretary'].includes(r));
+    
+    if (!isEditor) {
+      navigate("/dashboard");
+      return;
     }
-  }, [isAdmin, rolesLoading, user, navigate]);
 
-  useEffect(() => {
-    if (user && isAdmin) {
-      fetchData();
-    }
-  }, [user, isAdmin]);
+    await fetchDashboardData();
+  };
 
-  const fetchData = async () => {
+  const fetchDashboardData = async () => {
     try {
-      const { data: posts } = await supabase
-        .from("blog_posts")
-        .select("id, title, status, published_at, created_at")
-        .order("created_at", { ascending: false })
-        .limit(5);
+      // Fetch all manuscripts for analytics
+      const { data: allManuscripts } = await supabase
+        .from("manuscripts")
+        .select("*, profiles(full_name), reviews(status, submitted_at, created_at)")
+        .order("created_at", { ascending: false });
 
-      setRecentPosts(posts || []);
-      
-      const allPosts = posts || [];
+      const { data: manuscriptsData } = await supabase
+        .from("manuscripts")
+        .select("*, profiles(full_name)")
+        .order("created_at", { ascending: false })
+        .limit(10);
+
+      const { data: paymentsData } = await supabase
+        .from("payments")
+        .select("*")
+        .eq("status", "completed");
+
+      setManuscripts(manuscriptsData || []);
+      setPayments(paymentsData || []);
+
+      // Calculate stats
+      const totalPayments = paymentsData?.reduce((sum, p) => sum + Number(p.amount), 0) || 0;
+      const pendingPayments = paymentsData?.filter(p => p.status === "pending").length || 0;
+
       setStats({
-        totalPosts: allPosts.length,
-        publishedPosts: allPosts.filter(p => p.status === "published").length,
-        draftPosts: allPosts.filter(p => p.status === "draft").length,
+        totalManuscripts: allManuscripts?.length || 0,
+        pendingReview: allManuscripts?.filter(m => m.status === "submitted").length || 0,
+        underReview: allManuscripts?.filter(m => m.status === "under_review").length || 0,
+        accepted: allManuscripts?.filter(m => m.status === "accepted").length || 0,
+        totalPayments,
+        pendingPayments,
       });
+
+      // Process analytics data
+      processAnalytics(allManuscripts || []);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    toast.success("Signed out successfully");
-    navigate("/");
+  const processAnalytics = (manuscripts: any[]) => {
+    // Submissions by month (last 12 months)
+    const monthsData: { [key: string]: number } = {};
+    const now = new Date();
+    for (let i = 11; i >= 0; i--) {
+      const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const key = date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+      monthsData[key] = 0;
+    }
+
+    manuscripts.forEach(m => {
+      const date = new Date(m.created_at);
+      const key = date.toLocaleDateString('en-US', { month: 'short', year: '2-digit' });
+      if (monthsData[key] !== undefined) {
+        monthsData[key]++;
+      }
+    });
+
+    const submissionsByMonth = Object.entries(monthsData).map(([month, count]) => ({
+      month,
+      count,
+    }));
+
+    // Status distribution
+    const statusCounts: { [key: string]: number } = {};
+    manuscripts.forEach(m => {
+      const status = m.status.replace('_', ' ').charAt(0).toUpperCase() + m.status.slice(1).replace('_', ' ');
+      statusCounts[status] = (statusCounts[status] || 0) + 1;
+    });
+
+    const statusDistribution = Object.entries(statusCounts).map(([name, value]) => ({
+      name,
+      value,
+    }));
+
+    // Review durations
+    const reviewDurations = manuscripts
+      .filter(m => m.reviews && m.reviews.length > 0)
+      .map(m => {
+        const review = m.reviews[0];
+        if (review.submitted_at) {
+          const days = Math.floor(
+            (new Date(review.submitted_at).getTime() - new Date(review.created_at).getTime()) /
+            (1000 * 60 * 60 * 24)
+          );
+          return {
+            manuscript: m.title.substring(0, 20) + '...',
+            days,
+          };
+        }
+        return null;
+      })
+      .filter(Boolean) as Array<{ manuscript: string; days: number }>;
+
+    // Acceptance rate
+    const completedReviews = manuscripts.filter(m => 
+      m.status === 'accepted' || m.status === 'rejected'
+    );
+    const acceptedCount = manuscripts.filter(m => m.status === 'accepted').length;
+    const acceptanceRate = completedReviews.length > 0
+      ? Math.round((acceptedCount / completedReviews.length) * 100)
+      : 0;
+
+    setAnalyticsData({
+      submissionsByMonth,
+      statusDistribution,
+      reviewDurations,
+      acceptanceRate,
+    });
   };
 
-  if (authLoading || rolesLoading || loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <LoadingSpinner />
-      </div>
-    );
-  }
+  const getStatusBadge = (status: string) => {
+    const variants: Record<string, "default" | "secondary" | "destructive" | "outline"> = {
+      draft: "secondary",
+      submitted: "default",
+      under_review: "default",
+      accepted: "outline",
+      rejected: "destructive",
+    };
+    return <Badge variant={variants[status] || "default"}>{status.replace("_", " ")}</Badge>;
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
-      <TopBar />
       <Header />
       <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <div>
-              <h1 className="text-3xl font-serif font-bold">Admin Dashboard</h1>
-              <p className="text-muted-foreground mt-1">Manage blog posts and site content</p>
-            </div>
-            <Button variant="outline" onClick={handleSignOut}>
-              <LogOut className="w-4 h-4 mr-2" />
-              Sign Out
-            </Button>
+            <h1 className="text-4xl font-serif font-bold">Editorial Dashboard</h1>
+            <BulkEmailDialog />
           </div>
 
-          {/* Quick Actions */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <Link to="/admin/blog/editor">
-              <Card className="p-6 hover:shadow-elegant transition-shadow cursor-pointer border-border/50">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <PlusCircle className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">New Post</h3>
-                    <p className="text-sm text-muted-foreground">Create a blog post</p>
-                  </div>
-                </div>
-              </Card>
-            </Link>
+          {/* Tabs for different sections */}
+          <Tabs defaultValue="overview" className="space-y-6">
+            <TabsList>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
+              <TabsTrigger value="analytics">
+                <BarChart3 className="w-4 h-4 mr-2" />
+                Analytics
+              </TabsTrigger>
+              <TabsTrigger value="reminders">Reminders</TabsTrigger>
+              <TabsTrigger value="payments">Payments</TabsTrigger>
+            </TabsList>
 
-            <Link to="/admin/blog">
-              <Card className="p-6 hover:shadow-elegant transition-shadow cursor-pointer border-border/50">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <Newspaper className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold">Manage Posts</h3>
-                    <p className="text-sm text-muted-foreground">Edit & publish posts</p>
-                  </div>
-                </div>
-              </Card>
-            </Link>
-
-            <Card className="p-6 border-border/50">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <FileText className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">{stats.totalPosts} Posts</h3>
-                  <p className="text-sm text-muted-foreground">
-                    {stats.publishedPosts} published · {stats.draftPosts} drafts
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          {/* Recent Posts */}
-          <Card className="p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-serif font-bold">Recent Posts</h2>
-              <Link to="/admin/blog">
-                <Button variant="outline" size="sm">View All</Button>
-              </Link>
-            </div>
-            {recentPosts.length === 0 ? (
-              <p className="text-center text-muted-foreground py-8">
-                No posts yet. Create your first blog post!
-              </p>
-            ) : (
-              <div className="space-y-3">
-                {recentPosts.map((post) => (
-                  <Link key={post.id} to={`/admin/blog/editor/${post.id}`}>
-                    <div className="flex justify-between items-center p-3 rounded-lg hover:bg-muted/50 transition-colors">
-                      <div>
-                        <p className="font-medium">{post.title}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {new Date(post.created_at).toLocaleDateString()}
-                        </p>
-                      </div>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        post.status === 'published' 
-                          ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' 
-                          : 'bg-muted text-muted-foreground'
-                      }`}>
-                        {post.status}
-                      </span>
+            <TabsContent value="overview" className="space-y-6">
+              {/* Stats Grid */}
+              <div className="grid md:grid-cols-4 gap-6">
+                <Card className="glass-card p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Total Submissions</p>
+                      <p className="text-3xl font-bold">{stats.totalManuscripts}</p>
                     </div>
-                  </Link>
+                    <FileText className="w-8 h-8 text-primary" />
+                  </div>
+                </Card>
+                <Card className="glass-card p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Pending Review</p>
+                      <p className="text-3xl font-bold">{stats.pendingReview}</p>
+                    </div>
+                    <BookOpen className="w-8 h-8 text-amber-500" />
+                  </div>
+                </Card>
+                <Card className="glass-card p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Under Review</p>
+                      <p className="text-3xl font-bold">{stats.underReview}</p>
+                    </div>
+                    <Users className="w-8 h-8 text-blue-500" />
+                  </div>
+                </Card>
+                <Card className="glass-card p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground">Accepted</p>
+                      <p className="text-3xl font-bold">{stats.accepted}</p>
+                    </div>
+                    <DollarSign className="w-8 h-8 text-green-500" />
+                  </div>
+                </Card>
+              </div>
+
+              {/* Recent Manuscripts */}
+              <Card className="glass-card p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-serif font-bold">Recent Submissions</h2>
+              <Button variant="outline">View All</Button>
+            </div>
+            {loading ? (
+              <p>Loading...</p>
+            ) : manuscripts.length === 0 ? (
+              <p className="text-muted-foreground">No submissions yet.</p>
+            ) : (
+              <div className="space-y-4">
+                {manuscripts.map((manuscript) => (
+                  <Card key={manuscript.id} className="p-4 hover:shadow-lg transition-shadow">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-lg mb-1">{manuscript.title}</h3>
+                        <p className="text-sm text-muted-foreground mb-2">
+                          Author: {manuscript.profiles?.full_name} | Type: {manuscript.manuscript_type}
+                        </p>
+                        <p className="text-sm line-clamp-2">{manuscript.abstract}</p>
+                      </div>
+                      <div className="ml-4 flex flex-col items-end gap-2">
+                        {getStatusBadge(manuscript.status)}
+                        <Button size="sm">Manage</Button>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center mt-4 pt-4 border-t">
+                      <p className="text-xs text-muted-foreground">
+                        Submitted: {new Date(manuscript.created_at).toLocaleDateString()}
+                      </p>
+                      <div className="flex gap-2">
+                        <Button size="sm" variant="outline">Assign Reviewer</Button>
+                        <Button size="sm" variant="outline">Send Decision</Button>
+                      </div>
+                    </div>
+                  </Card>
                 ))}
               </div>
             )}
           </Card>
+            </TabsContent>
+
+            <TabsContent value="analytics">
+              <AnalyticsCharts
+                submissionsByMonth={analyticsData.submissionsByMonth}
+                statusDistribution={analyticsData.statusDistribution}
+                reviewDurations={analyticsData.reviewDurations}
+                acceptanceRate={analyticsData.acceptanceRate}
+              />
+            </TabsContent>
+
+            <TabsContent value="reminders">
+              <ReviewerReminders />
+            </TabsContent>
+
+            <TabsContent value="payments">
+              <PaymentReceipts payments={payments} />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
       <Footer />
