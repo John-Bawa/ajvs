@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-react";
