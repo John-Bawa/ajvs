@@ -122,10 +122,10 @@ Academic Journal Design System - Classic & Scholarly
     --input: 210 30% 18%;
     --ring: 186 72% 55%;
     
-    /* Banner - Darker elevated surface */
-    --banner: 210 35% 12%;
+    /* Banner - Elevated surface for footer/nav in dark mode */
+    --banner: 210 40% 6%;
     --banner-foreground: 210 15% 92%;
-    --banner-light: 210 30% 18%;
+    --banner-light: 210 30% 14%;
     
     /* Glass effect for dark mode */
     --glass-bg: 210 35% 12%;
