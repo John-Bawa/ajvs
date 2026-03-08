@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,26 +14,34 @@ import { ScrollRestoration } from "@/components/ui/scroll-restoration";
 import { PageTransitionLoader } from "@/components/ui/page-transition-loader";
 import { ThemeProvider } from "@/components/theme-provider";
 import Index from "./pages/Index";
-import Auth from "./pages/Auth";
-import Dashboard from "./pages/Dashboard";
-import SubmitManuscript from "./pages/SubmitManuscript";
-import Manuscripts from "./pages/Manuscripts";
-import CurrentIssue from "./pages/CurrentIssue";
-import About from "./pages/About";
-import EditorialBoard from "./pages/EditorialBoard";
-import AuthorGuidelines from "./pages/AuthorGuidelines";
-import Archives from "./pages/Archives";
-import Contact from "./pages/Contact";
-import Policies from "./pages/Policies";
-import News from "./pages/News";
-import FAQ from "./pages/FAQ";
-import NotFound from "./pages/NotFound";
-import CallForPapers from "./pages/CallForPapers";
-import SystemCredits from "./pages/SystemCredits";
-import ReviewerDashboard from "./pages/ReviewerDashboard";
-import EditorDashboard from "./pages/EditorDashboard";
+
+// Lazy load all non-homepage routes
+const Auth = lazy(() => import("./pages/Auth"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const SubmitManuscript = lazy(() => import("./pages/SubmitManuscript"));
+const Manuscripts = lazy(() => import("./pages/Manuscripts"));
+const CurrentIssue = lazy(() => import("./pages/CurrentIssue"));
+const About = lazy(() => import("./pages/About"));
+const EditorialBoard = lazy(() => import("./pages/EditorialBoard"));
+const AuthorGuidelines = lazy(() => import("./pages/AuthorGuidelines"));
+const Archives = lazy(() => import("./pages/Archives"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Policies = lazy(() => import("./pages/Policies"));
+const News = lazy(() => import("./pages/News"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const CallForPapers = lazy(() => import("./pages/CallForPapers"));
+const SystemCredits = lazy(() => import("./pages/SystemCredits"));
+const ReviewerDashboard = lazy(() => import("./pages/ReviewerDashboard"));
+const EditorDashboard = lazy(() => import("./pages/EditorDashboard"));
 
 const queryClient = new QueryClient();
+
+const LazyRoute = ({ children }: { children: React.ReactNode }) => (
+  <Suspense fallback={<PageTransitionLoader />}>
+    <AnimatedRoute>{children}</AnimatedRoute>
+  </Suspense>
+);
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -41,29 +50,29 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
       <Route path="/" element={<AnimatedRoute><Index /></AnimatedRoute>} />
-      <Route path="/about" element={<AnimatedRoute><About /></AnimatedRoute>} />
-      <Route path="/current-issue" element={<AnimatedRoute><CurrentIssue /></AnimatedRoute>} />
-      <Route path="/archives" element={<AnimatedRoute><Archives /></AnimatedRoute>} />
-      <Route path="/for-authors" element={<AnimatedRoute><AuthorGuidelines /></AnimatedRoute>} />
-      <Route path="/policies" element={<AnimatedRoute><Policies /></AnimatedRoute>} />
-      <Route path="/editorial-board" element={<AnimatedRoute><EditorialBoard /></AnimatedRoute>} />
-      <Route path="/contact" element={<AnimatedRoute><Contact /></AnimatedRoute>} />
-      <Route path="/news" element={<AnimatedRoute><News /></AnimatedRoute>} />
-      <Route path="/faq" element={<AnimatedRoute><FAQ /></AnimatedRoute>} />
-      <Route path="/call-for-papers" element={<AnimatedRoute><CallForPapers /></AnimatedRoute>} />
-      <Route path="/system-credits" element={<AnimatedRoute><SystemCredits /></AnimatedRoute>} />
-      <Route path="/auth" element={<AnimatedRoute><Auth /></AnimatedRoute>} />
+      <Route path="/about" element={<LazyRoute><About /></LazyRoute>} />
+      <Route path="/current-issue" element={<LazyRoute><CurrentIssue /></LazyRoute>} />
+      <Route path="/archives" element={<LazyRoute><Archives /></LazyRoute>} />
+      <Route path="/for-authors" element={<LazyRoute><AuthorGuidelines /></LazyRoute>} />
+      <Route path="/policies" element={<LazyRoute><Policies /></LazyRoute>} />
+      <Route path="/editorial-board" element={<LazyRoute><EditorialBoard /></LazyRoute>} />
+      <Route path="/contact" element={<LazyRoute><Contact /></LazyRoute>} />
+      <Route path="/news" element={<LazyRoute><News /></LazyRoute>} />
+      <Route path="/faq" element={<LazyRoute><FAQ /></LazyRoute>} />
+      <Route path="/call-for-papers" element={<LazyRoute><CallForPapers /></LazyRoute>} />
+      <Route path="/system-credits" element={<LazyRoute><SystemCredits /></LazyRoute>} />
+      <Route path="/auth" element={<LazyRoute><Auth /></LazyRoute>} />
       
       {/* Protected Routes */}
-      <Route path="/submit" element={<ProtectedRoute><AnimatedRoute><SubmitManuscript /></AnimatedRoute></ProtectedRoute>} />
-      <Route path="/manuscripts" element={<ProtectedRoute><AnimatedRoute><Manuscripts /></AnimatedRoute></ProtectedRoute>} />
-      <Route path="/dashboard" element={<ProtectedRoute><AnimatedRoute><Dashboard /></AnimatedRoute></ProtectedRoute>} />
-      <Route path="/reviews" element={<ProtectedRoute><AnimatedRoute><ReviewerDashboard /></AnimatedRoute></ProtectedRoute>} />
-      <Route path="/reviewer-dashboard" element={<ProtectedRoute><AnimatedRoute><ReviewerDashboard /></AnimatedRoute></ProtectedRoute>} />
-      <Route path="/editorial" element={<ProtectedRoute><AnimatedRoute><EditorDashboard /></AnimatedRoute></ProtectedRoute>} />
-      <Route path="/editor-dashboard" element={<ProtectedRoute><AnimatedRoute><EditorDashboard /></AnimatedRoute></ProtectedRoute>} />
+      <Route path="/submit" element={<ProtectedRoute><LazyRoute><SubmitManuscript /></LazyRoute></ProtectedRoute>} />
+      <Route path="/manuscripts" element={<ProtectedRoute><LazyRoute><Manuscripts /></LazyRoute></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><LazyRoute><Dashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/reviews" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/reviewer-dashboard" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/editorial" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/editor-dashboard" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<AnimatedRoute><NotFound /></AnimatedRoute>} />
+        <Route path="*" element={<LazyRoute><NotFound /></LazyRoute>} />
       </Routes>
     </AnimatePresence>
   );

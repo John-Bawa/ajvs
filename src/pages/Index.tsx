@@ -27,6 +27,7 @@ import { ResourceCardsSection } from "@/components/home/ResourceCardsSection";
 import { NewsCarousel } from "@/components/home/NewsCarousel";
 import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { PreviousIssuesSection } from "@/components/home/PreviousIssuesSection";
+import { StatsCounter } from "@/components/home/StatsCounter";
 
 const Index = () => {
   const [showCallForPapers, setShowCallForPapers] = useState(false);
@@ -403,6 +404,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Stats Counter */}
+      <StatsCounter />
+
       {/* Call for Papers CTA Banner */}
       <section className="relative overflow-hidden bg-primary py-12 sm:py-16">
         {/* Diagonal pattern overlay */}
@@ -523,6 +527,7 @@ const Index = () => {
                     src={academicLibraryImg} 
                     alt="Academic research library" 
                     className="w-full h-48 object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="rounded-lg overflow-hidden shadow-lg">
@@ -530,6 +535,7 @@ const Index = () => {
                     src={researchMicroscopeImg} 
                     alt="Research laboratory microscope" 
                     className="w-full h-32 object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <p className="text-xs text-muted-foreground text-center italic">
@@ -855,6 +861,7 @@ const Index = () => {
                     src={dataAnalysisImg} 
                     alt="Research data analysis workspace" 
                     className="w-full h-64 object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="bg-card/80 rounded-lg p-4 border border-border/30">

@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-react";
@@ -330,6 +331,7 @@ const EditorialBoard = () => {
         ]}
       />
       <Header />
+      <Breadcrumbs />
 
       <main className="flex-1 py-16 md:py-20">
         <div className="container mx-auto px-4 max-w-6xl">

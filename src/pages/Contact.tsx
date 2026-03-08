@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -87,6 +88,7 @@ export default function Contact() {
         ]}
       />
       <Header />
+      <Breadcrumbs />
 
       <main className="flex-1 py-12">
         <div className="container max-w-6xl mx-auto px-4">

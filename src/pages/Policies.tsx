@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Shield, FileCheck, Users, Database, AlertTriangle } from "lucide-react";
 
@@ -17,6 +18,7 @@ const Policies = () => {
         ]}
       />
       <Header />
+      <Breadcrumbs />
       
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-5xl">

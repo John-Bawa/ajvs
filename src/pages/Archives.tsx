@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -91,6 +92,7 @@ const Archives = () => {
       <div className="min-h-screen flex flex-col bg-gradient-hero">
         <TopBar />
         <Header />
+        <Breadcrumbs />
         <main className="flex-1 flex items-center justify-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
         </main>
@@ -109,6 +111,7 @@ const Archives = () => {
         />
         <TopBar />
         <Header />
+        <Breadcrumbs />
         <main className="flex-1 py-16">
           <div className="container mx-auto px-4 max-w-6xl">
             <div className="text-center mb-12">
@@ -136,6 +139,7 @@ const Archives = () => {
       />
       <TopBar />
       <Header />
+      <Breadcrumbs />
       
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-6xl">

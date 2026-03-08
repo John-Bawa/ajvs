@@ -175,8 +175,7 @@ Academic Journal Design System - Classic & Scholarly
     letter-spacing: 0.01em;
   }
   
-  /* Import fonts - Lora for elegant headings, Open Sans for highly legible body text */
-  @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+  /* Fonts loaded via index.html <link> tags for optimal performance */
 }
 
 @layer utilities {
