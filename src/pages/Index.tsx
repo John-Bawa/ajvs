@@ -82,7 +82,7 @@ const Index = () => {
 
   const quickLinks = [
     { icon: Send, title: "For Authors", description: "Submission guidelines and templates", link: "/for-authors" },
-    { icon: Search, title: "For Reviewers", description: "Review process and criteria", link: "/reviewer-dashboard" },
+    { icon: Search, title: "For Reviewers", description: "Review process and criteria", link: "/for-authors" },
     { icon: BookOpen, title: "For Readers", description: "Browse articles and archives", link: "/archives" },
   ];
   
