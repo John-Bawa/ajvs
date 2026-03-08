@@ -4,9 +4,9 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { BookOpen, Target, Globe, Award } from "lucide-react";
 import { motion } from "framer-motion";
-import manuscriptWritingImg from "@/assets/manuscript-writing.jpg";
-import academicLibraryImg from "@/assets/academic-library.jpg";
-import researchMicroscopeImg from "@/assets/research-microscope.jpg";
+import illustrationWriting from "@/assets/illustration-writing.png";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationLab from "@/assets/illustration-lab.png";
 
 const About = () => {
   return (
