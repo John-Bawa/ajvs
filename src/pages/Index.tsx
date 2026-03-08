@@ -461,8 +461,7 @@ const Index = () => {
                     <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-initial">
                       <Button
                         size="default"
-                        variant="outline"
-                        className="w-full sm:w-auto border-primary-foreground/25 text-primary-foreground hover:bg-primary-foreground/10 font-semibold rounded-full px-6"
+                        className="w-full sm:w-auto bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold rounded-full px-6"
                       >
                         <ExternalLink className="w-4 h-4 mr-1.5" />
                         Submit Now
