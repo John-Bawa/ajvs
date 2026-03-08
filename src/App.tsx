@@ -17,9 +17,6 @@ import Index from "./pages/Index";
 
 // Lazy load all non-homepage routes
 const Auth = lazy(() => import("./pages/Auth"));
-const Dashboard = lazy(() => import("./pages/Dashboard"));
-const SubmitManuscript = lazy(() => import("./pages/SubmitManuscript"));
-const Manuscripts = lazy(() => import("./pages/Manuscripts"));
 const CurrentIssue = lazy(() => import("./pages/CurrentIssue"));
 const About = lazy(() => import("./pages/About"));
 const EditorialBoard = lazy(() => import("./pages/EditorialBoard"));
