@@ -4,9 +4,7 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { BookOpen, Target, Globe, Award } from "lucide-react";
 import { motion } from "framer-motion";
-import illustrationWriting from "@/assets/illustration-writing.png";
-import illustrationJournals from "@/assets/illustration-journals.png";
-import illustrationLab from "@/assets/illustration-lab.png";
+
 
 const About = () => {
   return (
