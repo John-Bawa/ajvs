@@ -27,6 +27,9 @@ const routeLabels: Record<string, string> = {
   "/dashboard": "Dashboard",
   "/reviews": "Reviewer Dashboard",
   "/auth": "Sign In",
+  "/blog": "Blog & News",
+  "/admin/blog": "Blog Management",
+  "/admin/blog/editor": "Blog Editor",
 };
 
 const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
