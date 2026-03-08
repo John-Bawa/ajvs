@@ -527,6 +527,7 @@ const Index = () => {
                     src={academicLibraryImg} 
                     alt="Academic research library" 
                     className="w-full h-48 object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="rounded-lg overflow-hidden shadow-lg">
