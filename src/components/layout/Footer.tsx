@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand & Mission */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3 mb-5 group">
-              <div className="w-12 h-12 rounded-lg bg-white border border-primary/20 flex items-center justify-center transition-smooth group-hover:scale-105">
+              <div className="w-12 h-12 rounded-lg bg-background border border-primary/20 flex items-center justify-center transition-smooth group-hover:scale-105">
                 <img src={ajvsLogo} alt="AJVS Logo" className="w-10 h-10 object-contain" />
               </div>
               <div className="flex flex-col">
