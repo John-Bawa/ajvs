@@ -18,7 +18,7 @@ const recentArticles = [
   {
     id: 2,
     title: "Zoonotic Disease Surveillance Methods",
-    image: veterinaryMedicineImg,
+    image: illustrationJournals,
     link: "/archives",
   },
 ];
