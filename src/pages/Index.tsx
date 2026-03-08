@@ -861,6 +861,7 @@ const Index = () => {
                     src={dataAnalysisImg} 
                     alt="Research data analysis workspace" 
                     className="w-full h-64 object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div className="bg-card/80 rounded-lg p-4 border border-border/30">
