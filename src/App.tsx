@@ -34,6 +34,10 @@ const CallForPapers = lazy(() => import("./pages/CallForPapers"));
 const SystemCredits = lazy(() => import("./pages/SystemCredits"));
 const ReviewerDashboard = lazy(() => import("./pages/ReviewerDashboard"));
 const EditorDashboard = lazy(() => import("./pages/EditorDashboard"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const AdminBlog = lazy(() => import("./pages/AdminBlog"));
+const AdminBlogEditor = lazy(() => import("./pages/AdminBlogEditor"));
 
 const queryClient = new QueryClient();
 
@@ -61,6 +65,8 @@ const AnimatedRoutes = () => {
       <Route path="/faq" element={<LazyRoute><FAQ /></LazyRoute>} />
       <Route path="/call-for-papers" element={<LazyRoute><CallForPapers /></LazyRoute>} />
       <Route path="/system-credits" element={<LazyRoute><SystemCredits /></LazyRoute>} />
+      <Route path="/blog" element={<LazyRoute><Blog /></LazyRoute>} />
+      <Route path="/blog/:slug" element={<LazyRoute><BlogPost /></LazyRoute>} />
       <Route path="/auth" element={<LazyRoute><Auth /></LazyRoute>} />
       
       {/* Protected Routes */}
@@ -71,6 +77,9 @@ const AnimatedRoutes = () => {
       <Route path="/reviewer-dashboard" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/editorial" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/editor-dashboard" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/admin/blog" element={<ProtectedRoute><LazyRoute><AdminBlog /></LazyRoute></ProtectedRoute>} />
+      <Route path="/admin/blog/editor" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
+      <Route path="/admin/blog/editor/:id" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<LazyRoute><NotFound /></LazyRoute>} />
       </Routes>
