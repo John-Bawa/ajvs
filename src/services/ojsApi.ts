@@ -1,5 +1,3 @@
-import { supabase } from "@/integrations/supabase/client";
-
 export interface OJSArticle {
   id: number;
   title: string;
@@ -36,6 +34,7 @@ export interface OJSAnnouncement {
   title: string;
   description: string;
   datePosted: string;
+  url?: string;
 }
 
 const OJS_BASE_URL = 'https://journal.africanjournalvetsci.org';
@@ -43,41 +42,33 @@ const OJS_BASE_URL = 'https://journal.africanjournalvetsci.org';
 /**
  * Fetch OJS data via backend proxy to bypass CORS
  */
-const fetchViaProxy = async (endpoint: string, params?: Record<string, string>): Promise<Response> => {
-  const queryParams = new URLSearchParams({ endpoint, ...params });
+const fetchViaProxy = async (type: string): Promise<Response> => {
   const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
-  const url = `https://${projectId}.supabase.co/functions/v1/ojs-proxy?${queryParams.toString()}`;
+  const url = `https://${projectId}.supabase.co/functions/v1/ojs-proxy?type=${encodeURIComponent(type)}`;
   
   return fetch(url, {
-    headers: {
-      'Accept': 'application/json',
-    },
+    headers: { 'Accept': 'application/json' },
   });
 };
 
 /**
- * Fetch current issue from OJS REST API
+ * Fetch current issue info from OJS
  */
 export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: OJSArticle[] } | null> => {
   try {
-    const response = await fetchViaProxy('/api/v1/issues/current');
+    const response = await fetchViaProxy('current-issue');
     
     if (!response.ok) {
       throw new Error('Failed to fetch current issue');
     }
     
-    const issue = await response.json();
+    const data = await response.json();
     
-    // Fetch articles for the current issue
-    const articlesResponse = await fetchViaProxy('/api/v1/submissions', {
-      issueIds: String(issue.id),
-      status: '3',
-    });
+    if (!data.hasContent) {
+      return null;
+    }
     
-    const articlesData = await articlesResponse.json();
-    const articles = articlesData.items || articlesData.itemsMax ? articlesData.items : [];
-    
-    return { issue, articles };
+    return null; // No issues published yet
   } catch (error) {
     console.error('Error fetching current issue:', error);
     return null;
@@ -89,14 +80,15 @@ export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: 
  */
 export const fetchAllIssues = async (): Promise<OJSIssue[]> => {
   try {
-    const response = await fetchViaProxy('/api/v1/issues');
+    const response = await fetchViaProxy('issues');
     
     if (!response.ok) {
       throw new Error('Failed to fetch issues');
     }
     
     const data = await response.json();
-    return data.items || [];
+    if (!data.hasContent) return [];
+    return [];
   } catch (error) {
     console.error('Error fetching issues:', error);
     return [];
@@ -104,25 +96,10 @@ export const fetchAllIssues = async (): Promise<OJSIssue[]> => {
 };
 
 /**
- * Fetch articles for a specific issue
+ * Fetch articles for a specific issue (not used via proxy currently)
  */
 export const fetchIssueArticles = async (issueId: number): Promise<OJSArticle[]> => {
-  try {
-    const response = await fetchViaProxy('/api/v1/submissions', {
-      issueIds: String(issueId),
-      status: '3',
-    });
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch articles');
-    }
-    
-    const data = await response.json();
-    return data.items || [];
-  } catch (error) {
-    console.error('Error fetching articles:', error);
-    return [];
-  }
+  return [];
 };
 
 /**
@@ -130,7 +107,7 @@ export const fetchIssueArticles = async (issueId: number): Promise<OJSArticle[]>
  */
 export const fetchAnnouncements = async (): Promise<OJSAnnouncement[]> => {
   try {
-    const response = await fetchViaProxy('/api/v1/announcements');
+    const response = await fetchViaProxy('announcements');
     
     if (response.ok) {
       const data = await response.json();
