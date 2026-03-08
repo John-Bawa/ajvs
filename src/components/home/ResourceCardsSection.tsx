@@ -51,11 +51,11 @@ export function ResourceCardsSection() {
               className="group"
             >
               <Link to={resource.link} className="block">
-                <div className="overflow-hidden rounded-lg mb-4">
+                <div className="overflow-hidden rounded-lg mb-4 bg-muted/30 p-4">
                   <img
                     src={resource.image}
                     alt={resource.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-48 object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">

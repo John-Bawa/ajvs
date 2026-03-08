@@ -85,11 +85,11 @@ export function PreviousIssuesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-lg overflow-hidden bg-muted/30 p-2">
                 <img 
-                  src={dataAnalysisImg} 
+                  src={illustrationData} 
                   alt="Research data visualization" 
-                  className="w-full h-24 object-cover opacity-80"
+                  className="w-full h-24 object-contain opacity-80"
                 />
               </div>
             </motion.div>
