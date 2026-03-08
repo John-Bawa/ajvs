@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import illustrationLab from "@/assets/illustration-lab.png";
-import illustrationJournals from "@/assets/illustration-journals.png";
-import illustrationData from "@/assets/illustration-data.png";
 
 const issueYears = [2025, 2024];
 
@@ -12,13 +9,11 @@ const recentArticles = [
   {
     id: 1,
     title: "Antimicrobial Resistance Patterns in Livestock",
-    image: illustrationLab,
     link: "/archives",
   },
   {
     id: 2,
     title: "Zoonotic Disease Surveillance Methods",
-    image: illustrationJournals,
     link: "/archives",
   },
 ];
@@ -51,8 +46,8 @@ export function PreviousIssuesSection() {
         <div className="border-t border-border mb-8" />
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Years List with Academic Icon */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Years List */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4 text-muted-foreground">
               <BookOpen className="h-4 w-4" />
@@ -76,23 +71,6 @@ export function PreviousIssuesSection() {
                 </Link>
               </motion.div>
             ))}
-            
-            {/* Small Research Image */}
-            <motion.div 
-              className="mt-6 hidden md:block"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="rounded-lg overflow-hidden bg-muted/30 p-2">
-                <img 
-                  src={illustrationData} 
-                  alt="Research data visualization" 
-                  className="w-full h-24 object-contain opacity-80"
-                />
-              </div>
-            </motion.div>
           </div>
 
           {/* Featured Articles */}
@@ -105,23 +83,10 @@ export function PreviousIssuesSection() {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="group"
             >
-              <Link to={article.link} className="flex gap-4">
-                {/* Image */}
-                <div className="flex-shrink-0 w-20 h-20 overflow-hidden rounded-lg">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 flex items-center">
-                  {/* Title */}
-                  <h4 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                    {article.title}
-                  </h4>
-                </div>
+              <Link to={article.link} className="block p-4 rounded-lg border border-border/50 hover:border-primary/30 hover:bg-muted/30 transition-smooth">
+                <h4 className="font-medium text-foreground group-hover:text-primary transition-colors">
+                  {article.title}
+                </h4>
               </Link>
             </motion.div>
           ))}
