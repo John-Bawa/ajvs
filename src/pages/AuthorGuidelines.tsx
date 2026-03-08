@@ -1,6 +1,7 @@
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { FileText, CheckCircle, AlertCircle, Download, BookOpen, Shield, Users, DollarSign, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
