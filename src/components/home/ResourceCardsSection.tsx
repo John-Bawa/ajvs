@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import publishingTipsImg from "@/assets/publishing-tips.jpg";
-import peerReviewImg from "@/assets/peer-review.jpg";
-import veterinaryLabImg from "@/assets/veterinary-lab.jpg";
-import archivesImg from "@/assets/archives.jpg";
-import manuscriptWritingImg from "@/assets/manuscript-writing.jpg";
+import illustrationWriting from "@/assets/illustration-writing.png";
+import illustrationPeerReview from "@/assets/illustration-peer-review.png";
+import illustrationLab from "@/assets/illustration-lab.png";
+import illustrationArchives from "@/assets/illustration-archives.png";
 
 const resources = [
   {
