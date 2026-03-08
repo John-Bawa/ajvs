@@ -404,6 +404,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Stats Counter */}
+      <StatsCounter />
+
       {/* Call for Papers CTA Banner */}
       <section className="relative overflow-hidden bg-primary py-12 sm:py-16">
         {/* Diagonal pattern overlay */}
