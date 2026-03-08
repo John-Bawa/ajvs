@@ -16,9 +16,9 @@ import {
 import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
 import animatedLogo from "@/assets/animated-logo.mp4";
 import heroBuilding from "@/assets/hero-building.jpg";
-import academicLibraryImg from "@/assets/academic-library.jpg";
-import researchMicroscopeImg from "@/assets/research-microscope.jpg";
-import dataAnalysisImg from "@/assets/data-analysis.jpg";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationLab from "@/assets/illustration-lab.png";
+import illustrationData from "@/assets/illustration-data.png";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
