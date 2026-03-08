@@ -417,16 +417,6 @@ const Index = () => {
             <Card className="relative overflow-hidden border-none shadow-2xl">
               {/* Background */}
               <div className="absolute inset-0 bg-primary" />
-              {/* Diagonal pattern */}
-              <div className="absolute inset-0 opacity-[0.06]" style={{
-                backgroundImage: `repeating-linear-gradient(
-                  -45deg,
-                  transparent,
-                  transparent 20px,
-                  hsl(var(--primary-foreground)) 20px,
-                  hsl(var(--primary-foreground)) 21px
-                )`
-              }} />
               {/* Glow */}
               <div className="absolute -left-20 -top-20 w-64 h-64 rounded-full bg-highlight/15 blur-3xl" />
               <div className="absolute -right-20 -bottom-20 w-64 h-64 rounded-full bg-accent/15 blur-3xl" />
