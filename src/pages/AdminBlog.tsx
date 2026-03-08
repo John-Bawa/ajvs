@@ -48,7 +48,7 @@ export default function AdminBlog() {
 
   useEffect(() => {
     if (!isAdmin && !loading) {
-      navigate('/dashboard');
+      navigate('/');
       return;
     }
     fetchAll();
