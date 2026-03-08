@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AJVS - African Journal of Veterinary Sciences | University of Jos</title>
-    <meta name="description" content="African Journal of Veterinary Sciences - A peer-reviewed, open access journal publishing research in veterinary medicine, animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, University of Jos, Nigeria.">
+    <meta name="description" content="African Journal of Veterinary Sciences (AJVS) is a peer-reviewed, open access journal published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. Publishing original research in veterinary medicine, animal health, and biomedical sciences.">
     <meta name="keywords" content="veterinary science, animal health, veterinary research, peer-reviewed journal, open access, AJVS, University of Jos, Nigeria, biomedical sciences, veterinary medicine, animal science, Africa" />
     <meta name="author" content="African Journal of Veterinary Sciences Editorial Team" />
     <meta name="publisher" content="Faculty of Veterinary Medicine, University of Jos" />
@@ -76,6 +76,27 @@
     <!-- OAI-PMH Endpoint for metadata harvesting -->
     <link rel="alternate" type="application/xml" title="OAI-PMH" href="https://journal.africanjournalvetsci.org/index.php/ajvs/oai" />
     
+    <!-- Structured Data - WebSite with Sitelinks SearchBox -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "African Journal of Veterinary Sciences",
+      "alternateName": ["AJVS", "African Journal of Veterinary Sciences - University of Jos"],
+      "url": "https://africanjournalvetsci.org",
+      "description": "A peer-reviewed, open access journal publishing research in veterinary medicine, animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, University of Jos, Nigeria.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Faculty of Veterinary Medicine, University of Jos"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://africanjournalvetsci.org/archives?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
     <!-- Structured Data - Organization -->
     <script type="application/ld+json">
     {
@@ -85,6 +106,8 @@
       "alternateName": "AJVS",
       "url": "https://africanjournalvetsci.org",
       "logo": "https://africanjournalvetsci.org/favicon.png",
+      "description": "A peer-reviewed, open access journal publishing original research in veterinary medicine, animal health, and biomedical sciences.",
+      "foundingDate": "2024",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+234-8035907570",
@@ -98,7 +121,16 @@
         "streetAddress": "PMB 2084, Faculty of Veterinary Medicine",
         "addressLocality": "Jos",
         "addressRegion": "Plateau State",
-        "addressCountry": "Nigeria"
+        "postalCode": "930001",
+        "addressCountry": "NG"
+      },
+      "sameAs": [
+        "https://journal.africanjournalvetsci.org"
+      ],
+      "parentOrganization": {
+        "@type": "EducationalOrganization",
+        "name": "University of Jos",
+        "url": "https://www.unijos.edu.ng"
       }
     }
     </script>
@@ -117,7 +149,8 @@
         "streetAddress": "PMB 2084",
         "addressLocality": "Jos",
         "addressRegion": "Plateau State",
-        "addressCountry": "Nigeria"
+        "postalCode": "930001",
+        "addressCountry": "NG"
       },
       "sameAs": [
         "https://journal.africanjournalvetsci.org"
@@ -142,6 +175,58 @@
       "inLanguage": "en",
       "isAccessibleForFree": true,
       "license": "https://creativecommons.org/licenses/by/4.0/"
+    }
+    </script>
+
+    <!-- Structured Data - SiteNavigationElement for Sitelinks -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "About the Journal",
+          "description": "Learn about AJVS, its mission, scope, and publishing history.",
+          "url": "https://africanjournalvetsci.org/about"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Editorial Board",
+          "description": "Meet the editorial board guiding excellence in veterinary sciences.",
+          "url": "https://africanjournalvetsci.org/editorial-board"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "Current Issue",
+          "description": "Browse the latest published articles in AJVS.",
+          "url": "https://africanjournalvetsci.org/current-issue"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "Archives",
+          "description": "Access all past issues and published articles.",
+          "url": "https://africanjournalvetsci.org/archives"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "name": "Author Guidelines",
+          "description": "Guidelines and instructions for authors submitting manuscripts.",
+          "url": "https://africanjournalvetsci.org/for-authors"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 6,
+          "name": "Contact",
+          "description": "Contact the AJVS editorial office.",
+          "url": "https://africanjournalvetsci.org/contact"
+        }
+      ]
     }
     </script>
     
