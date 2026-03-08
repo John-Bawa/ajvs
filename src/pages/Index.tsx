@@ -121,7 +121,7 @@ const Index = () => {
       </Dialog>
       
       {/* Hero Section - Modern Side-by-Side Layout */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-[hsl(200,30%,10%)] dark:via-[hsl(210,25%,12%)] dark:to-[hsl(200,30%,8%)] py-16 md:py-20 lg:py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-secondary via-background to-secondary/50 py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* Floating gradient orbs for modern feel */}
         <motion.div 
           className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
