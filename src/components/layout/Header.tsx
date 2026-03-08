@@ -45,7 +45,7 @@ const Header = () => {
       links: [
         { label: "Current Issue", href: "/current-issue", icon: BookOpen },
         { label: "Archives", href: "/archives", icon: FileText },
-        { label: "Announcements", href: "/news", icon: Info },
+        { label: "News & Blog", href: "/blog", icon: Info },
       ],
     },
     {
