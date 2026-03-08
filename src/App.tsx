@@ -65,6 +65,8 @@ const AnimatedRoutes = () => {
       <Route path="/faq" element={<LazyRoute><FAQ /></LazyRoute>} />
       <Route path="/call-for-papers" element={<LazyRoute><CallForPapers /></LazyRoute>} />
       <Route path="/system-credits" element={<LazyRoute><SystemCredits /></LazyRoute>} />
+      <Route path="/blog" element={<LazyRoute><Blog /></LazyRoute>} />
+      <Route path="/blog/:slug" element={<LazyRoute><BlogPost /></LazyRoute>} />
       <Route path="/auth" element={<LazyRoute><Auth /></LazyRoute>} />
       
       {/* Protected Routes */}
