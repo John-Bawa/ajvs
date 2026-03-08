@@ -16,7 +16,7 @@ const resources = [
   {
     title: "Peer Review Process",
     description: "Learn about our rigorous peer review system and how we ensure the quality and integrity of published research.",
-    image: peerReviewImg,
+    image: illustrationPeerReview,
     link: "/policies",
     linkText: "Read the process",
   },
