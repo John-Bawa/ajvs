@@ -23,7 +23,7 @@ const resources = [
   {
     title: "Research Articles",
     description: "Browse our collection of high-quality research in veterinary medicine, animal health, and biomedical sciences.",
-    image: veterinaryLabImg,
+    image: illustrationLab,
     link: "/current-issue",
     linkText: "View articles",
   },
