@@ -67,13 +67,8 @@ const AnimatedRoutes = () => {
       <Route path="/auth" element={<LazyRoute><Auth /></LazyRoute>} />
       
       {/* Protected Routes */}
-      <Route path="/submit" element={<ProtectedRoute><LazyRoute><SubmitManuscript /></LazyRoute></ProtectedRoute>} />
-      <Route path="/manuscripts" element={<ProtectedRoute><LazyRoute><Manuscripts /></LazyRoute></ProtectedRoute>} />
-      <Route path="/dashboard" element={<ProtectedRoute><LazyRoute><Dashboard /></LazyRoute></ProtectedRoute>} />
-      <Route path="/reviews" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
-      <Route path="/reviewer-dashboard" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/dashboard" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/editorial" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
-      <Route path="/editor-dashboard" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/admin/blog" element={<ProtectedRoute><LazyRoute><AdminBlog /></LazyRoute></ProtectedRoute>} />
       <Route path="/admin/blog/editor" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
       <Route path="/admin/blog/editor/:id" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
