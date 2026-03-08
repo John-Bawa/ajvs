@@ -83,6 +83,7 @@ export default function AdminBlogEditor() {
         featured_image: p.featured_image,
         category_id: p.category_id,
         status: p.status,
+        post_type: p.post_type || 'article',
         seo_title: p.seo_title || '',
         meta_description: p.meta_description || '',
         keywords: p.keywords || [],
