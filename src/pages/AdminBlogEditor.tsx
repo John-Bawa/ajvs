@@ -133,6 +133,7 @@ export default function AdminBlogEditor() {
       category_id: form.category_id,
       author_id: user.id,
       status,
+      post_type: form.post_type,
       seo_title: form.seo_title.trim() || null,
       meta_description: form.meta_description.trim() || null,
       keywords: form.keywords.length > 0 ? form.keywords : null,
