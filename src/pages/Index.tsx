@@ -512,40 +512,9 @@ const Index = () => {
       {/* Aims & Scope Section with Research Imagery */}
       <section className="py-12 sm:py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Academic Research Sidebar Image */}
-            <motion.div 
-              className="hidden lg:block lg:col-span-3"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
-                  <img 
-                    src={illustrationJournals} 
-                    alt="Academic research journals" 
-                    className="w-full h-48 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
-                  <img 
-                    src={illustrationLab} 
-                    alt="Research laboratory" 
-                    className="w-full h-32 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground text-center italic">
-                  Advancing veterinary research excellence
-                </p>
-              </div>
-            </motion.div>
-
+          <div>
             {/* Main Content */}
-            <div className="lg:col-span-9">
+            <div>
               <div className="text-center lg:text-left mb-10 sm:mb-12">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
