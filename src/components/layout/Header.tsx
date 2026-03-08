@@ -53,8 +53,7 @@ const Header = () => {
       icon: Send,
       links: [
         { label: "Submit Manuscript", href: "/submit", icon: Send },
-        { label: "Author Dashboard", href: "/manuscripts", icon: FileText },
-        { label: "Reviewer Dashboard", href: "/reviews", icon: User },
+        { label: "Author Guidelines", href: "/for-authors", icon: FileText },
       ],
     },
     {
@@ -166,13 +165,9 @@ const Header = () => {
                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Submit Manuscript</div>
                         <p className="text-sm text-muted-foreground">Start your submission</p>
                       </Link>
-                      <Link to="/manuscripts" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Dashboard</div>
-                        <p className="text-sm text-muted-foreground">Track your submissions</p>
-                      </Link>
-                      <Link to="/reviews" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Reviewer Dashboard</div>
-                        <p className="text-sm text-muted-foreground">Review assignments</p>
+                      <Link to="/for-authors" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Guidelines</div>
+                        <p className="text-sm text-muted-foreground">Submission requirements and templates</p>
                       </Link>
                     </div>
                   </div>

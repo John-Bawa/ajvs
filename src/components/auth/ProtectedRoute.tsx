@@ -15,10 +15,9 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
   useEffect(() => {
     if (!loading && !user) {
-      // Store the intended destination
       sessionStorage.setItem("redirectAfterLogin", location.pathname);
-      toast.info("Please log in or create an account to continue");
-      navigate("/auth", { replace: true });
+      toast.info("Please log in to continue");
+      navigate("/admin/login", { replace: true });
     }
   }, [user, loading, navigate, location]);
 

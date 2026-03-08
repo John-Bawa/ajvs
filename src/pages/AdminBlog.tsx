@@ -48,7 +48,7 @@ export default function AdminBlog() {
 
   useEffect(() => {
     if (!isAdmin && !loading) {
-      navigate('/dashboard');
+      navigate('/');
       return;
     }
     fetchAll();
@@ -141,7 +141,7 @@ export default function AdminBlog() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <Breadcrumbs items={[{ label: "Dashboard", href: "/dashboard" }, { label: "Blog Management" }]} />
+      <Breadcrumbs items={[{ label: "Blog Management" }]} />
 
       <main className="flex-1 py-8 sm:py-12">
         <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
