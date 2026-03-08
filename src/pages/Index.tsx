@@ -296,7 +296,7 @@ const Index = () => {
               >
                 {/* Main Image Container */}
                 <motion.div 
-                  className="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-card border border-border/50"
+                  className="relative rounded-2xl overflow-hidden shadow-2xl bg-card border border-border/50"
                   style={{ transformStyle: "preserve-3d" }}
                   animate={{
                     boxShadow: isHovering 
