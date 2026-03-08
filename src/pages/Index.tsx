@@ -16,9 +16,6 @@ import {
 import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
 import animatedLogo from "@/assets/animated-logo.mp4";
 import heroBuilding from "@/assets/hero-building.jpg";
-import illustrationJournals from "@/assets/illustration-journals.png";
-import illustrationLab from "@/assets/illustration-lab.png";
-import illustrationData from "@/assets/illustration-data.png";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
@@ -512,40 +509,9 @@ const Index = () => {
       {/* Aims & Scope Section with Research Imagery */}
       <section className="py-12 sm:py-16 md:py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Academic Research Sidebar Image */}
-            <motion.div 
-              className="hidden lg:block lg:col-span-3"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
-                  <img 
-                    src={illustrationJournals} 
-                    alt="Academic research journals" 
-                    className="w-full h-48 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
-                  <img 
-                    src={illustrationLab} 
-                    alt="Research laboratory" 
-                    className="w-full h-32 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground text-center italic">
-                  Advancing veterinary research excellence
-                </p>
-              </div>
-            </motion.div>
-
+          <div>
             {/* Main Content */}
-            <div className="lg:col-span-9">
+            <div>
               <div className="text-center lg:text-left mb-10 sm:mb-12">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -785,9 +751,9 @@ const Index = () => {
       {/* Submission Process with Research Imagery */}
       <section className="py-12 sm:py-16 md:py-24 bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div>
             {/* Main Content */}
-            <div className="lg:col-span-8">
+            <div>
               <div className="text-center lg:text-left mb-8 sm:mb-12">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Simple Submission Process</h2>
                 <p className="text-base sm:text-lg text-muted-foreground px-4 lg:px-0">
@@ -847,30 +813,6 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Scholarly Workspace Sidebar Image */}
-            <motion.div 
-              className="hidden lg:block lg:col-span-4"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg border border-border/30 bg-muted/30 p-2">
-                  <img 
-                    src={illustrationData} 
-                    alt="Research data analysis" 
-                    className="w-full h-64 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="bg-card/80 rounded-lg p-4 border border-border/30">
-                  <p className="text-sm text-muted-foreground italic text-center">
-                    "From submission to publication — supporting researchers at every step of their journey."
-                  </p>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
