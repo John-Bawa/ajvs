@@ -77,6 +77,9 @@ const AnimatedRoutes = () => {
       <Route path="/reviewer-dashboard" element={<ProtectedRoute><LazyRoute><ReviewerDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/editorial" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
       <Route path="/editor-dashboard" element={<ProtectedRoute><LazyRoute><EditorDashboard /></LazyRoute></ProtectedRoute>} />
+      <Route path="/admin/blog" element={<ProtectedRoute><LazyRoute><AdminBlog /></LazyRoute></ProtectedRoute>} />
+      <Route path="/admin/blog/editor" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
+      <Route path="/admin/blog/editor/:id" element={<ProtectedRoute><LazyRoute><AdminBlogEditor /></LazyRoute></ProtectedRoute>} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
         <Route path="*" element={<LazyRoute><NotFound /></LazyRoute>} />
       </Routes>
