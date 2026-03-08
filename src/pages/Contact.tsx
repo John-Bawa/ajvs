@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
