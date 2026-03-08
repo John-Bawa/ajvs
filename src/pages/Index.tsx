@@ -405,80 +405,66 @@ const Index = () => {
       <StatsCounter />
 
       {/* Call for Papers CTA Card */}
-      <section className="py-12 sm:py-16 md:py-20 bg-background">
+      <section className="py-10 sm:py-14 bg-background">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-5xl mx-auto"
+            transition={{ duration: 0.5 }}
           >
             <Card className="relative overflow-hidden border-none shadow-2xl">
-              {/* Background */}
               <div className="absolute inset-0 bg-primary" />
-              {/* Glow */}
-              <div className="absolute -left-20 -top-20 w-64 h-64 rounded-full bg-highlight/15 blur-3xl" />
-              <div className="absolute -right-20 -bottom-20 w-64 h-64 rounded-full bg-accent/15 blur-3xl" />
+              <div className="absolute -left-16 -top-16 w-48 h-48 rounded-full bg-highlight/12 blur-3xl" />
+              <div className="absolute -right-16 -bottom-16 w-48 h-48 rounded-full bg-accent/12 blur-3xl" />
 
-              <CardContent className="relative z-10 p-8 sm:p-10 md:p-12">
-                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
-                  {/* Text Content */}
-                  <div className="flex-1">
-                    <div className="inline-flex items-center gap-2 bg-highlight/20 border border-highlight/30 rounded-full px-4 py-1.5 mb-5">
-                      <span className="relative flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-highlight opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-highlight"></span>
-                      </span>
-                      <span className="text-xs font-semibold text-highlight-foreground tracking-widest uppercase">Now Open</span>
+              <CardContent className="relative z-10 px-6 py-6 sm:px-8 sm:py-7 md:px-10 md:py-8">
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
+                  {/* Badge + Title */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-3 mb-2">
+                      <div className="inline-flex items-center gap-1.5 bg-highlight/20 border border-highlight/30 rounded-full px-3 py-1">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-highlight opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-highlight"></span>
+                        </span>
+                        <span className="text-[10px] font-bold text-highlight-foreground tracking-widest uppercase">Now Open</span>
+                      </div>
+                      <h2 className="text-2xl sm:text-3xl font-serif font-bold text-primary-foreground leading-tight">
+                        Call for Papers
+                      </h2>
                     </div>
-
-                    <h2 className="text-3xl sm:text-4xl font-serif font-bold text-primary-foreground mb-3 leading-tight">
-                      Call for Papers
-                    </h2>
-                    <p className="text-primary-foreground/75 text-base sm:text-lg mb-1.5">
-                      Inaugural Issue — Volume 1, Issue 1 (2026)
+                    <p className="text-primary-foreground/65 text-sm sm:text-base mb-3">
+                      Inaugural Issue — Volume 1, Issue 1 (2026). Submit original research, reviews, case reports & short communications.
                     </p>
-                    <p className="text-primary-foreground/55 text-sm sm:text-base max-w-lg leading-relaxed mb-6">
-                      Submit your original research, reviews, case reports & short communications in 
-                      veterinary, biomedical, and environmental sciences.
-                    </p>
-
-                    {/* Feature pills */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-x-4 gap-y-1">
                       {["Open Access", "Peer-Reviewed", "DOI Assigned", "e-ISSN: 3027-0731"].map(item => (
-                        <span
-                          key={item}
-                          className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-primary-foreground/80 bg-primary-foreground/10 rounded-full px-3 py-1"
-                        >
-                          <CheckCircle className="w-3.5 h-3.5 text-highlight flex-shrink-0" />
+                        <span key={item} className="inline-flex items-center gap-1 text-xs text-primary-foreground/70">
+                          <CheckCircle className="w-3 h-3 text-highlight flex-shrink-0" />
                           {item}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  {/* Divider */}
-                  <div className="hidden lg:block w-px self-stretch bg-primary-foreground/15" />
-
                   {/* CTA Buttons */}
-                  <div className="flex flex-row lg:flex-col gap-3 flex-shrink-0 w-full sm:w-auto">
-                    <Link to="/call-for-papers" className="flex-1 lg:flex-initial">
+                  <div className="flex gap-3 flex-shrink-0 w-full sm:w-auto">
+                    <Link to="/call-for-papers" className="flex-1 sm:flex-initial">
                       <Button
-                        size="lg"
-                        className="w-full lg:w-52 bg-highlight hover:bg-highlight/90 text-highlight-foreground font-bold text-base shadow-xl shadow-black/20 min-h-[52px] rounded-full px-8 group"
+                        size="default"
+                        className="w-full sm:w-auto bg-highlight hover:bg-highlight/90 text-highlight-foreground font-bold shadow-lg shadow-black/15 rounded-full px-6 group"
                       >
-                        <FileText className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                        <FileText className="w-4 h-4 mr-1.5 group-hover:scale-110 transition-transform" />
                         View Details
                       </Button>
                     </Link>
-                    <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer" className="flex-1 lg:flex-initial">
+                    <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-initial">
                       <Button
-                        size="lg"
+                        size="default"
                         variant="outline"
-                        className="w-full lg:w-52 border-primary-foreground/25 text-primary-foreground hover:bg-primary-foreground/10 font-semibold min-h-[52px] rounded-full px-8"
+                        className="w-full sm:w-auto border-primary-foreground/25 text-primary-foreground hover:bg-primary-foreground/10 font-semibold rounded-full px-6"
                       >
-                        <ExternalLink className="w-4 h-4 mr-2" />
+                        <ExternalLink className="w-4 h-4 mr-1.5" />
                         Submit Now
                       </Button>
                     </a>
