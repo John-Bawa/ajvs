@@ -21,6 +21,7 @@ const AuthorGuidelines = () => {
       />
       <TopBar />
       <Header />
+      <Breadcrumbs />
       
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-5xl">
