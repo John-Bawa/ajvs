@@ -41,6 +41,7 @@ export default function AdminBlogEditor() {
     featured_image: null,
     category_id: null,
     status: 'draft',
+    post_type: 'article',
     seo_title: '',
     meta_description: '',
     keywords: [],
