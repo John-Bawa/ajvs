@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import news1Img from "@/assets/news-1.jpg";
-import news2Img from "@/assets/news-2.jpg";
-import news3Img from "@/assets/news-3.jpg";
+import news1Img from "@/assets/news-illustration-1.png";
+import news2Img from "@/assets/news-illustration-2.png";
+import news3Img from "@/assets/news-illustration-3.png";
 
 const newsItems = [
   {
@@ -108,11 +108,11 @@ export function NewsCarousel() {
             >
               <Link to={item.link} className="block">
                 {/* Image */}
-                <div className="overflow-hidden rounded-lg mb-4">
+                <div className="overflow-hidden rounded-lg mb-4 bg-muted/30 p-4">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-48 object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
 
