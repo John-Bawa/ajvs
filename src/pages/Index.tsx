@@ -197,8 +197,8 @@ const Index = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="bg-primary/10 dark:bg-white/10 backdrop-blur-sm border border-primary/20 dark:border-white/20 rounded-full px-4 py-1.5">
-                  <span className="text-primary dark:text-white text-xs sm:text-sm font-medium tracking-wide">
+                <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-1.5">
+                  <span className="text-primary text-xs sm:text-sm font-medium tracking-wide">
                     e-ISSN: 3043-4246
                   </span>
                 </div>

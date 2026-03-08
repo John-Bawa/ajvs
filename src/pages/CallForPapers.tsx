@@ -257,7 +257,7 @@ const CallForPapers = () => {
                     {/* Decorative frame */}
                     <div className="absolute -inset-2 rounded-2xl border border-highlight/25 opacity-60" />
                     <div className="absolute -inset-4 rounded-3xl border border-primary-foreground/10 opacity-40" />
-                    <div className="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                    <div className="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-border/20">
                       <img
                         src={FLYER_URL}
                         alt="AJVS Call for Papers 2026 — Official Announcement"

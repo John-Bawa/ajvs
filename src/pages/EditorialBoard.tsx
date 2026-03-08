@@ -310,10 +310,9 @@ const EditorialBoard = () => {
   };
 
   const cardHoverVariants = {
-    initial: { scale: 1, boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)" },
+    initial: { scale: 1 },
     hover: {
       scale: 1.02,
-      boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
       transition: { duration: 0.3 },
     },
   };
