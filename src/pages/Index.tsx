@@ -816,30 +816,6 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Scholarly Workspace Sidebar Image */}
-            <motion.div 
-              className="hidden lg:block lg:col-span-4"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg border border-border/30 bg-muted/30 p-2">
-                  <img 
-                    src={illustrationData} 
-                    alt="Research data analysis" 
-                    className="w-full h-64 object-contain"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="bg-card/80 rounded-lg p-4 border border-border/30">
-                  <p className="text-sm text-muted-foreground italic text-center">
-                    "From submission to publication — supporting researchers at every step of their journey."
-                  </p>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
