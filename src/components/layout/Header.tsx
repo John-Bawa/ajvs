@@ -53,8 +53,7 @@ const Header = () => {
       icon: Send,
       links: [
         { label: "Submit Manuscript", href: "/submit", icon: Send },
-        { label: "Author Dashboard", href: "/manuscripts", icon: FileText },
-        { label: "Reviewer Dashboard", href: "/reviews", icon: User },
+        { label: "Author Guidelines", href: "/for-authors", icon: FileText },
       ],
     },
     {
