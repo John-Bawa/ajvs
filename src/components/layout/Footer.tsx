@@ -78,10 +78,10 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  to="/news"
+                  to="/blog"
                   className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
                 >
-                  News & Updates
+                  News & Blog
                 </Link>
               </li>
             </ul>

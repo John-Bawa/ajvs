@@ -41,6 +41,7 @@ export default function AdminBlogEditor() {
     featured_image: null,
     category_id: null,
     status: 'draft',
+    post_type: 'article',
     seo_title: '',
     meta_description: '',
     keywords: [],
@@ -82,6 +83,7 @@ export default function AdminBlogEditor() {
         featured_image: p.featured_image,
         category_id: p.category_id,
         status: p.status,
+        post_type: p.post_type || 'article',
         seo_title: p.seo_title || '',
         meta_description: p.meta_description || '',
         keywords: p.keywords || [],
@@ -131,6 +133,7 @@ export default function AdminBlogEditor() {
       category_id: form.category_id,
       author_id: user.id,
       status,
+      post_type: form.post_type,
       seo_title: form.seo_title.trim() || null,
       meta_description: form.meta_description.trim() || null,
       keywords: form.keywords.length > 0 ? form.keywords : null,
@@ -241,6 +244,21 @@ export default function AdminBlogEditor() {
 
             {/* Sidebar */}
             <div className="space-y-4">
+              {/* Post Type */}
+              <Card className="border-border/50">
+                <CardHeader className="pb-3"><CardTitle className="text-sm">Post Type</CardTitle></CardHeader>
+                <CardContent>
+                  <Select value={form.post_type} onValueChange={v => updateField('post_type', v)}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="article">Article</SelectItem>
+                      <SelectItem value="news">News</SelectItem>
+                      <SelectItem value="announcement">Announcement</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </CardContent>
+              </Card>
+
               {/* Status */}
               <Card className="border-border/50">
                 <CardHeader className="pb-3"><CardTitle className="text-sm">Status</CardTitle></CardHeader>

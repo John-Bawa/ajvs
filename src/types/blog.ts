@@ -46,6 +46,7 @@ export interface BlogPostFormData {
   featured_image: string | null;
   category_id: string | null;
   status: 'draft' | 'published' | 'scheduled';
+  post_type: string;
   seo_title: string;
   meta_description: string;
   keywords: string[];

@@ -45,7 +45,7 @@ const Header = () => {
       links: [
         { label: "Current Issue", href: "/current-issue", icon: BookOpen },
         { label: "Archives", href: "/archives", icon: FileText },
-        { label: "Announcements", href: "/news", icon: Info },
+        { label: "News & Blog", href: "/blog", icon: Info },
       ],
     },
     {
@@ -145,7 +145,7 @@ const Header = () => {
                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Blog & News</div>
                         <p className="text-sm text-muted-foreground">Articles, updates, and insights</p>
                       </Link>
-                      <Link to="/news" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
+                      <Link to="/blog?type=announcement" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
                         <div className="font-medium text-foreground mb-1 group-hover:text-primary">Announcements</div>
                         <p className="text-sm text-muted-foreground">Official journal announcements</p>
                       </Link>
