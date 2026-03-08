@@ -92,6 +92,7 @@ const Archives = () => {
       <div className="min-h-screen flex flex-col bg-gradient-hero">
         <TopBar />
         <Header />
+        <Breadcrumbs />
         <main className="flex-1 flex items-center justify-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
         </main>
