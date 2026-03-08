@@ -32,6 +32,7 @@ export const PageTransitionLoader = () => {
     <AnimatePresence>
       {isLoading && (
         <motion.div
+          key="progress-bar"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -60,6 +61,7 @@ export const PageTransitionLoader = () => {
       {/* Page skeleton overlay */}
       {showSkeleton && (
         <motion.div
+          key="skeleton-overlay"
           initial={{ opacity: 0.5 }}
           animate={{ opacity: 0.3 }}
           exit={{ opacity: 0 }}
