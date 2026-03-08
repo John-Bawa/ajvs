@@ -108,11 +108,11 @@ export function NewsCarousel() {
             >
               <Link to={item.link} className="block">
                 {/* Image */}
-                <div className="overflow-hidden rounded-lg mb-4">
+                <div className="overflow-hidden rounded-lg mb-4 bg-muted/30 p-4">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-48 object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
 
