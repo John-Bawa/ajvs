@@ -29,7 +29,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CallForPapers = lazy(() => import("./pages/CallForPapers"));
 const SystemCredits = lazy(() => import("./pages/SystemCredits"));
-const ReviewerDashboard = lazy(() => import("./pages/ReviewerDashboard"));
+
 const EditorDashboard = lazy(() => import("./pages/EditorDashboard"));
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
