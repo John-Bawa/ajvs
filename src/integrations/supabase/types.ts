@@ -113,6 +113,7 @@ export type Database = {
           keywords: string[] | null
           meta_description: string | null
           og_image: string | null
+          post_type: string
           published_at: string | null
           reading_time: number | null
           scheduled_at: string | null
@@ -133,6 +134,7 @@ export type Database = {
           keywords?: string[] | null
           meta_description?: string | null
           og_image?: string | null
+          post_type?: string
           published_at?: string | null
           reading_time?: number | null
           scheduled_at?: string | null
@@ -153,6 +155,7 @@ export type Database = {
           keywords?: string[] | null
           meta_description?: string | null
           og_image?: string | null
+          post_type?: string
           published_at?: string | null
           reading_time?: number | null
           scheduled_at?: string | null
