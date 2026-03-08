@@ -324,7 +324,7 @@ const Index = () => {
                   
                   {/* Overlay Info Card */}
                   <motion.div 
-                    className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-card/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border/50"
+                    className="absolute bottom-4 left-4 right-4 bg-card/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border/50"
                     style={{ 
                       transform: isHovering ? "translateZ(30px)" : "translateZ(0px)",
                     }}
