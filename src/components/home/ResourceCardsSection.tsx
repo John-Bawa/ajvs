@@ -30,7 +30,7 @@ const resources = [
   {
     title: "Journal Archives",
     description: "Access our complete archive of published articles, safeguarding scholarship of the past to serve researchers of today.",
-    image: archivesImg,
+    image: illustrationArchives,
     link: "/archives",
     linkText: "Browse archives",
   },
