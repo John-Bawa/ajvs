@@ -60,18 +60,22 @@ export const OJSAnnouncementsWidget = () => {
             ))}
           </div>
         ) : (
-          <p className="text-muted-foreground text-sm">
-            No announcements available. Visit the{' '}
+          <div className="text-center py-4 space-y-3">
+            <div className="w-10 h-10 mx-auto rounded-full bg-muted flex items-center justify-center">
+              <Megaphone className="w-5 h-5 text-muted-foreground" />
+            </div>
+            <p className="text-muted-foreground text-sm">
+              No announcements at the moment. Check back soon for updates!
+            </p>
             <a 
               href={getOJSLink('ANNOUNCEMENTS')} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-primary hover:underline"
+              className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
             >
-              OJS announcements page
+              Visit announcements page <ExternalLink className="w-3 h-3" />
             </a>
-            {' '}for updates.
-          </p>
+          </div>
         )}
       </CardContent>
     </Card>
