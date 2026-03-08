@@ -12,7 +12,7 @@ export const OJS_ROUTES = {
   HOME: `${OJS_BASE_URL}/index.php/ajvs`,
   
   // Author workflows
-  SUBMIT_MANUSCRIPT: `${OJS_BASE_URL}/index.php/ajvs/index`,
+  SUBMIT_MANUSCRIPT: `${OJS_BASE_URL}/index.php/ajvs/about/submissions`,
   AUTHOR_DASHBOARD: `${OJS_BASE_URL}/index.php/ajvs/author`,
   
   // Reviewer workflows
