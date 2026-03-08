@@ -535,6 +535,7 @@ const Index = () => {
                     src={researchMicroscopeImg} 
                     alt="Research laboratory microscope" 
                     className="w-full h-32 object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <p className="text-xs text-muted-foreground text-center italic">
