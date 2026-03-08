@@ -36,25 +36,25 @@ const About = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={manuscriptWritingImg} 
+                    src={illustrationWriting} 
                     alt="Academic manuscript writing" 
-                    className="w-full h-36 object-cover"
+                    className="w-full h-36 object-contain"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={academicLibraryImg} 
-                    alt="Research library" 
-                    className="w-full h-28 object-cover"
+                    src={illustrationJournals} 
+                    alt="Research journals" 
+                    className="w-full h-28 object-contain"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={researchMicroscopeImg} 
+                    src={illustrationLab} 
                     alt="Laboratory research" 
-                    className="w-full h-28 object-cover"
+                    className="w-full h-28 object-contain"
                   />
                 </div>
               </div>
