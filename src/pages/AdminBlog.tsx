@@ -28,7 +28,7 @@ import { generateSlug } from "@/types/blog";
 
 export default function AdminBlog() {
   const { user } = useAuth();
-  const { roles } = useUserRoles();
+  const { roles } = useUserRoles(user);
   const navigate = useNavigate();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<BlogCategory[]>([]);

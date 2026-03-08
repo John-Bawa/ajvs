@@ -24,7 +24,7 @@ export default function AdminBlogEditor() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { roles } = useUserRoles();
+  const { roles } = useUserRoles(user);
   const isEditing = !!id;
   const fileInputRef = useRef<HTMLInputElement>(null);
 
