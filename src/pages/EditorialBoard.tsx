@@ -331,6 +331,7 @@ const EditorialBoard = () => {
         ]}
       />
       <Header />
+      <Breadcrumbs />
 
       <main className="flex-1 py-16 md:py-20">
         <div className="container mx-auto px-4 max-w-6xl">
