@@ -32,6 +32,7 @@ export const PageTransitionLoader = () => {
     <AnimatePresence>
       {isLoading && (
         <motion.div
+          key="progress-bar"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
