@@ -29,7 +29,7 @@ export const StickyScrollHeader = ({ isVisible }: StickyScrollHeaderProps) => {
                   className="w-9 h-9 object-contain drop-shadow-md transition-transform group-hover:scale-105" 
                 />
                 <span className="text-primary-foreground font-serif text-lg font-bold hidden sm:block">
-                  African Journal of Veterinary Sciences
+                  African Journal of Veterinary Sciences — University of Jos
                 </span>
                 <span className="text-primary-foreground font-serif text-lg font-bold sm:hidden">
                   AJVS
