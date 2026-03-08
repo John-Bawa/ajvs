@@ -24,48 +24,12 @@ const About = () => {
 
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-6xl">
-          {/* Hero Section with Research Imagery */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 mb-16">
-            {/* Research Image Sidebar */}
-            <motion.div 
-              className="hidden lg:block lg:col-span-3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
-                  <img 
-                    src={illustrationWriting} 
-                    alt="Academic manuscript writing" 
-                    className="w-full h-36 object-contain"
-                  />
-                </div>
-                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
-                  <img 
-                    src={illustrationJournals} 
-                    alt="Research journals" 
-                    className="w-full h-28 object-contain"
-                  />
-                </div>
-                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
-                  <img 
-                    src={illustrationLab} 
-                    alt="Laboratory research" 
-                    className="w-full h-28 object-contain"
-                  />
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Main Content */}
-            <div className="lg:col-span-9 text-center lg:text-left">
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">About AJVS</h1>
-              <p className="text-xl text-muted-foreground max-w-3xl">
-                African Journal of Veterinary Sciences — Advancing veterinary research and practice across Africa and
-                beyond
-              </p>
-            </div>
+          <div className="mb-16 text-center lg:text-left">
+            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">About AJVS</h1>
+            <p className="text-xl text-muted-foreground max-w-3xl">
+              African Journal of Veterinary Sciences — Advancing veterinary research and practice across Africa and
+              beyond
+            </p>
           </div>
 
           {/* Main Content */}
