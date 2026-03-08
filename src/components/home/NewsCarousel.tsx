@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import news1Img from "@/assets/news-1.jpg";
-import news2Img from "@/assets/news-2.jpg";
-import news3Img from "@/assets/news-3.jpg";
+import news1Img from "@/assets/news-illustration-1.png";
+import news2Img from "@/assets/news-illustration-2.png";
+import news3Img from "@/assets/news-illustration-3.png";
 
 const newsItems = [
   {
