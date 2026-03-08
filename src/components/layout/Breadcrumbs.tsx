@@ -18,7 +18,7 @@ const routeLabels: Record<string, string> = {
   "/policies": "Policies & Ethics",
   "/editorial-board": "Editorial Board",
   "/contact": "Contact",
-  "/news": "News & Updates",
+  "/news": "News & Blog",
   "/faq": "FAQ",
   "/call-for-papers": "Call for Papers",
   "/system-credits": "System Credits",

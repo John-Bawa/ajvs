@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Clock, User } from "lucide-react";
+import { Calendar, Clock, User, Megaphone, Newspaper, FileText } from "lucide-react";
 import { format } from "date-fns";
 import type { BlogPost } from "@/types/blog";
 
@@ -10,9 +10,17 @@ interface BlogCardProps {
   featured?: boolean;
 }
 
+const typeConfig: Record<string, { label: string; icon: typeof FileText; className: string }> = {
+  article: { label: "Article", icon: FileText, className: "bg-primary/10 text-primary" },
+  news: { label: "News", icon: Newspaper, className: "bg-accent/10 text-accent" },
+  announcement: { label: "Announcement", icon: Megaphone, className: "bg-secondary text-secondary-foreground" },
+};
+
 export function BlogCard({ post, featured = false }: BlogCardProps) {
   const publishedDate = post.published_at ? format(new Date(post.published_at), 'MMM d, yyyy') : '';
   const authorName = post.profiles?.full_name || 'AJVS Editorial';
+  const postType = (post as any).post_type || 'article';
+  const typeInfo = typeConfig[postType] || typeConfig.article;
 
   if (featured) {
     return (
@@ -30,11 +38,16 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
               </div>
             )}
             <CardContent className="p-6 md:p-8 flex flex-col justify-center">
-              {post.blog_categories && (
-                <Badge variant="secondary" className="w-fit mb-3 text-xs bg-primary/10 text-primary border-none">
-                  {post.blog_categories.name}
+              <div className="flex items-center gap-2 mb-3">
+                <Badge variant="secondary" className={`w-fit text-xs border-none ${typeInfo.className}`}>
+                  {typeInfo.label}
                 </Badge>
-              )}
+                {post.blog_categories && (
+                  <Badge variant="outline" className="w-fit text-xs">
+                    {post.blog_categories.name}
+                  </Badge>
+                )}
+              </div>
               <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground mb-3 group-hover:text-primary transition-smooth leading-tight">
                 {post.title}
               </h2>
@@ -67,11 +80,16 @@ export function BlogCard({ post, featured = false }: BlogCardProps) {
           </div>
         )}
         <CardContent className="p-5 flex flex-col flex-1">
-          {post.blog_categories && (
-            <Badge variant="secondary" className="w-fit mb-2.5 text-xs bg-primary/10 text-primary border-none">
-              {post.blog_categories.name}
+          <div className="flex items-center gap-2 mb-2.5">
+            <Badge variant="secondary" className={`w-fit text-xs border-none ${typeInfo.className}`}>
+              {typeInfo.label}
             </Badge>
-          )}
+            {post.blog_categories && (
+              <Badge variant="outline" className="w-fit text-xs">
+                {post.blog_categories.name}
+              </Badge>
+            )}
+          </div>
           <h3 className="text-lg font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-smooth leading-snug line-clamp-2">
             {post.title}
           </h3>
