@@ -1,4 +1,4 @@
-import { OJS_BASE_URL } from "@/config/ojs";
+import { supabase } from "@/integrations/supabase/client";
 
 export interface OJSArticle {
   id: number;
@@ -38,16 +38,29 @@ export interface OJSAnnouncement {
   datePosted: string;
 }
 
+const OJS_BASE_URL = 'https://journal.africanjournalvetsci.org';
+
+/**
+ * Fetch OJS data via backend proxy to bypass CORS
+ */
+const fetchViaProxy = async (endpoint: string, params?: Record<string, string>): Promise<Response> => {
+  const queryParams = new URLSearchParams({ endpoint, ...params });
+  const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
+  const url = `https://${projectId}.supabase.co/functions/v1/ojs-proxy?${queryParams.toString()}`;
+  
+  return fetch(url, {
+    headers: {
+      'Accept': 'application/json',
+    },
+  });
+};
+
 /**
  * Fetch current issue from OJS REST API
  */
 export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: OJSArticle[] } | null> => {
   try {
-    const response = await fetch(`${OJS_BASE_URL}/api/v1/issues/current`, {
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
+    const response = await fetchViaProxy('/api/v1/issues/current');
     
     if (!response.ok) {
       throw new Error('Failed to fetch current issue');
@@ -56,10 +69,9 @@ export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: 
     const issue = await response.json();
     
     // Fetch articles for the current issue
-    const articlesResponse = await fetch(`${OJS_BASE_URL}/api/v1/submissions?issueIds=${issue.id}&status=3`, {
-      headers: {
-        'Accept': 'application/json',
-      },
+    const articlesResponse = await fetchViaProxy('/api/v1/submissions', {
+      issueIds: String(issue.id),
+      status: '3',
     });
     
     const articlesData = await articlesResponse.json();
@@ -77,11 +89,7 @@ export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: 
  */
 export const fetchAllIssues = async (): Promise<OJSIssue[]> => {
   try {
-    const response = await fetch(`${OJS_BASE_URL}/api/v1/issues`, {
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
+    const response = await fetchViaProxy('/api/v1/issues');
     
     if (!response.ok) {
       throw new Error('Failed to fetch issues');
@@ -100,10 +108,9 @@ export const fetchAllIssues = async (): Promise<OJSIssue[]> => {
  */
 export const fetchIssueArticles = async (issueId: number): Promise<OJSArticle[]> => {
   try {
-    const response = await fetch(`${OJS_BASE_URL}/api/v1/submissions?issueIds=${issueId}&status=3`, {
-      headers: {
-        'Accept': 'application/json',
-      },
+    const response = await fetchViaProxy('/api/v1/submissions', {
+      issueIds: String(issueId),
+      status: '3',
     });
     
     if (!response.ok) {
@@ -119,23 +126,17 @@ export const fetchIssueArticles = async (issueId: number): Promise<OJSArticle[]>
 };
 
 /**
- * Fetch announcements from OJS (fallback to RSS if API not available)
+ * Fetch announcements from OJS via proxy
  */
 export const fetchAnnouncements = async (): Promise<OJSAnnouncement[]> => {
   try {
-    // Try API first
-    const response = await fetch(`${OJS_BASE_URL}/api/v1/announcements`, {
-      headers: {
-        'Accept': 'application/json',
-      },
-    });
+    const response = await fetchViaProxy('/api/v1/announcements');
     
     if (response.ok) {
       const data = await response.json();
       return data.items || [];
     }
     
-    // Fallback to parsing RSS feed
     return [];
   } catch (error) {
     console.error('Error fetching announcements:', error);
