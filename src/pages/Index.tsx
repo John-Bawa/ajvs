@@ -522,19 +522,19 @@ const Index = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={academicLibraryImg} 
-                    alt="Academic research library" 
-                    className="w-full h-48 object-cover"
+                    src={illustrationJournals} 
+                    alt="Academic research journals" 
+                    className="w-full h-48 object-contain"
                     loading="lazy"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={researchMicroscopeImg} 
-                    alt="Research laboratory microscope" 
-                    className="w-full h-32 object-cover"
+                    src={illustrationLab} 
+                    alt="Research laboratory" 
+                    className="w-full h-32 object-contain"
                     loading="lazy"
                   />
                 </div>
