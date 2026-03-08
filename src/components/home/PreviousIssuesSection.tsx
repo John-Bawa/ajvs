@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import researchLabImg from "@/assets/research-lab.jpg";
-import veterinaryMedicineImg from "@/assets/veterinary-medicine.jpg";
-import dataAnalysisImg from "@/assets/data-analysis.jpg";
+import illustrationLab from "@/assets/illustration-lab.png";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationData from "@/assets/illustration-data.png";
 
 const issueYears = [2025, 2024];
 
