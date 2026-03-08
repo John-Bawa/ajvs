@@ -244,6 +244,21 @@ export default function AdminBlogEditor() {
 
             {/* Sidebar */}
             <div className="space-y-4">
+              {/* Post Type */}
+              <Card className="border-border/50">
+                <CardHeader className="pb-3"><CardTitle className="text-sm">Post Type</CardTitle></CardHeader>
+                <CardContent>
+                  <Select value={form.post_type} onValueChange={v => updateField('post_type', v)}>
+                    <SelectTrigger><SelectValue /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="article">Article</SelectItem>
+                      <SelectItem value="news">News</SelectItem>
+                      <SelectItem value="announcement">Announcement</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </CardContent>
+              </Card>
+
               {/* Status */}
               <Card className="border-border/50">
                 <CardHeader className="pb-3"><CardTitle className="text-sm">Status</CardTitle></CardHeader>
