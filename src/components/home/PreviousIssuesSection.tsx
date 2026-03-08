@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import researchLabImg from "@/assets/research-lab.jpg";
-import veterinaryMedicineImg from "@/assets/veterinary-medicine.jpg";
-import dataAnalysisImg from "@/assets/data-analysis.jpg";
+import illustrationLab from "@/assets/illustration-lab.png";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationData from "@/assets/illustration-data.png";
 
 const issueYears = [2025, 2024];
 
@@ -12,13 +12,13 @@ const recentArticles = [
   {
     id: 1,
     title: "Antimicrobial Resistance Patterns in Livestock",
-    image: researchLabImg,
+    image: illustrationLab,
     link: "/archives",
   },
   {
     id: 2,
     title: "Zoonotic Disease Surveillance Methods",
-    image: veterinaryMedicineImg,
+    image: illustrationJournals,
     link: "/archives",
   },
 ];
@@ -85,11 +85,11 @@ export function PreviousIssuesSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-lg overflow-hidden bg-muted/30 p-2">
                 <img 
-                  src={dataAnalysisImg} 
+                  src={illustrationData} 
                   alt="Research data visualization" 
-                  className="w-full h-24 object-cover opacity-80"
+                  className="w-full h-24 object-contain opacity-80"
                 />
               </div>
             </motion.div>

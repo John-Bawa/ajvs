@@ -4,9 +4,9 @@ import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { BookOpen, Target, Globe, Award } from "lucide-react";
 import { motion } from "framer-motion";
-import manuscriptWritingImg from "@/assets/manuscript-writing.jpg";
-import academicLibraryImg from "@/assets/academic-library.jpg";
-import researchMicroscopeImg from "@/assets/research-microscope.jpg";
+import illustrationWriting from "@/assets/illustration-writing.png";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationLab from "@/assets/illustration-lab.png";
 
 const About = () => {
   return (
@@ -36,25 +36,25 @@ const About = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={manuscriptWritingImg} 
+                    src={illustrationWriting} 
                     alt="Academic manuscript writing" 
-                    className="w-full h-36 object-cover"
+                    className="w-full h-36 object-contain"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={academicLibraryImg} 
-                    alt="Research library" 
-                    className="w-full h-28 object-cover"
+                    src={illustrationJournals} 
+                    alt="Research journals" 
+                    className="w-full h-28 object-contain"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={researchMicroscopeImg} 
+                    src={illustrationLab} 
                     alt="Laboratory research" 
-                    className="w-full h-28 object-cover"
+                    className="w-full h-28 object-contain"
                   />
                 </div>
               </div>

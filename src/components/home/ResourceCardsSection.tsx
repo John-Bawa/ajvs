@@ -1,37 +1,36 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import publishingTipsImg from "@/assets/publishing-tips.jpg";
-import peerReviewImg from "@/assets/peer-review.jpg";
-import veterinaryLabImg from "@/assets/veterinary-lab.jpg";
-import archivesImg from "@/assets/archives.jpg";
-import manuscriptWritingImg from "@/assets/manuscript-writing.jpg";
+import illustrationWriting from "@/assets/illustration-writing.png";
+import illustrationPeerReview from "@/assets/illustration-peer-review.png";
+import illustrationLab from "@/assets/illustration-lab.png";
+import illustrationArchives from "@/assets/illustration-archives.png";
 
 const resources = [
   {
     title: "Publishing Tips",
     description: "Explore our guidelines, templates, and best practices to learn more about the academic publishing process.",
-    image: publishingTipsImg,
+    image: illustrationWriting,
     link: "/for-authors",
     linkText: "Explore the hub",
   },
   {
     title: "Peer Review Process",
     description: "Learn about our rigorous peer review system and how we ensure the quality and integrity of published research.",
-    image: peerReviewImg,
+    image: illustrationPeerReview,
     link: "/policies",
     linkText: "Read the process",
   },
   {
     title: "Research Articles",
     description: "Browse our collection of high-quality research in veterinary medicine, animal health, and biomedical sciences.",
-    image: veterinaryLabImg,
+    image: illustrationLab,
     link: "/current-issue",
     linkText: "View articles",
   },
   {
     title: "Journal Archives",
     description: "Access our complete archive of published articles, safeguarding scholarship of the past to serve researchers of today.",
-    image: archivesImg,
+    image: illustrationArchives,
     link: "/archives",
     linkText: "Browse archives",
   },
@@ -52,11 +51,11 @@ export function ResourceCardsSection() {
               className="group"
             >
               <Link to={resource.link} className="block">
-                <div className="overflow-hidden rounded-lg mb-4">
+                <div className="overflow-hidden rounded-lg mb-4 bg-muted/30 p-4">
                   <img
                     src={resource.image}
                     alt={resource.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-48 object-contain transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">

@@ -4,8 +4,8 @@ import Footer from "@/components/layout/Footer";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { SEOHead } from "./SEOHead";
 import { motion } from "framer-motion";
-import scholarlyWorkspaceImg from "@/assets/scholarly-workspace.jpg";
-import academicConferenceImg from "@/assets/academic-conference.jpg";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationData from "@/assets/illustration-data.png";
 
 const CurrentIssue = () => {
   return (
@@ -40,18 +40,18 @@ const CurrentIssue = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <div className="sticky top-24 space-y-6">
-                <div className="rounded-lg overflow-hidden shadow-md border border-border/30">
+                <div className="rounded-lg overflow-hidden shadow-md border border-border/30 bg-muted/30 p-2">
                   <img 
-                    src={scholarlyWorkspaceImg} 
-                    alt="Scholarly research workspace" 
-                    className="w-full h-40 object-cover"
+                    src={illustrationJournals} 
+                    alt="Scholarly journals" 
+                    className="w-full h-40 object-contain"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden shadow-md border border-border/30">
+                <div className="rounded-lg overflow-hidden shadow-md border border-border/30 bg-muted/30 p-2">
                   <img 
-                    src={academicConferenceImg} 
-                    alt="Academic conference presentation" 
-                    className="w-full h-32 object-cover"
+                    src={illustrationData} 
+                    alt="Research data analysis" 
+                    className="w-full h-32 object-contain"
                   />
                 </div>
                 <div className="bg-card/50 rounded-lg p-4 border border-border/30">

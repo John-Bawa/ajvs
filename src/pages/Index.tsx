@@ -16,9 +16,9 @@ import {
 import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
 import animatedLogo from "@/assets/animated-logo.mp4";
 import heroBuilding from "@/assets/hero-building.jpg";
-import academicLibraryImg from "@/assets/academic-library.jpg";
-import researchMicroscopeImg from "@/assets/research-microscope.jpg";
-import dataAnalysisImg from "@/assets/data-analysis.jpg";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationLab from "@/assets/illustration-lab.png";
+import illustrationData from "@/assets/illustration-data.png";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
@@ -522,19 +522,19 @@ const Index = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={academicLibraryImg} 
-                    alt="Academic research library" 
-                    className="w-full h-48 object-cover"
+                    src={illustrationJournals} 
+                    alt="Academic research journals" 
+                    className="w-full h-48 object-contain"
                     loading="lazy"
                   />
                 </div>
-                <div className="rounded-lg overflow-hidden shadow-lg">
+                <div className="rounded-lg overflow-hidden shadow-lg bg-muted/30 p-2">
                   <img 
-                    src={researchMicroscopeImg} 
-                    alt="Research laboratory microscope" 
-                    className="w-full h-32 object-cover"
+                    src={illustrationLab} 
+                    alt="Research laboratory" 
+                    className="w-full h-32 object-contain"
                     loading="lazy"
                   />
                 </div>
@@ -856,11 +856,11 @@ const Index = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="sticky top-24 space-y-4">
-                <div className="rounded-lg overflow-hidden shadow-lg border border-border/30">
+                <div className="rounded-lg overflow-hidden shadow-lg border border-border/30 bg-muted/30 p-2">
                   <img 
-                    src={dataAnalysisImg} 
-                    alt="Research data analysis workspace" 
-                    className="w-full h-64 object-cover"
+                    src={illustrationData} 
+                    alt="Research data analysis" 
+                    className="w-full h-64 object-contain"
                     loading="lazy"
                   />
                 </div>
