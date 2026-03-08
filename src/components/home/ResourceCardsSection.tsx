@@ -9,7 +9,7 @@ const resources = [
   {
     title: "Publishing Tips",
     description: "Explore our guidelines, templates, and best practices to learn more about the academic publishing process.",
-    image: publishingTipsImg,
+    image: illustrationWriting,
     link: "/for-authors",
     linkText: "Explore the hub",
   },
