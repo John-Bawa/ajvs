@@ -4,8 +4,8 @@ import Footer from "@/components/layout/Footer";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { SEOHead } from "./SEOHead";
 import { motion } from "framer-motion";
-import scholarlyWorkspaceImg from "@/assets/scholarly-workspace.jpg";
-import academicConferenceImg from "@/assets/academic-conference.jpg";
+import illustrationJournals from "@/assets/illustration-journals.png";
+import illustrationData from "@/assets/illustration-data.png";
 
 const CurrentIssue = () => {
   return (
