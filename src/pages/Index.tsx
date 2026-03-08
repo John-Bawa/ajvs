@@ -754,9 +754,9 @@ const Index = () => {
       {/* Submission Process with Research Imagery */}
       <section className="py-12 sm:py-16 md:py-24 bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div>
             {/* Main Content */}
-            <div className="lg:col-span-8">
+            <div>
               <div className="text-center lg:text-left mb-8 sm:mb-12">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Simple Submission Process</h2>
                 <p className="text-base sm:text-lg text-muted-foreground px-4 lg:px-0">
