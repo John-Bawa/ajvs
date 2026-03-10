@@ -821,6 +821,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Academic Calendar */}
+      <AcademicCalendar />
+
       {/* CTA Section */}
       <section className="bg-gradient-to-br from-primary/10 to-banner/10 py-12 sm:py-16 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 text-center">

@@ -52,8 +52,7 @@ export const AcademicCalendar = () => {
   const [timezone, setTimezone] = useState("UTC");
 
   const { user } = useAuth();
-  const { data: roles } = useUserRoles();
-  const isAdmin = roles?.some(r => ["super_admin", "editor", "secretary"].includes(r.role)) ?? false;
+  const { isAdmin } = useUserRoles(user ?? null);
 
   // Form state
   const [newEvent, setNewEvent] = useState({
