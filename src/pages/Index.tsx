@@ -24,6 +24,7 @@ import { ResourceCardsSection } from "@/components/home/ResourceCardsSection";
 import { NewsCarousel } from "@/components/home/NewsCarousel";
 import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { PreviousIssuesSection } from "@/components/home/PreviousIssuesSection";
+import { AcademicCalendar } from "@/components/home/AcademicCalendar";
 import { StatsCounter } from "@/components/home/StatsCounter";
 
 const Index = () => {
