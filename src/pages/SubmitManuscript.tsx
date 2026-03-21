@@ -3,7 +3,7 @@ import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { OJSRedirectNotice } from "@/components/ojs/OJSRedirectNotice";
 import { getOJSLink } from "@/config/ojs";
-import { FileText, DollarSign, Clock, CheckCircle } from "lucide-react";
+import { FileText, DollarSign, Clock, CheckCircle, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -100,6 +100,26 @@ const SubmitManuscript = () => {
                   View Complete Author Guidelines
                 </Button>
               </Link>
+            </div>
+          </div>
+
+          {/* Download Resources */}
+          <div className="glass rounded-2xl p-8 mb-8 text-center hover-lift">
+            <h2 className="text-2xl font-serif font-bold mb-3">Download Resources</h2>
+            <p className="text-muted-foreground mb-6">Essential documents for your submission</p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button className="gap-2" asChild>
+                <a href="https://drive.google.com/file/d/1j4MBLvZb3LNSOnx3eW6kjbJQq7NMFZR4/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4" />
+                  AJVS Declaration Form
+                </a>
+              </Button>
+              <Button className="gap-2" asChild>
+                <a href="https://docs.google.com/document/d/1azO7DjaLQ7cR1dQtjYBPj38qF8WOSkrF/edit?usp=drivesdk&ouid=101619268673190504738&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4" />
+                  Call for Manuscript
+                </a>
+              </Button>
             </div>
           </div>
 
