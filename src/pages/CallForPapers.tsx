@@ -542,6 +542,28 @@ const CallForPapers = () => {
             </div>
           </div>
         </section>
+
+        {/* Download Resources Section */}
+        <section className="py-12 bg-muted/30">
+          <div className="container mx-auto px-4 max-w-4xl text-center">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold mb-3">Download Resources</h2>
+            <p className="text-muted-foreground mb-6">Essential documents for preparing your submission</p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button size="lg" className="gap-2" asChild>
+                <a href="https://drive.google.com/file/d/1j4MBLvZb3LNSOnx3eW6kjbJQq7NMFZR4/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4" />
+                  AJVS Declaration Form
+                </a>
+              </Button>
+              <Button size="lg" className="gap-2" asChild>
+                <a href="https://docs.google.com/document/d/1azO7DjaLQ7cR1dQtjYBPj38qF8WOSkrF/edit?usp=drivesdk&ouid=101619268673190504738&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4" />
+                  Call for Manuscript
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
