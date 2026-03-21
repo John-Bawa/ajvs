@@ -34,6 +34,7 @@ import bhandarePhoto from "@/assets/bhandare.jpg";
 import willsPhoto from "@/assets/wills.jpg";
 import nasinyamaPhoto from "@/assets/nasinyama.jpg";
 import uchenduPhoto from "@/assets/uchendu.jpg";
+import dogoPhoto from "@/assets/dogo.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
