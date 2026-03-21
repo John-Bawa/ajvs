@@ -287,6 +287,13 @@ const EditorialBoard = () => {
       phone: "+233549410841",
       photo: emikpePhoto,
     },
+    {
+      name: "Prof. Abraham Goni Dogo",
+      affiliation: "Director, Africa Centre of Excellence in Phytomedicine Research and Development (ACEPRD), University of Jos, Nigeria",
+      email: "gonidogo@gmail.com",
+      phone: "+234 803 450 1914",
+      photo: dogoPhoto,
+    },
   ];
 
   const containerVariants = {
