@@ -3,7 +3,7 @@ import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { OJSRedirectNotice } from "@/components/ojs/OJSRedirectNotice";
 import { getOJSLink } from "@/config/ojs";
-import { FileText, DollarSign, Clock, CheckCircle } from "lucide-react";
+import { FileText, DollarSign, Clock, CheckCircle, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
