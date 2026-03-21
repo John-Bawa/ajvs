@@ -34,6 +34,7 @@ import bhandarePhoto from "@/assets/bhandare.jpg";
 import willsPhoto from "@/assets/wills.jpg";
 import nasinyamaPhoto from "@/assets/nasinyama.jpg";
 import uchenduPhoto from "@/assets/uchendu.jpg";
+import dogoPhoto from "@/assets/dogo.jpg";
 
 const EditorialBoard = () => {
   const editorInChief = {
@@ -285,6 +286,13 @@ const EditorialBoard = () => {
       email: "benemikpegwac@gmail.com",
       phone: "+233549410841",
       photo: emikpePhoto,
+    },
+    {
+      name: "Prof. Abraham Goni Dogo",
+      affiliation: "Director, Africa Centre of Excellence in Phytomedicine Research and Development (ACEPRD), University of Jos, Nigeria",
+      email: "gonidogo@gmail.com",
+      phone: "+234 803 450 1914",
+      photo: dogoPhoto,
     },
   ];
 
