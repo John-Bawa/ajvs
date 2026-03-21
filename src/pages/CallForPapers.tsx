@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import {
   FileText, Share2, BookOpen, CheckCircle, ExternalLink,
   Mail, Globe, Microscope, FlaskConical, Stethoscope, Leaf,
-  Copy, ArrowRight, Send, Users, Award, Link2, CreditCard
+  Copy, ArrowRight, Send, Users, Award, Link2, CreditCard, Download
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
