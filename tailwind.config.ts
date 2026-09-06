@@ -22,9 +22,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Open Sans', 'Inter', 'system-ui', 'sans-serif'],
-        serif: ['Lora', 'Georgia', 'serif'],
-        body: ['Open Sans', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Work Sans', 'system-ui', 'sans-serif'],
+        serif: ['Instrument Serif', 'Georgia', 'serif'],
+        body: ['Work Sans', 'system-ui', 'sans-serif'],
       },
       backdropBlur: {
         xs: '2px',

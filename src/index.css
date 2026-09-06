@@ -160,19 +160,19 @@ Academic Journal Design System - Classic & Scholarly
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-semibold text-foreground;
-    letter-spacing: 0.01em;
+    @apply font-serif font-semibold text-foreground;
+    letter-spacing: 0;
   }
   
   p {
     @apply leading-relaxed;
-    line-height: 1.9;
-    letter-spacing: 0.015em;
+    line-height: 1.75;
+    letter-spacing: 0;
   }
   
   li {
-    line-height: 1.8;
-    letter-spacing: 0.01em;
+    line-height: 1.75;
+    letter-spacing: 0;
   }
   
   /* Fonts loaded via index.html <link> tags for optimal performance */
