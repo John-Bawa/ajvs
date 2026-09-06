@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
@@ -101,6 +101,7 @@ const Index = () => {
       {/* Call for Papers Popup */}
       <Dialog open={showCallForPapers} onOpenChange={(open) => { if (!open) dismissPopup(); }}>
         <DialogContent className="sm:max-w-md p-0 overflow-hidden border-none bg-transparent shadow-2xl">
+          <DialogTitle className="sr-only">AJVS Call for Papers</DialogTitle>
           <Link to="/call-for-papers" onClick={dismissPopup} className="block">
             <img 
               src="/call-for-papers-flyer.jpg" 
