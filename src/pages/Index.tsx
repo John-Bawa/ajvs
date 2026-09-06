@@ -26,6 +26,7 @@ import { NewsletterSignup } from "@/components/home/NewsletterSignup";
 import { PreviousIssuesSection } from "@/components/home/PreviousIssuesSection";
 import { AcademicCalendar } from "@/components/home/AcademicCalendar";
 import { StatsCounter } from "@/components/home/StatsCounter";
+import { ScholarlyOverview } from "@/components/home/ScholarlyOverview";
 
 const Index = () => {
   const [showCallForPapers, setShowCallForPapers] = useState(false);
@@ -121,9 +122,10 @@ const Index = () => {
           </div>
         </DialogContent>
       </Dialog>
+      <ScholarlyOverview />
       
       {/* Hero Section - Modern Side-by-Side Layout */}
-      <section className="relative bg-gradient-to-br from-secondary via-background to-secondary/50 py-16 md:py-20 lg:py-24 overflow-hidden">
+      <section className="hidden relative bg-gradient-to-br from-secondary via-background to-secondary/50 py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* Floating gradient orbs for modern feel */}
         <motion.div 
           className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
@@ -386,7 +388,7 @@ const Index = () => {
       </section>
 
       {/* Compact Info Bar */}
-      <section className="bg-secondary/50 border-b border-border">
+      <section className="hidden bg-secondary/50 border-b border-border">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 py-3 text-xs sm:text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
@@ -599,7 +601,7 @@ const Index = () => {
 
 
       {/* Latest Publications & Announcements */}
-      <section className="py-12 sm:py-16 md:py-24">
+      <section className="hidden py-12 sm:py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Latest Publications - 2 columns */}
