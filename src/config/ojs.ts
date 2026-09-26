@@ -26,7 +26,7 @@ export const OJS_ROUTES = {
   REGISTER: `${OJS_BASE_URL}/index.php/ajvs/user/register`,
   
   // Public pages
-  CURRENT_ISSUE: `${OJS_BASE_URL}/index.php/ajvs/issue/current`,
+  CURRENT_ISSUE: `${OJS_BASE_URL}/index.php/ajvs/issue/view/1`,
   ARCHIVES: `${OJS_BASE_URL}/index.php/ajvs/issue/archive`,
   ANNOUNCEMENTS: `${OJS_BASE_URL}/index.php/ajvs/announcement`,
   

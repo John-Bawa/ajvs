@@ -67,8 +67,15 @@ export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: 
     if (!data.hasContent) {
       return null;
     }
-    
-    return null; // No issues published yet
+
+    if (!data.issue || !Array.isArray(data.articles)) {
+      return null;
+    }
+
+    return {
+      issue: data.issue as OJSIssue,
+      articles: data.articles as OJSArticle[],
+    };
   } catch (error) {
     console.error('Error fetching current issue:', error);
     return null;
