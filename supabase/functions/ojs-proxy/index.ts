@@ -6,6 +6,72 @@ const corsHeaders = {
 };
 
 const OJS_BASE_URL = 'https://journal.africanjournalvetsci.org/index.php/ajvs';
+const CURRENT_ISSUE_PATH = '/issue/view/1';
+
+function decodeHtml(value: string): string {
+  const entities: Record<string, string> = {
+    amp: '&', apos: "'", gt: '>', lt: '<', nbsp: ' ', quot: '"',
+  };
+
+  return value
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (_match, entity: string) => {
+      if (entity.startsWith('#x') || entity.startsWith('#X')) {
+        return String.fromCodePoint(parseInt(entity.slice(2), 16));
+      }
+      if (entity.startsWith('#')) {
+        return String.fromCodePoint(parseInt(entity.slice(1), 10));
+      }
+      return entities[entity.toLowerCase()] ?? `&${entity};`;
+    })
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function parseCurrentIssue(html: string) {
+  const descriptionMatch = html.match(/<div[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+  const description = descriptionMatch ? decodeHtml(descriptionMatch[1]) : '';
+  const publishedMatch = html.match(/<p[^>]*class="[^"]*published[^"]*"[^>]*>[\s\S]*?(\d{4}-\d{2}-\d{2})[\s\S]*?<\/p>/i);
+  const headingMatch = html.match(/<li[^>]*class="active"[^>]*>[\s\S]*?(Vol\.[\s\S]*?)<\/li>/i);
+  const coverMatch = html.match(/<img[^>]*class="[^"]*img-responsive[^"]*"[^>]*src="([^"]*cover_issue_[^"]*)"/i);
+  const articleBlocks = html.match(/<div[^>]*class="[^"]*article-summary[^"]*"[^>]*>[\s\S]*?<\/div>\s*<!-- \.article-summary -->/gi) ?? [];
+
+  const articles = articleBlocks.flatMap((block) => {
+    const articleMatch = block.match(/<h3[^>]*class="[^"]*media-heading[^"]*"[^>]*>[\s\S]*?<a[^>]*href="([^"]*\/article\/view\/(\d+))"[^>]*>([\s\S]*?)<\/a>/i);
+    if (!articleMatch) return [];
+
+    const authorsMatch = block.match(/<div[^>]*class="[^"]*authors[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+    const pagesMatch = block.match(/<p[^>]*class="[^"]*pages[^"]*"[^>]*>([\s\S]*?)<\/p>/i);
+    const pdfMatch = block.match(/<a[^>]*class="[^"]*galley-link[^"]*pdf[^"]*"[^>]*href="([^"]+)"/i);
+    const id = Number(articleMatch[2]);
+    const authorText = authorsMatch ? decodeHtml(authorsMatch[1]).replace(/\s*\(Author\)\s*$/i, '') : '';
+
+    return [{
+      id,
+      title: decodeHtml(articleMatch[3]),
+      authors: authorText ? [{ fullName: authorText }] : [],
+      datePublished: publishedMatch?.[1],
+      pages: pagesMatch ? decodeHtml(pagesMatch[1]) : undefined,
+      urlPath: String(id),
+      galleys: pdfMatch ? [{ label: 'PDF', file: { url: pdfMatch[1] } }] : [],
+    }];
+  });
+
+  return {
+    hasContent: articles.length > 0,
+    issue: {
+      id: 1,
+      title: headingMatch ? decodeHtml(headingMatch[1]) : 'Vol. 1 No. 1 (2026): Issue 1',
+      volume: 1,
+      number: '1',
+      year: 2026,
+      datePublished: publishedMatch?.[1],
+      description,
+      coverImageUrl: coverMatch?.[1],
+    },
+    articles,
+  };
+}
 
 /**
  * Parse announcements from OJS HTML page
@@ -69,7 +135,7 @@ serve(async (req) => {
         ojsUrl = `${OJS_BASE_URL}/announcement`;
         break;
       case 'current-issue':
-        ojsUrl = `${OJS_BASE_URL}/issue/current`;
+        ojsUrl = `${OJS_BASE_URL}${CURRENT_ISSUE_PATH}`;
         break;
       case 'issues':
         ojsUrl = `${OJS_BASE_URL}/issue/archive`;
@@ -95,6 +161,8 @@ serve(async (req) => {
 
     if (type === 'announcements') {
       result = { items: parseAnnouncements(html) };
+    } else if (type === 'current-issue') {
+      result = parseCurrentIssue(html);
     } else {
       // For issues, return raw indicator
       const hasNoIssues = html.includes('has not published any issues');

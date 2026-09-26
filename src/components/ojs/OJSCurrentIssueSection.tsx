@@ -24,11 +24,11 @@ export const OJSCurrentIssueSection = () => {
           setIssue(data.issue);
           setArticles(data.articles);
         } else {
-          setError('Unable to load current issue. Please try again later.');
+          setError('The current issue is temporarily unavailable here. You can still view it on the AJVS journal portal.');
         }
       } catch (err) {
         console.error('Error loading current issue:', err);
-        setError('Failed to fetch current issue content.');
+        setError('The current issue is temporarily unavailable here. You can still view it on the AJVS journal portal.');
       } finally {
         setLoading(false);
       }
@@ -45,7 +45,14 @@ export const OJSCurrentIssueSection = () => {
     return (
       <Alert variant="destructive">
         <AlertCircle className="h-4 w-4" />
-        <AlertDescription>{error}</AlertDescription>
+        <AlertDescription className="flex flex-col items-start gap-3">
+          <span>{error}</span>
+          <Button asChild variant="outline" size="sm">
+            <a href={getOJSLink('CURRENT_ISSUE')} target="_blank" rel="noopener noreferrer">
+              View Issue 1 <ExternalLink className="ml-2 h-4 w-4" />
+            </a>
+          </Button>
+        </AlertDescription>
       </Alert>
     );
   }
