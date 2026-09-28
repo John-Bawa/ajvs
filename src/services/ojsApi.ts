@@ -44,9 +44,10 @@ const OJS_BASE_URL = 'https://journal.africanjournalvetsci.org';
  */
 const fetchViaProxy = async (type: string): Promise<Response> => {
   const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
-  const url = `https://${projectId}.supabase.co/functions/v1/ojs-proxy?type=${encodeURIComponent(type)}`;
+  const url = `https://${projectId}.supabase.co/functions/v1/ojs-proxy?type=${encodeURIComponent(type)}&refresh=${Date.now()}`;
   
   return fetch(url, {
+    cache: 'no-store',
     headers: { 'Accept': 'application/json' },
   });
 };
