@@ -22,7 +22,11 @@ const getFirstPageNumber = (pages?: string): number => {
   return firstNumber ? Number.parseInt(firstNumber, 10) : Number.MAX_SAFE_INTEGER;
 };
 
-export const OJSCurrentIssueSection = () => {
+interface OJSCurrentIssueSectionProps {
+  compact?: boolean;
+}
+
+export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSectionProps) => {
   const [issue, setIssue] = useState<OJSIssue | null>(null);
   const [articles, setArticles] = useState<OJSArticle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,7 +65,9 @@ export const OJSCurrentIssueSection = () => {
 
   const totalPages = Math.ceil(articles.length / ARTICLES_PER_PAGE);
   const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
-  const visibleArticles = articles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
+  const visibleArticles = compact
+    ? articles.slice(0, 5)
+    : articles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
 
   const goToPage = (page: number) => {
     setCurrentPage(Math.min(Math.max(page, 1), totalPages));
@@ -88,10 +94,10 @@ export const OJSCurrentIssueSection = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Issue Header */}
       {issue && (
-        <div className="bg-card/50 rounded-lg p-6 border border-border/50">
+        <div className="border-b border-border bg-secondary/25 p-5">
           <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
             <div>
               <h3 className="text-2xl font-serif font-bold mb-2">
@@ -122,16 +128,16 @@ export const OJSCurrentIssueSection = () => {
         <>
           <div className="flex flex-col gap-1 border-b border-border pb-3 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
             <span>
-              Showing {startIndex + 1}–{Math.min(startIndex + ARTICLES_PER_PAGE, articles.length)} of {articles.length} articles
+              {compact ? `Showing 1–${visibleArticles.length} of ${articles.length} articles` : `Showing ${startIndex + 1}–${Math.min(startIndex + ARTICLES_PER_PAGE, articles.length)} of ${articles.length} articles`}
             </span>
             <span>Ordered by page number</span>
           </div>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="divide-y divide-border border-b border-border">
             {visibleArticles.map((article, index) => (
               <OJSArticleCard key={article.id} article={article} index={index} />
             ))}
           </div>
-          {totalPages > 1 && (
+          {!compact && totalPages > 1 && (
             <Pagination aria-label="Current issue article pages">
               <PaginationContent className="flex-wrap justify-center">
                 <PaginationItem>
