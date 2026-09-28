@@ -1,6 +1,6 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Shield, FileCheck, Users, Database, AlertTriangle } from "lucide-react";
 
@@ -18,21 +18,12 @@ const Policies = () => {
         ]}
       />
       <Header />
-      <Breadcrumbs />
       
-      <main className="flex-1 py-16">
+      <PageHero eyebrow="Standards" title="Journal Policies" description="Ethical standards and publication policies guiding AJVS." />
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              Journal Policies
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Ethical standards and publication policies guiding AJVS
-            </p>
-          </div>
-
           {/* Publication Ethics */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                 <Shield className="w-6 h-6 text-primary" />
@@ -119,7 +110,7 @@ const Policies = () => {
           </div>
 
           {/* Plagiarism Policy */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
                 <FileCheck className="w-6 h-6 text-accent dark:text-accent" />
@@ -182,7 +173,7 @@ const Policies = () => {
           </div>
 
           {/* Authorship Policy */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                 <Users className="w-6 h-6 text-primary" />
@@ -224,7 +215,7 @@ const Policies = () => {
           </div>
 
           {/* Data Availability */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
                 <Database className="w-6 h-6 text-accent dark:text-accent" />
@@ -259,7 +250,7 @@ const Policies = () => {
           </div>
 
           {/* Conflict of Interest */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                 <AlertTriangle className="w-6 h-6 text-primary" />
@@ -298,7 +289,7 @@ const Policies = () => {
           </div>
 
           {/* Copyright and Licensing */}
-          <div className="glass rounded-2xl p-8 md:p-12">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12">
             <h2 className="text-2xl font-serif font-bold mb-4">Copyright and Licensing</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               AJVS operates under an open-access model. Published articles are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0), allowing free use with proper attribution.

@@ -1,6 +1,6 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { BookOpen, Target, Globe, Award } from "lucide-react";
 import { motion } from "framer-motion";
@@ -20,22 +20,14 @@ const About = () => {
         ]}
       />
       <Header />
-      <Breadcrumbs />
 
-      <main className="flex-1 py-16">
+      <PageHero eyebrow="The journal" title="About AJVS" description="Advancing veterinary research and practice across Africa and beyond." />
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="mb-16 text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">About AJVS</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl">
-              African Journal of Veterinary Sciences — Advancing veterinary research and practice across Africa and
-              beyond
-            </p>
-          </div>
-
           {/* Main Content */}
           <div className="space-y-12">
             {/* Mission Card */}
-            <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
+            <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                   <Target className="w-6 h-6 text-primary" />
@@ -54,7 +46,7 @@ const About = () => {
             </div>
 
             {/* Scope Card */}
-            <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
+            <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
                   <BookOpen className="w-6 h-6 text-accent" />
@@ -124,7 +116,7 @@ const About = () => {
             </div>
 
             {/* Editorial Policy Card */}
-            <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
+            <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                   <Globe className="w-6 h-6 text-primary" />
@@ -172,7 +164,7 @@ const About = () => {
             </div>
 
             {/* Indexing Goals Card */}
-            <div className="glass rounded-2xl p-8 md:p-12 hover-lift">
+            <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 hover-lift">
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
                   <Award className="w-6 h-6 text-accent" />
@@ -207,7 +199,7 @@ const About = () => {
             </div>
 
             {/* University Affiliation */}
-            <div className="glass rounded-2xl p-8 md:p-12 text-center">
+            <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 text-center">
               <h2 className="text-2xl font-serif font-bold mb-4">Published By</h2>
               <p className="text-lg text-muted-foreground mb-2">Faculty of Veterinary Medicine</p>
               <p className="text-xl font-semibold text-primary">University of Jos, Nigeria</p>
@@ -218,7 +210,7 @@ const About = () => {
             </div>
 
             {/* Contact Information */}
-            <div className="glass rounded-2xl p-8 md:p-12">
+            <div className="glass rounded-2xl p-5 sm:p-8 md:p-12">
               <h2 className="text-2xl font-serif font-bold mb-6 text-center">Contact Information</h2>
               <div className="max-w-2xl mx-auto">
                 <p className="text-muted-foreground mb-4">All correspondences to the Editorial office,</p>

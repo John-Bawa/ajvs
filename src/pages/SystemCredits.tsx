@@ -1,3 +1,4 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SEOHead } from "./SEOHead";
@@ -43,23 +44,9 @@ const SystemCredits = () => {
       />
       <Header />
 
-      <main className="flex-1 py-16">
+      <PageHero eyebrow="Attribution" title="System Credits" description="Platform development and technical attribution." />
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
-          {/* Page Title */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
-            <h1 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-3">
-              System Credits
-            </h1>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Platform development & technical attribution
-            </p>
-          </motion.div>
-
           {/* Section 1 — Platform Overview */}
           <motion.section
             custom={0}

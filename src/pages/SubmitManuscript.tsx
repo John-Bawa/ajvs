@@ -1,3 +1,4 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
@@ -12,16 +13,9 @@ const SubmitManuscript = () => {
     <div className="min-h-screen flex flex-col bg-gradient-hero">
       <TopBar />
       <Header />
-      <main className="flex-1 py-16">
+      <PageHero eyebrow="Publish with us" title="Submit Your Manuscript" description="Review important information before submitting to AJVS." />
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
-          {/* Before You Submit Section */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Submit Your Manuscript</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Review important information before submitting to AJVS
-            </p>
-          </div>
-
           {/* Quick Info Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="glass rounded-xl p-6 hover-lift">
@@ -53,7 +47,7 @@ const SubmitManuscript = () => {
           </div>
 
           {/* Submission Requirements */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-6">Submission Requirements</h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3">

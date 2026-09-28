@@ -17,6 +17,7 @@ import {
   Quote,
   Mail,
 } from "lucide-react";
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
@@ -118,32 +119,8 @@ const FAQ = () => {
       <TopBar />
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
-        
-        <div className="container relative z-10 max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-4"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-              <BookOpen className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Help Center</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Frequently Asked Questions
-            </h1>
-            
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Find answers to common questions about the African Journal of Veterinary Sciences
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHero eyebrow="Help centre" title="Frequently Asked Questions" description="Find answers to common questions about the African Journal of Veterinary Sciences." />
+
 
       {/* FAQ Section */}
       <section className="py-12 md:py-16">
