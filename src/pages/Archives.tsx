@@ -11,6 +11,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { OJSArticleCard } from "@/components/ojs/OJSArticleCard";
+import { ResearchFinder } from "@/components/ojs/ResearchFinder";
 import { fetchArchive, OJSArchiveIssue, OJSArticle } from "@/services/ojsApi";
 import { getOJSLink } from "@/config/ojs";
 import { AlertCircle, Clock3, ExternalLink, Search, SlidersHorizontal } from "lucide-react";
@@ -93,6 +94,8 @@ const Archives = () => {
             <h1 className="font-serif text-4xl font-bold sm:text-5xl">Journal Archive</h1>
             <p className="mt-3 text-lg text-muted-foreground">Search published articles by title or author, then narrow the results by year and issue.</p>
           </header>
+
+          <ResearchFinder />
 
           {loading ? (
             <div className="flex min-h-64 items-center justify-center"><LoadingSpinner /></div>
