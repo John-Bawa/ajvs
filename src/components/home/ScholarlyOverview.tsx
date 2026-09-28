@@ -18,20 +18,6 @@ const journalLinks = [
 export function ScholarlyOverview() {
   return (
     <>
-      <section className="border-b border-border bg-primary text-primary-foreground">
-        <div className="container mx-auto flex flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-2 text-xs sm:px-6">
-          <div className="flex flex-wrap gap-x-5 gap-y-1 text-primary-foreground/75">
-            <span>e-ISSN 3043-4246</span>
-            <span>Open Access</span>
-            <span>Published twice yearly</span>
-          </div>
-          <div className="flex items-center gap-4 font-medium">
-            <Link to="/for-authors" className="hover:text-accent">For Authors</Link>
-            <Link to="/policies" className="hover:text-accent">For Reviewers</Link>
-            <a href={getOJSLink("LOGIN")} className="hover:text-accent">Journal Login</a>
-          </div>
-        </div>
-      </section>
 
       <section className="relative isolate overflow-hidden border-b border-border bg-primary text-primary-foreground">
         <img
