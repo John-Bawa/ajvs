@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { ExternalLink, AlertCircle } from "lucide-react";
+import { ExternalLink, AlertCircle, Clock3, RefreshCw } from "lucide-react";
 import { fetchCurrentIssue, OJSArticle, OJSIssue } from "@/services/ojsApi";
 import { OJSArticleCard } from "./OJSArticleCard";
 import { getOJSLink } from "@/config/ojs";
@@ -32,9 +32,9 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [syncedAt, setSyncedAt] = useState<string | null>(null);
 
-  useEffect(() => {
-    const loadCurrentIssue = async () => {
+  const loadCurrentIssue = async () => {
       try {
         setLoading(true);
         setError(null);
@@ -49,17 +49,19 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
             }),
           );
           setCurrentPage(1);
+          setSyncedAt(data.syncedAt);
         } else {
-          setError('The current issue is temporarily unavailable here. You can still view it on the AJVS journal portal.');
+          setError('We could not refresh the current issue from OJS. The official issue remains available on the AJVS journal portal.');
         }
       } catch (err) {
         console.error('Error loading current issue:', err);
-        setError('The current issue is temporarily unavailable here. You can still view it on the AJVS journal portal.');
+        setError('We could not refresh the current issue from OJS. The official issue remains available on the AJVS journal portal.');
       } finally {
         setLoading(false);
       }
-    };
+  };
 
+  useEffect(() => {
     loadCurrentIssue();
   }, []);
 
@@ -79,15 +81,23 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
 
   if (error) {
     return (
-      <Alert variant="destructive">
+      <Alert className="border-highlight/50 bg-highlight/10 text-foreground [&>svg]:text-highlight-foreground">
         <AlertCircle className="h-4 w-4" />
-        <AlertDescription className="flex flex-col items-start gap-3">
-          <span>{error}</span>
-          <Button asChild variant="outline" size="sm">
-            <a href={getOJSLink('CURRENT_ISSUE')} target="_blank" rel="noopener noreferrer">
-              View Issue 1 <ExternalLink className="ml-2 h-4 w-4" />
-            </a>
-          </Button>
+        <AlertDescription className="space-y-3">
+          <div>
+            <p className="font-semibold text-foreground">Current issue refresh unavailable</p>
+            <p className="mt-1 text-muted-foreground">{error}</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Button asChild variant="outline" size="sm">
+              <a href={getOJSLink('CURRENT_ISSUE')} target="_blank" rel="noopener noreferrer">
+                View Issue 1 on OJS <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button type="button" variant="ghost" size="sm" onClick={loadCurrentIssue}>
+              <RefreshCw className="h-4 w-4" /> Try again
+            </Button>
+          </div>
         </AlertDescription>
       </Alert>
     );
@@ -109,6 +119,15 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
+                  })}
+                </p>
+              )}
+              {syncedAt && (
+                <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground" title={new Date(syncedAt).toLocaleString()}>
+                  <Clock3 className="h-3.5 w-3.5" />
+                  Last synced from OJS: {new Date(syncedAt).toLocaleString(undefined, {
+                    dateStyle: 'medium',
+                    timeStyle: 'short',
                   })}
                 </p>
               )}

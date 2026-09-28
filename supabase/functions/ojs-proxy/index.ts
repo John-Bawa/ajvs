@@ -65,6 +65,7 @@ function parseCurrentIssue(html: string) {
 
   return {
     hasContent: articles.length > 0,
+    syncedAt: new Date().toISOString(),
     issue: {
       id: 1,
       title: headingMatch ? decodeHtml(headingMatch[1]) : 'Vol. 1 No. 1 (2026): Issue 1',
