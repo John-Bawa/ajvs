@@ -55,7 +55,13 @@ const fetchViaProxy = async (type: string): Promise<Response> => {
 /**
  * Fetch current issue info from OJS
  */
-export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: OJSArticle[] } | null> => {
+export interface OJSCurrentIssueData {
+  issue: OJSIssue;
+  articles: OJSArticle[];
+  syncedAt: string;
+}
+
+export const fetchCurrentIssue = async (): Promise<OJSCurrentIssueData | null> => {
   try {
     const response = await fetchViaProxy('current-issue');
     
@@ -76,6 +82,7 @@ export const fetchCurrentIssue = async (): Promise<{ issue: OJSIssue; articles: 
     return {
       issue: data.issue as OJSIssue,
       articles: data.articles as OJSArticle[],
+      syncedAt: typeof data.syncedAt === 'string' ? data.syncedAt : new Date().toISOString(),
     };
   } catch (error) {
     console.error('Error fetching current issue:', error);
