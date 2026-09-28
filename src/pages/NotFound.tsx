@@ -31,7 +31,7 @@ const NotFound = () => {
           </div>
         </Link>
 
-        <div className="glass rounded-2xl p-8 md:p-12 mb-6">
+        <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-6">
           <h1 className="mb-4 text-6xl font-bold text-primary">404</h1>
           <h2 className="mb-2 text-2xl font-semibold">Page Not Found</h2>
           <p className="mb-6 text-muted-foreground">

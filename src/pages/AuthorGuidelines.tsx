@@ -26,7 +26,7 @@ const AuthorGuidelines = () => {
       <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
           {/* About the Journal */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                 <BookOpen className="w-6 h-6 text-primary" />
@@ -41,7 +41,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Scope */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Scope of the Journal</h2>
             <p className="text-muted-foreground mb-4">
               African Journal of Veterinary Sciences aims to promote the contributions of the veterinary profession and biomedical sciences in the African continent to the global hub of scientific knowledge. This objective will be achieved via publishing of original research work and articles in all aspects of veterinary, biomedical and animal sciences whose contents are novel or tailored towards contributing to scientific knowledge with high impacts and of global importance.
@@ -52,7 +52,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Open Access Policy */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Open Access Policy</h2>
             <p className="text-muted-foreground">
               This journal provides immediate open access of its content on the principle that making research freely available to the public supports a greater global exchange of knowledge. However, the authors retain copyright of their work through a Creative Commons attribution license that clearly states how readers can copy, distribute, and use their attributed research, free of charge.
@@ -60,7 +60,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Publication Schedule */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
                 <Clock className="w-6 h-6 text-accent" />
@@ -75,7 +75,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Editorial Policy */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Editorial Policy</h2>
             <p className="text-muted-foreground mb-4">
               African Journal of Veterinary Sciences has a distinguished Editorial Board made up of leading professionals in the fields of veterinary and biomedical sciences from around the world. All the manuscripts submitted to AJVS are subjected to a blind peer-review process. Moreover, with the presence of a robust base of international reviewers, the process of decision making on the acceptance/rejection of all submitted manuscripts will be done rapidly and to the highest standards.
@@ -86,7 +86,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Ethical Guidelines */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                 <Shield className="w-6 h-6 text-primary" />
@@ -140,7 +140,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* General Requirements */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">General Requirements</h2>
             <p className="text-muted-foreground mb-4">
               All submitted manuscripts should contain original research written in English Language with the understanding that it has not been previously published nor is it under consideration for publication elsewhere. Manuscripts may be submitted for consideration as original research papers, case report, short communications, reviews and clinical data report that are relevant to the field of veterinary and biomedical sciences.
@@ -151,7 +151,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Instructions for Authors */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-6">Instructions for Authors</h2>
             
             <div className="space-y-6">
@@ -179,7 +179,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Manuscript Preparation and Submission */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-accent/20 dark:bg-accent/30 flex items-center justify-center">
                 <CheckCircle className="w-5 h-5 text-accent" />
@@ -291,7 +291,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Plagiarism Assessment */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Plagiarism Assessment</h2>
             <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
               <p className="text-muted-foreground">
@@ -301,7 +301,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Ethical Guidelines Section */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Ethical Guidelines</h2>
             <p className="text-muted-foreground mb-4">
               Submissions involving research conducted on human or animals must meet the highest standards regarding both the ethical consideration given and reporting of the procedures followed. All reported research involving humans or other animals must be approved by an institutional ethics committee prior to commencement of the study. Secondary use of data, also requires ethical approval. The name of the approving body and a reference number (if provided) must be included in the Methods section of the manuscript.
@@ -309,7 +309,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Submission for Consideration */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Submission of Manuscripts for Consideration</h2>
             <p className="text-muted-foreground">
               Manuscripts for peer review must be submitted through to the editorial office via email or the journal online management system. Please ensure that you have complied with the guidelines and completed the Publishing Agreement before you start the submission process. Submissions that are incomplete or do not comply with the instructions will be returned.
@@ -317,7 +317,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Peer Review Process */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                 <Users className="w-6 h-6 text-primary" />
@@ -335,7 +335,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Handling and Page Charges */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 rounded-xl bg-accent/20 dark:bg-accent/30 flex items-center justify-center flex-shrink-0">
                 <DollarSign className="w-6 h-6 text-accent" />
@@ -363,7 +363,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Subscription and Advertisement Rates */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-6">Subscription and Advertisement Rates</h2>
             
             <div className="grid md:grid-cols-2 gap-6">
@@ -403,7 +403,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Payment Information */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Payment Information</h2>
             <p className="text-muted-foreground mb-4">Payments can be made into:</p>
             <div className="p-6 bg-secondary/50 rounded-lg">
@@ -416,7 +416,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Accepted Manuscript */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Accepted Manuscript</h2>
             <div className="p-4 bg-secondary/50 rounded-lg">
               <h3 className="font-semibold mb-2">Galley Proof</h3>
@@ -427,7 +427,7 @@ const AuthorGuidelines = () => {
           </div>
 
           {/* Correspondence */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center flex-shrink-0">
                 <Mail className="w-6 h-6 text-primary" />

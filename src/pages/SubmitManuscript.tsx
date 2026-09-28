@@ -47,7 +47,7 @@ const SubmitManuscript = () => {
           </div>
 
           {/* Submission Requirements */}
-          <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
+          <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-6">Submission Requirements</h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
