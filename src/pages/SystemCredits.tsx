@@ -45,7 +45,7 @@ const SystemCredits = () => {
       <Header />
 
       <PageHero eyebrow="Attribution" title="System Credits" description="Platform development and technical attribution." />
-      <main className="flex-1 py-16">
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
           {/* Section 1 — Platform Overview */}
           <motion.section

@@ -13,7 +13,7 @@ const Auth = () => {
       <TopBar />
       <Header />
 
-      <main className="flex-1 py-12">
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-2xl">
           <Card className="shadow-elegant">
             <CardHeader>

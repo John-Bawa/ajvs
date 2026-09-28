@@ -20,7 +20,7 @@ const Policies = () => {
       <Header />
       
       <PageHero eyebrow="Standards" title="Journal Policies" description="Ethical standards and publication policies guiding AJVS." />
-      <main className="flex-1 py-16">
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
           {/* Publication Ethics */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">

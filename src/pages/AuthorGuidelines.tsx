@@ -23,7 +23,7 @@ const AuthorGuidelines = () => {
       <Header />
       
       <PageHero eyebrow="For authors" title="Authors' Guidelines" description="Comprehensive guidelines for preparing and submitting manuscripts to the African Journal of Veterinary Sciences." />
-      <main className="flex-1 py-16">
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
           {/* About the Journal */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">

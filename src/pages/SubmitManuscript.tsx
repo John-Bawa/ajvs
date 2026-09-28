@@ -14,7 +14,7 @@ const SubmitManuscript = () => {
       <TopBar />
       <Header />
       <PageHero eyebrow="Publish with us" title="Submit Your Manuscript" description="Review important information before submitting to AJVS." />
-      <main className="flex-1 py-16">
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-5xl">
           {/* Quick Info Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">

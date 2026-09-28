@@ -340,7 +340,7 @@ const EditorialBoard = () => {
       <Header />
 
       <PageHero eyebrow="Leadership" title="Editorial Board" description="Distinguished scholars guiding excellence in biomedical, environmental and veterinary sciences." />
-      <main className="flex-1 py-16 md:py-20">
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Section A: Contact Information */}
           <motion.div

@@ -90,7 +90,7 @@ export default function Contact() {
       <Header />
 
       <PageHero eyebrow="Editorial office" title="Contact Us" description="Have questions? Get in touch with our editorial team." />
-      <main className="flex-1 py-12">
+      <main className="flex-1 py-10 sm:py-14">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
             <Card>
