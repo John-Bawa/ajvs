@@ -120,8 +120,8 @@ const SystemCredits = () => {
               <CardContent className="p-0">
                 <div className="flex flex-col md:flex-row">
                   {/* Profile Card */}
-                  <div className="md:w-72 bg-primary text-primary-foreground p-8 flex flex-col items-center text-center shrink-0">
-                    <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-primary-foreground/20 mb-5">
+                  <div className="md:w-72 bg-banner text-banner-foreground p-8 flex flex-col items-center text-center shrink-0">
+                    <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-banner-foreground/20 mb-5">
                       <img
                         src={johnBawaImg}
                         alt="John Dauda Bawa"
@@ -129,13 +129,13 @@ const SystemCredits = () => {
                       />
                     </div>
                     <h3 className="text-lg font-serif font-bold">John Dauda Bawa</h3>
-                    <p className="text-primary-foreground/70 text-sm mt-1">
+                    <p className="text-banner-foreground/70 text-sm mt-1">
                       Web Developer · Web Designer · Data Analyst
                     </p>
-                    <span className="mt-4 inline-block text-xs uppercase tracking-wider bg-primary-foreground/10 px-3 py-1 rounded-full">
+                    <span className="mt-4 inline-block text-xs uppercase tracking-wider bg-banner-foreground/10 px-3 py-1 rounded-full">
                       Lead Platform Developer
                     </span>
-                    <span className="text-primary-foreground/60 text-xs mt-2">
+                    <span className="text-banner-foreground/60 text-xs mt-2">
                       African Journal of Veterinary Science
                     </span>
                   </div>

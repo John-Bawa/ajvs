@@ -118,12 +118,12 @@ const Index = () => (
 
       <AcademicCalendar />
 
-      <section className="border-t border-border bg-primary py-10 text-primary-foreground">
+      <section className="border-t border-border bg-banner py-10 text-banner-foreground">
         <div className="container mx-auto flex flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
             <p className="mb-2 text-xs font-bold uppercase text-accent">Call for papers</p>
-            <h2 className="font-serif text-3xl font-semibold text-primary-foreground">Share your research with AJVS</h2>
-            <p className="mt-3 text-sm text-primary-foreground/75">Review the current call, prepare your manuscript, and submit through the official journal portal.</p>
+            <h2 className="font-serif text-3xl font-semibold text-banner-foreground">Share your research with AJVS</h2>
+            <p className="mt-3 text-sm text-banner-foreground/75">Review the current call, prepare your manuscript, and submit through the official journal portal.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="secondary" className="rounded-sm"><Link to="/call-for-papers"><FileText /> View call for papers</Link></Button>
