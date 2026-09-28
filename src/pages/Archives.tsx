@@ -1,273 +1,138 @@
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search, Calendar, BookOpen, Download, ExternalLink, AlertCircle } from "lucide-react";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import TopBar from "@/components/layout/TopBar";
 import { SEOHead } from "./SEOHead";
-import { fetchAllIssues, fetchIssueArticles, OJSArticle, OJSIssue, getArticleUrl, getArticlePdfUrl } from "@/services/ojsApi";
-import DOMPurify from "dompurify";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { LoadingSpinner } from "@/components/ui/loading-spinner";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { OJSArticleCard } from "@/components/ojs/OJSArticleCard";
+import { fetchArchive, OJSArchiveIssue, OJSArticle } from "@/services/ojsApi";
+import { getOJSLink } from "@/config/ojs";
+import { AlertCircle, Clock3, ExternalLink, Search, SlidersHorizontal } from "lucide-react";
+
+const ARTICLES_PER_PAGE = 12;
+
+type ArchiveEntry = {
+  article: OJSArticle;
+  issue: OJSArchiveIssue["issue"];
+};
 
 const Archives = () => {
-  const [issues, setIssues] = useState<OJSIssue[]>([]);
-  const [articlesMap, setArticlesMap] = useState<Map<number, OJSArticle[]>>(new Map());
-  const [searchTerm, setSearchTerm] = useState("");
+  const [archiveIssues, setArchiveIssues] = useState<OJSArchiveIssue[]>([]);
+  const [query, setQuery] = useState("");
+  const [year, setYear] = useState("all");
+  const [issueId, setIssueId] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [syncedAt, setSyncedAt] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(false);
+
+  const loadArchive = async () => {
+    setLoading(true);
+    setError(false);
+    const data = await fetchArchive();
+    if (data) {
+      setArchiveIssues(data.issues);
+      setSyncedAt(data.syncedAt);
+    } else {
+      setError(true);
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
-    fetchArchives();
+    loadArchive();
   }, []);
 
-  const fetchArchives = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      // Fetch all issues from OJS
-      const issuesData = await fetchAllIssues();
-      
-      if (!issuesData || issuesData.length === 0) {
-        setError('No archived issues available yet. Please check back soon.');
-        setLoading(false);
-        return;
-      }
+  const years = useMemo(() => Array.from(new Set(archiveIssues.map(({ issue }) => issue.year).filter((value): value is number => Boolean(value)))).sort((a, b) => b - a), [archiveIssues]);
 
-      setIssues(issuesData);
+  const entries = useMemo<ArchiveEntry[]>(() => archiveIssues.flatMap(({ issue, articles }) => articles.map((article) => ({ article, issue }))), [archiveIssues]);
 
-      // Fetch articles for each issue
-      const articlesPromises = issuesData.map(issue => fetchIssueArticles(issue.id));
-      const articlesResults = await Promise.all(articlesPromises);
-
-      const newArticlesMap = new Map<number, OJSArticle[]>();
-      issuesData.forEach((issue, index) => {
-        newArticlesMap.set(issue.id, articlesResults[index] || []);
-      });
-
-      setArticlesMap(newArticlesMap);
-    } catch (error) {
-      console.error('Error fetching archives:', error);
-      setError('Failed to load archives. Please try again later.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const getFilteredIssuesWithArticles = () => {
-    if (!searchTerm) {
-      return issues.map(issue => ({
-        issue,
-        articles: articlesMap.get(issue.id) || []
-      }));
-    }
-
-    const searchLower = searchTerm.toLowerCase();
-    return issues.map(issue => {
-      const issueArticles = articlesMap.get(issue.id) || [];
-      const filteredArticles = issueArticles.filter(article => {
-        const title = article.title?.toLowerCase() || '';
-        const abstract = article.abstract?.toLowerCase() || '';
-        const authors = article.authors?.map(a => a.fullName).join(' ').toLowerCase() || '';
-        
-        return title.includes(searchLower) || 
-               abstract.includes(searchLower) || 
-               authors.includes(searchLower);
-      });
-
-      return {
-        issue,
-        articles: filteredArticles
-      };
+  const filteredEntries = useMemo(() => {
+    const search = query.trim().toLocaleLowerCase();
+    return entries.filter(({ article, issue }) => {
+      const matchesSearch = !search || article.title.toLocaleLowerCase().includes(search) || article.authors?.some((author) => author.fullName.toLocaleLowerCase().includes(search));
+      const matchesYear = year === "all" || String(issue.year) === year;
+      const matchesIssue = issueId === "all" || String(issue.id) === issueId;
+      return matchesSearch && matchesYear && matchesIssue;
     });
+  }, [entries, issueId, query, year]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredEntries.length / ARTICLES_PER_PAGE));
+  const safePage = Math.min(currentPage, totalPages);
+  const pageEntries = filteredEntries.slice((safePage - 1) * ARTICLES_PER_PAGE, safePage * ARTICLES_PER_PAGE);
+  const hasFilters = Boolean(query || year !== "all" || issueId !== "all");
+
+  const updateFilter = (update: () => void) => {
+    update();
+    setCurrentPage(1);
   };
 
-  const groupedArticles = getFilteredIssuesWithArticles();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-gradient-hero">
-        <TopBar />
-        <Header />
-        <Breadcrumbs />
-        <main className="flex-1 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen flex flex-col bg-gradient-hero">
-        <SEOHead
-          title="Archives"
-          description="Browse all published issues and articles in the AJVS archives. Access peer-reviewed veterinary research publications."
-          canonicalUrl="https://africanjournalvetsci.org/archives"
-        />
-        <TopBar />
-        <Header />
-        <Breadcrumbs />
-        <main className="flex-1 py-16">
-          <div className="container mx-auto px-4 max-w-6xl">
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-                Journal Archives
-              </h1>
-            </div>
-            <Alert variant="destructive" className="glass">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  const clearFilters = () => {
+    setQuery("");
+    setYear("all");
+    setIssueId("all");
+    setCurrentPage(1);
+  };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-hero">
-      <SEOHead
-        title="Archives"
-        description="Browse all published issues and articles in the AJVS archives. Access peer-reviewed veterinary research publications."
-        canonicalUrl="https://africanjournalvetsci.org/archives"
-      />
+    <div className="min-h-screen flex flex-col bg-background">
+      <SEOHead title="Archives" description="Search and browse published AJVS articles by year, issue, and author." canonicalUrl="https://africanjournalvetsci.org/archives" />
       <TopBar />
       <Header />
       <Breadcrumbs />
-      
-      <main className="flex-1 py-16">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              Journal Archives
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Browse all published issues and articles of AJVS
-            </p>
-          </div>
+      <main className="flex-1 py-10 sm:py-14">
+        <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+          <header className="max-w-3xl border-b border-border pb-7">
+            <p className="mb-2 text-sm font-semibold uppercase text-primary">AJVS Publications</p>
+            <h1 className="font-serif text-4xl font-bold sm:text-5xl">Journal Archive</h1>
+            <p className="mt-3 text-lg text-muted-foreground">Search published articles by title or author, then narrow the results by year and issue.</p>
+          </header>
 
-          {/* Search */}
-          <div className="glass rounded-2xl p-6 mb-12">
-            <div className="flex items-center gap-4">
-              <Search className="w-5 h-5 text-muted-foreground" />
-              <Input
-                placeholder="Search by title, author, keywords..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="flex-1 border-0 bg-transparent focus-visible:ring-0"
-              />
-            </div>
-          </div>
-
-          {/* Archives by Issue */}
-          <div className="space-y-8">
-            {groupedArticles.length === 0 ? (
-              <Alert className="glass">
-                <AlertDescription>
-                  {searchTerm 
-                    ? 'No articles found matching your search criteria.' 
-                    : 'No publications available yet. Please check back soon.'}
-                </AlertDescription>
-              </Alert>
-            ) : (
-              groupedArticles.map(({ issue, articles: issueArticles }) => (
-                <div key={issue.id} className="glass rounded-2xl p-8 hover-lift">
-                  <div className="flex items-center justify-between mb-6 pb-6 border-b border-border/50">
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center">
-                        <BookOpen className="w-8 h-8 text-primary" />
-                      </div>
-                      <div>
-                        <h2 className="text-2xl font-serif font-bold">
-                          {issue.title || `Volume ${issue.volume}, Number ${issue.number}`}
-                        </h2>
-                        <div className="flex items-center gap-2 text-muted-foreground mt-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{issue.year || new Date(issue.datePublished || '').getFullYear()}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm text-muted-foreground">Articles</div>
-                      <div className="text-2xl font-bold text-primary">{issueArticles.length}</div>
-                    </div>
-                  </div>
-
-                  {issueArticles.length === 0 ? (
-                    <p className="text-center text-muted-foreground py-8">
-                      No articles published in this issue yet
-                    </p>
-                  ) : (
-                    <div className="space-y-4">
-                      {issueArticles.map((article) => (
-                        <Card key={article.id} className="hover-lift border-border/50">
-                          <CardContent className="p-6">
-                            <h3 className="text-lg font-serif font-bold mb-2">
-                              {article.title}
-                            </h3>
-                            
-                            {article.authors && article.authors.length > 0 && (
-                              <div className="flex flex-wrap gap-2 mb-3">
-                                {article.authors.slice(0, 3).map((author, idx) => (
-                                  <span key={idx} className="text-sm text-muted-foreground">
-                                    {author.fullName}
-                                    {idx < Math.min(article.authors!.length, 3) - 1 && ","}
-                                  </span>
-                                ))}
-                                {article.authors.length > 3 && (
-                                  <span className="text-sm text-muted-foreground italic">
-                                    et al.
-                                  </span>
-                                )}
-                              </div>
-                            )}
-
-                            {article.abstract && (
-                              <div 
-                                className="text-sm text-muted-foreground line-clamp-2 mb-4"
-                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.abstract) }}
-                              />
-                            )}
-
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                                {article.pages && <span>Pages: {article.pages}</span>}
-                                {article.doi && <span>DOI: {article.doi}</span>}
-                              </div>
-                              <div className="flex gap-2">
-                                <Button variant="outline" size="sm" asChild>
-                                  <a href={getArticleUrl(article)} target="_blank" rel="noopener noreferrer">
-                                    View <ExternalLink className="ml-1 w-3 h-3" />
-                                  </a>
-                                </Button>
-                                {getArticlePdfUrl(article) && (
-                                  <Button size="sm" className="gap-2" asChild>
-                                    <a href={getArticlePdfUrl(article)!} target="_blank" rel="noopener noreferrer">
-                                      <Download className="w-4 h-4" />
-                                      PDF
-                                    </a>
-                                  </Button>
-                                )}
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  )}
+          {loading ? (
+            <div className="flex min-h-64 items-center justify-center"><LoadingSpinner /></div>
+          ) : error ? (
+            <Alert className="mt-8 border-highlight/50 bg-highlight/10 text-foreground [&>svg]:text-highlight-foreground">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription className="space-y-3">
+                <div><p className="font-semibold text-foreground">Archive refresh unavailable</p><p className="mt-1 text-muted-foreground">We could not retrieve the archive from OJS. The official AJVS archive remains available on the journal portal.</p></div>
+                <div className="flex flex-wrap gap-2"><Button asChild variant="outline" size="sm"><a href={getOJSLink("ARCHIVES")} target="_blank" rel="noopener noreferrer">Open OJS archive <ExternalLink className="ml-2 h-4 w-4" /></a></Button><Button type="button" variant="ghost" size="sm" onClick={loadArchive}>Try again</Button></div>
+              </AlertDescription>
+            </Alert>
+          ) : (
+            <>
+              <section aria-label="Archive filters" className="mt-8 border-y border-border bg-secondary/25 py-5">
+                <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_180px_240px_auto] md:items-end">
+                  <label className="space-y-2"><span className="text-sm font-semibold">Title or author</span><span className="relative block"><Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" /><Input value={query} onChange={(event) => updateFilter(() => setQuery(event.target.value))} placeholder="Search published articles" className="pl-9" /></span></label>
+                  <label className="space-y-2"><span className="text-sm font-semibold">Year</span><Select value={year} onValueChange={(value) => updateFilter(() => setYear(value))}><SelectTrigger><SelectValue placeholder="All years" /></SelectTrigger><SelectContent><SelectItem value="all">All years</SelectItem>{years.map((item) => <SelectItem key={item} value={String(item)}>{item}</SelectItem>)}</SelectContent></Select></label>
+                  <label className="space-y-2"><span className="text-sm font-semibold">Issue</span><Select value={issueId} onValueChange={(value) => updateFilter(() => setIssueId(value))}><SelectTrigger><SelectValue placeholder="All issues" /></SelectTrigger><SelectContent><SelectItem value="all">All issues</SelectItem>{archiveIssues.map(({ issue }) => <SelectItem key={issue.id} value={String(issue.id)}>{issue.title || `Volume ${issue.volume}, Number ${issue.number}`}</SelectItem>)}</SelectContent></Select></label>
+                  <Button type="button" variant="outline" onClick={clearFilters} disabled={!hasFilters}><SlidersHorizontal className="mr-2 h-4 w-4" />Reset</Button>
                 </div>
-              ))
-            )}
-          </div>
+              </section>
+
+              <div className="flex flex-col gap-2 border-b border-border py-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+                <p><span className="font-semibold text-foreground">{filteredEntries.length}</span> {filteredEntries.length === 1 ? "article" : "articles"} found</p>
+                {syncedAt && <p className="flex items-center gap-1.5"><Clock3 className="h-3.5 w-3.5" />Last synced from OJS: {new Date(syncedAt).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}</p>}
+              </div>
+
+              {pageEntries.length ? (
+                <div className="divide-y divide-border border-b border-border">
+                  {pageEntries.map(({ article, issue }, index) => <div key={`${issue.id}-${article.id}`}><p className="pt-5 text-xs font-semibold uppercase text-muted-foreground">{issue.title || `Volume ${issue.volume}, Number ${issue.number}`} · {issue.year}</p><OJSArticleCard article={article} index={(safePage - 1) * ARTICLES_PER_PAGE + index} /></div>)}
+                </div>
+              ) : (
+                <Alert className="mt-6"><AlertDescription><p className="font-semibold">No matching articles</p><p className="mt-1 text-muted-foreground">Try a different title, author, year, or issue.</p>{hasFilters && <Button type="button" variant="link" className="mt-2 h-auto p-0" onClick={clearFilters}>Clear all filters</Button>}</AlertDescription></Alert>
+              )}
+
+              {totalPages > 1 && <Pagination className="mt-8" aria-label="Archive result pages"><PaginationContent className="flex-wrap"><PaginationItem><PaginationPrevious href="#" aria-disabled={safePage === 1} className={safePage === 1 ? "pointer-events-none opacity-50" : undefined} onClick={(event) => { event.preventDefault(); setCurrentPage(safePage - 1); }} /></PaginationItem>{Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => <PaginationItem key={page}><PaginationLink href="#" isActive={page === safePage} aria-label={`Show archive page ${page}`} onClick={(event) => { event.preventDefault(); setCurrentPage(page); }}>{page}</PaginationLink></PaginationItem>)}<PaginationItem><PaginationNext href="#" aria-disabled={safePage === totalPages} className={safePage === totalPages ? "pointer-events-none opacity-50" : undefined} onClick={(event) => { event.preventDefault(); setCurrentPage(safePage + 1); }} /></PaginationItem></PaginationContent></Pagination>}
+            </>
+          )}
         </div>
       </main>
-
       <Footer />
     </div>
   );
