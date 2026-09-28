@@ -188,13 +188,13 @@ const CallForPapers = () => {
       <main className="min-h-screen bg-background">
 
         {/* ── Hero ─────────────────────────────────────────────────── */}
-        <section className="relative bg-primary overflow-hidden">
+        <section className="relative bg-banner overflow-hidden">
           <div className="absolute top-0 left-0 right-0 h-1 bg-highlight" />
           <div
             className="absolute inset-0 opacity-[0.035]"
             style={{
-              backgroundImage: `linear-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px),
-                                linear-gradient(90deg, hsl(var(--primary-foreground)) 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(hsl(var(--banner-foreground)) 1px, transparent 1px),
+                                linear-gradient(90deg, hsl(var(--banner-foreground)) 1px, transparent 1px)`,
               backgroundSize: "48px 48px",
             }}
           />
@@ -222,17 +222,17 @@ const CallForPapers = () => {
                     </span>
                   </div>
 
-                  <h1 className="text-4xl sm:text-5xl font-serif font-bold text-primary-foreground leading-tight mb-3">
+                  <h1 className="text-4xl sm:text-5xl font-serif font-bold text-banner-foreground leading-tight mb-3">
                     Call for Papers
                   </h1>
-                  <p className="text-lg text-primary-foreground/70 font-serif mb-1">
+                  <p className="text-lg text-banner-foreground/70 font-serif mb-1">
                     African Journal of Veterinary Sciences
                   </p>
-                  <p className="text-primary-foreground/45 text-xs tracking-wide mb-7">
+                  <p className="text-banner-foreground/45 text-xs tracking-wide mb-7">
                     Volume 1, Issue 1 (2026) &bull; e-ISSN: 3027-0731 &bull; Open Access &bull; Peer Reviewed
                   </p>
 
-                  <p className="text-primary-foreground/75 text-sm sm:text-base leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
+                  <p className="text-banner-foreground/75 text-sm sm:text-base leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
                     The African Journal of Veterinary Sciences (AJVS) invites researchers, academics,
                     clinicians, and industry professionals to submit high-quality manuscripts in veterinary,
                     biomedical, and environmental sciences.
@@ -256,7 +256,7 @@ const CallForPapers = () => {
                   <div className="relative w-full max-w-xs">
                     {/* Decorative frame */}
                     <div className="absolute -inset-2 rounded-2xl border border-highlight/25 opacity-60" />
-                    <div className="absolute -inset-4 rounded-3xl border border-primary-foreground/10 opacity-40" />
+                    <div className="absolute -inset-4 rounded-3xl border border-banner-foreground/10 opacity-40" />
                     <div className="relative rounded-xl overflow-hidden shadow-2xl ring-1 ring-border/20">
                       <img
                         src={FLYER_URL}
@@ -481,9 +481,9 @@ const CallForPapers = () => {
                 className="grid grid-cols-1 md:grid-cols-2 gap-8"
               >
                 {/* How to Submit */}
-                <div className="rounded-xl bg-primary p-8">
-                  <h2 className="text-xl font-serif font-bold text-primary-foreground mb-2">How to Submit</h2>
-                  <p className="text-primary-foreground/65 text-sm leading-relaxed mb-6">
+                <div className="rounded-xl bg-banner p-8">
+                  <h2 className="text-xl font-serif font-bold text-banner-foreground mb-2">How to Submit</h2>
+                  <p className="text-banner-foreground/65 text-sm leading-relaxed mb-6">
                     All manuscripts must be submitted through our online editorial management system.
                     Please read the Author Guidelines carefully before preparing your submission.
                   </p>
@@ -495,7 +495,7 @@ const CallForPapers = () => {
                       </Button>
                     </a>
                     <a href="/for-authors" className="block">
-                      <Button size="sm" variant="outline" className="w-full border-primary-foreground/25 text-primary-foreground hover:bg-primary-foreground/10 rounded-full">
+                      <Button size="sm" variant="outline" className="w-full border-banner-foreground/25 text-banner-foreground hover:bg-banner-foreground/10 rounded-full">
                         <BookOpen className="w-3.5 h-3.5 mr-2" />
                         Author Guidelines
                         <ArrowRight className="w-3.5 h-3.5 ml-auto" />

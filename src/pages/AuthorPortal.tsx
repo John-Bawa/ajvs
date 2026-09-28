@@ -149,7 +149,7 @@ const AuthorPortal = () => {
             asChild
             size="lg"
             variant="outline"
-            className="rounded-sm border-primary-foreground/40 bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20 hover:text-primary-foreground"
+            className="rounded-sm border-banner-foreground/40 bg-banner-foreground/10 text-banner-foreground hover:bg-banner-foreground/20 hover:text-banner-foreground"
           >
             <a href={getOJSLink("AUTHOR_DASHBOARD")} target="_blank" rel="noopener noreferrer">
               Author dashboard
