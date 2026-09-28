@@ -1,6 +1,6 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Shield, FileCheck, Users, Database, AlertTriangle } from "lucide-react";
 
@@ -18,19 +18,10 @@ const Policies = () => {
         ]}
       />
       <Header />
-      <Breadcrumbs />
       
+      <PageHero eyebrow="Standards" title="Journal Policies" description="Ethical standards and publication policies guiding AJVS." />
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              Journal Policies
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Ethical standards and publication policies guiding AJVS
-            </p>
-          </div>
-
           {/* Publication Ethics */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">

@@ -1,7 +1,7 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { FileText, CheckCircle, AlertCircle, Download, BookOpen, Shield, Users, DollarSign, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,19 +21,10 @@ const AuthorGuidelines = () => {
       />
       <TopBar />
       <Header />
-      <Breadcrumbs />
       
+      <PageHero eyebrow="For authors" title="Authors' Guidelines" description="Comprehensive guidelines for preparing and submitting manuscripts to the African Journal of Veterinary Sciences." />
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">
-              Authors' Guidelines
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Comprehensive guidelines for preparing and submitting manuscripts to African Journal of Veterinary Sciences
-            </p>
-          </div>
-
           {/* About the Journal */}
           <div className="glass rounded-2xl p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">

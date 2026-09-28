@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import TopBar from "@/components/layout/TopBar";
 import { SEOHead } from "./SEOHead";
 import { Input } from "@/components/ui/input";
@@ -86,15 +86,9 @@ const Archives = () => {
       <SEOHead title="Archives" description="Search and browse published AJVS articles by year, issue, and author." canonicalUrl="https://africanjournalvetsci.org/archives" />
       <TopBar />
       <Header />
-      <Breadcrumbs />
+      <PageHero eyebrow="AJVS Publications" title="Journal Archive" description="Search published articles by title or author, then narrow the results by year and issue." />
       <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-          <header className="max-w-3xl border-b border-border pb-7">
-            <p className="mb-2 text-sm font-semibold uppercase text-primary">AJVS Publications</p>
-            <h1 className="font-serif text-4xl font-bold sm:text-5xl">Journal Archive</h1>
-            <p className="mt-3 text-lg text-muted-foreground">Search published articles by title or author, then narrow the results by year and issue.</p>
-          </header>
-
           <ResearchFinder />
 
           {loading ? (

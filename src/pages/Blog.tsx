@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -94,31 +94,14 @@ export default function Blog() {
         ]}
       />
       <Header />
-      <Breadcrumbs />
 
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-primary/5 via-background to-accent/5 py-12 sm:py-16">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Newspaper className="w-8 h-8 text-primary" />
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">News & Blog</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Latest updates, announcements, research highlights, and articles from AJVS
-            </p>
-            <div className="max-w-md mx-auto relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder="Search articles..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                className="pl-10 h-11 rounded-full border-border/60"
-              />
-            </div>
-          </motion.div>
+      <PageHero eyebrow="Journal news" title="News & Blog" description="Latest updates, announcements, research highlights, and articles from AJVS.">
+        <div className="relative max-w-md">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input placeholder="Search articles..." value={search} onChange={e => setSearch(e.target.value)} className="h-11 rounded-sm border-0 bg-background pl-10 text-foreground" />
         </div>
-      </section>
+      </PageHero>
+
 
       {/* Type + Category Tabs */}
       <div className="border-b border-border/30 bg-background sticky top-16 z-30">

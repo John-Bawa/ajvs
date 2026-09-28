@@ -1,6 +1,6 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { BookOpen, Target, Globe, Award } from "lucide-react";
 import { motion } from "framer-motion";
@@ -20,18 +20,10 @@ const About = () => {
         ]}
       />
       <Header />
-      <Breadcrumbs />
 
+      <PageHero eyebrow="The journal" title="About AJVS" description="Advancing veterinary research and practice across Africa and beyond." />
       <main className="flex-1 py-16">
         <div className="container mx-auto px-4 max-w-6xl">
-          <div className="mb-16 text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">About AJVS</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl">
-              African Journal of Veterinary Sciences — Advancing veterinary research and practice across Africa and
-              beyond
-            </p>
-          </div>
-
           {/* Main Content */}
           <div className="space-y-12">
             {/* Mission Card */}

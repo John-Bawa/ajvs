@@ -1,6 +1,6 @@
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, ExternalLink, Award, Users, Globe2, User } from "lucide-react";
@@ -338,26 +338,10 @@ const EditorialBoard = () => {
         ]}
       />
       <Header />
-      <Breadcrumbs />
 
+      <PageHero eyebrow="Leadership" title="Editorial Board" description="Distinguished scholars guiding excellence in biomedical, environmental and veterinary sciences." />
       <main className="flex-1 py-16 md:py-20">
         <div className="container mx-auto px-4 max-w-6xl">
-          {/* Hero Section - Academic Style */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-foreground">
-              Editorial Board
-            </h1>
-            <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-body">
-              Distinguished scholars guiding excellence in biomedical, environmental and veterinary sciences
-            </p>
-          </motion.div>
-
           {/* Section A: Contact Information */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

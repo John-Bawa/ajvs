@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { PageHero } from "@/components/layout/PageHero";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { SEOHead } from "./SEOHead";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -88,17 +88,10 @@ export default function Contact() {
         ]}
       />
       <Header />
-      <Breadcrumbs />
 
+      <PageHero eyebrow="Editorial office" title="Contact Us" description="Have questions? Get in touch with our editorial team." />
       <main className="flex-1 py-12">
         <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Have questions? Get in touch with our editorial team.
-            </p>
-          </div>
-
           <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardContent className="p-6">
