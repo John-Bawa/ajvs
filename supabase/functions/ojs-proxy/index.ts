@@ -34,7 +34,17 @@ function decodeHtml(value: string): string {
     .trim();
 }
 
-function parseCurrentIssue(html: string) {
+type IssueSummary = {
+  id: number;
+  title: string;
+  volume?: number;
+  number?: string;
+  year?: number;
+  description?: string;
+  coverImageUrl?: string;
+};
+
+function parseIssuePage(html: string, fallback: IssueSummary) {
   const descriptionMatch = html.match(/<div[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
   const description = descriptionMatch ? decodeHtml(descriptionMatch[1]) : '';
   const publishedMatch = html.match(/<p[^>]*class="[^"]*published[^"]*"[^>]*>[\s\S]*?(\d{4}-\d{2}-\d{2})[\s\S]*?<\/p>/i);
@@ -67,17 +77,42 @@ function parseCurrentIssue(html: string) {
     hasContent: articles.length > 0,
     syncedAt: new Date().toISOString(),
     issue: {
-      id: 1,
-      title: headingMatch ? decodeHtml(headingMatch[1]) : 'Vol. 1 No. 1 (2026): Issue 1',
-      volume: 1,
-      number: '1',
-      year: 2026,
+      ...fallback,
+      title: headingMatch ? decodeHtml(headingMatch[1]) : fallback.title,
       datePublished: publishedMatch?.[1],
-      description,
-      coverImageUrl: coverMatch?.[1],
+      description: description || fallback.description,
+      coverImageUrl: coverMatch?.[1] || fallback.coverImageUrl,
     },
     articles,
   };
+}
+
+function parseIssueArchive(html: string): IssueSummary[] {
+  const issueBlocks = html.match(/<div[^>]*class="[^"]*issue-summary[^"]*"[^>]*>[\s\S]*?<\/div>\s*<\/div>\s*<\/div>/gi) ?? [];
+
+  return issueBlocks.flatMap((block) => {
+    const linkMatch = block.match(/href="[^"]*\/issue\/view\/(\d+)"/i);
+    const titleMatch = block.match(/<a[^>]*class="[^"]*title[^"]*"[^>]*>([\s\S]*?)<\/a>/i);
+    const seriesMatch = block.match(/<div[^>]*class="[^"]*series[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+    const descriptionMatch = block.match(/<div[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+    const coverMatch = block.match(/<img[^>]*src="([^"]+)"/i);
+    if (!linkMatch || !titleMatch) return [];
+
+    const series = seriesMatch ? decodeHtml(seriesMatch[1]) : '';
+    const volumeMatch = series.match(/Vol\.\s*(\d+)/i);
+    const numberMatch = series.match(/No\.\s*([^\s(]+)/i);
+    const yearMatch = series.match(/\((\d{4})\)/);
+
+    return [{
+      id: Number(linkMatch[1]),
+      title: decodeHtml(titleMatch[1]),
+      volume: volumeMatch ? Number(volumeMatch[1]) : undefined,
+      number: numberMatch?.[1],
+      year: yearMatch ? Number(yearMatch[1]) : undefined,
+      description: descriptionMatch ? decodeHtml(descriptionMatch[1]) : undefined,
+      coverImageUrl: coverMatch?.[1],
+    }];
+  });
 }
 
 /**
@@ -170,11 +205,30 @@ serve(async (req) => {
     if (type === 'announcements') {
       result = { items: parseAnnouncements(html) };
     } else if (type === 'current-issue') {
-      result = parseCurrentIssue(html);
+      result = parseIssuePage(html, {
+        id: 1,
+        title: 'Vol. 1 No. 1 (2026): Issue 1',
+        volume: 1,
+        number: '1',
+        year: 2026,
+      });
     } else {
-      // For issues, return raw indicator
-      const hasNoIssues = html.includes('has not published any issues');
-      result = { hasContent: !hasNoIssues, html_snippet: hasNoIssues ? null : 'Content available on OJS' };
+      const issueSummaries = parseIssueArchive(html);
+      const issueResults = await Promise.all(issueSummaries.map(async (issue) => {
+        const issueResponse = await fetch(`${OJS_BASE_URL}/issue/view/${issue.id}`, {
+          cache: 'no-store',
+          headers: { 'Accept': 'text/html' },
+        });
+        if (!issueResponse.ok) return { issue, articles: [] };
+        const issueHtml = await issueResponse.text();
+        const parsed = parseIssuePage(issueHtml, issue);
+        return { issue: parsed.issue, articles: parsed.articles };
+      }));
+      result = {
+        hasContent: issueResults.some((item) => item.articles.length > 0),
+        syncedAt: new Date().toISOString(),
+        issues: issueResults,
+      };
     }
 
     return new Response(JSON.stringify(result), {

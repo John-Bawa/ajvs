@@ -29,6 +29,16 @@ export interface OJSIssue {
   coverImageUrl?: string;
 }
 
+export interface OJSArchiveIssue {
+  issue: OJSIssue;
+  articles: OJSArticle[];
+}
+
+export interface OJSArchiveData {
+  issues: OJSArchiveIssue[];
+  syncedAt: string;
+}
+
 export interface OJSAnnouncement {
   id: number;
   title: string;
@@ -93,7 +103,7 @@ export const fetchCurrentIssue = async (): Promise<OJSCurrentIssueData | null> =
 /**
  * Fetch all published issues from OJS
  */
-export const fetchAllIssues = async (): Promise<OJSIssue[]> => {
+export const fetchArchive = async (): Promise<OJSArchiveData | null> => {
   try {
     const response = await fetchViaProxy('issues');
     
@@ -102,19 +112,15 @@ export const fetchAllIssues = async (): Promise<OJSIssue[]> => {
     }
     
     const data = await response.json();
-    if (!data.hasContent) return [];
-    return [];
+    if (!data.hasContent || !Array.isArray(data.issues)) return null;
+    return {
+      issues: data.issues as OJSArchiveIssue[],
+      syncedAt: typeof data.syncedAt === 'string' ? data.syncedAt : new Date().toISOString(),
+    };
   } catch (error) {
     console.error('Error fetching issues:', error);
-    return [];
+    return null;
   }
-};
-
-/**
- * Fetch articles for a specific issue (not used via proxy currently)
- */
-export const fetchIssueArticles = async (issueId: number): Promise<OJSArticle[]> => {
-  return [];
 };
 
 /**
