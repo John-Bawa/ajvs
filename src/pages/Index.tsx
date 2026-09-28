@@ -1,860 +1,141 @@
-import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight, BookOpen, CheckCircle, ExternalLink, FileText, Scale, Send, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Header from "@/components/layout/Header";
 import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { SEOHead } from "./SEOHead";
-
-import { 
-  FileText, Users, BookOpen, Award, ArrowRight, CheckCircle, 
-  Target, Microscope, Heart, GraduationCap, Send, Search, 
-  Building2, ExternalLink, X
-} from "lucide-react";
-import ajvscLogo from "@/assets/ajvs-logo-enhanced.png";
-import animatedLogo from "@/assets/animated-logo.mp4";
-import heroBuilding from "@/assets/hero-building.jpg";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
-import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
 import { getOJSLink } from "@/config/ojs";
-import { ResourceCardsSection } from "@/components/home/ResourceCardsSection";
 import { NewsCarousel } from "@/components/home/NewsCarousel";
-import { NewsletterSignup } from "@/components/home/NewsletterSignup";
-import { PreviousIssuesSection } from "@/components/home/PreviousIssuesSection";
 import { AcademicCalendar } from "@/components/home/AcademicCalendar";
-import { StatsCounter } from "@/components/home/StatsCounter";
 import { ScholarlyOverview } from "@/components/home/ScholarlyOverview";
 
-const Index = () => {
-  const [showCallForPapers, setShowCallForPapers] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const imageY = useTransform(scrollYProgress, [0, 0.3], [0, 50]);
-  const imageScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.05]);
-  const imageRotate = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
-  
-  // Mouse follow effect state
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
+const scopeAreas = [
+  "Veterinary medicine and clinical practice",
+  "Animal health, welfare, and production",
+  "Biomedical and environmental sciences",
+  "Epidemiology, public health, and One Health",
+];
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-    setMousePosition({ x, y });
-  };
+const publishingSteps = [
+  { number: "01", title: "Prepare", text: "Review the journal scope, ethics policy, and author guidelines." },
+  { number: "02", title: "Submit", text: "Send your manuscript through the official AJVS journal portal." },
+  { number: "03", title: "Peer review", text: "Editorial screening is followed by independent scholarly review." },
+  { number: "04", title: "Publish", text: "Accepted work is prepared for open-access publication." },
+];
 
-  const handleMouseEnter = () => setIsHovering(true);
-  const handleMouseLeave = () => {
-    setIsHovering(false);
-    setMousePosition({ x: 0, y: 0 });
-  };
+const authorLinks = [
+  { icon: FileText, title: "Author Guidelines", text: "Manuscript preparation and submission requirements", to: "/for-authors" },
+  { icon: Scale, title: "Policies & Ethics", text: "Editorial standards and publication ethics", to: "/policies" },
+  { icon: Users, title: "Editorial Board", text: "Meet the scholars guiding AJVS", to: "/editorial-board" },
+  { icon: BookOpen, title: "Journal Archives", text: "Browse published issues and articles", to: "/archives" },
+];
 
-  useEffect(() => {
-    const dismissed = sessionStorage.getItem("cfp-dismissed");
-    if (!dismissed) {
-      const timer = setTimeout(() => setShowCallForPapers(true), 1500);
-      return () => clearTimeout(timer);
-    }
-  }, []);
+const Index = () => (
+  <div className="flex min-h-screen flex-col">
+    <SEOHead
+      title="Home"
+      description="African Journal of Veterinary Sciences (AJVS) - A peer-reviewed, open access journal publishing original research in veterinary medicine, animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. e-ISSN: 3043-4246"
+      canonicalUrl="https://africanjournalvetsci.org"
+      keywords={["veterinary journal", "animal health research", "open access", "peer-reviewed", "University of Jos", "Nigeria", "biomedical sciences", "veterinary medicine"]}
+      breadcrumbs={[{ name: "Home", url: "https://africanjournalvetsci.org" }]}
+    />
+    <TopBar />
+    <Header />
+    <main>
+      <ScholarlyOverview />
 
-  const dismissPopup = () => {
-    setShowCallForPapers(false);
-    sessionStorage.setItem("cfp-dismissed", "true");
-  };
-
-  const indexingBodies = [
-    { name: "Google Scholar", url: "https://scholar.google.com" },
-    { name: "ORCID", url: "https://orcid.org" },
-  ];
-
-  const scopeAreas = [
-    { icon: Microscope, title: "Veterinary Medicine", description: "Clinical veterinary practice, diagnostics, and therapeutics" },
-    { icon: Heart, title: "Animal Health", description: "Disease prevention, epidemiology, and public health" },
-    { icon: Target, title: "Biomedical Sciences", description: "Anatomy, physiology, pharmacology, and pathology" },
-    { icon: GraduationCap, title: "Animal Production", description: "Nutrition, reproduction, and livestock management" },
-  ];
-
-  const quickLinks = [
-    { icon: Send, title: "For Authors", description: "Submission guidelines and templates", link: "/for-authors" },
-    { icon: Search, title: "For Reviewers", description: "Review process and criteria", link: "/for-authors" },
-    { icon: BookOpen, title: "For Readers", description: "Browse articles and archives", link: "/archives" },
-  ];
-  
-  return (
-    <div className="min-h-screen flex flex-col">
-      <SEOHead
-        title="Home"
-        description="African Journal of Veterinary Sciences (AJVS) - A peer-reviewed, open access journal publishing original research in veterinary medicine, animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, University of Jos, Nigeria. e-ISSN: 3043-4246"
-        canonicalUrl="https://africanjournalvetsci.org"
-        keywords={["veterinary journal", "animal health research", "open access", "peer-reviewed", "University of Jos", "Nigeria", "biomedical sciences", "veterinary medicine"]}
-        breadcrumbs={[
-          { name: "Home", url: "https://africanjournalvetsci.org" }
-        ]}
-      />
-      <TopBar />
-      <Header />
-
-      {/* Call for Papers Popup */}
-      <Dialog open={showCallForPapers} onOpenChange={(open) => { if (!open) dismissPopup(); }}>
-        <DialogContent className="sm:max-w-md p-0 overflow-hidden border-none bg-transparent shadow-2xl">
-          <DialogTitle className="sr-only">AJVS Call for Papers</DialogTitle>
-          <Link to="/call-for-papers" onClick={dismissPopup} className="block">
-            <img 
-              src="/call-for-papers-flyer.jpg" 
-              alt="AJVS Call for Papers" 
-              className="w-full h-auto rounded-lg cursor-pointer hover:opacity-95 transition-opacity"
-            />
-          </Link>
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-3 px-4">
-            <Link to="/call-for-papers" onClick={dismissPopup}>
-              <Button size="sm" className="bg-primary text-primary-foreground font-semibold shadow-lg">
-                Learn More
-              </Button>
-            </Link>
-            <Button size="sm" variant="secondary" onClick={dismissPopup} className="shadow-lg">
-              Dismiss
+      <section className="border-b border-border bg-secondary/25 py-12 sm:py-16">
+        <div className="container mx-auto grid gap-10 px-4 sm:px-6 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="mb-2 text-xs font-bold uppercase text-primary">Journal remit</p>
+            <h2 className="font-serif text-3xl font-semibold sm:text-4xl">Research with relevance to Africa and beyond</h2>
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              AJVS publishes original research, reviews, case reports, and short communications across veterinary and allied sciences.
+            </p>
+            <Button asChild variant="link" className="mt-4 px-0">
+              <Link to="/about">Read the full aims and scope <ArrowRight /></Link>
             </Button>
           </div>
-        </DialogContent>
-      </Dialog>
-      <ScholarlyOverview />
-      
-      {/* Hero Section - Modern Side-by-Side Layout */}
-      <section className="hidden relative bg-gradient-to-br from-secondary via-background to-secondary/50 py-16 md:py-20 lg:py-24 overflow-hidden">
-        {/* Floating gradient orbs for modern feel */}
-        <motion.div 
-          className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
-          animate={{ 
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-gradient-to-tl from-accent/10 to-transparent rounded-full blur-3xl translate-x-1/3 translate-y-1/3"
-          animate={{ 
-            x: [0, -25, 0],
-            y: [0, 25, 0],
-            scale: [1, 1.15, 1],
-          }}
-          transition={{ 
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-gradient-to-bl from-primary/5 to-accent/5 rounded-full blur-3xl"
-          animate={{ 
-            x: [0, 40, 0],
-            y: [0, -30, 0],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{ 
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Side - Text Content */}
-            <div className="order-2 lg:order-1 text-center lg:text-left">
-              {/* Logo */}
-              <motion.div 
-                className="mb-6"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <video 
-                  src={animatedLogo}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="h-20 sm:h-24 md:h-28 w-auto mx-auto lg:mx-0 drop-shadow-md"
-                >
-                  <img 
-                    src={ajvscLogo} 
-                    alt="African Journal of Veterinary Sciences Logo" 
-                    className="h-16 sm:h-20 md:h-24 w-auto mx-auto lg:mx-0 drop-shadow-md"
-                  />
-                </video>
-              </motion.div>
-
-              {/* ISSN Badge */}
-              <motion.div 
-                className="mb-5 inline-block"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-1.5">
-                  <span className="text-primary text-xs sm:text-sm font-medium tracking-wide">
-                    e-ISSN: 3043-4246
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Main Title */}
-              <motion.h1 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-bold text-foreground mb-5 leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                African Journal of{' '}
-                <span className="text-primary">Veterinary Sciences</span>
-              </motion.h1>
-              
-              {/* Subtitle */}
-              <motion.p 
-                className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0 font-body"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                A peer-reviewed, open access journal publishing original research in veterinary medicine, 
-                animal health, and biomedical sciences. Published by the Faculty of Veterinary Medicine, 
-                University of Jos, Nigeria.
-              </motion.p>
-              
-              {/* CTA Buttons */}
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <Link to="/submit" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-lg min-h-[48px] rounded-full px-8">
-                    Submit Manuscript
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </Link>
-                <Link to="/current-issue" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-primary/30 text-primary hover:bg-primary/10 min-h-[48px] rounded-full px-8">
-                    Browse Current Issue
-                  </Button>
-                </Link>
-              </motion.div>
-
-              {/* Quick Stats */}
-              <motion.div 
-                className="mt-10 flex flex-wrap gap-6 justify-center lg:justify-start"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-accent" />
-                  <span className="text-sm text-muted-foreground">Open Access</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-accent" />
-                  <span className="text-sm text-muted-foreground">Peer-Reviewed</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-accent" />
-                  <span className="text-sm text-muted-foreground">Fast Publication</span>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Right Side - Modern Image Card with Parallax & Mouse Follow */}
-            <motion.div 
-              className="order-1 lg:order-2"
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <motion.div 
-                ref={cardRef}
-                className="relative cursor-pointer"
-                style={{ 
-                  y: imageY, 
-                  rotateX: isHovering ? mousePosition.y * -8 : 0,
-                  rotateY: isHovering ? mousePosition.x * 8 : 0,
-                  transformStyle: "preserve-3d",
-                  perspective: 1000,
-                }}
-                animate={{
-                  rotateZ: isHovering ? 0 : imageRotate.get(),
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                onMouseMove={handleMouseMove}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                {/* Main Image Container */}
-                <motion.div 
-                  className="relative rounded-2xl overflow-hidden shadow-2xl bg-card border border-border/50"
-                  style={{ transformStyle: "preserve-3d" }}
-                  animate={{
-                    boxShadow: isHovering 
-                      ? `${mousePosition.x * -20}px ${mousePosition.y * 20}px 40px rgba(0,0,0,0.15)` 
-                      : "0 25px 50px -12px rgba(0,0,0,0.25)"
-                  }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                >
-                  <motion.img 
-                    src={heroBuilding}
-                    alt="Faculty of Veterinary Medicine Building"
-                    className="w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] object-cover"
-                    style={{ scale: imageScale }}
-                  />
-                  
-                  {/* Shine effect on hover */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent pointer-events-none"
-                    style={{
-                      opacity: isHovering ? 0.5 : 0,
-                      transform: `translateX(${mousePosition.x * 50}%) translateY(${mousePosition.y * 50}%)`,
-                    }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                  
-                  {/* Overlay Info Card */}
-                  <motion.div 
-                    className="absolute bottom-4 left-4 right-4 bg-card/95 backdrop-blur-md rounded-xl p-4 shadow-lg border border-border/50"
-                    style={{ 
-                      transform: isHovering ? "translateZ(30px)" : "translateZ(0px)",
-                    }}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <Building2 className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-sans font-semibold text-foreground text-sm tracking-normal">Faculty of Veterinary Medicine</h3>
-                        <p className="text-xs text-muted-foreground">University of Jos, Nigeria</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </motion.div>
-
-                {/* Decorative Floating Elements */}
-                <motion.div 
-                  className="absolute -top-4 -right-4 w-24 h-24 bg-accent/20 rounded-full blur-2xl"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.6, 1, 0.6],
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.div 
-                  className="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl"
-                  animate={{ 
-                    scale: [1, 1.15, 1],
-                    opacity: [0.5, 0.9, 0.5],
-                  }}
-                  transition={{ 
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                />
-                
-                {/* Floating Badge */}
-                <motion.div 
-                  className="absolute -top-3 -right-3 bg-accent text-accent-foreground px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.8, type: "spring" }}
-                >
-                  Est. 2024
-                </motion.div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Compact Info Bar */}
-      <section className="hidden bg-secondary/50 border-b border-border">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 py-3 text-xs sm:text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="font-medium text-foreground">e-ISSN: 3043-4246</span>
-            </div>
-            <span className="hidden sm:inline text-border">|</span>
-            <span>Open Access</span>
-            <span className="hidden sm:inline text-border">|</span>
-            <span>Peer-Reviewed</span>
-            <span className="hidden sm:inline text-border">|</span>
-            <span>Established 2024</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Counter */}
-      <StatsCounter />
-
-      {/* Call for Papers CTA Card */}
-      <section className="py-10 sm:py-14 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="relative overflow-hidden border-none shadow-2xl">
-              <div className="absolute inset-0 bg-primary" />
-              <div className="absolute -left-16 -top-16 w-48 h-48 rounded-full bg-highlight/12 blur-3xl" />
-              <div className="absolute -right-16 -bottom-16 w-48 h-48 rounded-full bg-accent/12 blur-3xl" />
-
-              <CardContent className="relative z-10 px-6 py-6 sm:px-8 sm:py-7 md:px-10 md:py-8">
-                <div className="flex flex-col md:flex-row items-start md:items-center gap-5 md:gap-8">
-                  {/* Badge + Title */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <div className="inline-flex items-center gap-1.5 bg-highlight/20 border border-highlight/30 rounded-full px-3 py-1">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-highlight opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-highlight"></span>
-                        </span>
-                        <span className="text-[10px] font-bold text-highlight-foreground tracking-widest uppercase">Now Open</span>
-                      </div>
-                      <h2 className="text-2xl sm:text-3xl font-serif font-bold text-primary-foreground leading-tight">
-                        Call for Papers
-                      </h2>
-                    </div>
-                    <p className="text-primary-foreground/65 text-sm sm:text-base mb-3">
-                      Inaugural Issue — Volume 1, Issue 1 (2026). Submit original research, reviews, case reports & short communications.
-                    </p>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1">
-                      {["Open Access", "Peer-Reviewed", "DOI Assigned", "e-ISSN: 3027-0731"].map(item => (
-                        <span key={item} className="inline-flex items-center gap-1 text-xs text-primary-foreground/70">
-                          <CheckCircle className="w-3 h-3 text-highlight flex-shrink-0" />
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* CTA Buttons */}
-                  <div className="flex gap-3 flex-shrink-0 w-full sm:w-auto">
-                    <Link to="/call-for-papers" className="flex-1 sm:flex-initial">
-                      <Button
-                        size="default"
-                        className="w-full sm:w-auto bg-highlight hover:bg-highlight/90 text-highlight-foreground font-bold shadow-lg shadow-black/15 rounded-full px-6 group"
-                      >
-                        <FileText className="w-4 h-4 mr-1.5 group-hover:scale-110 transition-transform" />
-                        View Details
-                      </Button>
-                    </Link>
-                    <a href={getOJSLink('SUBMIT_MANUSCRIPT')} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-initial">
-                      <Button
-                        size="default"
-                        className="w-full sm:w-auto bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold rounded-full px-6"
-                      >
-                        <ExternalLink className="w-4 h-4 mr-1.5" />
-                        Submit Now
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Resource Cards Section - Publishing Tips, Peer Review, etc. */}
-      <ResourceCardsSection />
-
-      {/* Aims & Scope Section with Research Imagery */}
-      <section className="py-12 sm:py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div>
-            {/* Main Content */}
-            <div>
-              <div className="text-center lg:text-left mb-10 sm:mb-12">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                >
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Aims & Scope</h2>
-                  <p className="text-base sm:text-lg text-muted-foreground max-w-3xl px-4 lg:px-0">
-                    The African Journal of Veterinary Sciences (AJVS) publishes original research, reviews, and case reports 
-                    spanning all areas of veterinary and biomedical sciences with relevance to Africa and beyond.
-                  </p>
-                </motion.div>
+          <div className="divide-y divide-border border-y border-border lg:col-span-7">
+            {scopeAreas.map((area) => (
+              <div key={area} className="flex items-center gap-3 py-4 text-sm font-semibold sm:text-base">
+                <CheckCircle className="h-4 w-4 shrink-0 text-primary" />
+                {area}
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                {scopeAreas.map((area, index) => (
-                  <motion.div
-                    key={area.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                  >
-                    <Card className="h-full border-border/50 hover:border-primary/30 transition-smooth hover:shadow-lg group">
-                      <CardHeader className="pb-2">
-                        <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-smooth">
-                          <area.icon className="w-6 h-6 text-primary" />
-                        </div>
-                        <CardTitle className="text-lg">{area.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription className="text-sm">{area.description}</CardDescription>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-8 text-center lg:text-left">
-                <Link to="/about">
-                  <Button variant="link" className="text-primary">
-                    Learn more about our scope <ArrowRight className="ml-1 w-4 h-4" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Features Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-secondary/30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Why Publish with AJVS?</h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              Join a community of researchers committed to excellence in veterinary sciences
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {[
-              {
-                icon: BookOpen,
-                title: "Open Access",
-                description: "All articles are freely accessible to readers worldwide, maximizing your research impact.",
-              },
-              {
-                icon: Users,
-                title: "Expert Review",
-                description: "Rigorous peer review by leading veterinary scientists ensures quality and credibility.",
-              },
-              {
-                icon: FileText,
-                title: "Fast Publication",
-                description: "Streamlined editorial process ensures rapid publication of accepted manuscripts.",
-              },
-              {
-                icon: Award,
-                title: "High Standards",
-                description: "Committed to ethical publishing practices and research integrity.",
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              >
-                <Card className="shadow-card transition-smooth hover:shadow-elegant border-border/50 h-full">
-                  <CardHeader>
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                      <feature.icon className="w-6 h-6 text-primary" />
-                    </div>
-                    <CardTitle className="text-xl">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-
-      {/* Latest Publications & Announcements */}
-      <section className="hidden py-12 sm:py-16 md:py-24">
+      <section className="border-b border-border bg-background py-12 sm:py-16">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Latest Publications - 2 columns */}
-            <div className="lg:col-span-2">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-2">Latest Publications</h2>
-                  <p className="text-base sm:text-lg text-muted-foreground">
-                    Recent articles from our current issue
-                  </p>
-                </div>
-                <Link to="/current-issue">
-                  <Button variant="outline" size="lg" className="min-h-[48px]">
-                    View All Articles
-                  </Button>
-                </Link>
+          <div className="mb-8 max-w-2xl">
+            <p className="mb-2 text-xs font-bold uppercase text-primary">Publishing with AJVS</p>
+            <h2 className="font-serif text-3xl font-semibold sm:text-4xl">A clear editorial pathway</h2>
+            <p className="mt-3 text-muted-foreground">Understand each stage before sending your work to the journal.</p>
+          </div>
+          <div className="grid border-y border-border md:grid-cols-4 md:divide-x md:divide-border">
+            {publishingSteps.map((step) => (
+              <div key={step.number} className="border-b border-border py-6 last:border-b-0 md:border-b-0 md:px-6 md:first:pl-0 md:last:pr-0">
+                <span className="font-serif text-2xl text-primary">{step.number}</span>
+                <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{step.text}</p>
               </div>
-              <OJSCurrentIssueSection />
-            </div>
-
-            {/* Announcements & Newsletter Sidebar */}
-            <div className="lg:col-span-1 space-y-8">
-              <div className="sticky top-24 space-y-8">
-                <OJSAnnouncementsWidget />
-                <NewsletterSignup />
-              </div>
-            </div>
+            ))}
+          </div>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <Button asChild className="rounded-sm">
+              <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer">Begin submission <ExternalLink /></a>
+            </Button>
+            <Button asChild variant="outline" className="rounded-sm"><Link to="/for-authors">Read author guidelines</Link></Button>
           </div>
         </div>
       </section>
 
-      {/* News Carousel Section */}
       <NewsCarousel />
 
-      {/* Previous Issues Section */}
-      <PreviousIssuesSection />
-
-      {/* Indexing & Abstracting */}
-      <section className="py-12 sm:py-16 bg-muted/50">
+      <section className="border-y border-border bg-background py-12 sm:py-16">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold mb-3">Indexing & Abstracting</h2>
-              <p className="text-muted-foreground">
-                AJVS is indexed in major academic databases
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8">
-            {indexingBodies.map((body, index) => (
-              <motion.a
-                key={body.name}
-                href={body.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 sm:px-6 py-3 bg-background rounded-lg border border-border/50 hover:border-primary/50 hover:shadow-md transition-smooth flex items-center gap-2 group"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                whileHover={{ y: -4 }}
-              >
-                <span className="text-sm sm:text-base font-medium text-foreground/80 group-hover:text-primary transition-smooth">
-                  {body.name}
-                </span>
-                <ExternalLink className="w-3 h-3 text-muted-foreground group-hover:text-primary transition-smooth" />
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* Quick Links Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3">Quick Access</h2>
-            <p className="text-muted-foreground">Resources for authors, reviewers, and readers</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {quickLinks.map((item, index) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <Link to={item.link}>
-                  <Card className="h-full border-border/50 hover:border-primary/50 hover:shadow-lg transition-smooth group cursor-pointer">
-                    <CardHeader>
-                      <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center group-hover:scale-110 transition-smooth">
-                          <item.icon className="w-7 h-7 text-primary" />
-                        </div>
-                        <div>
-                          <CardTitle className="text-xl group-hover:text-primary transition-smooth">{item.title}</CardTitle>
-                          <CardDescription className="text-sm mt-1">{item.description}</CardDescription>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-center text-primary text-sm font-medium">
-                        Learn more <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-smooth" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* Submission Process with Research Imagery */}
-      <section className="py-12 sm:py-16 md:py-24 bg-secondary/20">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div>
-            {/* Main Content */}
+          <div className="mb-8 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
-              <div className="text-center lg:text-left mb-8 sm:mb-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">Simple Submission Process</h2>
-                <p className="text-base sm:text-lg text-muted-foreground px-4 lg:px-0">
-                  Get your research published in four easy steps
-                </p>
-              </div>
-
-              <div className="space-y-4 sm:space-y-6">
-                {[
-                  {
-                    step: "1",
-                    title: "Register & Create Profile",
-                    description: "Create your author account and link your ORCID for proper attribution.",
-                  },
-                  {
-                    step: "2",
-                    title: "Submit Manuscript",
-                    description: "Upload your manuscript, figures, and supplementary materials through our streamlined portal.",
-                  },
-                  {
-                    step: "3",
-                    title: "Peer Review",
-                    description: "Expert reviewers evaluate your work and provide constructive feedback.",
-                  },
-                  {
-                    step: "4",
-                    title: "Publication",
-                    description: "Upon acceptance, your article is published and assigned a DOI for citation.",
-                  },
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.step}
-                    className="flex gap-4 sm:gap-6 items-start group bg-card/50 p-4 sm:p-5 rounded-lg hover:bg-card transition-smooth"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center text-accent-foreground font-bold text-base sm:text-lg transition-smooth group-hover:scale-110">
-                      {item.step}
-                    </div>
-                    <div className="flex-1 pt-1 sm:pt-2">
-                      <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2">{item.title}</h3>
-                      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
-                    <CheckCircle className="hidden sm:block w-6 h-6 text-primary opacity-0 group-hover:opacity-100 transition-smooth mt-3 flex-shrink-0" />
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-8 sm:mt-12 text-center lg:text-left">
-                <Link to="/for-authors" className="w-full sm:w-auto inline-block">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto min-h-[48px]">
-                    View Author Guidelines
-                  </Button>
-                </Link>
-              </div>
+              <p className="mb-2 text-xs font-bold uppercase text-primary">Author centre</p>
+              <h2 className="font-serif text-3xl font-semibold">Publishing resources</h2>
             </div>
-
+            <Link to="/for-authors" className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">View all resources <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+          <div className="grid border-y border-border sm:grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-border">
+            {authorLinks.map((item) => (
+              <Link key={item.title} to={item.to} className="group border-b border-border p-5 first:pl-0 hover:bg-secondary/30 sm:[&:nth-last-child(-n+2)]:border-b-0 lg:border-b-0 lg:last:pr-0">
+                <item.icon className="h-5 w-5 text-primary" />
+                <h3 className="mt-4 text-base font-semibold group-hover:text-primary">{item.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{item.text}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Publisher Info */}
-      <section className="py-12 sm:py-16 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="flex flex-col md:flex-row items-center gap-6 md:gap-8 p-6 sm:p-8 bg-background rounded-2xl border border-border/50 shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                <Building2 className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
-              </div>
-              <div className="text-center md:text-left">
-                <h3 className="text-xl sm:text-2xl font-sans font-semibold mb-2 tracking-normal">Faculty of Veterinary Medicine</h3>
-                <p className="text-muted-foreground mb-3">
-                  University of Jos, P.M.B. 2084, Jos, Plateau State, Nigeria
-                </p>
-                <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
-                  <Link to="/contact" className="text-primary hover:underline flex items-center gap-1">
-                    Contact Us <ArrowRight className="w-3 h-3" />
-                  </Link>
-                  <Link to="/about" className="text-primary hover:underline flex items-center gap-1">
-                    About the Journal <ArrowRight className="w-3 h-3" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Academic Calendar */}
       <AcademicCalendar />
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary/10 to-banner/10 py-12 sm:py-16 md:py-20">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-foreground mb-3 sm:mb-4">
-            Ready to Share Your Research?
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            Join our community of researchers and contribute to the advancement of veterinary sciences.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
-            <Link to="/auth" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 min-h-[48px]">
-                Login / Register
-              </Button>
-            </Link>
-            <Link to="/submit" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-primary text-foreground hover:bg-primary/10 min-h-[48px]">
-                Submit Manuscript
-              </Button>
-            </Link>
+      <section className="border-t border-border bg-primary py-10 text-primary-foreground">
+        <div className="container mx-auto flex flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="mb-2 text-xs font-bold uppercase text-accent">Call for papers</p>
+            <h2 className="font-serif text-3xl font-semibold text-primary-foreground">Share your research with AJVS</h2>
+            <p className="mt-3 text-sm text-primary-foreground/75">Review the current call, prepare your manuscript, and submit through the official journal portal.</p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button asChild variant="secondary" className="rounded-sm"><Link to="/call-for-papers"><FileText /> View call for papers</Link></Button>
+            <Button asChild className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90">
+              <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer"><Send /> Submit manuscript</a>
+            </Button>
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
-  );
-};
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Index;
