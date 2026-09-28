@@ -19,29 +19,29 @@ export function ScholarlyOverview() {
   return (
     <>
 
-      <section className="relative isolate overflow-hidden border-b border-border bg-primary text-primary-foreground">
+      <section className="relative isolate overflow-hidden border-b border-border bg-banner text-banner-foreground">
         <img
           src={heroBuilding}
           alt="Faculty of Veterinary Medicine offices and laboratories, University of Jos"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]"
           fetchPriority="high"
         />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-primary/80 to-primary/10" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-primary/80 to-transparent" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-banner via-banner/80 to-banner/10" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-banner/80 to-transparent" />
 
         <div className="container mx-auto px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
           <div className="max-w-3xl">
             <div className="mb-6 flex items-center gap-4">
               <img src={ajvsLogo} alt="African Journal of Veterinary Sciences logo" className="h-16 w-16 rounded-full bg-background/95 object-contain p-1 sm:h-20 sm:w-20" />
-              <div className="border-l-2 border-accent pl-4 text-xs font-semibold uppercase tracking-wider text-primary-foreground/80">
-                <span className="block text-primary-foreground">University of Jos</span>
+              <div className="border-l-2 border-accent pl-4 text-xs font-semibold uppercase tracking-wider text-banner-foreground/80">
+                <span className="block text-banner-foreground">University of Jos</span>
                 <span>Faculty of Veterinary Medicine</span>
               </div>
             </div>
-            <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-primary-foreground sm:text-6xl lg:text-7xl">
+            <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-banner-foreground sm:text-6xl lg:text-7xl">
               African Journal of Veterinary Sciences
             </h1>
-            <p className="mt-5 max-w-2xl text-base text-primary-foreground/85 sm:text-lg">
+            <p className="mt-5 max-w-2xl text-base text-banner-foreground/85 sm:text-lg">
               Peer-reviewed, open access research advancing veterinary, biomedical, environmental, and animal sciences in Africa and beyond.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -63,7 +63,7 @@ export function ScholarlyOverview() {
               <input id="journal-search" name="query" type="search" placeholder="Search articles, authors, or keywords" className="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm outline-none placeholder:text-muted-foreground" />
               <Button type="submit" className="h-auto rounded-none px-6 sm:px-8">Search</Button>
             </div>
-            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-primary-foreground/80">
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-banner-foreground/80">
               <Link to="/current-issue" className="hover:text-accent">Latest articles</Link>
               <Link to="/archives" className="hover:text-accent">Browse issues</Link>
               <Link to="/about" className="hover:text-accent">About the journal</Link>

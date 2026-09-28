@@ -87,9 +87,9 @@ const Header = () => {
   return (
     <header className="relative z-40 w-full">
       {/* Utility strip */}
-      <div className="bg-primary text-primary-foreground">
+      <div className="bg-banner text-banner-foreground">
         <div className="container mx-auto flex h-9 items-center justify-between gap-4 px-4 text-xs sm:px-6">
-          <div className="flex min-w-0 items-center gap-4 text-primary-foreground/75">
+          <div className="flex min-w-0 items-center gap-4 text-banner-foreground/75">
             <span className="truncate">Faculty of Veterinary Medicine, University of Jos</span>
             <span className="hidden md:inline">e-ISSN 3043-4246</span>
             <span className="hidden md:inline">Open Access</span>
