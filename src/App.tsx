@@ -24,6 +24,7 @@ const CurrentIssue = lazy(() => import("./pages/CurrentIssue"));
 const About = lazy(() => import("./pages/About"));
 const EditorialBoard = lazy(() => import("./pages/EditorialBoard"));
 const AuthorGuidelines = lazy(() => import("./pages/AuthorGuidelines"));
+const AuthorPortal = lazy(() => import("./pages/AuthorPortal"));
 const Archives = lazy(() => import("./pages/Archives"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Policies = lazy(() => import("./pages/Policies"));
@@ -57,6 +58,7 @@ const AnimatedRoutes = () => {
       <Route path="/current-issue" element={<LazyRoute><CurrentIssue /></LazyRoute>} />
       <Route path="/archives" element={<LazyRoute><Archives /></LazyRoute>} />
       <Route path="/for-authors" element={<LazyRoute><AuthorGuidelines /></LazyRoute>} />
+      <Route path="/author-portal" element={<LazyRoute><AuthorPortal /></LazyRoute>} />
       <Route path="/policies" element={<LazyRoute><Policies /></LazyRoute>} />
       <Route path="/editorial-board" element={<LazyRoute><EditorialBoard /></LazyRoute>} />
       <Route path="/contact" element={<LazyRoute><Contact /></LazyRoute>} />
