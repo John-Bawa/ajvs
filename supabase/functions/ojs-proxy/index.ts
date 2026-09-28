@@ -5,6 +5,12 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
+const responseHeaders = {
+  ...corsHeaders,
+  'Content-Type': 'application/json',
+  'Cache-Control': 'no-store, no-cache, must-revalidate',
+};
+
 const OJS_BASE_URL = 'https://journal.africanjournalvetsci.org/index.php/ajvs';
 const CURRENT_ISSUE_PATH = '/issue/view/1';
 
@@ -117,7 +123,7 @@ serve(async (req) => {
     if (!type) {
       return new Response(JSON.stringify({ error: 'Missing type parameter' }), {
         status: 400,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: responseHeaders,
       });
     }
 
@@ -125,7 +131,7 @@ serve(async (req) => {
     if (!allowedTypes.includes(type)) {
       return new Response(JSON.stringify({ error: 'Type not allowed' }), {
         status: 403,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: responseHeaders,
       });
     }
 
@@ -145,13 +151,14 @@ serve(async (req) => {
     }
 
     const response = await fetch(ojsUrl, {
+      cache: 'no-store',
       headers: { 'Accept': 'text/html' },
     });
 
     if (!response.ok) {
       return new Response(JSON.stringify({ error: 'OJS returned an error', status: response.status }), {
         status: response.status,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        headers: responseHeaders,
       });
     }
 
@@ -171,12 +178,12 @@ serve(async (req) => {
 
     return new Response(JSON.stringify(result), {
       status: 200,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: responseHeaders,
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: 'Proxy request failed', details: error.message }), {
       status: 502,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      headers: responseHeaders,
     });
   }
 });
