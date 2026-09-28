@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronRight, Home, Info, FileText, BookOpen, Mail, User, Send, HelpCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -27,6 +27,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
+  const { pathname } = useLocation();
 
   const mobileNavSections = [
     {
@@ -66,20 +67,51 @@ const Header = () => {
     },
   ];
 
+  const triggerCls =
+    "h-16 rounded-none bg-transparent px-3 text-sm font-semibold text-foreground/85 hover:bg-transparent hover:text-primary focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-primary border-b-2 border-transparent data-[state=open]:border-accent";
+  const menuLink = "group block rounded-sm border-l-2 border-transparent px-3 py-2.5 transition-smooth hover:border-accent hover:bg-secondary/60";
+  const MenuItem = ({ to, title, text }: { to: string; title: string; text: string }) => (
+    <Link to={to} className={menuLink}>
+      <div className="text-sm font-semibold text-foreground group-hover:text-primary">{title}</div>
+      <p className="mt-0.5 text-xs text-muted-foreground">{text}</p>
+    </Link>
+  );
+  const Panel = ({ label, children, wide }: { label: string; children: React.ReactNode; wide?: boolean }) => (
+    <div className={`${wide ? "w-[520px]" : "w-[340px]"} border-t-2 border-accent bg-background p-4 shadow-lg`}>
+      <p className="mb-2 px-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{label}</p>
+      <div className={wide ? "grid grid-cols-2 gap-1" : "space-y-1"}>{children}</div>
+    </div>
+  );
+
   return (
-    <header className="relative z-40 w-full bg-background border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
+    <header className="relative z-40 w-full">
+      {/* Utility strip */}
+      <div className="bg-primary text-primary-foreground">
+        <div className="container mx-auto flex h-9 items-center justify-between gap-4 px-4 text-xs sm:px-6">
+          <div className="flex min-w-0 items-center gap-4 text-primary-foreground/75">
+            <span className="truncate">Faculty of Veterinary Medicine, University of Jos</span>
+            <span className="hidden md:inline">e-ISSN 3043-4246</span>
+            <span className="hidden md:inline">Open Access</span>
+          </div>
+          <div className="flex shrink-0 items-center gap-4 font-medium">
+            <Link to="/for-authors" className="hidden hover:text-accent sm:inline">For Authors</Link>
+            <Link to="/policies" className="hidden hover:text-accent sm:inline">For Reviewers</Link>
+            {!user && <a href={getOJSLink("LOGIN")} className="hover:text-accent">Login</a>}
+            {!user && <a href={getOJSLink("REGISTER")} className="hover:text-accent">Register</a>}
+          </div>
+        </div>
+      </div>
+
+      {/* Main bar */}
+      <div className="border-b border-border bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-12 h-12 flex items-center justify-center transition-smooth group-hover:scale-105">
-              <img src={ajvsLogo} alt="AJVS Logo" className="w-12 h-12 object-contain drop-shadow-md" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-foreground font-serif text-lg font-bold leading-tight">
-                AJVS
-              </span>
-              <span className="text-foreground/70 text-xs hidden sm:block">
+          <Link to="/" className="flex min-w-0 items-center gap-3 group">
+            <img src={ajvsLogo} alt="AJVS Logo" className="h-11 w-11 shrink-0 object-contain lg:h-14 lg:w-14" />
+            <div className="flex min-w-0 flex-col border-l border-border pl-3">
+              <span className="font-serif text-xl font-semibold leading-none text-primary lg:text-2xl">AJVS</span>
+              <span className="mt-1 truncate text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
                 African Journal of Veterinary Sciences
               </span>
             </div>
@@ -87,110 +119,49 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList>
+            <NavigationMenuList className="gap-0">
               <NavigationMenuItem>
-              <Link to="/" className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10 rounded-md transition-smooth inline-flex items-center">
-                  Home
-                </Link>
+                <Link to="/" className={`${triggerCls} inline-flex items-center ${pathname === "/" ? "border-accent text-primary" : ""}`}>Home</Link>
               </NavigationMenuItem>
-
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  About
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger className={triggerCls}>About</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[500px] p-6 bg-background border border-border/50 shadow-lg">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <Link to="/about" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">About AJVS</div>
-                          <p className="text-sm text-muted-foreground">Our mission and vision</p>
-                        </Link>
-                        <Link to="/editorial-board" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Editorial Board</div>
-                          <p className="text-sm text-muted-foreground">Distinguished editors</p>
-                        </Link>
-                      </div>
-                      <div className="space-y-1">
-                        <Link to="/policies" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">Policies & Ethics</div>
-                          <p className="text-sm text-muted-foreground">Publication standards</p>
-                        </Link>
-                        <Link to="/faq" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                          <div className="font-medium text-foreground mb-1 group-hover:text-primary">FAQ</div>
-                          <p className="text-sm text-muted-foreground">Common questions</p>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
+                  <Panel label="The journal" wide>
+                    <MenuItem to="/about" title="About AJVS" text="Aims, scope, and mission" />
+                    <MenuItem to="/editorial-board" title="Editorial Board" text="Editors and advisors" />
+                    <MenuItem to="/policies" title="Policies & Ethics" text="Publication standards" />
+                    <MenuItem to="/faq" title="FAQ" text="Common questions" />
+                  </Panel>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  Publications
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger className={triggerCls}>Publications</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background border border-border/50 shadow-lg">
-                    <div className="space-y-1">
-                      <Link to="/current-issue" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Current Issue</div>
-                        <p className="text-sm text-muted-foreground">Browse the latest articles</p>
-                      </Link>
-                      <Link to="/archives" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Archives</div>
-                        <p className="text-sm text-muted-foreground">Explore past issues</p>
-                      </Link>
-                      <Link to="/blog" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Blog & News</div>
-                        <p className="text-sm text-muted-foreground">Articles, updates, and insights</p>
-                      </Link>
-                      <Link to="/blog?type=announcement" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Announcements</div>
-                        <p className="text-sm text-muted-foreground">Official journal announcements</p>
-                      </Link>
-                    </div>
-                  </div>
+                  <Panel label="Read" wide>
+                    <MenuItem to="/current-issue" title="Current Issue" text="The latest articles" />
+                    <MenuItem to="/archives" title="Archives" text="Search all published work" />
+                    <MenuItem to="/blog" title="News & Blog" text="Updates and insights" />
+                    <MenuItem to="/blog?type=announcement" title="Announcements" text="Official journal notices" />
+                  </Panel>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  Submissions
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger className={triggerCls}>Submissions</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background border border-border/50 shadow-lg">
-                    <div className="space-y-1">
-                      <Link to="/submit" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Submit Manuscript</div>
-                        <p className="text-sm text-muted-foreground">Start your submission</p>
-                      </Link>
-                      <Link to="/for-authors" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Author Guidelines</div>
-                        <p className="text-sm text-muted-foreground">Submission requirements and templates</p>
-                      </Link>
-                    </div>
-                  </div>
+                  <Panel label="Publish with us">
+                    <MenuItem to="/submit" title="Submit Manuscript" text="Start your submission" />
+                    <MenuItem to="/for-authors" title="Author Guidelines" text="Preparation requirements" />
+                    <MenuItem to="/call-for-papers" title="Call for Papers" text="Current call and fees" />
+                  </Panel>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="px-4 py-2 text-sm font-medium text-foreground/90 hover:text-foreground bg-transparent hover:bg-foreground/10">
-                  Contact & Help
-                </NavigationMenuTrigger>
+                <NavigationMenuTrigger className={triggerCls}>Contact & Help</NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="w-[400px] p-6 bg-background border border-border/50 shadow-lg">
-                    <div className="space-y-1">
-                      <Link to="/contact" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">Contact Us</div>
-                        <p className="text-sm text-muted-foreground">Get in touch with us</p>
-                      </Link>
-                      <Link to="/faq" className="group block p-3 rounded-lg hover:bg-primary/15 backdrop-blur-md border border-transparent hover:border-primary/20 transition-smooth">
-                        <div className="font-medium text-foreground mb-1 group-hover:text-primary">FAQ</div>
-                        <p className="text-sm text-muted-foreground">Common questions</p>
-                      </Link>
-                    </div>
-                  </div>
+                  <Panel label="Get in touch">
+                    <MenuItem to="/contact" title="Contact Us" text="Reach the editorial office" />
+                    <MenuItem to="/faq" title="FAQ" text="Common questions" />
+                  </Panel>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -199,26 +170,9 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            {!user && (
-              <>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="hidden md:inline-flex border-primary/30 text-primary hover:bg-primary/10"
-                  onClick={() => window.location.href = getOJSLink('LOGIN')}
-                >
-                  Login
-                </Button>
-                <Button 
-                  variant="default" 
-                  size="sm" 
-                  className="hidden md:inline-flex bg-primary text-primary-foreground hover:bg-primary/90"
-                  onClick={() => window.location.href = getOJSLink('REGISTER')}
-                >
-                  Register
-                </Button>
-              </>
-            )}
+            <Button asChild size="sm" className="hidden rounded-sm bg-accent text-accent-foreground hover:bg-accent/90 md:inline-flex">
+              <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer"><Send /> Submit</a>
+            </Button>
 
             {/* Mobile Menu */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
