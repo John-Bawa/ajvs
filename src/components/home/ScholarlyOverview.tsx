@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ajvsLogo from "@/assets/ajvs-logo-enhanced.png";
+import heroBuilding from "@/assets/hero-building.jpg";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { OJSAnnouncementsWidget } from "@/components/ojs/OJSAnnouncementsWidget";
 import { OJS_BASE_URL, getOJSLink } from "@/config/ojs";
@@ -32,50 +33,73 @@ export function ScholarlyOverview() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-background">
-        <div className="container mx-auto px-4 py-9 sm:px-6 sm:py-12">
-          <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-4xl">
-              <div className="mb-5 flex items-center gap-4">
-                <img src={ajvsLogo} alt="African Journal of Veterinary Sciences logo" className="h-16 w-16 object-contain sm:h-20 sm:w-20" />
-                <div className="border-l-2 border-highlight pl-4 text-xs font-semibold uppercase text-muted-foreground">
-                  <span className="block text-primary">University of Jos</span>
-                  <span>Faculty of Veterinary Medicine</span>
-                </div>
+      <section className="relative isolate overflow-hidden border-b border-border bg-primary text-primary-foreground">
+        <img
+          src={heroBuilding}
+          alt="Faculty of Veterinary Medicine offices and laboratories, University of Jos"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]"
+          fetchPriority="high"
+        />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-primary/90 to-primary/30" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-primary/80 to-transparent" />
+
+        <div className="container mx-auto px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
+          <div className="max-w-3xl">
+            <div className="mb-6 flex items-center gap-4">
+              <img src={ajvsLogo} alt="African Journal of Veterinary Sciences logo" className="h-16 w-16 rounded-full bg-background/95 object-contain p-1 sm:h-20 sm:w-20" />
+              <div className="border-l-2 border-accent pl-4 text-xs font-semibold uppercase tracking-wider text-primary-foreground/80">
+                <span className="block text-primary-foreground">University of Jos</span>
+                <span>Faculty of Veterinary Medicine</span>
               </div>
-              <h1 className="max-w-4xl font-serif text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-6xl">
-                African Journal of Veterinary Sciences
-              </h1>
-              <p className="mt-4 max-w-3xl text-base text-muted-foreground sm:text-lg">
-                Peer-reviewed research advancing veterinary, biomedical, environmental, and animal sciences in Africa and beyond.
-              </p>
             </div>
-            <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
-              <Button asChild size="lg" className="w-full rounded-sm sm:w-auto">
+            <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-primary-foreground sm:text-6xl lg:text-7xl">
+              African Journal of Veterinary Sciences
+            </h1>
+            <p className="mt-5 max-w-2xl text-base text-primary-foreground/85 sm:text-lg">
+              Peer-reviewed, open access research advancing veterinary, biomedical, environmental, and animal sciences in Africa and beyond.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild size="lg" className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90">
                 <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer">
-                  Submit Manuscript <ExternalLink />
+                  Submit your research <ExternalLink />
                 </a>
               </Button>
-              <Button asChild size="lg" variant="outline" className="w-full rounded-sm sm:w-auto">
-                <Link to="/current-issue">Current Issue</Link>
+              <Button asChild size="lg" variant="secondary" className="rounded-sm">
+                <Link to="/current-issue">Read the current issue <ArrowRight /></Link>
               </Button>
             </div>
           </div>
 
-          <form action={`${OJS_BASE_URL}/index.php/ajvs/search/search`} method="get" target="_blank" className="mt-8 max-w-4xl" role="search">
+          <form action={`${OJS_BASE_URL}/index.php/ajvs/search/search`} method="get" target="_blank" className="mt-10 max-w-3xl" role="search">
             <label htmlFor="journal-search" className="sr-only">Search AJVS articles, authors, and keywords</label>
-            <div className="flex border-2 border-border bg-background focus-within:border-primary">
+            <div className="flex overflow-hidden rounded-sm bg-background text-foreground shadow-lg focus-within:ring-2 focus-within:ring-accent">
               <Search className="ml-4 mt-3.5 h-5 w-5 shrink-0 text-muted-foreground" />
               <input id="journal-search" name="query" type="search" placeholder="Search articles, authors, or keywords" className="min-w-0 flex-1 bg-transparent px-3 py-3 text-sm outline-none placeholder:text-muted-foreground" />
               <Button type="submit" className="h-auto rounded-none px-6 sm:px-8">Search</Button>
             </div>
-            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-muted-foreground">
-              <Link to="/current-issue" className="hover:text-primary">Latest articles</Link>
-              <Link to="/archives" className="hover:text-primary">Browse issues</Link>
-              <Link to="/about" className="hover:text-primary">About the journal</Link>
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs font-medium text-primary-foreground/80">
+              <Link to="/current-issue" className="hover:text-accent">Latest articles</Link>
+              <Link to="/archives" className="hover:text-accent">Browse issues</Link>
+              <Link to="/about" className="hover:text-accent">About the journal</Link>
             </div>
           </form>
         </div>
+      </section>
+
+      <section aria-label="Journal facts" className="border-b border-border bg-secondary/40">
+        <dl className="container mx-auto grid grid-cols-2 gap-px px-4 sm:px-6 md:grid-cols-4">
+          {[
+            ["e-ISSN", "3043-4246"],
+            ["Access", "Open Access"],
+            ["Frequency", "Twice yearly"],
+            ["Publisher", "University of Jos, Nigeria"],
+          ].map(([term, value]) => (
+            <div key={term} className="border-l-2 border-accent/70 py-4 pl-4 first:border-l-2">
+              <dt className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{term}</dt>
+              <dd className="mt-1 text-sm font-semibold text-foreground">{value}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section className="border-b border-border bg-background">
