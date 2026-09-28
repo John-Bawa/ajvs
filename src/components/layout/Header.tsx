@@ -53,6 +53,7 @@ const Header = () => {
       title: "Submissions",
       icon: Send,
       links: [
+        { label: "Author Portal", href: "/author-portal", icon: Send },
         { label: "Submit Manuscript", href: "/submit", icon: Send },
         { label: "Author Guidelines", href: "/for-authors", icon: FileText },
       ],
@@ -94,7 +95,7 @@ const Header = () => {
             <span className="hidden md:inline">Open Access</span>
           </div>
           <div className="flex shrink-0 items-center gap-4 font-medium">
-            <Link to="/for-authors" className="hidden hover:text-accent sm:inline">For Authors</Link>
+            <Link to="/author-portal" className="hidden hover:text-accent sm:inline">For Authors</Link>
             <Link to="/policies" className="hidden hover:text-accent sm:inline">For Reviewers</Link>
             {!user && <a href={getOJSLink("LOGIN")} className="hover:text-accent">Login</a>}
             {!user && <a href={getOJSLink("REGISTER")} className="hover:text-accent">Register</a>}
@@ -149,6 +150,7 @@ const Header = () => {
                 <NavigationMenuTrigger className={triggerCls}>Submissions</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <Panel label="Publish with us">
+                    <MenuItem to="/author-portal" title="Author Portal" text="Steps, checklist & submission" />
                     <MenuItem to="/submit" title="Submit Manuscript" text="Start your submission" />
                     <MenuItem to="/for-authors" title="Author Guidelines" text="Preparation requirements" />
                     <MenuItem to="/call-for-papers" title="Call for Papers" text="Current call and fees" />
