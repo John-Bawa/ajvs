@@ -40,7 +40,7 @@ export function ScholarlyOverview() {
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]"
           fetchPriority="high"
         />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-primary/90 to-primary/30" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-primary via-primary/80 to-primary/10" />
         <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-primary/80 to-transparent" />
 
         <div className="container mx-auto px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
