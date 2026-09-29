@@ -12,7 +12,7 @@ const responseHeaders = {
 };
 
 const OJS_BASE_URL = 'https://journal.africanjournalvetsci.org/index.php/ajvs';
-const CURRENT_ISSUE_PATH = '/issue/view/1';
+const CURRENT_ISSUE_PATH = '/issue/current';
 
 function decodeHtml(value: string): string {
   const entities: Record<string, string> = {
@@ -205,13 +205,28 @@ serve(async (req) => {
     if (type === 'announcements') {
       result = { items: parseAnnouncements(html) };
     } else if (type === 'current-issue') {
-      result = parseIssuePage(html, {
-        id: 1,
-        title: 'Vol. 1 No. 1 (2026): Issue 1',
-        volume: 1,
-        number: '1',
-        year: 2026,
+      // OJS /issue/current always renders the latest published issue.
+      const idMatch = html.match(/\/issue\/view\/(\d+)/i);
+      const headMatch = html.match(/Vol\.\s*(\d+)\s*No\.\s*([^\s(<]+)\s*\((\d{4})\)/i);
+      let parsed = parseIssuePage(html, {
+        id: idMatch ? Number(idMatch[1]) : 0,
+        title: 'Current Issue',
+        volume: headMatch ? Number(headMatch[1]) : undefined,
+        number: headMatch?.[2],
+        year: headMatch ? Number(headMatch[3]) : undefined,
       });
+      if (!parsed.hasContent) {
+        // Fallback: newest issue listed in the OJS archive.
+        const archiveRes = await fetch(`${OJS_BASE_URL}/issue/archive`, { cache: 'no-store', headers: { 'Accept': 'text/html' } });
+        if (archiveRes.ok) {
+          const latest = parseIssueArchive(await archiveRes.text()).sort((a, b) => b.id - a.id)[0];
+          if (latest) {
+            const r = await fetch(`${OJS_BASE_URL}/issue/view/${latest.id}`, { cache: 'no-store', headers: { 'Accept': 'text/html' } });
+            if (r.ok) parsed = parseIssuePage(await r.text(), latest);
+          }
+        }
+      }
+      result = parsed;
     } else {
       const issueSummaries = parseIssueArchive(html);
       const issueResults = await Promise.all(issueSummaries.map(async (issue) => {

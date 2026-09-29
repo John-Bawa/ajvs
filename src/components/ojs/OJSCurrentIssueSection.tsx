@@ -91,7 +91,7 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
           <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline" size="sm">
               <a href={getOJSLink('CURRENT_ISSUE')} target="_blank" rel="noopener noreferrer">
-                View Issue 1 on OJS <ExternalLink className="ml-2 h-4 w-4" />
+                View current issue on OJS <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </Button>
             <Button type="button" variant="ghost" size="sm" onClick={loadCurrentIssue}>
