@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
+  BarChart3,
   BookOpen,
   CheckCircle2,
   ExternalLink,
@@ -9,6 +10,8 @@ import {
   ShieldCheck,
   Stethoscope,
   Users,
+  Download,
+  LibraryBig,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -17,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { getOJSLink } from "@/config/ojs";
 import musinguziPhoto from "@/assets/musinguzi.jpg";
 import { SEOHead } from "./SEOHead";
+import brochureAsset from "@/assets/ajvs-journal-profile-and-call-for-papers.pdf.asset.json";
 
 const journalFacts = [
   { label: "e-ISSN", value: "3043-4246" },
@@ -61,6 +65,13 @@ const impactPrinciples = [
   },
 ];
 
+const editorialLeadership = [
+  { role: "Editor-in-Chief", name: "Dr Musinguzi Simon Peter", affiliation: "Kyambogo University, Uganda" },
+  { role: "Co-Editor in-Chief", name: "Prof. Adeyeye, Adewale A.", affiliation: "Usmanu Danfodio University Sokoto, Nigeria" },
+  { role: "Deputy Editor-in-Chief", name: "Dr Ameji, Negedu Onogu", affiliation: "University of Jos, Nigeria" },
+  { role: "Managing Editor", name: "Dr Idris Ayodeji Azeez", affiliation: "University of Jos, Nigeria" },
+];
+
 const JournalOverview = () => (
   <div className="flex min-h-screen flex-col bg-background">
     <SEOHead
@@ -87,6 +98,9 @@ const JournalOverview = () => (
         <Button asChild variant="outline" className="rounded-sm border-banner-foreground/40 bg-banner/70 text-banner-foreground hover:bg-banner-foreground hover:text-banner">
           <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer">Submit to AJVS <ExternalLink /></a>
         </Button>
+        <Button asChild variant="outline" className="rounded-sm border-banner-foreground/40 bg-banner/70 text-banner-foreground hover:bg-banner-foreground hover:text-banner">
+          <a href={brochureAsset.url} download="AJVS-journal-profile-and-call-for-papers.pdf">Download brochure <Download /></a>
+        </Button>
       </div>
     </PageHero>
 
@@ -110,6 +124,8 @@ const JournalOverview = () => (
             <a href="#scope" className="flex items-center justify-between py-3 text-foreground hover:text-primary">Aims & scope <ArrowRight className="h-3.5 w-3.5" /></a>
             <a href="#leadership" className="flex items-center justify-between py-3 text-foreground hover:text-primary">Editorial leadership <ArrowRight className="h-3.5 w-3.5" /></a>
             <a href="#impact" className="flex items-center justify-between py-3 text-foreground hover:text-primary">Scholarly impact <ArrowRight className="h-3.5 w-3.5" /></a>
+            <a href="#indexing" className="flex items-center justify-between py-3 text-foreground hover:text-primary">Indexing status <ArrowRight className="h-3.5 w-3.5" /></a>
+            <a href="#authors" className="flex items-center justify-between py-3 text-foreground hover:text-primary">For authors <ArrowRight className="h-3.5 w-3.5" /></a>
           </nav>
           <div className="mt-6 border-t-2 border-accent bg-secondary p-4">
             <p className="text-xs font-bold uppercase text-muted-foreground">Published by</p>
@@ -134,6 +150,15 @@ const JournalOverview = () => (
               {["Original research articles", "Review articles", "Case reports", "Short communications and perspectives"].map((item) => (
                 <div key={item} className="flex items-center gap-3 border-b border-border py-3 text-sm font-semibold text-foreground">
                   <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" /> {item}
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
+              {editorialLeadership.map((member) => (
+                <div key={member.role} className="bg-card p-5">
+                  <p className="text-xs font-bold uppercase text-primary">{member.role}</p>
+                  <p className="mt-2 font-serif text-lg font-semibold">{member.name}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{member.affiliation}</p>
                 </div>
               ))}
             </div>
@@ -184,6 +209,25 @@ const JournalOverview = () => (
                   <p className="text-sm text-muted-foreground">{text}</p>
                 </article>
               ))}
+            </div>
+          </section>
+
+          <section id="indexing" className="scroll-mt-6">
+            <p className="text-xs font-bold uppercase text-primary">Third-party recognition</p>
+            <h2 className="mt-2 text-3xl font-semibold sm:text-4xl">Impact factor and indexing</h2>
+            <p className="mt-4 max-w-3xl text-muted-foreground">AJVS reports scholarly metrics and database coverage only when they can be linked to an official third-party journal profile.</p>
+            <div className="mt-7 grid gap-px border border-border bg-border sm:grid-cols-2">
+              <article className="bg-card p-6"><BarChart3 className="h-6 w-6 text-primary" /><p className="mt-4 text-xs font-bold uppercase text-muted-foreground">Journal Impact Factor</p><h3 className="mt-1 text-xl">Not yet verified</h3><p className="mt-3 text-sm text-muted-foreground">No numeric Journal Impact Factor is displayed because AJVS has not supplied an official Journal Citation Reports profile.</p></article>
+              <article className="bg-card p-6"><LibraryBig className="h-6 w-6 text-primary" /><p className="mt-4 text-xs font-bold uppercase text-muted-foreground">Indexing databases</p><h3 className="mt-1 text-xl">Official profiles not documented</h3><p className="mt-3 text-sm text-muted-foreground">Database names will be added here only after their official AJVS profile links are verified.</p></article>
+            </div>
+          </section>
+
+          <section id="authors" className="scroll-mt-6 border-t border-border pt-10">
+            <p className="text-xs font-bold uppercase text-primary">For authors</p>
+            <h2 className="mt-2 text-3xl font-semibold sm:text-4xl">Prepare your contribution</h2>
+            <div className="mt-7 grid gap-6 md:grid-cols-2">
+              <div className="border-t-2 border-primary bg-card p-6 shadow-card"><h3 className="text-xl">Submission pathway</h3><ol className="mt-4 space-y-3 text-sm text-muted-foreground">{["Review the author guidelines and prepare the manuscript.", "Complete the declaration form and cover letter.", "Pay the ₦5,000 processing fee.", "Submit and track the manuscript through OJS."].map((step, index) => <li key={step} className="flex gap-3"><span className="font-bold text-primary">{index + 1}.</span><span>{step}</span></li>)}</ol><Button asChild className="mt-6 rounded-sm"><Link to="/author-portal">Open Author Portal <ArrowRight /></Link></Button></div>
+              <div className="border-t-2 border-accent bg-card p-6 shadow-card"><h3 className="text-xl">Publication charges</h3><dl className="mt-4 divide-y divide-border text-sm"><div className="flex justify-between gap-4 py-3"><dt className="text-muted-foreground">Processing fee</dt><dd className="font-bold">₦5,000 / $30</dd></div><div className="flex justify-between gap-4 py-3"><dt className="text-muted-foreground">Accepted article page charge</dt><dd className="font-bold">₦7,000 / $35 per page</dd></div></dl><Button asChild variant="outline" className="mt-6 rounded-sm"><a href={brochureAsset.url} download="AJVS-journal-profile-and-call-for-papers.pdf"><Download />Download journal brochure</a></Button></div>
             </div>
           </section>
         </div>
