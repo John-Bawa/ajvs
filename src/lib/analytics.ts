@@ -1,3 +1,5 @@
+import { supabase } from "@/integrations/supabase/client";
+
 type AnalyticsParameters = Record<string, string | number | boolean>;
 
 declare global {
@@ -20,10 +22,21 @@ export const trackEvent = (eventName: string, parameters: AnalyticsParameters = 
 };
 
 export const trackAuthorPortalVisit = () => {
+  const params = new URLSearchParams(window.location.search);
+  const referrerHost = document.referrer ? new URL(document.referrer).hostname : "";
+  const source = params.get("utm_source")?.slice(0, 80) || referrerHost.slice(0, 80) || "direct";
+
   trackEvent("author_portal_view", {
     page_path: "/author-portal",
     page_title: "Author Portal",
+    source,
   });
+  void supabase
+    .from("author_interest_events")
+    .insert({ event_type: "author_portal_view", source })
+    .then(({ error }) => {
+      if (error) console.error("Author portal analytics could not be recorded", error.message);
+    });
 };
 
 export const trackOjsSubmitClick = (source: string) => {
@@ -31,4 +44,10 @@ export const trackOjsSubmitClick = (source: string) => {
     source,
     destination: "ojs_submission_portal",
   });
+  void supabase
+    .from("author_interest_events")
+    .insert({ event_type: "ojs_submit_click", source })
+    .then(({ error }) => {
+      if (error) console.error("Submission click analytics could not be recorded", error.message);
+    });
 };

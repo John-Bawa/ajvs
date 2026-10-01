@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Plus, Search, Edit, Trash2, Eye, FileText, Send, Clock,
-  LayoutDashboard, Tag, FolderOpen, MoreVertical,
+  LayoutDashboard, Tag, FolderOpen, MoreVertical, BarChart3,
 } from "lucide-react";
 import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,
@@ -153,11 +153,10 @@ export default function AdminBlog() {
               </h1>
               <p className="text-muted-foreground mt-1">Create, manage, and publish articles</p>
             </div>
-            <Link to="/admin/blog/editor">
-              <Button className="bg-primary text-primary-foreground">
-                <Plus className="w-4 h-4 mr-2" /> New Post
-              </Button>
-            </Link>
+            <div className="flex gap-2">
+              <Button asChild variant="outline"><Link to="/admin/analytics"><BarChart3 className="w-4 h-4 mr-2" />Author interest</Link></Button>
+              <Button asChild className="bg-primary text-primary-foreground"><Link to="/admin/blog/editor"><Plus className="w-4 h-4 mr-2" /> New Post</Link></Button>
+            </div>
           </div>
 
           {/* Stats */}

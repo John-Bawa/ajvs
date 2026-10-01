@@ -5,3 +5,4 @@ The homepage follows a scholarly metadata-hub pattern: search and verified publi
 - AI article finder (research-finder function) reads publications live via ojs-proxy and only returns articles whose IDs exist in that data — prevents invented citations.
 - The dedicated `/journal-overview` page is the primary journal profile for mission, scope, leadership, and verified impact; detailed About and Editorial Board pages remain separate.
 - Frontend analytics events go through `src/lib/analytics.ts`; route views and Author Portal submission intent use consistent GA4 event names and source labels.
+- Author-interest analytics are stored without personal identifiers; only journal administrators can read the dashboard data.
