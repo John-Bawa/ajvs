@@ -6,7 +6,7 @@ import { ExternalLink, AlertCircle, Clock3, RefreshCw } from "lucide-react";
 import { fetchCurrentIssue, OJSArticle, OJSIssue } from "@/services/ojsApi";
 import { OJSArticleCard } from "./OJSArticleCard";
 import { getOJSLink } from "@/config/ojs";
-import issueOneCover from "@/assets/ajvs-volume-1-issue-1-cover.jpeg.asset.json";
+const issueOneCover = { url: "/images/ajvs-volume-1-issue-1-cover.jpeg" };
 import {
   Pagination,
   PaginationContent,
