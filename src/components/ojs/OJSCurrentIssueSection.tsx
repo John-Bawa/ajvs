@@ -6,6 +6,7 @@ import { ExternalLink, AlertCircle, Clock3, RefreshCw } from "lucide-react";
 import { fetchCurrentIssue, OJSArticle, OJSIssue } from "@/services/ojsApi";
 import { OJSArticleCard } from "./OJSArticleCard";
 import { getOJSLink } from "@/config/ojs";
+import issueOneCover from "@/assets/ajvs-volume-1-issue-1-cover.jpeg.asset.json";
 import {
   Pagination,
   PaginationContent,
@@ -70,6 +71,7 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
   const visibleArticles = compact
     ? articles.slice(0, 5)
     : articles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
+  const showIssueOneCover = issue?.id === 1 || (String(issue?.volume) === "1" && String(issue?.number) === "1");
 
   const goToPage = (page: number) => {
     setCurrentPage(Math.min(Math.max(page, 1), totalPages));
@@ -107,9 +109,28 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
     <div className="space-y-5">
       {/* Issue Header */}
       {issue && (
-        <div className="border-b border-border bg-secondary/25 p-5">
-          <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
-            <div>
+        <div className="border-b border-border bg-secondary/25 p-5 sm:p-6">
+          <div className={showIssueOneCover ? "grid gap-6 sm:grid-cols-[150px_minmax(0,1fr)] sm:items-start" : ""}>
+            {showIssueOneCover && (
+              <a
+                href={getOJSLink('CURRENT_ISSUE')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mx-auto block w-full max-w-[180px] sm:mx-0"
+                aria-label="Open AJVS Volume 1, Number 1 on OJS"
+              >
+                <img
+                  src={issueOneCover.url}
+                  alt="Cover of African Journal of Veterinary Sciences, Volume 1, Number 1 (2026)"
+                  className="aspect-[3/4] w-full border border-border object-cover shadow-card transition-transform duration-200 group-hover:-translate-y-1"
+                />
+                <span className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold text-primary sm:justify-start">
+                  View issue <ExternalLink className="h-3 w-3" />
+                </span>
+              </a>
+            )}
+            <div className="flex min-w-0 flex-col justify-between gap-5 sm:flex-row sm:items-start">
+              <div>
               <h3 className="text-2xl font-serif font-bold mb-2">
                 {issue.title || `Volume ${issue.volume}, Number ${issue.number} (${issue.year})`}
               </h3>
@@ -131,13 +152,14 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
                   })}
                 </p>
               )}
+              </div>
+              <Button asChild variant="outline" className="shrink-0 rounded-sm">
+                <a href={getOJSLink('CURRENT_ISSUE')} target="_blank" rel="noopener noreferrer">
+                  View Full Issue
+                  <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </Button>
             </div>
-            <Button asChild variant="outline">
-              <a href={getOJSLink('CURRENT_ISSUE')} target="_blank" rel="noopener noreferrer">
-                View Full Issue
-                <ExternalLink className="ml-2 w-4 h-4" />
-              </a>
-            </Button>
           </div>
         </div>
       )}

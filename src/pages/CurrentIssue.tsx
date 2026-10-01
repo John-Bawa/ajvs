@@ -4,9 +4,6 @@ import TopBar from "@/components/layout/TopBar";
 import Footer from "@/components/layout/Footer";
 import { OJSCurrentIssueSection } from "@/components/ojs/OJSCurrentIssueSection";
 import { SEOHead } from "./SEOHead";
-import { motion } from "framer-motion";
-import illustrationJournals from "@/assets/illustration-journals.png";
-import illustrationData from "@/assets/illustration-data.png";
 
 const CurrentIssue = () => {
   return (
