@@ -34,7 +34,8 @@ const Header = () => {
       title: "About",
       icon: Info,
       links: [
-        { label: "Overview of AJVS", href: "/about", icon: Home },
+        { label: "Journal Overview", href: "/journal-overview", icon: Home },
+        { label: "About AJVS", href: "/about", icon: Info },
         { label: "Editorial Board", href: "/editorial-board", icon: User },
         { label: "Author Guidelines", href: "/for-authors", icon: FileText },
         { label: "Publication Ethics", href: "/policies", icon: BookOpen },
@@ -128,6 +129,7 @@ const Header = () => {
                 <NavigationMenuTrigger className={triggerCls}>About</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <Panel label="The journal" wide>
+                    <MenuItem to="/journal-overview" title="Journal Overview" text="Mission, scope, leadership & impact" />
                     <MenuItem to="/about" title="About AJVS" text="Aims, scope, and mission" />
                     <MenuItem to="/editorial-board" title="Editorial Board" text="Editors and advisors" />
                     <MenuItem to="/policies" title="Policies & Ethics" text="Publication standards" />

@@ -62,6 +62,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  to="/journal-overview"
+                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
+                >
+                  Journal Overview
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/about"
                   className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
                 >
