@@ -22,6 +22,7 @@ const SubmitManuscript = lazy(() => import("./pages/SubmitManuscript"));
 const Manuscripts = lazy(() => import("./pages/Manuscripts"));
 const CurrentIssue = lazy(() => import("./pages/CurrentIssue"));
 const About = lazy(() => import("./pages/About"));
+const JournalOverview = lazy(() => import("./pages/JournalOverview"));
 const EditorialBoard = lazy(() => import("./pages/EditorialBoard"));
 const AuthorGuidelines = lazy(() => import("./pages/AuthorGuidelines"));
 const AuthorPortal = lazy(() => import("./pages/AuthorPortal"));
@@ -54,6 +55,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
       <Route path="/" element={<AnimatedRoute><Index /></AnimatedRoute>} />
+      <Route path="/journal-overview" element={<LazyRoute><JournalOverview /></LazyRoute>} />
       <Route path="/about" element={<LazyRoute><About /></LazyRoute>} />
       <Route path="/current-issue" element={<LazyRoute><CurrentIssue /></LazyRoute>} />
       <Route path="/archives" element={<LazyRoute><Archives /></LazyRoute>} />
