@@ -31,7 +31,12 @@ export const trackAuthorPortalVisit = () => {
     page_title: "Author Portal",
     source,
   });
-  void supabase.from("author_interest_events").insert({ event_type: "author_portal_view", source });
+  void supabase
+    .from("author_interest_events")
+    .insert({ event_type: "author_portal_view", source })
+    .then(({ error }) => {
+      if (error) console.error("Author portal analytics could not be recorded", error.message);
+    });
 };
 
 export const trackOjsSubmitClick = (source: string) => {
@@ -39,5 +44,10 @@ export const trackOjsSubmitClick = (source: string) => {
     source,
     destination: "ojs_submission_portal",
   });
-  void supabase.from("author_interest_events").insert({ event_type: "ojs_submit_click", source });
+  void supabase
+    .from("author_interest_events")
+    .insert({ event_type: "ojs_submit_click", source })
+    .then(({ error }) => {
+      if (error) console.error("Submission click analytics could not be recorded", error.message);
+    });
 };
