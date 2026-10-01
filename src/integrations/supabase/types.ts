@@ -47,6 +47,27 @@ export type Database = {
         }
         Relationships: []
       }
+      author_interest_events: {
+        Row: {
+          created_at: string
+          event_type: string
+          id: string
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          event_type: string
+          id?: string
+          source: string
+        }
+        Update: {
+          created_at?: string
+          event_type?: string
+          id?: string
+          source?: string
+        }
+        Relationships: []
+      }
       blog_categories: {
         Row: {
           created_at: string
