@@ -13,6 +13,7 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { ScrollRestoration } from "@/components/ui/scroll-restoration";
 import { PageTransitionLoader } from "@/components/ui/page-transition-loader";
 import { ThemeProvider } from "@/components/theme-provider";
+import { RouteAnalytics } from "@/components/analytics/RouteAnalytics";
 import Index from "./pages/Index";
 
 // Lazy load all non-homepage routes
@@ -92,6 +93,7 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <BrowserRouter>
+    <RouteAnalytics />
     <ThemeProvider defaultTheme="light" storageKey="ajvs-theme">
       <HelmetProvider>
         <QueryClientProvider client={queryClient}>

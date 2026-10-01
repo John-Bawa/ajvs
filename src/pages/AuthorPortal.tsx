@@ -8,6 +8,7 @@ import { SEOHead } from "./SEOHead";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { getOJSLink } from "@/config/ojs";
+import { trackOjsSubmitClick } from "@/lib/analytics";
 import {
   Send,
   UserPlus,
@@ -140,7 +141,7 @@ const AuthorPortal = () => {
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild size="lg" className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90">
-            <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer">
+            <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer" onClick={() => trackOjsSubmitClick("author_portal_hero")}>
               <Send className="h-4 w-4" />
               Submit your manuscript
             </a>
@@ -193,6 +194,7 @@ const AuthorPortal = () => {
                                 <Link
                                   to={step.link.to}
                                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-accent"
+                                  onClick={step.title === "Submit through OJS" ? () => trackOjsSubmitClick("author_portal_pathway") : undefined}
                                 >
                                   {step.link.label}
                                 </Link>
@@ -298,7 +300,7 @@ const AuthorPortal = () => {
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/10 p-4">
                   <p className="text-sm font-medium">Your manuscript looks ready. Start the submission on the AJVS online system.</p>
                   <Button asChild size="sm" className="rounded-sm">
-                    <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer">
+                    <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer" onClick={() => trackOjsSubmitClick("author_portal_checklist_complete")}>
                       <Send className="h-4 w-4" />
                       Start submission
                     </a>
@@ -367,7 +369,7 @@ const AuthorPortal = () => {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button asChild size="lg" className="rounded-sm">
-                <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer">
+                <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer" onClick={() => trackOjsSubmitClick("author_portal_final_cta")}>
                   <Send className="h-4 w-4" />
                   Submit on the AJVS portal
                 </a>
