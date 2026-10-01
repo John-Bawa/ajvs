@@ -6,3 +6,4 @@
 - [x] Track Author Portal visits and OJS submission-link clicks in Google Analytics.- [ ] Expand Journal Overview into a complete MDPI-style journal profile using verified AJVS facts.
 - [ ] Create and add a downloadable combined journal-profile and call-for-papers PDF brochure.
 - [ ] Verify the upgraded page and PDF on desktop and mobile.
+- [ ] Add an admin analytics dashboard for Author Portal visits and OJS submission clicks, grouped by date and source.
