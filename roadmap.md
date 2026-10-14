@@ -8,3 +8,4 @@
 - [x] Create and add a downloadable combined journal-profile and call-for-papers PDF brochure.
 - [x] Verify the upgraded page and PDF on desktop and mobile.
 - [x] Add an admin analytics dashboard for Author Portal visits and OJS submission clicks, grouped by date and source.
+- [x] Build a peer-review page explaining the AJVS review process with a reviewer checklist, linked from the Author Portal.

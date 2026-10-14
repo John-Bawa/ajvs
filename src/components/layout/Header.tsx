@@ -57,6 +57,7 @@ const Header = () => {
         { label: "Author Portal", href: "/author-portal", icon: Send },
         { label: "Submit Manuscript", href: "/submit", icon: Send },
         { label: "Author Guidelines", href: "/for-authors", icon: FileText },
+        { label: "Peer Review", href: "/peer-review", icon: BookOpen },
       ],
     },
     {
@@ -97,7 +98,7 @@ const Header = () => {
           </div>
           <div className="flex shrink-0 items-center gap-4 font-medium">
             <Link to="/author-portal" className="hidden hover:text-accent sm:inline">For Authors</Link>
-            <Link to="/policies" className="hidden hover:text-accent sm:inline">For Reviewers</Link>
+            <Link to="/peer-review" className="hidden hover:text-accent sm:inline">For Reviewers</Link>
             {!user && <a href={getOJSLink("LOGIN")} className="hover:text-accent">Login</a>}
             {!user && <a href={getOJSLink("REGISTER")} className="hover:text-accent">Register</a>}
           </div>
@@ -155,6 +156,7 @@ const Header = () => {
                     <MenuItem to="/author-portal" title="Author Portal" text="Steps, checklist & submission" />
                     <MenuItem to="/submit" title="Submit Manuscript" text="Start your submission" />
                     <MenuItem to="/for-authors" title="Author Guidelines" text="Preparation requirements" />
+                    <MenuItem to="/peer-review" title="Peer Review" text="How manuscripts are reviewed" />
                     <MenuItem to="/call-for-papers" title="Call for Papers" text="Current call and fees" />
                   </Panel>
                 </NavigationMenuContent>

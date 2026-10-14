@@ -88,6 +88,7 @@ const STEPS = [
     icon: Users,
     title: "Peer review",
     text: "The editorial office first checks content, relevance and format. Compliant manuscripts go to three independent reviewers under a double-blind process, with recommendations expected within three weeks.",
+    link: { label: "See how peer review works", to: "/peer-review" },
   },
   {
     icon: BadgeCheck,
