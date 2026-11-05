@@ -14,3 +14,4 @@
 - [ ] Extend ojs-proxy to parse article abstracts; use them in the AI finder and listings.
 - [ ] Add reviewer pool sign-up form on the Peer Review page.
 - [ ] Remove leftover local submission/payment screens (MultiStepSubmission, PaymentStep).
+- [ ] Verify: build green, signup/reviewer forms submit, feeds return live OJS data, admin alert send works.
