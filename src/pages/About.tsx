@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { SEOHead } from "./SEOHead";
 import { BookOpen, Target, Globe, Award } from "lucide-react";
 import { motion } from "framer-motion";
+import { ReadingLayout } from "@/components/layout/ReadingLayout";
 
 
 const About = () => {
@@ -23,7 +24,7 @@ const About = () => {
 
       <PageHero eyebrow="The journal" title="About AJVS" description="Advancing veterinary research and practice across Africa and beyond." />
       <main className="flex-1 py-10 sm:py-14">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <ReadingLayout>
           {/* Main Content */}
           <div className="space-y-12">
             {/* Mission Card */}
@@ -238,7 +239,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </ReadingLayout>
       </main>
 
       <Footer />
