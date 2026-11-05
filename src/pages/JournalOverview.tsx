@@ -7,6 +7,7 @@ import {
   ExternalLink,
   Globe2,
   Microscope,
+  Rss,
   ShieldCheck,
   Stethoscope,
   Users,
