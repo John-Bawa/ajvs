@@ -24,7 +24,7 @@ export function ScholarlyOverview() {
           src={heroBuilding}
           alt="Faculty of Veterinary Medicine offices and laboratories, University of Jos"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]"
-          fetchpriority="high"
+          fetchPriority="high"
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-banner via-banner/80 to-banner/10" />
         <div aria-hidden className="absolute inset-x-0 bottom-0 -z-10 h-1/3 bg-gradient-to-t from-banner/80 to-transparent" />
