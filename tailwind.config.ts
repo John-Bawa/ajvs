@@ -62,6 +62,7 @@ export default {
         },
         oa: "hsl(var(--oa))",
         band: "hsl(var(--band))",
+        orcid: { DEFAULT: "hsl(var(--orcid))", foreground: "hsl(var(--orcid-foreground))" },
         "accent-on-dark": "hsl(var(--accent-on-dark))",
         highlight: {
           DEFAULT: "hsl(var(--highlight))",
