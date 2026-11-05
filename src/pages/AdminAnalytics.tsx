@@ -41,13 +41,42 @@ export default function AdminAnalytics() {
     const load = async () => {
       setLoading(true);
       const since = subDays(new Date(), 29).toISOString();
-      const { data, error } = await supabase.from("author_interest_events").select("event_type, source, created_at").gte("created_at", since).order("created_at", { ascending: true });
+      const [{ data, error }, { data: subs, error: subsError }] = await Promise.all([
+        supabase.from("author_interest_events").select("event_type, source, created_at").gte("created_at", since).order("created_at", { ascending: true }),
+        supabase.from("alert_subscribers").select("id, email, created_at").order("created_at", { ascending: false }),
+      ]);
       if (error) toast.error("Author interest data could not be loaded");
+      if (subsError) toast.error("Subscriber list could not be loaded");
       setEvents((data as InterestEvent[] | null) ?? []);
+      setSubscribers((subs as Subscriber[] | null) ?? []);
       setLoading(false);
     };
     void load();
   }, [isAdmin, navigate, rolesLoading]);
+
+  const sendAlert = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (subscribers.length === 0) {
+      toast.error("There are no subscribers to email yet.");
+      return;
+    }
+    if (!alertSubject.trim() || !alertMessage.trim()) {
+      toast.error("Add a subject and a message before sending.");
+      return;
+    }
+    setSending(true);
+    const { error } = await supabase.functions.invoke("send-bulk-email", {
+      body: { subject: alertSubject.trim(), message: alertMessage.trim(), emails: subscribers.map((s) => s.email) },
+    });
+    setSending(false);
+    if (error) {
+      toast.error("The alert could not be sent. Please try again.");
+    } else {
+      toast.success(`Alert sent to ${subscribers.length} subscriber${subscribers.length === 1 ? "" : "s"}.`);
+      setAlertSubject("");
+      setAlertMessage("");
+    }
+  };
 
   const daily = useMemo(() => {
     const days = Array.from({ length: 30 }, (_, index) => {
