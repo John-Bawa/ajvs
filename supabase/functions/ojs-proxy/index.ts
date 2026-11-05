@@ -187,6 +187,7 @@ serve(async (req) => {
   try {
     const url = new URL(req.url);
     const type = url.searchParams.get('type');
+    const includeAbstracts = url.searchParams.get('abstracts') === '1';
 
     if (!type) {
       return new Response(JSON.stringify({ error: 'Missing type parameter' }), {
