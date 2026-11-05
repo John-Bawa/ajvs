@@ -394,7 +394,7 @@ const EditorialBoard = () => {
           >
             {/* Editor-in-Chief */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Editor-in-Chief</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Editor-in-Chief</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -426,7 +426,7 @@ const EditorialBoard = () => {
 
             {/* Co-Editor in-Chief */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Co-Editor in-Chief</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Co-Editor in-Chief</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -457,7 +457,7 @@ const EditorialBoard = () => {
           >
             {/* Deputy Editor-in-Chief */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Deputy Editor-in-Chief</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Deputy Editor-in-Chief</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -487,7 +487,7 @@ const EditorialBoard = () => {
 
             {/* Managing Editor */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Managing Editor</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Managing Editor</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -525,8 +525,7 @@ const EditorialBoard = () => {
             className="mb-10"
           >
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-serif font-bold mb-2">Associate Editors</h2>
-              <div className="h-0.5 w-20 bg-gradient-to-r from-primary to-banner mx-auto rounded-full" />
+              <h2 className="section-heading">Associate Editors</h2>
             </div>
             <motion.div
               variants={containerVariants}
@@ -596,8 +595,7 @@ const EditorialBoard = () => {
             className="mb-10"
           >
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-serif font-bold mb-2">Editorial Board Advisers</h2>
-              <div className="h-0.5 w-20 bg-gradient-to-r from-banner to-primary mx-auto rounded-full" />
+              <h2 className="section-heading">Editorial Board Advisers</h2>
             </div>
             <motion.div
               variants={containerVariants}
