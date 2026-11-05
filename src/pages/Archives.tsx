@@ -15,7 +15,7 @@ import { ResearchFinder } from "@/components/ojs/ResearchFinder";
 import { IssueAlertSignup } from "@/components/ojs/IssueAlertSignup";
 import { fetchArchive, OJSArchiveIssue, OJSArticle } from "@/services/ojsApi";
 import { getOJSLink } from "@/config/ojs";
-import { AlertCircle, Clock3, ExternalLink, Search, SlidersHorizontal } from "lucide-react";
+import { AlertCircle, ExternalLink, Search, SlidersHorizontal } from "lucide-react";
 
 const ARTICLES_PER_PAGE = 12;
 
