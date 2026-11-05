@@ -259,6 +259,7 @@ serve(async (req) => {
           }
         }
       }
+      if (includeAbstracts) parsed.articles = await withAbstracts(parsed.articles);
       result = parsed;
     } else {
       const issueSummaries = parseIssueArchive(html);
