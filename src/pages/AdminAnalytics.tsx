@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { format, subDays } from "date-fns";
-import { BarChart3, CalendarDays, ExternalLink, FileText, MousePointerClick, Users } from "lucide-react";
+import { BarChart3, Bell, CalendarDays, ExternalLink, FileText, Loader2, Mail, MousePointerClick, Send, Users } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
@@ -15,6 +17,7 @@ import { useUserRoles } from "@/hooks/useUserRoles";
 import { toast } from "sonner";
 
 type InterestEvent = { event_type: string; source: string; created_at: string };
+type Subscriber = { id: string; email: string; created_at: string };
 
 export default function AdminAnalytics() {
   const { user } = useAuth();
@@ -22,6 +25,10 @@ export default function AdminAnalytics() {
   const navigate = useNavigate();
   const [events, setEvents] = useState<InterestEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
+  const [alertSubject, setAlertSubject] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [sending, setSending] = useState(false);
   const isAdmin = roles.some((role) => ["super_admin", "editor", "secretary"].includes(role));
 
   useEffect(() => {
@@ -34,13 +41,42 @@ export default function AdminAnalytics() {
     const load = async () => {
       setLoading(true);
       const since = subDays(new Date(), 29).toISOString();
-      const { data, error } = await supabase.from("author_interest_events").select("event_type, source, created_at").gte("created_at", since).order("created_at", { ascending: true });
+      const [{ data, error }, { data: subs, error: subsError }] = await Promise.all([
+        supabase.from("author_interest_events").select("event_type, source, created_at").gte("created_at", since).order("created_at", { ascending: true }),
+        supabase.from("alert_subscribers").select("id, email, created_at").order("created_at", { ascending: false }),
+      ]);
       if (error) toast.error("Author interest data could not be loaded");
+      if (subsError) toast.error("Subscriber list could not be loaded");
       setEvents((data as InterestEvent[] | null) ?? []);
+      setSubscribers((subs as Subscriber[] | null) ?? []);
       setLoading(false);
     };
     void load();
   }, [isAdmin, navigate, rolesLoading]);
+
+  const sendAlert = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (subscribers.length === 0) {
+      toast.error("There are no subscribers to email yet.");
+      return;
+    }
+    if (!alertSubject.trim() || !alertMessage.trim()) {
+      toast.error("Add a subject and a message before sending.");
+      return;
+    }
+    setSending(true);
+    const { error } = await supabase.functions.invoke("send-bulk-email", {
+      body: { subject: alertSubject.trim(), message: alertMessage.trim(), emails: subscribers.map((s) => s.email) },
+    });
+    setSending(false);
+    if (error) {
+      toast.error("The alert could not be sent. Please try again.");
+    } else {
+      toast.success(`Alert sent to ${subscribers.length} subscriber${subscribers.length === 1 ? "" : "s"}.`);
+      setAlertSubject("");
+      setAlertMessage("");
+    }
+  };
 
   const daily = useMemo(() => {
     const days = Array.from({ length: 30 }, (_, index) => {
@@ -93,6 +129,37 @@ export default function AdminAnalytics() {
         <section className="border border-border bg-card" aria-labelledby="source-heading">
           <div className="border-b border-border p-5 sm:p-6"><h2 id="source-heading" className="text-xl font-serif font-bold">Interest by source</h2><p className="text-sm text-muted-foreground">Visits show the referral or campaign source; clicks show the button location.</p></div>
           <Table><TableHeader><TableRow><TableHead>Source</TableHead><TableHead className="text-right">Visits</TableHead><TableHead className="text-right">OJS clicks</TableHead></TableRow></TableHeader><TableBody>{sources.length > 0 ? sources.map((row) => <TableRow key={row.source}><TableCell className="font-medium">{row.source.replace(/_/g, " ")}</TableCell><TableCell className="text-right">{row.visits}</TableCell><TableCell className="text-right">{row.clicks}</TableCell></TableRow>) : <TableRow><TableCell colSpan={3} className="py-10 text-center text-muted-foreground">No author-interest activity has been recorded yet.</TableCell></TableRow>}</TableBody></Table>
+        </section>
+
+        <section className="mt-8 border border-border bg-card" aria-labelledby="alerts-heading">
+          <div className="border-b border-border p-5 sm:p-6">
+            <h2 id="alerts-heading" className="flex items-center gap-2 text-xl font-serif font-bold"><Bell className="h-5 w-5 text-primary" />New issue alerts</h2>
+            <p className="text-sm text-muted-foreground">Readers who asked to be emailed when a new issue publishes.</p>
+          </div>
+          <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-2">
+            <div>
+              <p className="mb-3 text-sm font-semibold">{subscribers.length} subscriber{subscribers.length === 1 ? "" : "s"}</p>
+              <div className="max-h-64 overflow-y-auto rounded-sm border border-border">
+                <Table><TableBody>{subscribers.length > 0 ? subscribers.map((sub) => <TableRow key={sub.id}><TableCell className="font-medium">{sub.email}</TableCell><TableCell className="text-right text-muted-foreground">{format(new Date(sub.created_at), "MMM d, yyyy")}</TableCell></TableRow>) : <TableRow><TableCell className="py-8 text-center text-muted-foreground">No subscribers yet.</TableCell></TableRow>}</TableBody></Table>
+              </div>
+            </div>
+            <form onSubmit={sendAlert} className="space-y-4">
+              <p className="text-sm font-semibold">Send an alert to all subscribers</p>
+              <label className="block space-y-1.5">
+                <span className="text-sm text-muted-foreground">Subject</span>
+                <Input value={alertSubject} onChange={(e) => setAlertSubject(e.target.value)} placeholder="AJVS Volume 1 Number 2 is now published" maxLength={255} />
+              </label>
+              <label className="block space-y-1.5">
+                <span className="text-sm text-muted-foreground">Message</span>
+                <Textarea value={alertMessage} onChange={(e) => setAlertMessage(e.target.value)} placeholder="The latest issue of the African Journal of Veterinary Sciences is now available..." rows={5} maxLength={10000} />
+              </label>
+              <Button type="submit" disabled={sending || subscribers.length === 0} className="rounded-sm">
+                {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                Send alert
+              </Button>
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground"><Mail className="h-3.5 w-3.5" />Sent from the journal's noreply address.</p>
+            </form>
+          </div>
         </section>
       </div></main>
       <Footer />

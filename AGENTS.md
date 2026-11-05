@@ -6,3 +6,6 @@ The homepage follows a scholarly metadata-hub pattern: search and verified publi
 - The dedicated `/journal-overview` page is the primary journal profile for mission, scope, leadership, and verified impact; detailed About and Editorial Board pages remain separate.
 - Frontend analytics events go through `src/lib/analytics.ts`; route views and Author Portal submission intent use consistent GA4 event names and source labels.
 - Author-interest analytics are stored without personal identifiers; only journal administrators can read the dashboard data.
+- RSS and OAI-PMH feeds (generate-rss-feed, generate-oai-pmh) read live from OJS via ojs-proxy — never from local publication tables, which were removed with the legacy local submission flow.
+- ojs-proxy supports `abstracts=1` to fetch article abstracts from OJS article pages (capped at 24 per issue); research-finder uses it for relevance matching.
+- Reader alert subscribers and reviewer interest sign-ups are stored in `alert_subscribers` and `reviewer_interests`; anon can insert, only admin roles can read. Admins send alerts from /admin/analytics via send-bulk-email.

@@ -8,6 +8,7 @@ import { SEOHead } from "./SEOHead";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { getOJSLink } from "@/config/ojs";
+import { ReviewerInterestForm } from "@/components/ojs/ReviewerInterestForm";
 import {
   ClipboardCheck,
   EyeOff,
@@ -296,6 +297,12 @@ const PeerReview = () => {
                 </div>
               )}
             </div>
+          </section>
+
+          {/* Reviewer pool sign-up */}
+          <section aria-labelledby="reviewer-pool-heading" className="mb-12">
+            <h2 id="reviewer-pool-heading" className="sr-only">Join the reviewer pool</h2>
+            <ReviewerInterestForm />
           </section>
 
           {/* Final CTA */}

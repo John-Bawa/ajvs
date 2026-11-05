@@ -7,6 +7,7 @@ import {
   ExternalLink,
   Globe2,
   Microscope,
+  Rss,
   ShieldCheck,
   Stethoscope,
   Users,
@@ -219,6 +220,15 @@ const JournalOverview = () => (
             <div className="mt-7 grid gap-px border border-border bg-border sm:grid-cols-2">
               <article className="bg-card p-6"><BarChart3 className="h-6 w-6 text-primary" /><p className="mt-4 text-xs font-bold uppercase text-muted-foreground">Journal Impact Factor</p><h3 className="mt-1 text-xl">Not yet verified</h3><p className="mt-3 text-sm text-muted-foreground">No numeric Journal Impact Factor is displayed because AJVS has not supplied an official Journal Citation Reports profile.</p></article>
               <article className="bg-card p-6"><LibraryBig className="h-6 w-6 text-primary" /><p className="mt-4 text-xs font-bold uppercase text-muted-foreground">Indexing databases</p><h3 className="mt-1 text-xl">Official profiles not documented</h3><p className="mt-3 text-sm text-muted-foreground">Database names will be added here only after their official AJVS profile links are verified.</p></article>
+            </div>
+            <div className="mt-6 border border-border bg-card p-6">
+              <div className="flex items-center gap-2.5"><Rss className="h-5 w-5 text-primary" /><h3 className="text-lg">Metadata feeds for indexers and readers</h3></div>
+              <p className="mt-2 text-sm text-muted-foreground">AJVS exposes machine-readable feeds generated live from the journal's OJS platform, so discovery services and readers always see current records.</p>
+              <ul className="mt-4 space-y-2 text-sm">
+                <li className="flex flex-wrap items-center gap-2"><span className="font-semibold">RSS feed</span><a href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/generate-rss-feed`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary hover:underline">Open feed <ExternalLink className="h-3.5 w-3.5" /></a></li>
+                <li className="flex flex-wrap items-center gap-2"><span className="font-semibold">OAI-PMH endpoint</span><a href={`https://${import.meta.env.VITE_SUPABASE_PROJECT_ID}.supabase.co/functions/v1/generate-oai-pmh?verb=Identify`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-primary hover:underline">Verify endpoint <ExternalLink className="h-3.5 w-3.5" /></a></li>
+              </ul>
+              <p className="mt-4 text-xs text-muted-foreground">These feeds support indexing applications; listing in any database is confirmed only when its official AJVS profile exists.</p>
             </div>
           </section>
 
