@@ -127,6 +127,10 @@ const Archives = () => {
               )}
 
               {totalPages > 1 && <Pagination className="mt-8" aria-label="Archive result pages"><PaginationContent className="flex-wrap"><PaginationItem><PaginationPrevious href="#" aria-disabled={safePage === 1} className={safePage === 1 ? "pointer-events-none opacity-50" : undefined} onClick={(event) => { event.preventDefault(); setCurrentPage(safePage - 1); }} /></PaginationItem>{Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => <PaginationItem key={page}><PaginationLink href="#" isActive={page === safePage} aria-label={`Show archive page ${page}`} onClick={(event) => { event.preventDefault(); setCurrentPage(page); }}>{page}</PaginationLink></PaginationItem>)}<PaginationItem><PaginationNext href="#" aria-disabled={safePage === totalPages} className={safePage === totalPages ? "pointer-events-none opacity-50" : undefined} onClick={(event) => { event.preventDefault(); setCurrentPage(safePage + 1); }} /></PaginationItem></PaginationContent></Pagination>}
+
+              <div className="mt-10">
+                <IssueAlertSignup compact />
+              </div>
             </>
           )}
         </div>

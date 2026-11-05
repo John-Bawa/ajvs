@@ -8,6 +8,7 @@ import { SEOHead } from "./SEOHead";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { getOJSLink } from "@/config/ojs";
+import { ReviewerInterestForm } from "@/components/ojs/ReviewerInterestForm";
 import {
   ClipboardCheck,
   EyeOff,
