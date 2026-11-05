@@ -130,6 +130,7 @@ const FAQ = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
+            <h2 className="sr-only">Questions and answers</h2>
             <Accordion type="single" collapsible className="border-t border-border">
               {faqs.map((faq, index) => {
                 const Icon = faq.icon;
