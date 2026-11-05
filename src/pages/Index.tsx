@@ -9,6 +9,7 @@ import { getOJSLink } from "@/config/ojs";
 import { NewsCarousel } from "@/components/home/NewsCarousel";
 import { AcademicCalendar } from "@/components/home/AcademicCalendar";
 import { ScholarlyOverview } from "@/components/home/ScholarlyOverview";
+import { IssueAlertSignup } from "@/components/ojs/IssueAlertSignup";
 
 const scopeAreas = [
   "Veterinary medicine and clinical practice",
