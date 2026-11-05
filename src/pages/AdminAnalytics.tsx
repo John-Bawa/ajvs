@@ -25,6 +25,10 @@ export default function AdminAnalytics() {
   const navigate = useNavigate();
   const [events, setEvents] = useState<InterestEvent[]>([]);
   const [loading, setLoading] = useState(true);
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
+  const [alertSubject, setAlertSubject] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [sending, setSending] = useState(false);
   const isAdmin = roles.some((role) => ["super_admin", "editor", "secretary"].includes(role));
 
   useEffect(() => {
