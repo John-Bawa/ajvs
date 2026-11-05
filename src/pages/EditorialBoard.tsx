@@ -351,7 +351,7 @@ const EditorialBoard = () => {
           >
             <section aria-labelledby="board-contact" className="grid overflow-hidden rounded border border-border md:grid-cols-2">
               <div className="p-6 sm:p-8">
-                <h2 id="board-contact" className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Postal address</h2>
+                <h2 id="board-contact" className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Postal address</h2>
                 <address className="space-y-0.5 not-italic text-foreground">
                   <p className="font-semibold">The Editor-in-Chief</p>
                   <p>African Journal of Veterinary Sciences</p>

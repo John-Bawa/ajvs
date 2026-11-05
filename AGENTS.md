@@ -10,3 +10,4 @@ The homepage follows a scholarly metadata-hub pattern: search and verified publi
 - RSS and OAI-PMH feeds (generate-rss-feed, generate-oai-pmh) read live from OJS via ojs-proxy — never from local publication tables, which were removed with the legacy local submission flow.
 - ojs-proxy supports `abstracts=1` to fetch article abstracts from OJS article pages (capped at 24 per issue); research-finder uses it for relevance matching.
 - Reader alert subscribers and reviewer interest sign-ups are stored in `alert_subscribers` and `reviewer_interests`; anon can insert, only admin roles can read. Admins send alerts from /admin/analytics via send-bulk-email.
+- Long-form pages (Policies, Author Guidelines, About) wrap content in `ReadingLayout`, which builds the sticky "On this page" list from H2s; add sections as H2s rather than hand-written contents lists.
