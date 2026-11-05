@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { OJSArticleCard } from "@/components/ojs/OJSArticleCard";
 import { ResearchFinder } from "@/components/ojs/ResearchFinder";
+import { IssueAlertSignup } from "@/components/ojs/IssueAlertSignup";
 import { fetchArchive, OJSArchiveIssue, OJSArticle } from "@/services/ojsApi";
 import { getOJSLink } from "@/config/ojs";
 import { AlertCircle, Clock3, ExternalLink, Search, SlidersHorizontal } from "lucide-react";

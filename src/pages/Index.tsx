@@ -119,6 +119,12 @@ const Index = () => (
 
       <AcademicCalendar />
 
+      <section className="border-t border-border bg-background py-12 sm:py-16">
+        <div className="container mx-auto max-w-3xl px-4 sm:px-6">
+          <IssueAlertSignup />
+        </div>
+      </section>
+
       <section className="border-t border-border bg-banner py-10 text-banner-foreground">
         <div className="container mx-auto flex flex-col gap-6 px-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-2xl">
