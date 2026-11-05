@@ -271,7 +271,8 @@ serve(async (req) => {
         if (!issueResponse.ok) return { issue, articles: [] };
         const issueHtml = await issueResponse.text();
         const parsed = parseIssuePage(issueHtml, issue);
-        return { issue: parsed.issue, articles: parsed.articles };
+        const articles = includeAbstracts ? await withAbstracts(parsed.articles) : parsed.articles;
+        return { issue: parsed.issue, articles };
       }));
       result = {
         hasContent: issueResults.some((item) => item.articles.length > 0),
