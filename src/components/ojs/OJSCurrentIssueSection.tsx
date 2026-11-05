@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { ExternalLink, AlertCircle, Clock3, RefreshCw } from "lucide-react";
+import { ExternalLink, AlertCircle, RefreshCw } from "lucide-react";
 import { fetchCurrentIssue, OJSArticle, OJSIssue } from "@/services/ojsApi";
 import { OJSArticleCard } from "./OJSArticleCard";
 import { getOJSLink } from "@/config/ojs";
@@ -109,7 +109,7 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
     <div className="space-y-5">
       {/* Issue Header */}
       {issue && (
-        <div className="border-b border-border bg-secondary/25 p-5 sm:p-6">
+        <div className="border-b border-border pb-5">
           <div className={showIssueOneCover ? "grid gap-6 sm:grid-cols-[150px_minmax(0,1fr)] sm:items-start" : ""}>
             {showIssueOneCover && (
               <a
@@ -122,7 +122,8 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
                 <img
                   src={issueOneCover.url}
                   alt="Cover of African Journal of Veterinary Sciences, Volume 1, Number 1 (2026)"
-                  className="aspect-[3/4] w-full border border-border object-cover shadow-card transition-transform duration-200 group-hover:-translate-y-1"
+                  className="aspect-[3/4] w-full border border-border object-cover transition-colors duration-150 group-hover:border-accent"
+                  loading="lazy"
                 />
                 <span className="mt-2 flex items-center justify-center gap-1 text-xs font-semibold text-primary sm:justify-start">
                   View issue <ExternalLink className="h-3 w-3" />
@@ -131,32 +132,24 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
             )}
             <div className="flex min-w-0 flex-col justify-between gap-5 sm:flex-row sm:items-start">
               <div>
-              <h3 className="text-2xl font-serif font-bold mb-2">
-                {issue.title || `Volume ${issue.volume}, Number ${issue.number} (${issue.year})`}
+              <h3 className="mb-2 font-serif text-2xl font-semibold">
+                {issue.volume && issue.number
+                  ? `Volume ${issue.volume}, Issue ${issue.number}${issue.year ? ` (${issue.year})` : ""}`
+                  : issue.title}
               </h3>
-              {issue.datePublished && (
-                <p className="text-muted-foreground">
-                  Published: {new Date(issue.datePublished).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
-              )}
-              {syncedAt && (
-                <p className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground" title={new Date(syncedAt).toLocaleString()}>
-                  <Clock3 className="h-3.5 w-3.5" />
-                  Last synced from OJS: {new Date(syncedAt).toLocaleString(undefined, {
-                    dateStyle: 'medium',
-                    timeStyle: 'short',
-                  })}
-                </p>
-              )}
+              <p className="meta-text flex flex-wrap gap-x-3 gap-y-1">
+                {issue.datePublished && (
+                  <span>
+                    Published {new Date(issue.datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </span>
+                )}
+                <span>{articles.length} {articles.length === 1 ? "article" : "articles"}</span>
+              </p>
               </div>
               <Button asChild variant="outline" className="shrink-0 rounded-sm">
                 <a href={getOJSLink('CURRENT_ISSUE')} target="_blank" rel="noopener noreferrer">
-                  View Full Issue
-                  <ExternalLink className="ml-2 w-4 h-4" />
+                  View full issue
+                  <ExternalLink className="!size-3 opacity-70" aria-hidden />
                 </a>
               </Button>
             </div>
