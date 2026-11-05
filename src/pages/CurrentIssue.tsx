@@ -15,7 +15,7 @@ const CurrentIssue = () => {
       />
       <TopBar />
       <Header />
-      <PageHero eyebrow="Latest scholarship" title="Current Issue" description="Browse the latest articles published in AJVS, synced live from the journal portal." />
+      <PageHero eyebrow="Latest scholarship" title="Current Issue" description="Browse the latest articles published in AJVS." />
       <main className="flex-1 container mx-auto px-4 sm:px-6 py-10 sm:py-14">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">

@@ -339,7 +339,7 @@ const EditorialBoard = () => {
       />
       <Header />
 
-      <PageHero eyebrow="Leadership" title="Editorial Board" description="Distinguished scholars guiding excellence in biomedical, environmental and veterinary sciences." />
+      <PageHero eyebrow="Leadership" title="Editorial Board" description="The editors and advisors responsible for AJVS." />
       <main className="flex-1 py-10 sm:py-14">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Section A: Contact Information */}

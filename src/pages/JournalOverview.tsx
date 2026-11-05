@@ -96,10 +96,10 @@ const JournalOverview = () => (
         <Button asChild className="rounded-sm bg-accent text-accent-foreground hover:bg-accent/90">
           <Link to="/current-issue">Read current issue <ArrowRight /></Link>
         </Button>
-        <Button asChild variant="outline" className="rounded-sm border-banner-foreground/40 bg-banner/70 text-banner-foreground hover:bg-banner-foreground hover:text-banner">
+        <Button asChild variant="outline" className="rounded-sm">
           <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer">Submit to AJVS <ExternalLink /></a>
         </Button>
-        <Button asChild variant="outline" className="rounded-sm border-banner-foreground/40 bg-banner/70 text-banner-foreground hover:bg-banner-foreground hover:text-banner">
+        <Button asChild variant="outline" className="rounded-sm">
           <a href={brochureAsset.url} download="AJVS-journal-profile-and-call-for-papers.pdf">Download brochure <Download /></a>
         </Button>
       </div>
