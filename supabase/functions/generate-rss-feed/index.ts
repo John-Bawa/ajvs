@@ -1,10 +1,12 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+const SITE_URL = "https://africanjournalvetsci.org";
+const OJS_BASE_URL = "https://journal.africanjournalvetsci.org/index.php/ajvs";
 
 // Simple in-memory rate limiter (resets on cold start)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -28,6 +30,20 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
+type FeedArticle = {
+  id: number;
+  title: string;
+  abstract?: string;
+  authors?: { fullName: string }[];
+  datePublished?: string;
+  pages?: string;
+};
+
+type FeedIssue = {
+  issue: { id: number; title?: string; volume?: number; number?: string; year?: number; datePublished?: string };
+  articles: FeedArticle[];
+};
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -36,7 +52,7 @@ serve(async (req) => {
   try {
     // Get IP for rate limiting
     const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
-    
+
     // Check rate limit
     if (!checkRateLimit(ip)) {
       console.warn(`Rate limit exceeded for RSS feed request from IP: ${ip}`);
@@ -51,34 +67,17 @@ serve(async (req) => {
 
     console.log(`RSS feed request from IP: ${ip}`);
 
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    // Read live publication data from OJS through the sanitized proxy.
+    // OJS remains the single source of truth — nothing is stored locally.
+    const proxyRes = await fetch(
+      `${Deno.env.get("SUPABASE_URL")}/functions/v1/ojs-proxy?type=issues&abstracts=1`,
+      { headers: { apikey: Deno.env.get("SUPABASE_ANON_KEY") ?? "" } }
+    );
+    if (!proxyRes.ok) throw new Error(`ojs-proxy returned ${proxyRes.status}`);
+    const data = await proxyRes.json();
+    const issues: FeedIssue[] = Array.isArray(data?.issues) ? data.issues : [];
 
-    // Fetch latest published articles (limit to 50 for RSS)
-    const { data: articles, error } = await supabase
-      .from("published_articles")
-      .select(`
-        *,
-        manuscripts (
-          id,
-          title,
-          abstract,
-          keywords,
-          doi,
-          manuscript_authors (full_name)
-        ),
-        issues (volume, number, year)
-      `)
-      .order("published_date", { ascending: false })
-      .limit(50);
-
-    if (error) {
-      console.error("Error fetching articles for RSS:", error);
-      throw error;
-    }
-
-    const rss = generateRssFeed(articles || []);
+    const rss = generateRssFeed(issues);
 
     return new Response(rss, {
       headers: {
@@ -99,50 +98,44 @@ serve(async (req) => {
   }
 });
 
-function generateRssFeed(articles: any[]): string {
+function generateRssFeed(issues: FeedIssue[]): string {
   const buildDate = new Date().toUTCString();
-  
-  const items = articles.map(article => {
-    const manuscript = article.manuscripts;
-    const issue = article.issues;
-    const authors = manuscript?.manuscript_authors?.map((a: any) => a.full_name).join(", ") || "";
-    
-    return `
+
+  const items = issues.flatMap(({ issue, articles }) =>
+    articles.map((article) => {
+      const authors = (article.authors ?? []).map((a) => a.fullName).join(", ");
+      const articleUrl = `${OJS_BASE_URL}/article/view/${article.id}`;
+      const pubDate = article.datePublished || issue.datePublished;
+      const source = `African Journal of Veterinary Sciences${issue.volume ? `, Vol. ${issue.volume}` : ""}${issue.number ? ` No. ${issue.number}` : ""}${issue.year ? ` (${issue.year})` : ""}`;
+
+      return `
     <item>
-      <title>${escapeXml(manuscript?.title || "")}</title>
-      <link>https://ajvs.org/article/${article.id}</link>
-      <description>${escapeXml(manuscript?.abstract || "")}</description>
+      <title>${escapeXml(article.title)}</title>
+      <link>${articleUrl}</link>
+      <description>${escapeXml(article.abstract || "")}</description>
       <author>${escapeXml(authors)}</author>
-      <pubDate>${new Date(article.published_date).toUTCString()}</pubDate>
-      <guid isPermaLink="true">https://ajvs.org/article/${article.id}</guid>
-      ${manuscript?.doi ? `<doi xmlns="http://www.crossref.org/schema/4.4.0">${escapeXml(manuscript.doi)}</doi>` : ""}
-      ${manuscript?.keywords?.map((k: string) => `<category>${escapeXml(k)}</category>`).join("") || ""}
-      <source>
-        <title>African Journal of Veterinary Sciences</title>
-        <url>https://ajvs.org</url>
+      ${pubDate ? `<pubDate>${new Date(pubDate).toUTCString()}</pubDate>` : ""}
+      <guid isPermaLink="true">${articleUrl}</guid>
+      <source url="${SITE_URL}">
+        <title>${escapeXml(source)}</title>
       </source>
     </item>`;
-  }).join("");
+    })
+  ).join("");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" 
+<rss version="2.0"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
      xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>African Journal of Veterinary Sciences</title>
-    <link>https://ajvs.org</link>
-    <description>Latest research articles from the African Journal of Veterinary Sciences</description>
+    <link>${SITE_URL}</link>
+    <description>Latest research articles from the African Journal of Veterinary Sciences (AJVS), University of Jos</description>
     <language>en</language>
     <lastBuildDate>${buildDate}</lastBuildDate>
     <pubDate>${buildDate}</pubDate>
     <ttl>1440</ttl>
-    <atom:link href="https://ajvs.org/feed/rss" rel="self" type="application/rss+xml" />
-    <image>
-      <url>https://ajvs.org/logo.png</url>
-      <title>African Journal of Veterinary Sciences</title>
-      <link>https://ajvs.org</link>
-    </image>
     ${items}
   </channel>
 </rss>`;
