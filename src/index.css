@@ -207,6 +207,9 @@ Academic Journal Design System - Classic & Scholarly
     .reading-layout .glass, .reading-layout .hover-lift { padding-bottom: 2.5rem; margin-bottom: 2.5rem; }
   }
   .reading-layout .glass:hover { box-shadow: none; }
+  .reading-layout .glass, .reading-layout .hover-lift { padding-top: 0 !important; padding-left: 0 !important; padding-right: 0 !important; }
+  .reading-layout .glass :last-child { margin-bottom: 0; }
+  .reading-layout > * > .glass:last-child, .reading-layout .glass:last-child { border-bottom: 0; }
   .reading-layout .w-12.h-12.flex-shrink-0 { display: none; }
   .reading-layout h2 { @apply font-serif text-[1.375rem] sm:text-2xl font-semibold text-foreground; scroll-margin-top: 6rem; margin-bottom: 1rem; }
   .reading-layout h3 { @apply font-sans text-lg font-semibold text-foreground; margin-top: 1.75rem; margin-bottom: 0.5rem; }
