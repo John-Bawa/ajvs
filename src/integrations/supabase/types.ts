@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      alert_subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
       announcements: {
         Row: {
           content: string
@@ -574,6 +592,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      reviewer_interests: {
+        Row: {
+          affiliation: string | null
+          created_at: string
+          email: string
+          expertise: string
+          full_name: string
+          id: string
+        }
+        Insert: {
+          affiliation?: string | null
+          created_at?: string
+          email: string
+          expertise: string
+          full_name: string
+          id?: string
+        }
+        Update: {
+          affiliation?: string | null
+          created_at?: string
+          email?: string
+          expertise?: string
+          full_name?: string
+          id?: string
+        }
+        Relationships: []
       }
       reviews: {
         Row: {
