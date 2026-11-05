@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronRight, Home, Info, FileText, BookOpen, Mail, User, Send, HelpCircle } from "lucide-react";
+import { Menu, X, ChevronRight, Home, Info, FileText, BookOpen, Mail, User, Send, ExternalLink, HelpCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
@@ -71,32 +71,32 @@ const Header = () => {
   ];
 
   const triggerCls =
-    "h-16 rounded-none bg-transparent px-3 text-sm font-semibold text-foreground/85 hover:bg-transparent hover:text-primary focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:text-primary border-b-2 border-transparent data-[state=open]:border-accent";
-  const menuLink = "group block rounded-sm border-l-2 border-transparent px-3 py-2.5 transition-smooth hover:border-accent hover:bg-secondary/60";
+    "h-16 rounded-none bg-transparent px-3 text-[15px] font-medium text-foreground/85 transition-colors duration-150 hover:bg-transparent hover:text-accent focus:bg-transparent focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:bg-transparent data-[state=open]:text-primary border-b-2 border-transparent data-[state=open]:border-accent";
+  const menuLink = "group block rounded-sm border-l-2 border-transparent px-3 py-2.5 transition-colors duration-150 hover:border-accent hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
   const MenuItem = ({ to, title, text }: { to: string; title: string; text: string }) => (
     <Link to={to} className={menuLink}>
-      <div className="text-sm font-semibold text-foreground group-hover:text-primary">{title}</div>
+      <div className="text-sm font-semibold text-foreground group-hover:text-accent">{title}</div>
       <p className="mt-0.5 text-xs text-muted-foreground">{text}</p>
     </Link>
   );
   const Panel = ({ label, children, wide }: { label: string; children: React.ReactNode; wide?: boolean }) => (
-    <div className={`${wide ? "w-[520px]" : "w-[340px]"} border-t-2 border-accent bg-background p-4 shadow-lg`}>
+    <div className={`${wide ? "w-[520px]" : "w-[340px]"} rounded border border-border bg-popover p-3 animate-fade-in`}>
       <p className="mb-2 px-3 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">{label}</p>
       <div className={wide ? "grid grid-cols-2 gap-1" : "space-y-1"}>{children}</div>
     </div>
   );
 
   return (
-    <header className="relative z-40 w-full">
+    <>
       {/* Utility strip */}
       <div className="bg-banner text-banner-foreground">
-        <div className="container mx-auto flex h-9 items-center justify-between gap-4 px-4 text-xs sm:px-6">
-          <div className="flex min-w-0 items-center gap-4 text-banner-foreground/75">
+        <div className="container mx-auto flex h-9 items-center justify-between gap-6 px-4 text-xs sm:px-6">
+          <div className="flex min-w-0 items-center gap-6 text-banner-foreground/75">
             <span className="truncate">Faculty of Veterinary Medicine, University of Jos</span>
             <span className="hidden md:inline">e-ISSN 3043-4246</span>
             <span className="hidden md:inline">Open Access</span>
           </div>
-          <div className="flex shrink-0 items-center gap-4 font-medium">
+          <div className="flex shrink-0 items-center gap-6 font-medium">
             <Link to="/author-portal" className="hidden hover:text-accent sm:inline">For Authors</Link>
             <Link to="/peer-review" className="hidden hover:text-accent sm:inline">For Reviewers</Link>
             {!user && <a href={getOJSLink("LOGIN")} className="hover:text-accent">Login</a>}
@@ -106,7 +106,7 @@ const Header = () => {
       </div>
 
       {/* Main bar */}
-      <div className="border-b border-border bg-background">
+      <header className="sticky top-0 z-40 w-full border-b border-border bg-background">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex h-16 items-center justify-between gap-4 lg:h-20">
           {/* Logo */}
@@ -176,8 +176,8 @@ const Header = () => {
           {/* CTA Buttons */}
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <Button asChild size="sm" className="hidden rounded-sm bg-accent text-accent-foreground hover:bg-accent/90 md:inline-flex">
-              <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer"><Send /> Submit</a>
+            <Button asChild size="sm" className="hidden md:inline-flex">
+              <a href={getOJSLink("SUBMIT_MANUSCRIPT")} target="_blank" rel="noopener noreferrer" title="Opens the submission portal"><Send /> Submit <ExternalLink className="!size-3 opacity-70" aria-hidden /><span className="sr-only">(opens the submission portal)</span></a>
             </Button>
 
             {/* Mobile Menu */}
@@ -298,7 +298,7 @@ const Header = () => {
                   {/* Footer Actions */}
                   {!user && (
                     <motion.div
-                      className="p-6 border-t border-border/50 bg-gradient-accent space-y-3"
+                      className="p-6 border-t border-border/50 bg-secondary space-y-3"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.3 }}
@@ -335,8 +335,8 @@ const Header = () => {
           </div>
         </div>
       </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };
 

@@ -40,14 +40,14 @@ export function NewsCarousel() {
   }, []);
 
   return (
-    <section className="border-b border-border bg-secondary/25 py-12 sm:py-16">
+    <section className="border-b border-border section-band py-12 md:py-20">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mb-7 flex items-end justify-between gap-4 border-b border-border pb-4">
           <div>
-            <p className="mb-2 text-xs font-bold uppercase text-primary">Journal notices</p>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Journal notices</p>
             <h2 className="font-serif text-3xl font-semibold">News & Announcements</h2>
           </div>
-          <Link to="/blog" className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-primary hover:underline">View all <ArrowRight className="h-4 w-4" /></Link>
+          <Link to="/blog" className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-accent hover:underline">View all <ArrowRight className="h-4 w-4" /></Link>
         </div>
 
         {loading ? (
@@ -57,10 +57,10 @@ export function NewsCarousel() {
             {items.map((item) => (
               <article key={item.id} className="border-b border-border py-5">
                 <div className="mb-2 flex items-center gap-3 text-xs font-semibold uppercase text-muted-foreground">
-                  <span className="text-primary">{typeLabel[item.post_type] || "Article"}</span>
+                  <span className="text-foreground">{typeLabel[item.post_type] || "Article"}</span>
                   <span className="inline-flex items-center gap-1"><Calendar className="h-3.5 w-3.5" />{format(new Date(item.published_at), "d MMMM yyyy")}</span>
                 </div>
-                <h3 className="text-lg font-semibold leading-snug"><Link to={`/blog/${item.slug}`} className="hover:text-primary">{item.title}</Link></h3>
+                <h3 className="text-lg font-semibold leading-snug"><Link to={`/blog/${item.slug}`} className="transition-colors duration-150 hover:text-accent">{item.title}</Link></h3>
                 {item.excerpt && <p className="mt-2 line-clamp-2 text-sm text-muted-foreground">{item.excerpt}</p>}
               </article>
             ))}

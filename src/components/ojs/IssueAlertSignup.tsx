@@ -51,7 +51,7 @@ export const IssueAlertSignup = ({ compact = false }: { compact?: boolean }) => 
   return (
     <div className={`rounded-sm border border-border bg-card ${compact ? "p-4" : "p-5 sm:p-6"}`}>
       <div className="flex items-center gap-2.5">
-        <Bell className="h-5 w-5 text-primary" />
+        <Bell className="h-5 w-5 text-muted-foreground" strokeWidth={1.5} aria-hidden />
         <h3 className="font-serif text-lg font-semibold">New issue alerts</h3>
       </div>
       <p className="mt-2 text-sm text-muted-foreground">
@@ -65,7 +65,7 @@ export const IssueAlertSignup = ({ compact = false }: { compact?: boolean }) => 
           onChange={(event) => { setEmail(event.target.value); if (status === "error") setStatus("idle"); }}
           placeholder="you@example.com"
           aria-label="Email address for new issue alerts"
-          className="sm:max-w-xs"
+          className="h-11 flex-1"
         />
         <Button type="submit" disabled={status === "loading"} className="rounded-sm">
           {status === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : <Bell className="h-4 w-4" />}

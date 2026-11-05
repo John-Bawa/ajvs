@@ -22,9 +22,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
         serif: ['"Source Serif 4"', 'Georgia', 'serif'],
-        body: ['"Source Sans 3"', 'system-ui', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
       },
       backdropBlur: {
         xs: '2px',
@@ -60,6 +60,10 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        oa: "hsl(var(--oa))",
+        band: "hsl(var(--band))",
+        orcid: { DEFAULT: "hsl(var(--orcid))", foreground: "hsl(var(--orcid-foreground))" },
+        "accent-on-dark": "hsl(var(--accent-on-dark))",
         highlight: {
           DEFAULT: "hsl(var(--highlight))",
           foreground: "hsl(var(--highlight-foreground))",
@@ -75,8 +79,11 @@ export default {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "var(--radius)",
+        sm: "calc(var(--radius) - 2px)",
+        xl: "var(--radius)",
+        "2xl": "var(--radius)",
+        "3xl": "var(--radius)",
       },
       typography: {
         DEFAULT: {
@@ -104,14 +111,14 @@ export default {
           },
         },
         "fade-in": {
-          "0%": { opacity: "0", transform: "translateY(8px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.4s ease-out",
+        "fade-in": "fade-in 0.2s ease-out",
       },
     },
   },

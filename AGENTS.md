@@ -1,5 +1,6 @@
 OJS is the source of truth for issue and article metadata; expose only sanitized structured fields through the public proxy so publication content stays current without duplication.
-Current-issue responses include the live retrieval time, and the interface must visibly show it with a direct OJS fallback whenever refresh fails.
+Current-issue responses include the live retrieval time for internal use; readers see an issue header (volume, issue, date, article count) rather than sync details, plus a direct OJS fallback whenever refresh fails.
+- Visual system follows a ScienceDirect-style pattern: tokens in index.css (navy primary, teal accent for links/buttons, orange only for the open access label, 4px radius, hairline borders instead of shadows); inner pages use the compact PageHero band, the photo stays on the homepage only.
 The AJVS archive is a live OJS-backed index with title/author search, year/issue filters, and 12-result pagination; never duplicate publication records locally.
 The homepage follows a scholarly metadata-hub pattern: search and verified publication facts lead, while unverified metrics, decorative motion, and generic marketing claims are excluded to preserve academic credibility.
 - AI article finder (research-finder function) reads publications live via ojs-proxy and only returns articles whose IDs exist in that data — prevents invented citations.

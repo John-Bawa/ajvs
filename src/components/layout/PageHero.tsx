@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import heroBuilding from "@/assets/hero-building.jpg";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -10,30 +9,23 @@ interface PageHeroProps {
   children?: ReactNode;
 }
 
-/** Shared photographic page banner: faculty building under a navy overlay. */
+/** Shared compact page header for inner pages: breadcrumb, section label, H1 and descriptor on a plain band. */
 export function PageHero({ eyebrow, title, description, children }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-banner text-banner-foreground">
-      <img
-        src={heroBuilding}
-        alt=""
-        aria-hidden
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]"
-      />
-      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-banner via-banner/85 to-banner/40" />
-      <div className="container mx-auto px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
-        <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1 text-xs font-medium text-banner-foreground/70">
-          <Link to="/" className="hover:text-accent">Home</Link>
-          <ChevronRight className="h-3.5 w-3.5" />
-          <span aria-current="page" className="text-banner-foreground">{title}</span>
+    <section className="section-band border-b border-border">
+      <div className="container mx-auto px-4 py-8 sm:px-6 sm:py-10">
+        <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+          <Link to="/" className="hover:text-accent hover:underline">Home</Link>
+          <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+          <span aria-current="page" className="text-foreground">{title}</span>
         </nav>
         <div className="max-w-3xl">
           {eyebrow && (
-            <p className="mb-3 border-l-2 border-accent pl-3 text-xs font-bold uppercase tracking-wider text-accent">{eyebrow}</p>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{eyebrow}</p>
           )}
-          <h1 className="font-serif text-4xl font-semibold leading-[1.05] text-banner-foreground sm:text-5xl lg:text-6xl">{title}</h1>
-          {description && <p className="mt-4 max-w-2xl text-base text-banner-foreground/85 sm:text-lg">{description}</p>}
-          {children && <div className="mt-7">{children}</div>}
+          <h1 className="font-serif text-3xl font-semibold leading-tight text-foreground sm:text-4xl">{title}</h1>
+          {description && <p className="mt-2 max-w-2xl text-base text-muted-foreground">{description}</p>}
+          {children && <div className="mt-5">{children}</div>}
         </div>
       </div>
     </section>

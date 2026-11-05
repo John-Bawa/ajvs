@@ -15,7 +15,7 @@ import { ResearchFinder } from "@/components/ojs/ResearchFinder";
 import { IssueAlertSignup } from "@/components/ojs/IssueAlertSignup";
 import { fetchArchive, OJSArchiveIssue, OJSArticle } from "@/services/ojsApi";
 import { getOJSLink } from "@/config/ojs";
-import { AlertCircle, Clock3, ExternalLink, Search, SlidersHorizontal } from "lucide-react";
+import { AlertCircle, ExternalLink, Search, SlidersHorizontal } from "lucide-react";
 
 const ARTICLES_PER_PAGE = 12;
 
@@ -115,7 +115,6 @@ const Archives = () => {
 
               <div className="flex flex-col gap-2 border-b border-border py-4 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
                 <p><span className="font-semibold text-foreground">{filteredEntries.length}</span> {filteredEntries.length === 1 ? "article" : "articles"} found</p>
-                {syncedAt && <p className="flex items-center gap-1.5"><Clock3 className="h-3.5 w-3.5" />Last synced from OJS: {new Date(syncedAt).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" })}</p>}
               </div>
 
               {pageEntries.length ? (

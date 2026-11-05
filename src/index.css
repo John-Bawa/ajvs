@@ -11,22 +11,27 @@ Academic Journal Design System - Classic & Scholarly
   :root {
     /* Base colors - Clean white background for readability */
     --background: 0 0% 100%;
-    --foreground: 210 50% 19%;
+    --foreground: 211 67% 17%;
 
-    /* Primary - Deep Navy Blue (#183048) */
-    --primary: 210 50% 19%;
+    /* Primary - Deep Navy Blue (#0E2A47) */
+    --primary: 211 67% 17%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 210 50% 14%;
+    --primary-hover: 211 67% 12%;
     --primary-light: 210 30% 92%;
     
     /* Banner - Deep Navy for navigation/footer */
-    --banner: 210 50% 19%;
+    --banner: 211 67% 17%;
     --banner-foreground: 0 0% 100%;
     --banner-light: 210 30% 94%;
     
     /* Accent - Vibrant Cyan/Teal (#4BD4E3) */
-    --accent: 186 72% 59%;
-    --accent-foreground: 210 50% 19%;
+    --accent: 188 83% 34%;
+    --accent-foreground: 0 0% 100%;
+    --accent-on-dark: 186 72% 62%;
+    --oa: 29 93% 52%;
+    --band: 220 14% 97%;
+    --orcid: 84 63% 43%;
+    --orcid-foreground: 0 0% 100%;
     
     /* Highlight - Metallic Gold (#D4AF37) */
     --highlight: 46 67% 52%;
@@ -44,20 +49,20 @@ Academic Journal Design System - Classic & Scholarly
     --popover: 0 0% 100%;
     --popover-foreground: 210 50% 19%;
 
-    --secondary: 210 15% 96%;
+    --secondary: 220 14% 97%;
     --secondary-foreground: 210 50% 19%;
 
-    --muted: 210 10% 94%;
-    --muted-foreground: 210 20% 45%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 213 14% 38%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 15% 95%;
-    --ring: 186 72% 59%;
+    --border: 214 13% 90%;
+    --input: 214 13% 90%;
+    --ring: 188 83% 34%;
 
-    --radius: 0.5rem;
+    --radius: 4px;
 
     /* Gradients - Clean and professional */
     --gradient-hero: linear-gradient(180deg, hsl(210 50% 19% / 0.02), hsl(186 72% 59% / 0.03));
@@ -69,11 +74,11 @@ Academic Journal Design System - Classic & Scholarly
     --gradient-cyan: linear-gradient(135deg, hsl(186 72% 59%), hsl(186 72% 45%));
     
     /* Shadows - Clean and subtle */
-    --shadow-glass: 0 1px 3px 0 hsl(210 30% 10% / 0.04);
-    --shadow-glass-hover: 0 4px 12px 0 hsl(210 30% 10% / 0.08);
-    --shadow-lg: 0 4px 16px -4px hsl(210 50% 19% / 0.12);
-    --shadow-card: 0 1px 4px 0 hsl(0 0% 0% / 0.04);
-    --shadow-elegant: 0 8px 24px -8px hsl(210 50% 19% / 0.1);
+    --shadow-glass: none;
+    --shadow-glass-hover: none;
+    --shadow-lg: none;
+    --shadow-card: none;
+    --shadow-elegant: none;
     
     /* Transitions */
     --transition: all 0.2s ease-in-out;
@@ -107,8 +112,11 @@ Academic Journal Design System - Classic & Scholarly
     --muted-foreground: 210 15% 65%;
 
     /* Accent - Cyan remains vibrant */
-    --accent: 186 72% 55%;
+    --accent: 186 72% 50%;
     --accent-foreground: 210 40% 8%;
+    --accent-on-dark: 186 72% 62%;
+    --oa: 29 93% 58%;
+    --band: 210 35% 11%;
     
     /* Highlight - Gold slightly brighter */
     --highlight: 46 70% 58%;
@@ -141,11 +149,11 @@ Academic Journal Design System - Classic & Scholarly
     --gradient-cyan: linear-gradient(135deg, hsl(186 72% 50%), hsl(186 72% 40%));
     
     /* Shadows for dark mode - subtle glows */
-    --shadow-glass: 0 1px 3px 0 hsl(0 0% 0% / 0.4);
-    --shadow-glass-hover: 0 4px 12px 0 hsl(0 0% 0% / 0.5);
-    --shadow-lg: 0 4px 16px -4px hsl(186 72% 55% / 0.2);
-    --shadow-card: 0 1px 4px 0 hsl(0 0% 0% / 0.3);
-    --shadow-elegant: 0 8px 24px -8px hsl(186 72% 55% / 0.15);
+    --shadow-glass: none;
+    --shadow-glass-hover: none;
+    --shadow-lg: none;
+    --shadow-card: none;
+    --shadow-elegant: none;
   }
 }
 
@@ -154,8 +162,9 @@ Academic Journal Design System - Classic & Scholarly
     @apply border-border;
   }
 
+  html { scroll-padding-top: 5rem; }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased font-sans;
     font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
   }
   
@@ -176,6 +185,16 @@ Academic Journal Design System - Classic & Scholarly
   }
   
   /* Fonts loaded via index.html <link> tags for optimal performance */
+}
+
+@layer components {
+  .section-band { background: hsl(var(--band)); }
+  .section-pad { @apply py-12 md:py-20; }
+  .section-heading { @apply font-serif text-2xl font-semibold sm:text-3xl border-b border-border pb-3; }
+  .reading-text { @apply font-serif; font-size: 1.125rem; line-height: 1.7; max-width: 68ch; }
+  .meta-text { @apply font-sans text-[13px] text-muted-foreground; }
+  .callout { @apply border-l-[3px] border-primary py-4 pl-5 pr-4; background: hsl(var(--band)); }
+  .oa-label { @apply inline-flex items-center gap-1 font-semibold; color: hsl(var(--oa)); }
 }
 
 @layer utilities {
@@ -292,7 +311,7 @@ Academic Journal Design System - Classic & Scholarly
   }
   
   .hover-lift:hover {
-    transform: translateY(-2px);
+    border-color: hsl(var(--accent) / 0.5);
     box-shadow: var(--shadow-elegant);
   }
   
