@@ -44,8 +44,7 @@ type IssueSummary = {
   coverImageUrl?: string;
 };
 
-function parseIssuePage(html: string, fallback: IssueSummary) {
-  const descriptionMatch = html.match(/<div[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
+function parseIssuePage(html: string, fallback: IssueSummary) {  const descriptionMatch = html.match(/<div[^>]*class="[^"]*description[^"]*"[^>]*>([\s\S]*?)<\/div>/i);
   const description = descriptionMatch ? decodeHtml(descriptionMatch[1]) : '';
   const publishedMatch = html.match(/<p[^>]*class="[^"]*published[^"]*"[^>]*>[\s\S]*?(\d{4}-\d{2}-\d{2})[\s\S]*?<\/p>/i);
   const headingMatch = html.match(/<li[^>]*class="active"[^>]*>[\s\S]*?(Vol\.[\s\S]*?)<\/li>/i);
