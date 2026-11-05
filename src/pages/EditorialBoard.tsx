@@ -524,7 +524,7 @@ const EditorialBoard = () => {
             transition={{ duration: 0.6 }}
             className="mb-10"
           >
-            <div className="text-center mb-6">
+            <div className="mb-6">
               <h2 className="section-heading">Associate Editors</h2>
             </div>
             <motion.div
@@ -594,7 +594,7 @@ const EditorialBoard = () => {
             transition={{ duration: 0.6 }}
             className="mb-10"
           >
-            <div className="text-center mb-6">
+            <div className="mb-6">
               <h2 className="section-heading">Editorial Board Advisers</h2>
             </div>
             <motion.div
@@ -666,8 +666,6 @@ const EditorialBoard = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-banner/10 pointer-events-none" />
               <CardContent className="p-12 text-center relative">
                 <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center"
                 >
                   <Award className="w-8 h-8 text-primary" />
@@ -678,10 +676,8 @@ const EditorialBoard = () => {
                   veterinary sciences and wish to contribute to advancing research in Africa, please contact us.
                 </p>
                 <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   href="mailto:editor@africanjournalvetsci.org"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all duration-300"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-accent text-accent-foreground font-semibold rounded transition-colors duration-150 hover:bg-accent/90"
                 >
                   <Mail className="w-5 h-5" />
                   Contact Editorial Office
