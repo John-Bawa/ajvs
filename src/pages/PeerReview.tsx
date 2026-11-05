@@ -299,6 +299,12 @@ const PeerReview = () => {
             </div>
           </section>
 
+          {/* Reviewer pool sign-up */}
+          <section aria-labelledby="reviewer-pool-heading" className="mb-12">
+            <h2 id="reviewer-pool-heading" className="sr-only">Join the reviewer pool</h2>
+            <ReviewerInterestForm />
+          </section>
+
           {/* Final CTA */}
           <section className="glass rounded-2xl border-t-2 border-accent p-6 text-center sm:p-10">
             <h2 className="text-2xl font-serif font-bold">Interested in reviewing for AJVS?</h2>
