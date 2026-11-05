@@ -116,6 +116,38 @@ function parseIssueArchive(html: string): IssueSummary[] {
 }
 
 /**
+ * Fetch and parse the abstract from a single OJS article view page.
+ * Returns undefined when the page has no abstract block.
+ */
+async function fetchArticleAbstract(articleId: number): Promise<string | undefined> {
+  try {
+    const res = await fetch(`${OJS_BASE_URL}/article/view/${articleId}`, {
+      cache: 'no-store',
+      headers: { 'Accept': 'text/html' },
+    });
+    if (!res.ok) return undefined;
+    const html = await res.text();
+    const match = html.match(/<(?:section|div)[^>]*class="[^"]*item\s+abstract[^"]*"[^>]*>([\s\S]*?)<\/(?:section|div)>/i)
+      ?? html.match(/<(?:section|div)[^>]*class="[^"]*abstract[^"]*"[^>]*>([\s\S]*?)<\/(?:section|div)>/i);
+    if (!match) return undefined;
+    const text = decodeHtml(match[1]).replace(/^abstract[:\s]*/i, '');
+    return text.length > 20 ? text.slice(0, 2000) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * Attach abstracts to articles by fetching each article page in parallel.
+ * Capped to keep response times bounded as the archive grows.
+ */
+async function withAbstracts<T extends { id: number; abstract?: string }>(articles: T[], cap = 24): Promise<T[]> {
+  const targets = articles.slice(0, cap);
+  const abstracts = await Promise.all(targets.map((a) => fetchArticleAbstract(a.id)));
+  return articles.map((a, i) => (i < cap && abstracts[i] ? { ...a, abstract: abstracts[i] } : a));
+}
+
+/**
  * Parse announcements from OJS HTML page
  */
 function parseAnnouncements(html: string): Array<{ id: number; title: string; description: string; datePosted: string; url: string }> {
