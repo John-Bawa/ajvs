@@ -25,10 +25,11 @@ Academic Journal Design System - Classic & Scholarly
     --banner-light: 210 30% 94%;
     
     /* Accent - Vibrant Cyan/Teal (#4BD4E3) */
-    --accent: 188 83% 34%;
+    --accent: 188 85% 29%;
     --accent-foreground: 0 0% 100%;
     --accent-on-dark: 186 72% 62%;
     --oa: 29 93% 52%;
+    --oa-text: 28 100% 33%;
     --band: 220 14% 97%;
     --orcid: 84 63% 43%;
     --orcid-foreground: 0 0% 100%;
@@ -60,7 +61,7 @@ Academic Journal Design System - Classic & Scholarly
 
     --border: 214 13% 90%;
     --input: 214 13% 90%;
-    --ring: 188 83% 34%;
+    --ring: 188 85% 29%;
 
     --radius: 4px;
 
@@ -116,6 +117,7 @@ Academic Journal Design System - Classic & Scholarly
     --accent-foreground: 210 40% 8%;
     --accent-on-dark: 186 72% 62%;
     --oa: 29 93% 58%;
+    --oa-text: 29 93% 62%;
     --band: 210 35% 11%;
     
     /* Highlight - Gold slightly brighter */
@@ -208,7 +210,8 @@ Academic Journal Design System - Classic & Scholarly
   .reading-layout p { @apply text-foreground/85; font-size: 1.0625rem; line-height: 1.7; }
   .reading-layout ul li { @apply text-foreground/85; font-size: 1rem; }
   .reading-layout ul { @apply space-y-2; }
-  .oa-label { @apply inline-flex items-center gap-1 font-semibold; color: hsl(var(--oa)); }
+  .oa-label { @apply inline-flex items-center gap-1 font-semibold; color: hsl(var(--oa-text)); }
+  .oa-label svg { color: hsl(var(--oa)); }
 }
 
 @layer utilities {

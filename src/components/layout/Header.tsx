@@ -186,7 +186,8 @@ const Header = () => {
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="text-foreground hover:bg-primary/10 relative overflow-hidden group"
+                  aria-label={isOpen ? "Close menu" : "Open menu"}
+                  className="text-foreground hover:bg-primary/10 relative overflow-hidden group min-h-11 min-w-11"
                 >
                   <AnimatePresence mode="wait">
                     {!isOpen ? (

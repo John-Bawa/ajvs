@@ -71,6 +71,7 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
   const visibleArticles = compact
     ? articles.slice(0, 5)
     : articles.slice(startIndex, startIndex + ARTICLES_PER_PAGE);
+  const IssueHeading = compact ? "h3" : "h2";
   const showIssueOneCover = issue?.id === 1 || (String(issue?.volume) === "1" && String(issue?.number) === "1");
 
   const goToPage = (page: number) => {
@@ -117,7 +118,6 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group mx-auto block w-full max-w-[180px] sm:mx-0"
-                aria-label="Open AJVS Volume 1, Number 1 on OJS"
               >
                 <img
                   src={issueOneCover.url}
@@ -132,11 +132,11 @@ export const OJSCurrentIssueSection = ({ compact = false }: OJSCurrentIssueSecti
             )}
             <div className="flex min-w-0 flex-col justify-between gap-5 sm:flex-row sm:items-start">
               <div>
-              <h3 className="mb-2 font-serif text-2xl font-semibold">
+              <IssueHeading className="mb-2 font-serif text-2xl font-semibold">
                 {issue.volume && issue.number
                   ? `Volume ${issue.volume}, Issue ${issue.number}${issue.year ? ` (${issue.year})` : ""}`
                   : issue.title}
-              </h3>
+              </IssueHeading>
               <p className="meta-text flex flex-wrap gap-x-3 gap-y-1">
                 {issue.datePublished && (
                   <span>
