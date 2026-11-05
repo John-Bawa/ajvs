@@ -147,7 +147,7 @@ const FAQ = () => {
                     >
                       <AccordionTrigger className="px-0 py-5 hover:no-underline group">
                         <div className="flex items-start gap-4 text-left w-full">
-                          <div className="flex-shrink-0 mt-1">
+                          <div className="hidden flex-shrink-0 mt-1 sm:block">
                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                               <Icon className="w-5 h-5 text-primary" />
                             </div>
@@ -158,7 +158,7 @@ const FAQ = () => {
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="px-0 pb-6 pt-0">
-                        <div className="pl-14 text-muted-foreground leading-relaxed whitespace-pre-line">
+                        <div className="sm:pl-14 text-muted-foreground leading-relaxed whitespace-pre-line">
                           {faq.answer}
                         </div>
                       </AccordionContent>
