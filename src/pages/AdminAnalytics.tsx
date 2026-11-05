@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { format, subDays } from "date-fns";
-import { BarChart3, CalendarDays, ExternalLink, FileText, MousePointerClick, Users } from "lucide-react";
+import { BarChart3, Bell, CalendarDays, ExternalLink, FileText, Loader2, Mail, MousePointerClick, Send, Users } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
@@ -15,6 +17,7 @@ import { useUserRoles } from "@/hooks/useUserRoles";
 import { toast } from "sonner";
 
 type InterestEvent = { event_type: string; source: string; created_at: string };
+type Subscriber = { id: string; email: string; created_at: string };
 
 export default function AdminAnalytics() {
   const { user } = useAuth();
