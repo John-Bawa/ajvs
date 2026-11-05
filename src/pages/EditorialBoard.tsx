@@ -433,17 +433,6 @@ const EditorialBoard = () => {
                     <h4 className="text-lg font-serif font-bold mb-1">{editorInChief.name}</h4>
                     <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{editorInChief.affiliation}</p>
                     <div className="space-y-1.5 text-sm">
-                      <a
-                        href={`mailto:${editorInChief.email}`}
-                        className="flex items-center justify-center gap-2 text-primary hover:underline"
-                      >
-                        <Mail className="w-4 h-4" />
-                        <span>{editorInChief.email}</span>
-                      </a>
-                      <p className="text-muted-foreground flex items-center justify-center gap-2">
-                        <Phone className="w-4 h-4" />
-                        {editorInChief.phone}
-                      </p>
                       {editorInChief.orcid && (
                         <a
                           href={`https://orcid.org/${editorInChief.orcid}`}
@@ -452,7 +441,7 @@ const EditorialBoard = () => {
                           className="flex items-center justify-center gap-2 text-accent hover:text-accent/80 transition-colors"
                         >
                           <Award className="w-4 h-4" />
-                          <span>ORCID: {editorInChief.orcid}</span>
+                          <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[hsl(84_63%_43%)] text-[9px] font-bold text-background" aria-hidden>iD</span><span>ORCID</span>
                         </a>
                       )}
                     </div>
@@ -477,17 +466,6 @@ const EditorialBoard = () => {
                     <h4 className="text-lg font-serif font-bold mb-1">{coEditorInChief.name}</h4>
                     <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{coEditorInChief.affiliation}</p>
                     <div className="space-y-1.5 text-sm">
-                      <a
-                        href={`mailto:${coEditorInChief.email}`}
-                        className="flex items-center justify-center gap-2 text-primary hover:underline"
-                      >
-                        <Mail className="w-4 h-4" />
-                        <span>{coEditorInChief.email}</span>
-                      </a>
-                      <p className="text-muted-foreground flex items-center justify-center gap-2">
-                        <Phone className="w-4 h-4" />
-                        {coEditorInChief.phone}
-                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -520,24 +498,13 @@ const EditorialBoard = () => {
                     <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{deputyEditorInChief.affiliation}</p>
                     <div className="space-y-1.5 text-sm">
                       <a
-                        href={`mailto:${deputyEditorInChief.email}`}
-                        className="flex items-center justify-center gap-2 text-primary hover:underline"
-                      >
-                        <Mail className="w-4 h-4" />
-                        <span>{deputyEditorInChief.email}</span>
-                      </a>
-                      <p className="text-muted-foreground flex items-center justify-center gap-2">
-                        <Phone className="w-4 h-4" />
-                        {deputyEditorInChief.phone}
-                      </p>
-                      <a
                         href={`https://orcid.org/${deputyEditorInChief.orcid}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
                       >
                         <ExternalLink className="w-3 h-3" />
-                        ORCID: {deputyEditorInChief.orcid}
+                        <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[hsl(84_63%_43%)] text-[9px] font-bold text-background" aria-hidden>iD</span><span>ORCID</span>
                       </a>
                     </div>
                   </div>
@@ -562,24 +529,13 @@ const EditorialBoard = () => {
                     <p className="text-sm text-muted-foreground mb-4 font-body min-h-[3rem]">{managingEditor.affiliation}</p>
                     <div className="space-y-1.5 text-sm">
                       <a
-                        href={`mailto:${managingEditor.email}`}
-                        className="flex items-center justify-center gap-2 text-primary hover:underline"
-                      >
-                        <Mail className="w-4 h-4" />
-                        <span>{managingEditor.email}</span>
-                      </a>
-                      <p className="text-muted-foreground flex items-center justify-center gap-2">
-                        <Phone className="w-4 h-4" />
-                        {managingEditor.phone}
-                      </p>
-                      <a
                         href={`https://orcid.org/${managingEditor.orcid}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
                       >
                         <ExternalLink className="w-3 h-3" />
-                        ORCID: {managingEditor.orcid}
+                        <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[hsl(84_63%_43%)] text-[9px] font-bold text-background" aria-hidden>iD</span><span>ORCID</span>
                       </a>
                     </div>
                   </div>
@@ -639,20 +595,6 @@ const EditorialBoard = () => {
                         <h3 className="font-serif font-bold text-base mb-1 min-h-[2.5rem] flex items-center">{editor.name}</h3>
                         <p className="text-xs text-muted-foreground mb-3 min-h-[2.5rem] line-clamp-2">{editor.affiliation}</p>
                         <div className="space-y-2 w-full">
-                          <motion.a
-                            whileHover={{ x: 3 }}
-                            href={`mailto:${editor.email}`}
-                            className="flex items-center justify-center gap-2 text-xs text-primary hover:text-primary/80 transition-colors"
-                          >
-                            <Mail className="w-3 h-3 flex-shrink-0" />
-                            <span className="truncate">{editor.email}</span>
-                          </motion.a>
-                          {editor.phone && (
-                            <p className="text-xs text-muted-foreground flex items-center justify-center gap-2">
-                              <Phone className="w-3 h-3" />
-                              {editor.phone}
-                            </p>
-                          )}
                           {editor.orcid && (
                             <motion.a
                               whileHover={{ scale: 1.05 }}
@@ -662,7 +604,7 @@ const EditorialBoard = () => {
                               className="inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
                             >
                               <ExternalLink className="w-3 h-3" />
-                              ORCID: {editor.orcid}
+                              <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[hsl(84_63%_43%)] text-[9px] font-bold text-background" aria-hidden>iD</span><span>ORCID</span>
                             </motion.a>
                           )}
                         </div>
@@ -724,20 +666,6 @@ const EditorialBoard = () => {
                         <h3 className="font-serif font-bold text-sm mb-1.5 min-h-[2.5rem] flex items-center">{advisor.name}</h3>
                         <p className="text-xs text-muted-foreground mb-3 min-h-[3rem] line-clamp-3 leading-relaxed">{advisor.affiliation}</p>
                         <div className="space-y-2 w-full">
-                          <motion.a
-                            whileHover={{ x: 3 }}
-                            href={`mailto:${advisor.email}`}
-                            className="flex items-center justify-center gap-2 text-xs text-primary hover:text-primary/80 transition-colors"
-                          >
-                            <Mail className="w-3 h-3 flex-shrink-0" />
-                            <span className="truncate">{advisor.email}</span>
-                          </motion.a>
-                          {advisor.phone && (
-                            <p className="text-xs text-muted-foreground flex items-center justify-center gap-2">
-                              <Phone className="w-3 h-3" />
-                              {advisor.phone}
-                            </p>
-                          )}
                           {advisor.orcid && (
                             <motion.a
                               whileHover={{ scale: 1.05 }}
@@ -747,7 +675,7 @@ const EditorialBoard = () => {
                               className="inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
                             >
                               <ExternalLink className="w-3 h-3" />
-                              ORCID: {advisor.orcid}
+                              <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-[hsl(84_63%_43%)] text-[9px] font-bold text-background" aria-hidden>iD</span><span>ORCID</span>
                             </motion.a>
                           )}
                         </div>
