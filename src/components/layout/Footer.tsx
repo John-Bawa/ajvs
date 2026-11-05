@@ -1,216 +1,107 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Mail, MapPin, Phone, FileText, Globe } from "lucide-react";
 import ajvsLogo from "@/assets/ajvs-logo-enhanced.png";
 
+const linkCls =
+  "inline-flex min-h-[32px] items-center text-banner-foreground/75 transition-colors duration-150 hover:text-banner-foreground hover:underline";
+
+const columns: { title: string; links: { label: string; to: string }[] }[] = [
+  {
+    title: "Journal",
+    links: [
+      { label: "Current Issue", to: "/current-issue" },
+      { label: "Archives", to: "/archives" },
+      { label: "Journal Overview", to: "/journal-overview" },
+      { label: "About the Journal", to: "/about" },
+      { label: "Editorial Board", to: "/editorial-board" },
+      { label: "News & Blog", to: "/blog" },
+    ],
+  },
+  {
+    title: "For Authors",
+    links: [
+      { label: "Author Portal", to: "/author-portal" },
+      { label: "Submit Manuscript", to: "/submit" },
+      { label: "Author Guidelines", to: "/for-authors" },
+      { label: "Call for Papers", to: "/call-for-papers" },
+    ],
+  },
+  {
+    title: "For Reviewers",
+    links: [
+      { label: "Peer Review", to: "/peer-review" },
+      { label: "Contact Editorial Office", to: "/contact" },
+      { label: "FAQ", to: "/faq" },
+    ],
+  },
+  {
+    title: "Policies",
+    links: [
+      { label: "Policies & Ethics", to: "/policies" },
+      { label: "Terms of Use", to: "/policies" },
+      { label: "Accessibility", to: "/contact" },
+      { label: "System Credits", to: "/system-credits" },
+    ],
+  },
+];
+
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
-    <footer className="bg-banner text-banner-foreground mt-auto border-t border-banner-foreground/10">
-      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-10 mb-12">
-          {/* Brand & Mission */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-5 group">
-              <div className="w-12 h-12 rounded-lg bg-background border border-primary/20 flex items-center justify-center transition-smooth group-hover:scale-105">
-                <img src={ajvsLogo} alt="AJVS Logo" className="w-10 h-10 object-contain" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-banner-foreground font-serif text-xl font-bold">AJVS</span>
-                <span className="text-banner-foreground/60 text-xs">Est. 2024</span>
-              </div>
-            </Link>
-            <p className="text-banner-foreground/80 text-sm leading-relaxed mb-4">
-              African Journal of Veterinary Sciences is published by the Faculty of Veterinary Medicine, University of
-              Jos, Nigeria. A peer-reviewed, international and open access journal publishing high-quality original
-              research articles, reviews, short communications and case reports in veterinary, biomedical and animal
-              sciences. Published twice yearly.
-            </p>
-            <div className="flex flex-col gap-2 text-sm">
-              <div className="flex items-center gap-2">
-                <FileText className="w-4 h-4 text-primary" />
-                <span className="text-banner-foreground/70">Open Access Journal</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Globe className="w-4 h-4 text-primary" />
-                <span className="text-banner-foreground/70">Double-Blind Peer Review</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-primary" />
-                <span className="text-banner-foreground/70">Two Issues Per Year</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Browse */}
-          <div>
-            <h3 className="font-semibold mb-5 text-banner-foreground">Browse</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link
-                  to="/current-issue"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Current Issue
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/archives"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Archives
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/journal-overview"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Journal Overview
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  About the Journal
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/editorial-board"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Editorial Board
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/blog"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  News & Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* For Authors */}
-          <div>
-            <h3 className="font-semibold mb-5 text-banner-foreground">For Authors</h3>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link
-                  to="/submit"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Submit Manuscript
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/for-authors"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Author Guidelines
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/policies"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Policies & Ethics
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-banner-foreground/70 hover:text-primary transition-smooth hover:translate-x-1 inline-block"
-                >
-                  Contact Editorial Office
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Information */}
-          <div>
-            <h3 className="font-semibold mb-5 text-banner-foreground">Contact</h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div className="flex flex-col gap-1">
-                  <span className="text-banner-foreground/90 font-medium">Editorial Office</span>
-                  <a
-                    href="mailto:editor@africanjournalvetsci.org"
-                    className="text-banner-foreground/70 hover:text-primary transition-smooth"
-                  >
-                    editor@africanjournalvetsci.org
-                  </a>
-                  <a
-                    href="mailto:ajvsc@unijos.edu.ng"
-                    className="text-banner-foreground/70 hover:text-primary transition-smooth"
-                  >
-                    ajvsc@unijos.edu.ng
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div className="flex flex-col gap-1">
-                  <span className="text-banner-foreground/90 font-medium">Editorial Office</span>
-                  <span className="text-banner-foreground/70">+234 8035907570 </span>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                <div className="flex flex-col">
-                  <span className="text-banner-foreground/90 font-medium mb-1">Address</span>
-                  <span className="text-banner-foreground/70 leading-relaxed">
-                    Faculty of Veterinary Medicine
-                    <br />
-                    University of Jos
-                    <br />
-                    P.M.B 2084, Jos, Plateau State
-                    <br />
-                    Nigeria
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
+    <footer className="mt-auto bg-banner text-banner-foreground">
+      <div className="container mx-auto px-4 py-12 sm:px-6 md:py-16">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {columns.map((col) => (
+            <nav key={col.title} aria-label={col.title}>
+              <h2 className="mb-4 font-sans text-xs font-semibold uppercase tracking-wider text-banner-foreground">{col.title}</h2>
+              <ul className="space-y-1.5 text-sm">
+                {col.links.map((l) => (
+                  <li key={l.label}>
+                    <Link to={l.to} className={linkCls}>{l.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
 
-
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-banner-foreground/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-banner-foreground/60">
-              &copy; {new Date().getFullYear()} African Journal of Veterinary Sciences. All rights reserved.
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <Link to="/policies" className="text-banner-foreground/60 hover:text-primary transition-smooth">
-                Privacy Policy
-              </Link>
-              <Link to="/policies" className="text-banner-foreground/60 hover:text-primary transition-smooth">
-                Terms of Use
-              </Link>
-              <Link to="/contact" className="text-banner-foreground/60 hover:text-primary transition-smooth">
-                Accessibility
-              </Link>
-              <Link to="/system-credits" className="text-banner-foreground/60 hover:text-primary transition-smooth">
-                System Credits
-              </Link>
+        <div className="mt-12 flex flex-col gap-6 border-t border-banner-foreground/15 pt-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-4">
+            <img src={ajvsLogo} alt="AJVS logo" loading="lazy" className="h-12 w-12 shrink-0 rounded bg-background object-contain p-1" />
+            <div className="text-sm">
+              <p className="font-semibold text-banner-foreground">African Journal of Veterinary Sciences</p>
+              <p className="text-banner-foreground/75">
+                Faculty of Veterinary Medicine, University of Jos, P.M.B 2084, Jos, Plateau State, Nigeria
+              </p>
+              <p className="text-banner-foreground/75">
+                e-ISSN 3043-4246 ·{" "}
+                <a href="mailto:editor@africanjournalvetsci.org" className="underline-offset-2 hover:text-banner-foreground hover:underline">
+                  editor@africanjournalvetsci.org
+                </a>
+              </p>
             </div>
           </div>
-          <div className="mt-4 text-center">
-            <p className="text-xs text-banner-foreground/40">
-              Platform Design, Development &amp; Data Systems:{" "}
-              <Link to="/system-credits" className="text-banner-foreground/60 hover:text-primary transition-smooth underline underline-offset-2">
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="license noopener noreferrer"
+            className="inline-flex shrink-0 items-center gap-2 self-start rounded border border-banner-foreground/30 px-3 py-2 text-xs font-semibold text-banner-foreground hover:border-banner-foreground md:self-auto"
+          >
+            CC BY 4.0
+            <span className="font-normal text-banner-foreground/75">Open access licence</span>
+          </a>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 border-t border-banner-foreground/15 pt-6 text-xs text-banner-foreground/70 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {year} African Journal of Veterinary Sciences.</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link to="/policies" className="hover:text-banner-foreground hover:underline">Privacy</Link>
+            <Link to="/contact" className="hover:text-banner-foreground hover:underline">Contact</Link>
+            <span>
+              Platform design and development:{" "}
+              <Link to="/system-credits" className="underline underline-offset-2 hover:text-banner-foreground">
                 Data-craft Analytic Solutions Inc.
               </Link>
-            </p>
+            </span>
           </div>
         </div>
       </div>
