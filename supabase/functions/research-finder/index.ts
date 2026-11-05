@@ -43,8 +43,8 @@ Deno.serve(async (req) => {
   const apiKey = Deno.env.get("LOVABLE_API_KEY");
   if (!apiKey) return json({ error: "AI search is not configured." }, 500);
 
-  // Load live OJS publication data through the existing sanitized proxy.
-  const proxyRes = await fetch(`${Deno.env.get("SUPABASE_URL")}/functions/v1/ojs-proxy?type=issues`, {
+  // Load live OJS publication data through the existing sanitized proxy, with abstracts.
+  const proxyRes = await fetch(`${Deno.env.get("SUPABASE_URL")}/functions/v1/ojs-proxy?type=issues&abstracts=1`, {
     headers: { apikey: Deno.env.get("SUPABASE_ANON_KEY") ?? "" },
   });
   if (!proxyRes.ok) return json({ error: "Could not load AJVS publications from OJS right now." }, 502);
@@ -56,12 +56,14 @@ Deno.serve(async (req) => {
   if (catalog.size === 0) return json({ summary: "", matches: [], syncedAt: data?.syncedAt, total: 0 });
 
   const listing = [...catalog.values()]
-    .map(({ article, issue }) =>
-      `[${article.id}] ${article.title} — ${(article.authors ?? []).map((x) => x.fullName).join(", ")} (${issue.title ?? ""})`)
+    .map(({ article, issue }) => {
+      const abstract = article.abstract ? `\n  Abstract: ${article.abstract.slice(0, 600)}` : "";
+      return `[${article.id}] ${article.title} — ${(article.authors ?? []).map((x) => x.fullName).join(", ")} (${issue.title ?? ""})${abstract}`;
+    })
     .join("\n");
 
   const system = `You help readers find relevant articles in the African Journal of Veterinary Sciences (AJVS).
-Only use the article list provided. Never invent articles, findings, or IDs. Judge relevance from titles and authors only; do not claim details not present.
+Only use the article list provided. Never invent articles, findings, or IDs. Judge relevance from titles, authors and abstracts; do not claim details not present.
 Return ONLY a JSON object: {"summary": string, "matches": [{"id": number, "relevance": "high"|"medium"|"low", "explanation": string}]}.
 Include at most 6 matches, ordered by relevance, each explanation 1-2 sentences. If nothing is relevant, return an empty matches array and say so in the summary (1-2 sentences).`;
 
