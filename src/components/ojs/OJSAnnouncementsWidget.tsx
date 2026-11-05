@@ -1,10 +1,8 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Megaphone, ExternalLink, Calendar } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { getOJSLink } from "@/config/ojs";
 import { useEffect, useState } from "react";
 import { fetchAnnouncements, OJSAnnouncement } from "@/services/ojsApi";
 import { LoadingSpinner } from "@/components/ui/loading-spinner";
-import { Badge } from "@/components/ui/badge";
 import DOMPurify from "dompurify";
 
 export const OJSAnnouncementsWidget = () => {
@@ -20,64 +18,49 @@ export const OJSAnnouncementsWidget = () => {
     loadAnnouncements();
   }, []);
 
+  const stripDates = (html: string) =>
+    html.replace(/\b\d{4}-\d{2}-\d{2}\b/g, "").replace(/\(\s*\)/g, "");
+
   return (
-    <Card className="shadow-card border-border/50">
-      <CardHeader className="flex flex-row items-center justify-between pb-3">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <Megaphone className="w-5 h-5 text-primary" />
-          Latest Announcements
-        </CardTitle>
-        <a 
-          href={getOJSLink('ANNOUNCEMENTS')} 
-          target="_blank" 
+    <section aria-labelledby="announcements-heading">
+      <div className="mb-2 flex items-center justify-between border-b border-border pb-2">
+        <h2 id="announcements-heading" className="font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          Latest announcements
+        </h2>
+        <a
+          href={getOJSLink('ANNOUNCEMENTS')}
+          target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-primary hover:text-primary/80 flex items-center gap-1 transition-smooth"
+          className="flex items-center gap-1 text-xs font-medium text-accent hover:underline"
         >
-          View All <ExternalLink className="w-3 h-3" />
+          View all <ExternalLink className="h-3 w-3" aria-hidden />
         </a>
-      </CardHeader>
-      <CardContent>
-        {loading ? (
-          <LoadingSpinner />
-        ) : announcements.length > 0 ? (
-          <div className="space-y-4">
-            {announcements.map((announcement) => (
-              <div key={announcement.id} className="border-b border-border/50 pb-4 last:border-0 last:pb-0">
-                <h4 className="font-semibold mb-2">{announcement.title}</h4>
-                <div 
-                  className="text-sm text-muted-foreground mb-2 line-clamp-3"
-                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(announcement.description) }}
-                />
-                <Badge variant="secondary" className="text-xs">
-                  <Calendar className="w-3 h-3 mr-1" />
-                  {new Date(announcement.datePosted).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric'
-                  })}
-                </Badge>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-4 space-y-3">
-            <div className="w-10 h-10 mx-auto rounded-full bg-muted flex items-center justify-center">
-              <Megaphone className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <p className="text-muted-foreground text-sm">
-              No announcements at the moment. Check back soon for updates!
-            </p>
-            <a 
-              href={getOJSLink('ANNOUNCEMENTS')} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
-            >
-              Visit announcements page <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-        )}
-      </CardContent>
-    </Card>
+      </div>
+      {loading ? (
+        <LoadingSpinner />
+      ) : announcements.length > 0 ? (
+        <ul className="divide-y divide-border">
+          {announcements.map((announcement) => (
+            <li key={announcement.id} className="py-3">
+              <p className="meta-text mb-1">
+                {new Date(announcement.datePosted).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+              </p>
+              <h3 className="font-sans text-sm font-semibold leading-snug">{announcement.title}</h3>
+              <div
+                className="mt-1 line-clamp-2 text-sm text-muted-foreground"
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(stripDates(announcement.description)) }}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="py-3 text-sm text-muted-foreground">
+          No announcements at the moment.{" "}
+          <a href={getOJSLink('ANNOUNCEMENTS')} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+            Visit the announcements page
+          </a>
+        </p>
+      )}
+    </section>
   );
 };
