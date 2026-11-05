@@ -12,14 +12,16 @@ const MAX_AUTHORS = 5;
 export const OJSArticleCard = ({ article, index = 0 }: OJSArticleCardProps) => {
   const articleUrl = getArticleUrl(article);
   const pdfUrl = getArticlePdfUrl(article);
-  const authors = article.authors?.map((author) => author.fullName) ?? [];
+  const rawAuthors = article.authors?.map((author) => author.fullName) ?? [];
+  // OJS sometimes returns the whole byline as one string ("Surname, I.N., Surname, I.N."); split it into names.
+  const authors =
+    rawAuthors.length === 1 ? rawAuthors[0].split(/(?<=\.),\s*/).map((name) => name.trim()).filter(Boolean) : rawAuthors;
   const authorLine =
     authors.length > MAX_AUTHORS ? `${authors.slice(0, MAX_AUTHORS).join(", ")} et al.` : authors.join(", ");
 
   return (
     <article className="py-5 first:pt-0" data-order={index + 1}>
       <div className="meta-text mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-        <span>Research article</span>
         <span className="oa-label">
           <LockOpen className="h-3.5 w-3.5" aria-hidden /> Open access
         </span>
