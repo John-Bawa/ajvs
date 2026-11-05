@@ -440,7 +440,6 @@ const EditorialBoard = () => {
                           rel="noopener noreferrer"
                           className="flex items-center justify-center gap-2 text-accent hover:text-accent/80 transition-colors"
                         >
-                          <Award className="w-4 h-4" />
                           <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-orcid text-[9px] font-bold text-orcid-foreground" aria-hidden>iD</span><span>ORCID</span>
                         </a>
                       )}
@@ -503,7 +502,6 @@ const EditorialBoard = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
                       >
-                        <ExternalLink className="w-3 h-3" />
                         <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-orcid text-[9px] font-bold text-orcid-foreground" aria-hidden>iD</span><span>ORCID</span>
                       </a>
                     </div>
@@ -534,7 +532,6 @@ const EditorialBoard = () => {
                         rel="noopener noreferrer"
                         className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
                       >
-                        <ExternalLink className="w-3 h-3" />
                         <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-orcid text-[9px] font-bold text-orcid-foreground" aria-hidden>iD</span><span>ORCID</span>
                       </a>
                     </div>
@@ -603,7 +600,6 @@ const EditorialBoard = () => {
                               rel="noopener noreferrer"
                               className="inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
                             >
-                              <ExternalLink className="w-3 h-3" />
                               <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-orcid text-[9px] font-bold text-orcid-foreground" aria-hidden>iD</span><span>ORCID</span>
                             </motion.a>
                           )}
@@ -674,7 +670,6 @@ const EditorialBoard = () => {
                               rel="noopener noreferrer"
                               className="inline-flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
                             >
-                              <ExternalLink className="w-3 h-3" />
                               <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-orcid text-[9px] font-bold text-orcid-foreground" aria-hidden>iD</span><span>ORCID</span>
                             </motion.a>
                           )}
