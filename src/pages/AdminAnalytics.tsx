@@ -130,6 +130,37 @@ export default function AdminAnalytics() {
           <div className="border-b border-border p-5 sm:p-6"><h2 id="source-heading" className="text-xl font-serif font-bold">Interest by source</h2><p className="text-sm text-muted-foreground">Visits show the referral or campaign source; clicks show the button location.</p></div>
           <Table><TableHeader><TableRow><TableHead>Source</TableHead><TableHead className="text-right">Visits</TableHead><TableHead className="text-right">OJS clicks</TableHead></TableRow></TableHeader><TableBody>{sources.length > 0 ? sources.map((row) => <TableRow key={row.source}><TableCell className="font-medium">{row.source.replace(/_/g, " ")}</TableCell><TableCell className="text-right">{row.visits}</TableCell><TableCell className="text-right">{row.clicks}</TableCell></TableRow>) : <TableRow><TableCell colSpan={3} className="py-10 text-center text-muted-foreground">No author-interest activity has been recorded yet.</TableCell></TableRow>}</TableBody></Table>
         </section>
+
+        <section className="mt-8 border border-border bg-card" aria-labelledby="alerts-heading">
+          <div className="border-b border-border p-5 sm:p-6">
+            <h2 id="alerts-heading" className="flex items-center gap-2 text-xl font-serif font-bold"><Bell className="h-5 w-5 text-primary" />New issue alerts</h2>
+            <p className="text-sm text-muted-foreground">Readers who asked to be emailed when a new issue publishes.</p>
+          </div>
+          <div className="grid gap-6 p-5 sm:p-6 lg:grid-cols-2">
+            <div>
+              <p className="mb-3 text-sm font-semibold">{subscribers.length} subscriber{subscribers.length === 1 ? "" : "s"}</p>
+              <div className="max-h-64 overflow-y-auto rounded-sm border border-border">
+                <Table><TableBody>{subscribers.length > 0 ? subscribers.map((sub) => <TableRow key={sub.id}><TableCell className="font-medium">{sub.email}</TableCell><TableCell className="text-right text-muted-foreground">{format(new Date(sub.created_at), "MMM d, yyyy")}</TableCell></TableRow>) : <TableRow><TableCell className="py-8 text-center text-muted-foreground">No subscribers yet.</TableCell></TableRow>}</TableBody></Table>
+              </div>
+            </div>
+            <form onSubmit={sendAlert} className="space-y-4">
+              <p className="text-sm font-semibold">Send an alert to all subscribers</p>
+              <label className="block space-y-1.5">
+                <span className="text-sm text-muted-foreground">Subject</span>
+                <Input value={alertSubject} onChange={(e) => setAlertSubject(e.target.value)} placeholder="AJVS Volume 1 Number 2 is now published" maxLength={255} />
+              </label>
+              <label className="block space-y-1.5">
+                <span className="text-sm text-muted-foreground">Message</span>
+                <Textarea value={alertMessage} onChange={(e) => setAlertMessage(e.target.value)} placeholder="The latest issue of the African Journal of Veterinary Sciences is now available..." rows={5} maxLength={10000} />
+              </label>
+              <Button type="submit" disabled={sending || subscribers.length === 0} className="rounded-sm">
+                {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+                Send alert
+              </Button>
+              <p className="flex items-center gap-1.5 text-xs text-muted-foreground"><Mail className="h-3.5 w-3.5" />Sent from the journal's noreply address.</p>
+            </form>
+          </div>
+        </section>
       </div></main>
       <Footer />
     </div>
