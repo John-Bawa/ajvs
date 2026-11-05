@@ -349,50 +349,29 @@ const EditorialBoard = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mb-16"
           >
-            <Card className="border border-border bg-card">
-              <CardContent className="p-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Globe2 className="w-6 h-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="text-2xl font-serif font-bold mb-4">
-                      Contact Information
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div className="space-y-1 text-muted-foreground font-body">
-                        <p className="font-semibold text-foreground">The Editor-in-Chief</p>
-                        <p>African Journal of Veterinary Sciences</p>
-                        <p>Faculty of Veterinary Medicine</p>
-                        <p>University of Jos</p>
-                        <p>P.M.B 2084, Jos, Plateau State</p>
-                        <p>Nigeria</p>
-                      </div>
-                      <div className="space-y-3">
-                        <a
-                          href="mailto:editor@africanjournalvetsci.org"
-                          className="flex items-center gap-3 text-primary hover:text-primary/80 transition-colors"
-                        >
-                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <Mail className="w-5 h-5" />
-                          </div>
-                          <span className="font-medium">editor@africanjournalvetsci.org</span>
-                        </a>
-                        <a
-                          href="mailto:ajvsc@unijos.edu.ng"
-                          className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors mt-2"
-                        >
-                          <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center">
-                            <Mail className="w-5 h-5" />
-                          </div>
-                          <span className="font-medium">ajvsc@unijos.edu.ng</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <section aria-labelledby="board-contact" className="grid overflow-hidden rounded border border-border md:grid-cols-2">
+              <div className="p-6 sm:p-8">
+                <h2 id="board-contact" className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Postal address</h2>
+                <address className="space-y-0.5 not-italic text-foreground">
+                  <p className="font-semibold">The Editor-in-Chief</p>
+                  <p>African Journal of Veterinary Sciences</p>
+                  <p>Faculty of Veterinary Medicine</p>
+                  <p>University of Jos</p>
+                  <p>P.M.B 2084, Jos, Plateau State</p>
+                  <p>Nigeria</p>
+                </address>
+              </div>
+              <div className="border-t border-border p-6 section-band sm:p-8 md:border-l md:border-t-0">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Editorial office email</p>
+                <a href="mailto:editor@africanjournalvetsci.org" className="inline-flex min-h-[44px] items-center gap-2 break-all font-medium text-accent hover:underline">
+                  <Mail className="h-4 w-4 shrink-0" aria-hidden /> editor@africanjournalvetsci.org
+                </a>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Alternative:{" "}
+                  <a href="mailto:ajvsc@unijos.edu.ng" className="text-accent hover:underline">ajvsc@unijos.edu.ng</a>
+                </p>
+              </div>
+            </section>
           </motion.div>
 
           {/* Section Header */}
@@ -400,13 +379,9 @@ const EditorialBoard = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-center mb-12"
+            className="mb-10"
           >
-            <h2 className="text-2xl font-serif font-bold inline-flex items-center gap-3">
-              <span className="w-8 h-px bg-border"></span>
-              Editorial Board Members
-              <span className="w-8 h-px bg-border"></span>
-            </h2>
+            <h2 className="section-heading text-left">Editorial Board Members</h2>
           </motion.div>
 
           {/* Editor-in-Chief & Co-Editor in-Chief */}
@@ -419,7 +394,7 @@ const EditorialBoard = () => {
           >
             {/* Editor-in-Chief */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Editor-in-Chief</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Editor-in-Chief</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -451,7 +426,7 @@ const EditorialBoard = () => {
 
             {/* Co-Editor in-Chief */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Co-Editor in-Chief</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Co-Editor in-Chief</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -482,7 +457,7 @@ const EditorialBoard = () => {
           >
             {/* Deputy Editor-in-Chief */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Deputy Editor-in-Chief</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Deputy Editor-in-Chief</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -512,7 +487,7 @@ const EditorialBoard = () => {
 
             {/* Managing Editor */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-serif font-semibold mb-4 text-center text-muted-foreground uppercase tracking-wide">Managing Editor</h3>
+              <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-wider text-muted-foreground">Managing Editor</h3>
               <Card className="h-full border border-border bg-card hover:shadow-elegant transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -549,9 +524,8 @@ const EditorialBoard = () => {
             transition={{ duration: 0.6 }}
             className="mb-10"
           >
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-serif font-bold mb-2">Associate Editors</h2>
-              <div className="h-0.5 w-20 bg-gradient-to-r from-primary to-banner mx-auto rounded-full" />
+            <div className="mb-6">
+              <h2 className="section-heading">Associate Editors</h2>
             </div>
             <motion.div
               variants={containerVariants}
@@ -620,9 +594,8 @@ const EditorialBoard = () => {
             transition={{ duration: 0.6 }}
             className="mb-10"
           >
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-serif font-bold mb-2">Editorial Board Advisers</h2>
-              <div className="h-0.5 w-20 bg-gradient-to-r from-banner to-primary mx-auto rounded-full" />
+            <div className="mb-6">
+              <h2 className="section-heading">Editorial Board Advisers</h2>
             </div>
             <motion.div
               variants={containerVariants}
@@ -693,8 +666,6 @@ const EditorialBoard = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-banner/10 pointer-events-none" />
               <CardContent className="p-12 text-center relative">
                 <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary/20 dark:bg-primary/30 flex items-center justify-center"
                 >
                   <Award className="w-8 h-8 text-primary" />
@@ -705,10 +676,8 @@ const EditorialBoard = () => {
                   veterinary sciences and wish to contribute to advancing research in Africa, please contact us.
                 </p>
                 <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   href="mailto:editor@africanjournalvetsci.org"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-primary/90 transition-all duration-300"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-accent text-accent-foreground font-semibold rounded transition-colors duration-150 hover:bg-accent/90"
                 >
                   <Mail className="w-5 h-5" />
                   Contact Editorial Office

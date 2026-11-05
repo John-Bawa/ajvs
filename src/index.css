@@ -25,10 +25,11 @@ Academic Journal Design System - Classic & Scholarly
     --banner-light: 210 30% 94%;
     
     /* Accent - Vibrant Cyan/Teal (#4BD4E3) */
-    --accent: 188 83% 34%;
+    --accent: 188 85% 29%;
     --accent-foreground: 0 0% 100%;
     --accent-on-dark: 186 72% 62%;
     --oa: 29 93% 52%;
+    --oa-text: 28 100% 33%;
     --band: 220 14% 97%;
     --orcid: 84 63% 43%;
     --orcid-foreground: 0 0% 100%;
@@ -60,7 +61,7 @@ Academic Journal Design System - Classic & Scholarly
 
     --border: 214 13% 90%;
     --input: 214 13% 90%;
-    --ring: 188 83% 34%;
+    --ring: 188 85% 29%;
 
     --radius: 4px;
 
@@ -116,6 +117,7 @@ Academic Journal Design System - Classic & Scholarly
     --accent-foreground: 210 40% 8%;
     --accent-on-dark: 186 72% 62%;
     --oa: 29 93% 58%;
+    --oa-text: 29 93% 62%;
     --band: 210 35% 11%;
     
     /* Highlight - Gold slightly brighter */
@@ -194,7 +196,22 @@ Academic Journal Design System - Classic & Scholarly
   .reading-text { @apply font-serif; font-size: 1.125rem; line-height: 1.7; max-width: 68ch; }
   .meta-text { @apply font-sans text-[13px] text-muted-foreground; }
   .callout { @apply border-l-[3px] border-primary py-4 pl-5 pr-4; background: hsl(var(--band)); }
-  .oa-label { @apply inline-flex items-center gap-1 font-semibold; color: hsl(var(--oa)); }
+  /* Long-form pages: flatten legacy cards into a calm reading flow */
+  .reading-layout .glass,
+  .reading-layout .hover-lift {
+    background: transparent; border: 0; border-bottom: 1px solid hsl(var(--border));
+    box-shadow: none; backdrop-filter: none; border-radius: 0;
+    padding: 0 0 2.5rem; margin-bottom: 2.5rem;
+  }
+  .reading-layout .glass:hover { box-shadow: none; }
+  .reading-layout .w-12.h-12.flex-shrink-0 { display: none; }
+  .reading-layout h2 { @apply font-serif text-2xl font-semibold text-foreground; scroll-margin-top: 6rem; margin-bottom: 1rem; }
+  .reading-layout h3 { @apply font-sans text-lg font-semibold text-foreground; margin-top: 1.75rem; margin-bottom: 0.5rem; }
+  .reading-layout p { @apply text-foreground/85; font-size: 1.0625rem; line-height: 1.7; }
+  .reading-layout ul li { @apply text-foreground/85; font-size: 1rem; }
+  .reading-layout ul { @apply space-y-2; }
+  .oa-label { @apply inline-flex items-center gap-1 font-semibold; color: hsl(var(--oa-text)); }
+  .oa-label svg { color: hsl(var(--oa)); }
 }
 
 @layer utilities {

@@ -124,13 +124,14 @@ const FAQ = () => {
 
       {/* FAQ Section */}
       <section className="py-12 md:py-16">
-        <div className="container max-w-3xl mx-auto px-4">
+        <div className="container max-w-[720px] mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Accordion type="single" collapsible className="space-y-4">
+            <h2 className="sr-only">Questions and answers</h2>
+            <Accordion type="single" collapsible className="border-t border-border">
               {faqs.map((faq, index) => {
                 const Icon = faq.icon;
                 return (
@@ -142,9 +143,9 @@ const FAQ = () => {
                   >
                     <AccordionItem
                       value={faq.id}
-                      className="border rounded-lg bg-card shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
+                      className="border-b border-border bg-transparent"
                     >
-                      <AccordionTrigger className="px-6 py-5 hover:no-underline group">
+                      <AccordionTrigger className="px-0 py-5 hover:no-underline group">
                         <div className="flex items-start gap-4 text-left w-full">
                           <div className="flex-shrink-0 mt-1">
                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -156,7 +157,7 @@ const FAQ = () => {
                           </span>
                         </div>
                       </AccordionTrigger>
-                      <AccordionContent className="px-6 pb-6 pt-0">
+                      <AccordionContent className="px-0 pb-6 pt-0">
                         <div className="pl-14 text-muted-foreground leading-relaxed whitespace-pre-line">
                           {faq.answer}
                         </div>
@@ -173,7 +174,7 @@ const FAQ = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-12 p-8 rounded-xl bg-gradient-to-br from-primary/5 via-secondary/5 to-primary/5 border border-primary/10 text-center"
+            className="mt-12 p-8 callout text-left"
           >
             <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-semibold mb-2">Still have questions?</h3>

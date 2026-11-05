@@ -184,13 +184,13 @@ export const AcademicCalendar = () => {
             <Card className="overflow-hidden border-border/50 shadow-lg">
               <CardHeader className="bg-primary/5 pb-4">
                 <div className="flex items-center justify-between">
-                  <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
+                  <Button variant="ghost" size="icon" aria-label="Previous month" onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}>
                     <ChevronLeft className="w-5 h-5" />
                   </Button>
                   <CardTitle className="text-xl font-serif">
                     {format(currentMonth, "MMMM yyyy")}
                   </CardTitle>
-                  <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>
+                  <Button variant="ghost" size="icon" aria-label="Next month" onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}>
                     <ChevronRight className="w-5 h-5" />
                   </Button>
                 </div>

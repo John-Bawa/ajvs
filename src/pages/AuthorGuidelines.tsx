@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { SEOHead } from "./SEOHead";
 import { FileText, CheckCircle, AlertCircle, Download, BookOpen, Shield, Users, DollarSign, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ReadingLayout } from "@/components/layout/ReadingLayout";
 
 const AuthorGuidelines = () => {
   return (
@@ -24,7 +25,7 @@ const AuthorGuidelines = () => {
       
       <PageHero eyebrow="For authors" title="Authors' Guidelines" description="Comprehensive guidelines for preparing and submitting manuscripts to the African Journal of Veterinary Sciences." />
       <main className="flex-1 py-10 sm:py-14">
-        <div className="container mx-auto px-4 max-w-5xl">
+        <ReadingLayout>
           {/* About the Journal */}
           <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <div className="flex items-start gap-4 mb-6">
@@ -293,7 +294,7 @@ const AuthorGuidelines = () => {
           {/* Plagiarism Assessment */}
           <div className="glass rounded-2xl p-5 sm:p-8 md:p-12 mb-8 hover-lift">
             <h2 className="text-2xl font-serif font-bold mb-4">Plagiarism Assessment</h2>
-            <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+            <div className="callout">
               <p className="text-muted-foreground">
                 Manuscripts submitted to the editorial office will be screened for potential plagiarism before peer review using similarity detection software. All cases of suspected or alleged plagiarism are considered very seriously in accordance with the journal's Plagiarism Policy.
               </p>
@@ -470,7 +471,7 @@ const AuthorGuidelines = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </ReadingLayout>
       </main>
 
       <Footer />
