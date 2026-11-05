@@ -14,6 +14,7 @@ const MODEL = "openai/gpt-6-astra";
 type Article = {
   id: number;
   title: string;
+  abstract?: string;
   authors?: { fullName: string }[];
   pages?: string;
   datePublished?: string;
